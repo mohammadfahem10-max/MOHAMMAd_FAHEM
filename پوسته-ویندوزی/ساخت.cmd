@@ -2,7 +2,7 @@
 chcp 65001 >nul
 setlocal EnableExtensions
 rem ===== ساخت «ثبت من.exe» با csc چارچوب ۴.۰ ویندوز (بدون Visual Studio) =====
-rem خروجی بیرون از مخزن: <SABTMAN_OUT> یا ..\..\اپلیکیشن ثبت من\برنامه
+rem خروجی بیرون از مخزن: <SABTMAN_OUT> یا «اپلیکیشن ثبت من\برنامه» (هم‌سطح مخزن)
 rem DLLهای WebView2 در مخزن نیستند (قانون ۵۱)؛ از SABTMAN_WEBVIEW2 یا ..\..\اپلیکیشن میزبان کپی می‌شوند.
 
 set "HERE=%~dp0"
@@ -13,7 +13,7 @@ if not exist "%CSC%" ( echo csc.exe پیدا نشد. & exit /b 1 )
 set "FW=%WINDIR%\Microsoft.NET\Framework64\v4.0.30319"
 if not exist "%FW%\WPF\PresentationFramework.dll" set "FW=%WINDIR%\Microsoft.NET\Framework\v4.0.30319"
 
-if defined SABTMAN_OUT ( set "OUT=%SABTMAN_OUT%" ) else ( set "OUT=%REPO%\..\اپلیکیشن ثبت من\برنامه" )
+if defined SABTMAN_OUT ( set "OUT=%SABTMAN_OUT%" ) else ( set "OUT=%REPO%\..\برنامه" )
 if not exist "%OUT%" mkdir "%OUT%"
 
 rem ---- DLLهای WebView2 ----
