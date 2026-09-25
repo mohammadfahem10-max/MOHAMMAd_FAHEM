@@ -1,9 +1,7 @@
 #!/usr/bin/env node
 /* ساخت خروجی‌ها بدون هیچ وابستگی: فقط ماژول‌های داخلی Node.
    - dist/sabt-man.bundle.js   : رابط کامل (هسته‌ها + تم + فونت همراه)
-   - dist/افزونه/               : افزونهٔ Chrome/Edge (Load unpacked)
-   - dist/sabt-man.user.js     : اسکریپت کاربر (Tampermonkey/Violentmonkey)
-   - dist/بک‌اند-فایل/          : سرویس محلی + فونت + شروع.bat (کپی مستقیم؛ بدون npm)
+   - dist/پوسته-ویندوزی/        : خروجی نهایی — رابط.js (تزریق در WebView2) + کد C# + ساخت.cmd + بک‌اند-فایل + فونت
 */
 'use strict';
 const fs = require('fs');
@@ -19,6 +17,7 @@ const CORE_ORDER = [
   path.join(UI, 'core', 'util.js'),
   path.join(UI, 'core', 'hook.js'),
   path.join(UI, 'core', 'store.js'),
+  path.join(UI, 'core', 'bridge.js'),
   path.join(REPORTS, 'official.js'),
   path.join(REPORTS, 'reports.js'),
   path.join(UI, 'core', 'export.js'),
@@ -65,21 +64,17 @@ function build() {
   // ۱) بستهٔ عمومی (برای آزمون و WebView2)
   fs.writeFileSync(path.join(DIST, 'sabt-man.bundle.js'), bundle({}));
 
-  // ۲) افزونهٔ مرورگر به دستور کارفرما برداشته شد (۱۴۰۵/۰۷/۰۳)؛ خروجی نهایی پوستهٔ ویندوزی است.
-
-  // ۳) اسکریپت کاربر
-  const header = read(path.join(UI, 'اسکریپت-کاربر', 'header.txt'));
-  fs.writeFileSync(path.join(DIST, 'sabt-man.user.js'), header + '\n' + bundle({ bridge: 'userscript' }));
-
-  // ۴) سرویس محلی (کپی مستقیم؛ فقط ماژول‌های داخلی Node)
-  const svcDir = path.join(DIST, 'بک‌اند-فایل');
-  copyDir(path.join(ROOT, 'بک‌اند-فایل'), svcDir);
-  copyDir(FONTS, path.join(svcDir, 'فونت'));
+  // ۲) پوستهٔ ویندوزی: رابط تزریقی + سرویس + فونت + کد C# و اسکریپت ساخت (خروجی نهایی به دستور کارفرما)
+  const shellDir = path.join(DIST, 'پوسته-ویندوزی');
+  copyDir(path.join(ROOT, 'پوسته-ویندوزی'), shellDir);
+  fs.writeFileSync(path.join(shellDir, 'رابط.js'), bundle({ bridge: 'webview' }));
+  copyDir(path.join(ROOT, 'بک‌اند-فایل'), path.join(shellDir, 'بک‌اند-فایل'));
+  copyDir(FONTS, path.join(shellDir, 'بک‌اند-فایل', 'فونت'));
 
   // ۵) راهنما
   fs.copyFileSync(path.join(ROOT, 'README.md'), path.join(DIST, 'README.md'));
 
-  const sizes = ['sabt-man.bundle.js', 'sabt-man.user.js'].map((f) => `${f}: ${Math.round(fs.statSync(path.join(DIST, f)).size / 1024)} KB`);
+  const sizes = ['sabt-man.bundle.js', path.join('پوسته-ویندوزی', 'رابط.js')].map((f) => `${f}: ${Math.round(fs.statSync(path.join(DIST, f)).size / 1024)} KB`);
   console.log('ساخته شد در dist/\n  ' + sizes.join('\n  '));
 }
 

@@ -37,7 +37,7 @@
           <div class="sm-rail" data-role="rail"></div>
           <div class="sm-main" data-role="main"></div>
         </div>
-        <div class="sm-foot"><span data-role="queue"></span><span class="sm-log" data-role="log"></span></div>
+        <div class="sm-foot"><span data-role="queue"></span><span class="sm-log" data-role="log"></span><span data-role="shell" class="sm-muted"></span></div>
       </div>`;
     document.documentElement.appendChild(root);
     ui.root = root;
@@ -58,6 +58,17 @@
     st().subscribe((what) => { if (what === 'log') renderLog(); else scheduleRender(); });
     ex().onQueue(renderQueue);
     S.hook.on('session', scheduleRender);
+    if (S.bridge && S.bridge.available()) {
+      S.bridge.onMessage((msg) => {
+        if (msg.type === 'toggle') toggle();
+        else if (msg.type === 'open') toggle(true);
+        else if (msg.type === 'settings') { toggle(true); openSettings(); }
+        else if (msg.type === 'dest') { toast('پوشهٔ مقصد: ' + msg.path); if (ui.modal && ui.modal.querySelector('[data-role=dest]')) ui.modal.querySelector('[data-role=dest]').textContent = msg.path; renderShell(); }
+        else if (msg.type === 'log') st().addLog(msg.level || 'info', msg.text || '');
+        else if (msg.type === 'state') renderShell();
+      });
+      S.bridge.requestState();
+    }
     if (st().state.settings.panelOpen) toggle(true);
     scheduleRender();
   }
@@ -89,6 +100,7 @@
     renderMain();
     renderQueue(ex().queue);
     renderLog();
+    renderShell();
   }
 
   function renderRail(sections) {
@@ -351,7 +363,8 @@
   function openSettings() {
     const s = st().state.settings;
     const section = st().state.sections.get(ui.current);
-    let body = `<div class="sm-form">
+    const shell = S.bridge && S.bridge.available() ? (S.bridge.last || {}) : null;
+    let body = `<div class="sm-form">` + (shell ? `<div class="full"><h4 class="sm-h">پوشهٔ مقصد خروجی</h4><div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap"><code data-role="dest" style="direction:ltr;flex:1;background:var(--b1);padding:4px 10px;border-radius:8px">${esc(shell.dest || '—')}</code><button class="sm-btn" data-act="browse">انتخاب پوشهٔ مقصد…</button><button class="sm-btn" data-act="opendest">باز کردن پوشهٔ مقصد</button></div>${shell.service ? `<div class="sm-muted">سرویس فایل: ${shell.service.running ? 'در حال اجرا' : 'اجرا نشده'}${shell.service.browser ? ' · چاپ PDF: ' + esc(shell.service.browser) : ' · مرورگر چاپ PDF پیدا نشد'}</div>` : ''}</div>` : '') + `
       <label>حالت پیش‌فرض خروجی<select data-k="mode">${MODES.map(([v, l]) => `<option value="${v}" ${s.mode === v ? 'selected' : ''}>${l}</option>`).join('')}</select></label>
       <label>فاصلهٔ بین درخواست‌ها (میلی‌ثانیه)<input type="number" data-k="delayMs" value="${s.delayMs}" min="100"></label>
       <label>آستانهٔ «معطل» (روز)<input type="number" data-k="pendingDays" value="${s.pendingDays}" min="1"></label>
@@ -368,11 +381,14 @@
     }
     body += '</div>';
     const m = openModal('تنظیمات', body, `<button class="sm-btn pri" data-act="save">ذخیره</button><button class="sm-btn" data-act="forget">فراموش‌کردن پیوندهای یادگرفته‌شده</button>`);
-    m.querySelector('.mf').addEventListener('click', (e) => {
+    m.querySelector('.sm-modal').addEventListener('click', (e) => {
       const a = e.target.closest('[data-act]');
-      if (!a) return;
+      if (!a || a.dataset.act === 'x') return;
+      if (a.dataset.act === 'browse') { S.bridge.browseDest(); return; }
+      if (a.dataset.act === 'opendest') { S.bridge.openDest(); return; }
       if (a.dataset.act === 'forget') { st().state.links.length = 0; try { localStorage.removeItem('sabtman.links.v1'); } catch (err) { /* ادامه */ } toast('پیوندها فراموش شد.'); closeModal(); render(); return; }
       m.querySelectorAll('[data-k]').forEach((el) => st().setSetting(el.dataset.k, el.type === 'number' ? Number(el.value) : el.value));
+      if (shell) S.bridge.setConfig({ mode: st().state.settings.mode });
       if (section) {
         st().setSectionLabel(section.path, m.querySelector('[data-sk=label]').value.trim() || st().labelFor(section.path));
         st().setCaseNameField(section.path, m.querySelector('[data-sk=nameField]').value);
@@ -386,9 +402,9 @@
 
   function openHelp() {
     openModal('راهنما', `<ol>
-      <li><b>کشف خودکار:</b> در همین زبانه در سایت بگردید. هر بخشی که سایت بخواند در فهرست سمت راست ظاهر می‌شود؛ همهٔ فیلدها نمایش داده می‌شود.</li>
+      <li><b>کشف خودکار:</b> در همین پنجره در سایت بگردید. هر بخشی که سایت بخواند در فهرست سمت راست ظاهر می‌شود؛ همهٔ فیلدها نمایش داده می‌شود.</li>
       <li><b>یادگیری روند/پیوست‌ها:</b> یک بار در سایت روی «گزارشات» یا «پیوست‌ها» یک ردیف بزنید؛ برنامه الگو را یاد می‌گیرد و دکمهٔ «گرفتن روند همه» فعال می‌شود.</li>
-      <li><b>دانلود:</b> تکی (دکمه‌های هر ردیف)، گروهی (تیک‌زدن ردیف‌ها) یا کلی. بسته به کانال دانلود مرورگر می‌رود و <b>سرویس محلی «ثبت من»</b> آن را در پوشهٔ مقصدِ انتخابی شما با زیرپوشه‌های «۱ اسناد، ۲ پیوست‌ها، ۳ روند و رخدادها، ۴ گزارش‌ها» و «فهرست.xlsx» مرتب می‌کند و PDFها را می‌سازد.</li>
+      <li><b>دانلود:</b> تکی (دکمه‌های هر ردیف)، گروهی (تیک‌زدن ردیف‌ها) یا کلی. فایل‌ها مستقیم در پوشهٔ مقصدِ انتخابی شما (تنظیمات ← «انتخاب پوشهٔ مقصد») با زیرپوشه‌های «۱ اسناد، ۲ پیوست‌ها، ۳ روند و رخدادها، ۴ گزارش‌ها» و «فهرست.xlsx» مرتب می‌کند و PDFها را می‌سازد.</li>
       <li><b>سه حالت:</b> PDF + متن، فقط PDF، فقط متن (txt و md).</li>
       <li><b>نشست:</b> اگر نشست پایان یافت، دوباره وارد شوید؛ صف از همان‌جا ادامه می‌یابد.</li>
       <li><b>نقشهٔ کشف‌شده:</b> فقط مسیرها و نام فیلدها (بدون داده) — برای دقیق‌ترکردن نگاشت.</li></ol>`);
@@ -413,6 +429,15 @@
     const last = st().state.log[0];
     el.innerHTML = last ? `<span class="lv-${last.level}">${esc(U.formatSystemDate(last.ts).split('-')[1])} — ${esc(last.text)}</span>` : '';
     el.title = st().state.log.slice(0, 20).map((l) => l.text).join('\n');
+  }
+
+  function renderShell() {
+    if (!ui.root || !S.bridge || !S.bridge.available()) return;
+    const el = ui.root.querySelector('[data-role=shell]');
+    const sh = S.bridge.last;
+    if (!sh) { el.textContent = ''; return; }
+    const svc = sh.service || {};
+    el.innerHTML = `<span class="sm-status ${svc.running ? 'ok' : 'err'}">سرویس فایل ${svc.running ? 'فعال' : 'غیرفعال'}</span> <span title="${esc(sh.dest || '')}">مقصد: ${esc((sh.dest || '—').split(/[\\/]/).slice(-2).join('/'))}</span>${svc.busy ? ' · در حال پردازش' : ''}${svc.lastText ? ' · ' + esc(svc.lastText) : ''}`;
   }
 
   let toastTimer = null;

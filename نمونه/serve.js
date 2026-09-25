@@ -53,7 +53,7 @@ const server = http.createServer((req, res) => {
 
     if (p === '/' || p === '/portal' || p.startsWith('/portal/')) {
       let html = fs.readFileSync(path.join(__dirname, 'سایت', 'index.html'), 'utf8');
-      if (url.searchParams.has('noinject')) html = html.replace('<script src="/__overlay/sabt-man.bundle.js"></script>', ''); // برای آزمون افزونه
+      if (url.searchParams.has('noinject')) html = html.replace('<script src="/__overlay/sabt-man.bundle.js"></script>', ''); // صفحه بدون تزریق (برای آزمون تزریق بیرونی)
       return send(res, 200, html, { 'content-type': 'text/html; charset=utf-8' });
     }
     if (p === '/__overlay/sabt-man.bundle.js') {

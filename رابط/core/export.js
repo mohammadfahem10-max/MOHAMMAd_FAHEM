@@ -248,18 +248,12 @@
 
   function downloadBytes(name, bytes, mime) {
     const blob = new Blob([bytes], { type: mime || 'application/octet-stream' });
-    // ۱) افزونه: پل به background (پوشهٔ زیرمجموعهٔ Downloads بدون پرسش)
-    if (window.__sabtmanBridge === 'extension') {
-      const url = URL.createObjectURL(blob);
-      window.postMessage({ source: 'sabtman', type: 'download', url, name }, '*');
-      setTimeout(() => URL.revokeObjectURL(url), 120000);
-      return;
+    // ۱) پوستهٔ ویندوزی: مستقیم روی دیسک (بدون گذر از Downloads)
+    if (S.bridge && S.bridge.available()) {
+      const isJob = name.startsWith(JOB_PREFIX);
+      if (isJob ? S.bridge.sendJob(name, bytes) : S.bridge.sendFile(name, bytes, mime)) return;
     }
-    // ۲) اسکریپت کاربر: GM_download
-    if (typeof GM_download === 'function') {
-      const url = URL.createObjectURL(blob);
-      try { GM_download({ url, name, saveAs: false, onerror: () => anchorDownload(url, name) }); return; } catch (e) { /* ادامه */ }
-    }
+    // ۲) پشتیبان (بدون پوسته، مثلاً در آزمون): دانلود معمولی صفحه
     anchorDownload(URL.createObjectURL(blob), name);
   }
 
@@ -274,7 +268,7 @@
     const zip = U.buildZip(entries);
     const name = `${JOB_PREFIX}${manifest.شناسه}.zip`;
     downloadBytes(name, zip, 'application/zip');
-    store().addLog('ok', `بستهٔ «${manifest.بخش}» با ${U.faDigits(manifest.پوشه‌ها.length)} پوشه به کانال دانلود فرستاده شد (${U.faDigits(Math.round(zip.length / 1024))} کیلوبایت)`);
+    store().addLog('ok', `بستهٔ «${manifest.بخش}» با ${U.faDigits(manifest.پوشه‌ها.length)} پوشه به پوسته/کانال دانلود فرستاده شد (${U.faDigits(Math.round(zip.length / 1024))} کیلوبایت)`);
     return name;
   }
 

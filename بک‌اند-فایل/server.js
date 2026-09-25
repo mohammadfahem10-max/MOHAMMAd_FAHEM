@@ -25,7 +25,7 @@ function defaultDownloads() {
   return path.join(home, 'Downloads');
 }
 function defaultDest() {
-  if (process.platform === 'win32' && fs.existsSync('E:\\')) return 'E:\\ثبت من\\خروجی';
+  if (process.platform === 'win32' && fs.existsSync('E:\\')) return 'E:\\پروژه شرکت طلوع فردای ایرانیان\\مخزن اطلاعات کلی\\ثبت من';
   return path.join(os.homedir(), 'Documents', 'ثبت من');
 }
 
