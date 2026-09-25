@@ -52,12 +52,15 @@ namespace SabtMan
         {
             Grid root = new Grid();
             // WebView پنهان: زنده ولی ناپیدا (اندازهٔ ۱ پیکسل و شفاف؛ Collapsed رندر را متوقف می‌کند)
-            site.Width = 1; site.Height = 1; site.Opacity = 0; site.IsHitTestVisible = false;
+            // WebView2 (WPF) شفافیتش فقط‌خواندنی است؛ برای پنهان‌ماندنِ زنده: ۱ پیکسل، گوشهٔ بالا-چپ، پشت رابط، بی برخورد موس
+            site.Width = 1; site.Height = 1; site.IsHitTestVisible = false;
+            System.Windows.Controls.Panel.SetZIndex(site, 0);
             site.HorizontalAlignment = HorizontalAlignment.Left; site.VerticalAlignment = VerticalAlignment.Top;
             site.FlowDirection = FlowDirection.LeftToRight;
             root.Children.Add(site);
             ui.FlowDirection = FlowDirection.LeftToRight;
             ui.DefaultBackgroundColor = System.Drawing.Color.Transparent;
+            System.Windows.Controls.Panel.SetZIndex(ui, 1);
             root.Children.Add(ui);
             return root;
         }
