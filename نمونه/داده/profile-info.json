@@ -1,0 +1,16 @@
+{
+  "success": true,
+  "message": "",
+  "data": {
+    "fullName": "کاربر نمونه",
+    "nationalCode": "۰۰۰۰۰۰۰۰۰۰",
+    "mobile": "۰۹۱۲۰۰۰۰۰۰۰",
+    "email": "nemoone@example.com",
+    "registerDate": "۱۴۰۱/۰۲/۱۰-۰۹:۰۰",
+    "lastLogin": "۱۴۰۴/۰۲/۰۱-۰۸:۱۵",
+    "loginHistory": [
+      { "date": "۱۴۰۴/۰۲/۰۱-۰۸:۱۵", "ip": "۱۰.۰.۰.۱", "device": "Chrome / Windows" },
+      { "date": "۱۴۰۴/۰۱/۲۵-۱۹:۴۰", "ip": "۱۰.۰.۰.۲", "device": "Chrome / Windows" }
+    ]
+  }
+}

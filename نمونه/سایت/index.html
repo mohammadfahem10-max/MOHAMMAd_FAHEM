@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<title>سایت نمونه — شبیه‌ساز «ثبت من» (فقط برای آزمون)</title>
+<style>
+  body { font-family: Tahoma, sans-serif; margin: 0; background: #f4f4f4; color: #222; }
+  header { background: #2b3a55; color: #fff; padding: 10px 16px; }
+  nav button { margin: 4px; padding: 6px 12px; cursor: pointer; }
+  main { padding: 16px; }
+  table { border-collapse: collapse; background: #fff; width: 100%; }
+  th, td { border: 1px solid #ccc; padding: 6px 8px; font-size: 13px; }
+  .row-btn { font-size: 12px; margin-left: 4px; }
+</style>
+<script src="/__overlay/sabt-man.bundle.js"></script>
+</head>
+<body>
+<header><b>سایت نمونه</b> — شبیه‌ساز SPA «ثبت من» برای آزمون رابط (هیچ دادهٔ واقعی نیست)</header>
+<nav>
+  <button data-sec="mech">وضعیت مکاتبات</button>
+  <button data-sec="ssar">اسناد رسمی من</button>
+  <button data-sec="estate">املاک من</button>
+  <button data-sec="ilenc">شناسه‌های ثبت موقت</button>
+  <button data-sec="profile">پروفایل</button>
+  <button data-sec="expire" style="margin-right:30px">شبیه‌سازی پایان نشست</button>
+  <button data-sec="login">ورود دوباره</button>
+</nav>
+<main id="main"><p>یک بخش را انتخاب کنید.</p></main>
+<script>
+  // درخواست‌ها عمداً با fetch و XHR هر دو انجام می‌شوند تا هر دو قلاب آزموده شوند.
+  const post = (url, body) => fetch(url, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(body || {}) }).then((r) => r.json());
+  const xhrPost = (url, body) => new Promise((resolve, reject) => {
+    const x = new XMLHttpRequest(); x.open('POST', url); x.setRequestHeader('content-type', 'application/json');
+    x.onload = () => { try { resolve(JSON.parse(x.responseText)); } catch (e) { reject(e); } }; x.onerror = reject; x.send(JSON.stringify(body || {}));
+  });
+  const main = document.getElementById('main');
+  const rows = (list, actions) => {
+    if (!list || !list.length) return '<p>خالی</p>';
+    const cols = Object.keys(list[0]).filter((k) => typeof list[0][k] !== 'object');
+    return '<table><thead><tr>' + cols.map((c) => `<th>${c}</th>`).join('') + (actions ? '<th>عملیات</th>' : '') + '</tr></thead><tbody>' +
+      list.map((r) => '<tr>' + cols.map((c) => `<td>${r[c]}</td>`).join('') + (actions ? `<td>${actions(r)}</td>` : '') + '</tr>').join('') + '</tbody></table>';
+  };
+  document.querySelector('nav').addEventListener('click', async (e) => {
+    const b = e.target.closest('[data-sec]'); if (!b) return;
+    const sec = b.dataset.sec;
+    fetch('/i18n/fa.json'); // پارازیت: نباید بخش شود
+    if (sec === 'mech') {
+      const res = await post('/mechLetter/GetStatusList', { pageIndex: 1, pageSize: 20 });
+      main.innerHTML = '<h3>وضعیت مکاتبات</h3>' + rows(res.Data.Items, (r) => `<button class="row-btn" data-rep="${r.Id}">گزارشات</button><button class="row-btn" data-att="${r.Id}">پیوست‌ها</button>`) + '<div id="sub"></div>';
+    } else if (sec === 'ssar') {
+      const res = await xhrPost('/ssar/getalldocuments', {});
+      main.innerHTML = '<h3>اسناد رسمی من</h3>' + rows(res.Data.Documents, (r) => `<button class="row-btn" data-text="${r.DocumentId}">متن سند</button>`);
+    } else if (sec === 'estate') {
+      const res = await post('/estate/GetEstatePersonList', { personType: 1 });
+      main.innerHTML = '<h3>املاک من</h3>' + rows(res.data, (r) => r.deedImageUrl ? `<button class="row-btn" data-img="${r.deedImageUrl}">سند تک‌برگ</button>` : '');
+    } else if (sec === 'ilenc') {
+      const res = await post('/ilenc/GetTempIssues', {});
+      main.innerHTML = '<h3>شناسه‌های ثبت موقت</h3>' + rows(res.Data);
+    } else if (sec === 'profile') {
+      const res = await post('/profile/GetInfo', {});
+      main.innerHTML = '<h3>پروفایل</h3><pre>' + JSON.stringify(res.data, null, 2) + '</pre>';
+    } else if (sec === 'expire') { await post('/__mock/expire'); await post('/mechLetter/GetStatusList', {}).catch(() => {}); }
+    else if (sec === 'login') { await post('/account/login', { user: 'x' }); await post('/mechLetter/GetStatusList', { pageIndex: 1, pageSize: 20 }); }
+  });
+  main.addEventListener('click', async (e) => {
+    const t = e.target;
+    if (t.dataset.rep) { const res = await post('/mechLetter/GetReports', { letterId: Number(t.dataset.rep) }); document.getElementById('sub').innerHTML = '<h4>گزارشات</h4>' + rows(res.Data); }
+    if (t.dataset.att) {
+      const res = await post('/mechLetter/GetAttachments', { letterId: Number(t.dataset.att) });
+      document.getElementById('sub').innerHTML = '<h4>پیوست‌ها</h4>' + rows(res.Data, (r) => `<button class="row-btn" data-file="${r.FileId}">دانلود</button>`);
+    }
+    if (t.dataset.file) { const r = await fetch('/mechLetter/DownloadFile?fileId=' + t.dataset.file); await r.blob(); alert('دانلود شد (شبیه‌سازی)'); }
+    if (t.dataset.text) { const res = await post('/ssar/getdocumenttext', { documentId: Number(t.dataset.text) }); alert(res.Data.Text); }
+    if (t.dataset.img) { const r = await fetch(t.dataset.img); await r.blob(); alert('تصویر سند گرفته شد (شبیه‌سازی)'); }
+  });
+</script>
+</body>
+</html>

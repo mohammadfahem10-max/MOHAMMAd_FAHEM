@@ -1,0 +1,12 @@
+{
+  "Success": true,
+  "Message": "",
+  "Data": {
+    "Documents": [
+      { "DocumentId": 550001, "DocumentNo": "۱۲۳۴۵۶", "DocumentType": "سند قطعی غیرمنقول", "RegisterDate": "۱۳۹۸/۰۴/۱۲", "NotaryOffice": "دفتر اسناد رسمی نمونه ۱۰", "City": "شهر نمونه", "Parties": { "Seller": "فروشندهٔ نمونه", "Buyer": "خریدار نمونه" }, "Status": "تایید شده", "HasText": true, "HasImage": true },
+      { "DocumentId": 550002, "DocumentNo": "۲۳۴۵۶۷", "DocumentType": "وکالت‌نامه", "RegisterDate": "۱۴۰۰/۱۱/۰۳", "NotaryOffice": "دفتر اسناد رسمی نمونه ۲۲", "City": "شهر نمونه", "Parties": { "Principal": "موکل نمونه", "Agent": "وکیل نمونه" }, "Status": "تایید شده", "HasText": true, "HasImage": false },
+      { "DocumentId": 550003, "DocumentNo": "۳۴۵۶۷۸", "DocumentType": "اجاره‌نامه", "RegisterDate": "۱۴۰۲/۰۲/۲۰", "NotaryOffice": "دفتر اسناد رسمی نمونه ۱۰", "City": "شهر نمونه", "Parties": { "Lessor": "موجر نمونه", "Lessee": "مستأجر نمونه" }, "Status": "در انتظار بررسی", "HasText": false, "HasImage": true }
+    ],
+    "Count": 3
+  }
+}

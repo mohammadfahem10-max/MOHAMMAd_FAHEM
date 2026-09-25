@@ -1,0 +1,15 @@
+{
+  "Success": true,
+  "Message": "",
+  "Data": {
+    "TotalCount": 6,
+    "Items": [
+      { "Id": 910001, "DocumentType": "ابلاغیه", "DocumentNumber": "۱۴۰۳۰۰۱۲۳۴", "PreviousStatus": "ارسال شده", "CurrentStatus": "رويت شده توسط واحد ثبتي گيرنده", "LastChangeDate": "۱۴۰۳/۰۹/۰۳-۰۷:۳۷", "Subject": "ابلاغ اخطاریهٔ نمونه", "SenderUnit": "واحد ثبتی نمونه ۱", "HasAttachment": true },
+      { "Id": 910002, "DocumentType": "نامه وارده", "DocumentNumber": "۱۴۰۳۰۰۱۲۵۰", "PreviousStatus": "شروع", "CurrentStatus": "پيش نويس شده", "LastChangeDate": "۱۴۰۳/۰۹/۱۰-۱۱:۰۲", "Subject": "درخواست نمونهٔ الف", "SenderUnit": "واحد ثبتی نمونه ۲", "HasAttachment": false },
+      { "Id": 910003, "DocumentType": "نامه مکانیزه بین سازمان مکانیزه", "DocumentNumber": "۱۴۰۳۰۰۱۳۰۱", "PreviousStatus": "پيش نويس شده", "CurrentStatus": "ارسال شده", "LastChangeDate": "۱۴۰۳/۱۰/۰۱-۰۹:۱۵", "Subject": "مکاتبهٔ نمونهٔ ب", "SenderUnit": "واحد ثبتی نمونه ۱", "HasAttachment": true },
+      { "Id": 910004, "DocumentType": "ابلاغیه", "DocumentNumber": "۱۴۰۳۰۰۱۴۱۲", "PreviousStatus": "ارسال شده", "CurrentStatus": "ارسال شده", "LastChangeDate": "۱۴۰۳/۱۰/۲۰-۱۴:۴۵", "Subject": "ابلاغ نمونهٔ ج", "SenderUnit": "واحد ثبتی نمونه ۳", "HasAttachment": true },
+      { "Id": 910005, "DocumentType": "پیوست", "DocumentNumber": "۱۴۰۳۰۰۱۵۰۰", "PreviousStatus": "شروع", "CurrentStatus": "بایگانی شده", "LastChangeDate": "۱۴۰۳/۱۱/۰۲-۰۸:۰۰", "Subject": "پیوست نمونهٔ د", "SenderUnit": "واحد ثبتی نمونه ۲", "HasAttachment": true },
+      { "Id": 910006, "DocumentType": "نامه وارده", "DocumentNumber": "۱۴۰۴۰۰۰۰۱۰", "PreviousStatus": "ارسال شده", "CurrentStatus": "رويت شده توسط واحد ثبتي گيرنده", "LastChangeDate": "۱۴۰۴/۰۱/۱۵-۱۰:۳۰", "Subject": "نامهٔ نمونهٔ هـ", "SenderUnit": "واحد ثبتی نمونه ۱", "HasAttachment": false }
+    ]
+  }
+}
