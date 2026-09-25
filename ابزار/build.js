@@ -95,6 +95,8 @@ function build() {
   fs.mkdirSync(appDir, { recursive: true });
   fs.copyFileSync(path.join(UI, 'برنامه', 'index.html'), path.join(appDir, 'index.html'));
   fs.copyFileSync(path.join(UI, 'برنامه', 'app.css'), path.join(appDir, 'app.css'));
+  /* SABTMAN_ASSETS: دارایی‌های ایستا (لوگو، فونت لوگو، …) */
+  for (const f of fs.readdirSync(path.join(UI, 'برنامه'))) { if (/\.(png|woff2|svg|ico|jpg|jpeg|gif)$/i.test(f)) fs.copyFileSync(path.join(UI, 'برنامه', f), path.join(appDir, f)); }
   fs.writeFileSync(path.join(appDir, 'app.js'), appBundle());
   // themes.js میزبان در مخزن نیست؛ جای‌نگهدار تا وقتی ساخت.cmd نسخهٔ واقعی را کپی کند
   fs.writeFileSync(path.join(appDir, 'themes.js'), '/* تم‌های میزبان شخصی (themes.js) اینجا کپی می‌شود؛ بدون آن، تم‌های پیش‌فرض برنامه به کار می‌رود. */\n');

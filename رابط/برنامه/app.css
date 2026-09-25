@@ -1,3 +1,4 @@
+@font-face{font-family:'SabtLogo';font-weight:400;font-display:swap;src:url('فونت-لوگو.woff2') format('woff2')}
 /* پوستهٔ صفحه‌های برنامه — همان متغیرهای تم طلوع (app.css میزبان). تم‌ها و فونت روی :root اعمال می‌شوند. */
 :root{
   --fs:17px; --base:#EEF1FB; --b1:#C9D8FF; --b2:#E3D4FF; --b3:#CDEBFF; --b4:#F3DDF5;
@@ -131,3 +132,8 @@ code.path{direction:ltr;display:inline-block;background:var(--b1);padding:3px 10
 .ap-login-name{background:none !important;-webkit-text-fill-color:#173a8b !important;color:#173a8b !important;font-weight:800;font-size:2.35em;letter-spacing:-1.5px;margin-top:0;-webkit-text-stroke:1.4px #173a8b;text-stroke:1.4px #173a8b}
 :root[data-theme] .ap-login-name, .theme-dark .ap-login-name{-webkit-text-fill-color:#eaf1ff !important;color:#eaf1ff !important;-webkit-text-stroke-color:#eaf1ff;text-stroke-color:#eaf1ff}
 .ap-login-org{margin-top:6px;color:#2f7fb8;font-weight:700}
+
+/*SABTMAN_LOGOFONT*/
+.ap-login-name{font-family:'SabtLogo',Vazirmatn,sans-serif !important;font-weight:400 !important;font-size:2.7em;letter-spacing:0;-webkit-text-stroke:0;text-stroke:0;line-height:1;margin-top:0}
+.ap-login-mark{height:190px;margin-bottom:-30px}
+.ap-login-brand{gap:0;margin-bottom:14px}
