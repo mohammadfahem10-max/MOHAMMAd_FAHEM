@@ -123,7 +123,7 @@
     const d = card(`<div class="ap-login ap-card">
       <div class="ap-login-brand"><img src="نشان.png" alt="ثبت من" class="ap-login-mark"><div class="ap-login-name">ثبت من</div><div class="ap-login-org">شرکت طلوع فردای ایرانیان</div></div>
       <h1>ورود به سامانه</h1>
-      <div class="lead">کد ملی خود را بنویسید؛ کد یک‌بارمصرف به تلفن همراه شما فرستاده می‌شود. رمز پویا هرگز ذخیره نمی‌شود؛ کد ملی فقط با تیک زیر به خاطر سپرده می‌شود.</div>
+      <div class="lead">کد ملی خود را بنویسید؛ کد یک‌بارمصرف به تلفن همراه شما ارسال می‌شود.</div>
       ${app.msg ? `<div class="ap-msg ${app.msg.level}">${esc(app.msg.text)}</div>` : ''}
       ${closed ? `<div class="ap-msg warn">سامانه در دسترس نیست (سامانه شب‌ها بسته است). بعداً دوباره بزنید.</div>` : ''}
       ${!app.siteReady ? `<div class="ap-msg info">در حال اتصال به سامانه…</div>` : ''}
@@ -131,7 +131,7 @@
       <input class="ap-input ltr" data-f="nat" autocomplete="off" name="sm-nat" inputmode="numeric" maxlength="10" value="${esc(L.nationalCode)}" ${L.otpSent ? 'disabled' : ''} autofocus>
       ${L.needCaptcha && stt.captcha ? `<label>تصویر امنیتی سامانه (عین تصویر را بنویسید)</label><div class="ap-captcha"><img src="${esc(stt.captcha)}" alt="تصویر امنیتی"><input class="ap-input ltr" data-f="cap" style="max-width:180px"></div>` : ''}
       ${!L.otpSent ? `<label class="ap-check"><input type="checkbox" data-f="remember" ${L.remember ? 'checked' : ''}> کد ملی مرا به خاطر بسپار</label><div class="row"><button class="ap-btn pri" data-act="send" ${!app.siteReady || closed ? 'disabled' : ''}>ارسال کد</button></div>` : `
-      <div class="ap-msg ok">کد به تلفن همراه شما فرستاده شد. <span data-role="cd"></span></div>
+      <div class="ap-msg ok">کد به تلفن همراه شما ارسال شد. <span data-role="cd"></span></div>
       <label>کد پیامکی</label>
       <input class="ap-input ltr" data-f="otp" autocomplete="off" name="sm-otp" inputmode="numeric" maxlength="8" autofocus>
       <div class="row"><button class="ap-btn pri" data-act="login">ورود</button><button class="ap-btn" data-act="resend" data-role="resend" disabled>ارسال دوباره</button><button class="ap-btn" data-act="back">تغییر کد ملی</button></div>`}

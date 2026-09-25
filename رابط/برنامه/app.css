@@ -118,3 +118,16 @@ code.path{direction:ltr;display:inline-block;background:var(--b1);padding:3px 10
 .ap-login-brand{gap:0;margin-bottom:8px}
 .ap-login-mark{height:186px;margin-bottom:-14px}
 .ap-login-name{margin-top:-6px;font-size:2.1em;font-weight:800}
+
+/*SABTMAN_LOCKUP*/
+.ap-login-brand{gap:0;margin-bottom:14px}
+.ap-login-mark{height:200px;margin-bottom:-40px}
+.ap-login-name{margin-top:0;font-size:2.15em;font-weight:800;letter-spacing:-1px}
+.ap-login-org{margin-top:2px}
+
+/*SABTMAN_LOGOMARK*/
+.ap-login-brand{gap:0;margin-bottom:16px}
+.ap-login-mark{height:196px;margin-bottom:-46px}
+.ap-login-name{background:none !important;-webkit-text-fill-color:#173a8b !important;color:#173a8b !important;font-weight:800;font-size:2.35em;letter-spacing:-1.5px;margin-top:0;-webkit-text-stroke:1.4px #173a8b;text-stroke:1.4px #173a8b}
+:root[data-theme] .ap-login-name, .theme-dark .ap-login-name{-webkit-text-fill-color:#eaf1ff !important;color:#eaf1ff !important;-webkit-text-stroke-color:#eaf1ff;text-stroke-color:#eaf1ff}
+.ap-login-org{margin-top:6px;color:#2f7fb8;font-weight:700}
