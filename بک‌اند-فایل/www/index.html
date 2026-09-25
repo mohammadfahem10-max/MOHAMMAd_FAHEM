@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>سرویس ثبت من</title>
+<style>
+/*SABTMAN_FONT*/
+:root{
+  --fs:17px; --base:#EEF1FB; --b1:#C9D8FF; --b2:#E3D4FF; --b3:#CDEBFF; --b4:#F3DDF5;
+  --ac:#0F6CBD; --ac2:#6B5BD6; --ac-rgb:15,108,189; --ac2-rgb:107,91,214;
+  --tx:#1A1F2E; --tx2:#454C63; --tx3:#737A92;
+  --glass:rgba(255,255,255,.56); --glass-2:rgba(255,255,255,.74); --glass-3:rgba(255,255,255,.9);
+  --edge:rgba(255,255,255,.75); --line:rgba(20,30,70,.08); --line-2:rgba(20,30,70,.14);
+  --shadow:0 10px 40px rgba(40,56,140,.10), 0 2px 8px rgba(40,56,140,.06);
+  --hover:rgba(20,40,120,.05);
+  --ok:#1F8A5B; --warn:#B7791F; --err:#C2413B;
+  --r1:8px; --r2:12px; --r3:16px; --r4:22px;
+  --blur:blur(28px) saturate(170%);
+  --grad:linear-gradient(135deg, var(--ac), var(--ac2));
+  --rail:264px; color-scheme:light;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:'Vazirmatn',Tahoma,sans-serif;font-size:15px;color:var(--tx);background:linear-gradient(160deg,var(--b3) 0%,var(--base) 40%,var(--b2) 100%);min-height:100vh;line-height:1.8}
+.wrap{max-width:960px;margin:0 auto;padding:24px 16px}
+h1{margin:0 0 4px;font-size:24px;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.sub{color:var(--tx3);margin-bottom:18px}
+.card{background:var(--glass-2);backdrop-filter:var(--blur);-webkit-backdrop-filter:var(--blur);border:1px solid var(--edge);border-radius:var(--r3);box-shadow:var(--shadow);padding:16px 18px;margin-bottom:14px}
+.card h2{margin:0 0 10px;font-size:16px;color:var(--ac);border-right:4px solid var(--ac2);padding-right:10px}
+.row{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:8px}
+.row label{min-width:150px;color:var(--tx2)}
+.row input[type=text]{flex:1;min-width:260px;padding:8px 12px;border-radius:var(--r2);border:1px solid var(--line-2);background:var(--glass-3);font:inherit;direction:ltr;text-align:left}
+.btn{padding:7px 14px;border-radius:var(--r2);border:1px solid var(--line-2);background:var(--glass-3);cursor:pointer;font:inherit;font-weight:600;font-size:13.5px}
+.btn.pri{background:var(--grad);color:#fff;border-color:transparent}
+.btn:hover{box-shadow:var(--shadow)}
+.stat{display:inline-flex;align-items:center;gap:6px;background:var(--glass-3);border:1px solid var(--line);border-radius:999px;padding:3px 12px;margin:2px 4px 2px 0;font-size:13.5px}
+.stat b{background:var(--b1);color:var(--ac);border-radius:999px;padding:0 8px}
+.dot{width:10px;height:10px;border-radius:50%;display:inline-block;background:var(--ok)}
+.dot.err{background:var(--err)} .dot.warn{background:var(--warn)}
+.log{max-height:320px;overflow:auto;background:var(--glass-3);border-radius:var(--r2);border:1px solid var(--line);padding:8px 12px;font-size:13px}
+.log div{padding:2px 0;border-bottom:1px dashed var(--line)}
+.lv-ok{color:var(--ok)} .lv-warn{color:var(--warn)} .lv-err{color:var(--err)} .lv-info{color:var(--tx2)}
+.muted{color:var(--tx3);font-size:13px}
+.steps li{margin-bottom:4px}
+code{background:var(--b1);padding:0 6px;border-radius:6px;direction:ltr;display:inline-block}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>سرویس فایل محلی «ثبت من»</h1>
+  <div class="sub">فقط روی همین رایانه (127.0.0.1)؛ هیچ داده‌ای به بیرون فرستاده نمی‌شود.</div>
+
+  <div class="card">
+    <h2>وضعیت</h2>
+    <div id="stats"></div>
+  </div>
+
+  <div class="card">
+    <h2>مکان‌ها</h2>
+    <div class="row"><label>پوشهٔ مقصد خروجی</label><input type="text" id="dest"><button class="btn" data-browse="dest">انتخاب…</button><button class="btn" data-open="dest">بازکردن</button></div>
+    <div class="row"><label>پوشهٔ دانلود مرورگر (پایش)</label><input type="text" id="inbox"><button class="btn" data-browse="inbox">انتخاب…</button><button class="btn" data-open="inbox">بازکردن</button></div>
+    <div class="row"><label>مرورگر برای چاپ PDF</label><input type="text" id="browser" placeholder="خالی = پیدا کردن خودکار Edge/Chrome"></div>
+    <div class="row"><label></label><label style="min-width:0"><input type="checkbox" id="keep"> نگه‌داشتن بسته‌های پردازش‌شده (پوشهٔ «پردازش‌شده»)</label></div>
+    <div class="row"><label></label><button class="btn pri" id="save">ذخیره</button><button class="btn" id="scan">پردازش اکنون</button><button class="btn" id="testpdf">آزمون چاپ PDF</button></div>
+    <div class="muted">ساختار خروجی: <code>مقصد / بخش / نام پرونده / ۱ اسناد · ۲ پیوست‌ها · ۳ روند و رخدادها · ۴ گزارش‌ها · فهرست.xlsx</code></div>
+  </div>
+
+  <div class="card">
+    <h2>گزارش کار</h2>
+    <div class="log" id="log"></div>
+  </div>
+
+  <div class="card">
+    <h2>راهنمای کوتاه</h2>
+    <ol class="steps">
+      <li>این سرویس را باز نگه دارید (پنجرهٔ <code>شروع.bat</code>).</li>
+      <li>در مرورگر وارد سامانهٔ «ثبت من» شوید؛ افزونه یا اسکریپت رابط، دکمهٔ «ثبت من» را پایین صفحه نشان می‌دهد.</li>
+      <li>در رابط، دانلود تکی/گروهی/کلی بزنید؛ بسته به پوشهٔ دانلود می‌آید و اینجا خودکار در پوشهٔ مقصد مرتب می‌شود.</li>
+    </ol>
+  </div>
+</div>
+<script>
+  const $ = (s) => document.querySelector(s);
+  const FA = '۰۱۲۳۴۵۶۷۸۹'; const fa = (s) => String(s).replace(/[0-9]/g, (d) => FA[+d]);
+  const esc = (s) => String(s ?? '').replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+  const time = (ms) => { const d = new Date(ms); return fa(String(d.getHours()).padStart(2, '0') + ':' + String(d.getMinutes()).padStart(2, '0') + ':' + String(d.getSeconds()).padStart(2, '0')); };
+  let editing = false;
+  async function api(p, body) { const r = await fetch(p, body ? { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(body) } : {}); return r.json(); }
+  function render(s) {
+    const st = s['آمار'];
+    $('#stats').innerHTML = `<span class="stat"><span class="dot ${s['مشغول'] ? 'warn' : ''}"></span> ${s['مشغول'] ? 'در حال پردازش' : 'آماده'}</span>
+      <span class="stat">بسته‌های پردازش‌شده <b>${fa(st.processed)}</b></span><span class="stat">ناموفق <b>${fa(st.failed)}</b></span>
+      <span class="stat">PDF ساخته‌شده <b>${fa(st.pdfOk)}</b></span><span class="stat">PDF ناموفق <b>${fa(st.pdfFail)}</b></span>
+      <span class="stat"><span class="dot ${s['مرورگر'] ? '' : 'err'}"></span> مرورگر چاپ: ${s['مرورگر'] ? esc(s['مرورگر']) : 'پیدا نشد'}</span>
+      <span class="stat"><span class="dot ${s['فونت'] ? '' : 'err'}"></span> فونت همراه</span>
+      <span class="stat"><span class="dot ${s['پوشه‌های‌پایش'].length ? '' : 'err'}"></span> پایش: ${s['پوشه‌های‌پایش'].map(esc).join(' | ') || 'پوشهٔ دانلود پیدا نشد'}</span>
+      ${st.lastJob ? `<div class="muted">آخرین بسته: ${esc(st.lastJob.section)} → ${st.lastJob.folders.map(esc).join('، ')}</div>` : ''}`;
+    if (!editing) { $('#dest').value = s['تنظیمات'].dest; $('#inbox').value = s['تنظیمات'].inbox; $('#browser').value = s['تنظیمات'].browser || ''; $('#keep').checked = s['تنظیمات'].keepProcessed; }
+    $('#log').innerHTML = s['گزارش'].map((l) => `<div class="lv-${l.level}">${time(l.ts)} — ${esc(l.text)}</div>`).join('') || '<div class="muted">هنوز چیزی نیست.</div>';
+  }
+  async function refresh() { try { render(await api('/api/state')); } catch (e) { $('#stats').innerHTML = '<span class="stat"><span class="dot err"></span> سرویس در دسترس نیست</span>'; } }
+  document.querySelectorAll('#dest,#inbox,#browser').forEach((el) => { el.addEventListener('focus', () => editing = true); el.addEventListener('blur', () => setTimeout(() => editing = false, 30000)); });
+  $('#save').onclick = async () => { const r = await api('/api/config', { dest: $('#dest').value, inbox: $('#inbox').value, browser: $('#browser').value, keepProcessed: $('#keep').checked }); editing = false; if (!r.ok) alert(r.error); render(r); };
+  $('#scan').onclick = async () => render(await api('/api/scan', {}));
+  $('#testpdf').onclick = async () => { const r = await api('/api/test-pdf', {}); alert(r.ok ? 'PDF آزمایشی ساخته شد: ' + r.path : 'ناموفق: ' + r.error); refresh(); };
+  document.querySelectorAll('[data-browse]').forEach((b) => b.onclick = async () => { const r = await api('/api/browse', { which: b.dataset.browse }); if (r.path) { editing = true; $('#' + b.dataset.browse).value = r.path; } else if (!r['پشتیبانی']) alert('انتخاب پوشه فقط در ویندوز؛ مسیر را دستی بنویسید.'); });
+  document.querySelectorAll('[data-open]').forEach((b) => b.onclick = () => api('/api/open', { which: b.dataset.open }));
+  refresh(); setInterval(refresh, 2500);
+</script>
+</body>
+</html>
