@@ -19,7 +19,7 @@
 
   const app = {
     page: 'login', siteState: null, siteReady: false, collecting: null, lastCollect: null, countdown: null, msg: null,
-    login: { nationalCode: '', captcha: null, needCaptcha: false, otpSent: false },
+    login: (function(){ var nn='', rr=false; try{ rr=localStorage.getItem('sm_remember')==='1'; if(rr) nn=localStorage.getItem('sm_nat')||''; }catch(e){} return { nationalCode: nn, captcha: null, needCaptcha: false, otpSent: false, remember: rr }; })(),
     el: { page: null, nav: null, status: null },
   };
 
@@ -123,14 +123,14 @@
     const d = card(`<div class="ap-login ap-card">
       <div class="ap-login-brand"><img src="نشان.png" alt="ثبت من" class="ap-login-mark"><div class="ap-login-name">ثبت من</div><div class="ap-login-org">شرکت طلوع فردای ایرانیان</div></div>
       <h1>ورود به سامانه</h1>
-      <div class="lead">کد ملی خود را بنویسید؛ کد یک‌بارمصرف به تلفن همراه شما فرستاده می‌شود. هیچ اطلاعات ورودی ذخیره نمی‌شود.</div>
+      <div class="lead">کد ملی خود را بنویسید؛ کد یک‌بارمصرف به تلفن همراه شما فرستاده می‌شود. رمز پویا هرگز ذخیره نمی‌شود؛ کد ملی فقط با تیک زیر به خاطر سپرده می‌شود.</div>
       ${app.msg ? `<div class="ap-msg ${app.msg.level}">${esc(app.msg.text)}</div>` : ''}
       ${closed ? `<div class="ap-msg warn">سامانه در دسترس نیست (سامانه شب‌ها بسته است). بعداً دوباره بزنید.</div>` : ''}
       ${!app.siteReady ? `<div class="ap-msg info">در حال اتصال به سامانه…</div>` : ''}
       <label>کد ملی</label>
       <input class="ap-input ltr" data-f="nat" autocomplete="off" name="sm-nat" inputmode="numeric" maxlength="10" value="${esc(L.nationalCode)}" ${L.otpSent ? 'disabled' : ''} autofocus>
       ${L.needCaptcha && stt.captcha ? `<label>تصویر امنیتی سامانه (عین تصویر را بنویسید)</label><div class="ap-captcha"><img src="${esc(stt.captcha)}" alt="تصویر امنیتی"><input class="ap-input ltr" data-f="cap" style="max-width:180px"></div>` : ''}
-      ${!L.otpSent ? `<div class="row"><button class="ap-btn pri" data-act="send" ${!app.siteReady || closed ? 'disabled' : ''}>ارسال کد</button></div>` : `
+      ${!L.otpSent ? `<label class="ap-check"><input type="checkbox" data-f="remember" ${L.remember ? 'checked' : ''}> کد ملی مرا به خاطر بسپار</label><div class="row"><button class="ap-btn pri" data-act="send" ${!app.siteReady || closed ? 'disabled' : ''}>ارسال کد</button></div>` : `
       <div class="ap-msg ok">کد به تلفن همراه شما فرستاده شد. <span data-role="cd"></span></div>
       <label>کد پیامکی</label>
       <input class="ap-input ltr" data-f="otp" autocomplete="off" name="sm-otp" inputmode="numeric" maxlength="8" autofocus>
@@ -167,6 +167,8 @@
     const L = app.login;
     const nat = d.querySelector('[data-f=nat]');
     if (nat) L.nationalCode = U.enDigits(nat.value).trim();
+    var rem = d.querySelector('[data-f=remember]'); if (rem) L.remember = rem.checked;
+    try { if (L.remember && /^\d{10}$/.test(L.nationalCode)) { localStorage.setItem('sm_remember','1'); localStorage.setItem('sm_nat', L.nationalCode); } else if (!L.remember) { localStorage.removeItem('sm_remember'); localStorage.removeItem('sm_nat'); } } catch (e) {}
     if (!/^\d{10}$/.test(L.nationalCode)) { setMsg('err', 'کد ملی باید ۱۰ رقم باشد.'); return go('login'); }
     const capIn = d.querySelector('[data-f=cap]');
     const captcha = capIn ? capIn.value.trim() : null;
