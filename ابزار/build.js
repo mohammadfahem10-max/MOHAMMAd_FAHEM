@@ -65,10 +65,7 @@ function build() {
   // ۱) بستهٔ عمومی (برای آزمون و WebView2)
   fs.writeFileSync(path.join(DIST, 'sabt-man.bundle.js'), bundle({}));
 
-  // ۲) افزونه
-  const extDir = path.join(DIST, 'افزونه');
-  copyDir(path.join(UI, 'افزونه'), extDir);
-  fs.writeFileSync(path.join(extDir, 'sabt-man.bundle.js'), bundle({ bridge: 'extension' }));
+  // ۲) افزونهٔ مرورگر به دستور کارفرما برداشته شد (۱۴۰۵/۰۷/۰۳)؛ خروجی نهایی پوستهٔ ویندوزی است.
 
   // ۳) اسکریپت کاربر
   const header = read(path.join(UI, 'اسکریپت-کاربر', 'header.txt'));
