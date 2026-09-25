@@ -34,7 +34,7 @@ namespace SabtMan
         {
             json.MaxJsonLength = int.MaxValue;
             settings = Settings.Load();
-            Title = "ثبت من — طلوع فردای ایرانیان";
+            Title = "طلوع فردای ایرانیان — ثبت من";
             FlowDirection = FlowDirection.RightToLeft;
             Width = settings.winWidth; Height = settings.winHeight;
             if (settings.winLeft >= 0 && settings.winTop >= 0) { Left = settings.winLeft; Top = settings.winTop; WindowStartupLocation = WindowStartupLocation.Manual; }

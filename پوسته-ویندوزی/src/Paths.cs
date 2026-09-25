@@ -61,8 +61,8 @@ namespace SabtMan
 
         public static string DefaultDest()
         {
-            if (Directory.Exists("E:\\")) return "E:\\پروژه شرکت طلوع فردای ایرانیان\\مخزن اطلاعات کلی\\ثبت من";
-            return Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "ثبت من");
+            // مقصد پیش‌فرض بیرون از پوشهٔ پروژه است و از «تنظیمات ← پوشهٔ مقصد» تغییر می‌کند (خواست کارفرما ۱۴۰۵/۰۷/۰۴)
+            return Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "طلوع فردای ایرانیان - ثبت من");
         }
     }
 

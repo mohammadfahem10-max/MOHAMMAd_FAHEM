@@ -85,7 +85,7 @@
     const sess = S.hook.sessionExpired ? '<span class="dot err"></span>نشست تمام شد' : (app.siteState && app.siteState.page === 'loggedIn' ? '<span class="dot"></span>وارد شده' : '<span class="dot warn"></span>وارد نشده');
     const q = S.exporter.queue;
     const work = q.items.length || q.running ? ` · در حال گرفتن ${n(q.done + q.failed)}/${n(q.done + q.failed + q.items.length)}` : (svc.busy ? ' · در حال مرتب‌سازی' : '');
-    app.el.status.innerHTML = `<span>${sess}</span><span>${work}</span><span title="${esc(sh.dest || '')}">${sh.dest ? 'مقصد: ' + esc(String(sh.dest).split(/[\\/]/).slice(-2).join('/')) : ''}</span>`;
+    app.el.status.innerHTML = `<span>${sess}</span><span>${work}</span>`;
   }
 
   function go(page, arg) {
@@ -121,18 +121,19 @@
     const stt = app.siteState || {};
     const closed = stt.page === 'closed';
     const d = card(`<div class="ap-login ap-card">
-      <h1>ورود به ثبت من</h1>
+      <div class="ap-login-brand"><img src="نشان.png" alt="ثبت من" class="ap-login-mark"><div class="ap-login-name">ثبت من</div><div class="ap-login-org">شرکت طلوع فردای ایرانیان</div></div>
+      <h1>ورود به سامانه</h1>
       <div class="lead">کد ملی خود را بنویسید؛ کد یک‌بارمصرف به تلفن همراه شما فرستاده می‌شود. هیچ اطلاعات ورودی ذخیره نمی‌شود.</div>
       ${app.msg ? `<div class="ap-msg ${app.msg.level}">${esc(app.msg.text)}</div>` : ''}
       ${closed ? `<div class="ap-msg warn">سامانه در دسترس نیست (سامانه شب‌ها بسته است). بعداً دوباره بزنید.</div>` : ''}
       ${!app.siteReady ? `<div class="ap-msg info">در حال اتصال به سامانه…</div>` : ''}
       <label>کد ملی</label>
-      <input class="ap-input ltr" data-f="nat" inputmode="numeric" maxlength="10" value="${esc(L.nationalCode)}" ${L.otpSent ? 'disabled' : ''} autofocus>
+      <input class="ap-input ltr" data-f="nat" autocomplete="off" name="sm-nat" inputmode="numeric" maxlength="10" value="${esc(L.nationalCode)}" ${L.otpSent ? 'disabled' : ''} autofocus>
       ${L.needCaptcha && stt.captcha ? `<label>تصویر امنیتی سامانه (عین تصویر را بنویسید)</label><div class="ap-captcha"><img src="${esc(stt.captcha)}" alt="تصویر امنیتی"><input class="ap-input ltr" data-f="cap" style="max-width:180px"></div>` : ''}
       ${!L.otpSent ? `<div class="row"><button class="ap-btn pri" data-act="send" ${!app.siteReady || closed ? 'disabled' : ''}>ارسال کد</button></div>` : `
       <div class="ap-msg ok">کد به تلفن همراه شما فرستاده شد. <span data-role="cd"></span></div>
       <label>کد پیامکی</label>
-      <input class="ap-input ltr" data-f="otp" inputmode="numeric" maxlength="8" autofocus>
+      <input class="ap-input ltr" data-f="otp" autocomplete="off" name="sm-otp" inputmode="numeric" maxlength="8" autofocus>
       <div class="row"><button class="ap-btn pri" data-act="login">ورود</button><button class="ap-btn" data-act="resend" data-role="resend" disabled>ارسال دوباره</button><button class="ap-btn" data-act="back">تغییر کد ملی</button></div>`}
     </div>`);
     d.addEventListener('click', async (e) => {
