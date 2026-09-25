@@ -41,6 +41,15 @@ function send(res, status, body, headers) {
 }
 const encodeName = (n) => `attachment; filename*=UTF-8''${encodeURIComponent(n)}`;
 
+function loginPage(step, err) {
+  return `<!doctype html><html lang="fa" dir="rtl"><head><meta charset="utf-8"><title>ورود — سایت نمونه</title>
+<style>body{font-family:Tahoma;background:#eef;padding:40px}form{background:#fff;padding:20px;max-width:360px;margin:auto}input{display:block;width:100%;margin:8px 0;padding:6px}.text-danger{color:#c00}</style></head><body>
+<h2>ورود به سامانهٔ نمونه</h2>${err ? `<div class="text-danger">${err}</div>` : ''}
+${step === 'otp' ? `<form method="post" action="/auth/verify"><label>کد یک‌بارمصرف</label><input name="otpCode" placeholder="کد پیامکی" autocomplete="one-time-code"><button type="submit">ورود</button></form>`
+  : `<form method="post" action="/auth/sendcode"><label>کد ملی</label><input name="nationalCode" placeholder="کد ملی" maxlength="10"><button type="submit">ارسال کد</button></form>`}
+</body></html>`;
+}
+
 const server = http.createServer((req, res) => {
   const url = new URL(req.url, 'http://x');
   let chunks = [];
@@ -48,10 +57,25 @@ const server = http.createServer((req, res) => {
   req.on('end', () => {
     const bodyText = Buffer.concat(chunks).toString('utf8');
     let body = {};
-    try { body = bodyText ? JSON.parse(bodyText) : {}; } catch (e) { body = {}; }
+    try { body = bodyText ? JSON.parse(bodyText) : {}; } catch (e) { body = Object.fromEntries(new URLSearchParams(bodyText)); }
     const p = url.pathname;
 
-    if (p === '/' || p === '/portal' || p.startsWith('/portal/')) {
+    // ---- شبیه‌سازی ورود سایت (کد ملی → ارسال کد → کد پیامکی؛ کوکی نشست) ----
+    const cookies = Object.fromEntries((req.headers.cookie || '').split(';').map((c) => c.trim().split('=')).filter((x) => x[0]));
+    const loggedIn = cookies.sm_session === '1' && !expired;
+    if (p === '/' || p === '/login') {
+      if (loggedIn) return send(res, 302, '', { location: '/portal' });
+      return send(res, 200, loginPage(url.searchParams.get('step') || 'nat', url.searchParams.get('err')), { 'content-type': 'text/html; charset=utf-8' });
+    }
+    if (p === '/auth/sendcode') { if (!/^\d{10}$/.test(String(body.nationalCode || ''))) return send(res, 200, loginPage('nat', 'کد ملی نامعتبر است'), { 'content-type': 'text/html; charset=utf-8' }); return send(res, 302, '', { location: '/login?step=otp' }); }
+    if (p === '/auth/verify') {
+      if (String(body.otpCode) !== '1234') return send(res, 200, loginPage('otp', 'کد نادرست است'), { 'content-type': 'text/html; charset=utf-8' });
+      expired = false;
+      return send(res, 302, '', { location: '/portal', 'set-cookie': 'sm_session=1; Path=/' });
+    }
+    if (p === '/auth/logout') return send(res, 302, '', { location: '/', 'set-cookie': 'sm_session=; Path=/; Max-Age=0' });
+    if (p === '/portal' || p.startsWith('/portal/')) {
+      if (!loggedIn && url.searchParams.get('nologin') === null) return send(res, 302, '', { location: '/' });
       let html = fs.readFileSync(path.join(__dirname, 'سایت', 'index.html'), 'utf8');
       if (url.searchParams.has('noinject')) html = html.replace('<script src="/__overlay/sabt-man.bundle.js"></script>', ''); // صفحه بدون تزریق (برای آزمون تزریق بیرونی)
       return send(res, 200, html, { 'content-type': 'text/html; charset=utf-8' });
@@ -61,12 +85,23 @@ const server = http.createServer((req, res) => {
       if (!fs.existsSync(f)) return send(res, 404, '/* ابتدا node ابزار/build.js را اجرا کنید */', { 'content-type': 'application/javascript' });
       return send(res, 200, fs.readFileSync(f), { 'content-type': 'application/javascript; charset=utf-8' });
     }
+    if (p.startsWith('/__app/')) {
+      const f = path.join(ROOT, 'dist', 'پوسته-ویندوزی', 'برنامه', decodeURIComponent(p.slice(7)));
+      if (!fs.existsSync(f)) return send(res, 404, 'نیست', { 'content-type': 'text/plain' });
+      const ct = f.endsWith('.js') ? 'application/javascript' : f.endsWith('.css') ? 'text/css' : f.endsWith('.html') ? 'text/html' : 'application/octet-stream';
+      return send(res, 200, fs.readFileSync(f), { 'content-type': ct + '; charset=utf-8' });
+    }
     if (p === '/__mock/expire') { expired = true; return send(res, 200, { ok: true }); }
     if (p === '/__mock/login') { expired = false; return send(res, 200, { ok: true }); }
-    if (expired && !p.startsWith('/account/')) return send(res, 401, { Success: false, Message: 'Unauthorized', Data: null });
+    if ((expired || !loggedIn) && !p.startsWith('/account/') && !p.startsWith('/__')) return send(res, 401, { Success: false, Message: 'Unauthorized', Data: null });
     if (p === '/account/login') { expired = false; return send(res, 200, { Success: true, Message: '', Data: { token: 'x' } }); }
 
-    if (p === '/mechLetter/GetStatusList') return send(res, 200, readJson('mechLetter-status.json'));
+    if (p === '/mechLetter/GetStatusList') {
+      const all = readJson('mechLetter-status.json');
+      const size = Number(body.pageSize) || 4, page = Number(body.pageIndex) || 1;
+      const items = all.Data.Items.slice((page - 1) * size, page * size);
+      return send(res, 200, { Success: true, Message: '', Data: { TotalCount: all.Data.Items.length, PageIndex: page, PageSize: size, Items: items } });
+    }
     if (p === '/mechLetter/GetReports') { const d = readJson('mechLetter-reports.json')[String(body.letterId)]; return send(res, 200, d || { Success: false, Message: 'یافت نشد', Data: [] }); }
     if (p === '/mechLetter/GetAttachments') { const d = readJson('mechLetter-attachments.json')[String(body.letterId)]; return send(res, 200, d || { Success: true, Message: '', Data: [] }); }
     if (p === '/mechLetter/DownloadFile') {

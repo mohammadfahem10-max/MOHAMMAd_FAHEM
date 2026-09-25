@@ -26,6 +26,7 @@ async function main() {
       __deliver: (obj) => listeners.forEach((cb) => cb({ data: obj })),
     };
   });
+  await ctx.addCookies([{ name: 'sm_session', value: '1', url: base }]); // نشستِ واردشدهٔ سایت نمونه
   const page = await ctx.newPage();
   const errors = [];
   page.on('pageerror', (e) => errors.push(String(e)));
@@ -52,6 +53,8 @@ async function main() {
   await page.click('#sabtman-root [data-act=close]');
   await page.click('nav [data-sec=mech]');
   await page.waitForFunction(() => window.SabtMan.store.state.sections.size >= 1);
+  await page.click('main [data-page="2"]');
+  await page.waitForFunction(() => window.SabtMan.store.state.sections.get('/mechLetter/GetStatusList').records.length === 6);
   await page.click('#sabtman-root .sm-launch');
   await page.evaluate(() => window.SabtMan.store.setSetting('delayMs', 30));
   await page.click('#sabtman-root [data-act=dl-all]');

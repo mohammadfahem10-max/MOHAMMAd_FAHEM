@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /* ساخت خروجی‌ها بدون هیچ وابستگی: فقط ماژول‌های داخلی Node.
    - dist/sabt-man.bundle.js   : رابط کامل (هسته‌ها + تم + فونت همراه)
-   - dist/پوسته-ویندوزی/        : خروجی نهایی — رابط.js (تزریق در WebView2) + کد C# + ساخت.cmd + بک‌اند-فایل + فونت
+   - dist/پوسته-ویندوزی/        : خروجی نهایی — قلاب.js (تزریق در WebView2ِ پنهانِ سایت) + برنامه/ (رابط دیدنی) + کد C# + ساخت.cmd + بک‌اند-فایل + فونت
 */
 'use strict';
 const fs = require('fs');
@@ -57,26 +57,57 @@ function copyDir(src, dst, filter) {
   }
 }
 
+/** بستهٔ سمتِ سایت (قلاب.js): قلاب + رله + خودکارسازی — بی‌رابط، در WebView2ِ پنهان */
+function siteBundle() {
+  const files = [path.join(UI, 'core', 'util.js'), path.join(UI, 'core', 'hook.js'), path.join(UI, 'site', 'relay.js'), path.join(UI, 'site', 'automation.js'), path.join(UI, 'site', 'entry.js')];
+  const parts = ['/* ثبت من — قلاب سمتِ سایت (ساخته‌شده با ابزار/build.js) */', '"use strict";', '(function(){', 'window.SabtMan = window.SabtMan || {};'];
+  for (const f of files) parts.push(`/* ---- ${path.relative(ROOT, f)} ---- */`, read(f));
+  parts.push('})();');
+  return parts.join('\n');
+}
+
+/** بستهٔ رابط برنامه (برنامه/app.js): S.hook = remote-hook؛ پنل جاسازی‌شده؛ صفحه‌های ورود/گردآوری/پیشخوان/تنظیمات */
+function appBundle() {
+  const files = [path.join(UI, 'core', 'util.js'), path.join(UI, 'core', 'bridge.js'), path.join(UI, 'core', 'remote-hook.js'), path.join(UI, 'core', 'store.js'),
+    path.join(REPORTS, 'official.js'), path.join(REPORTS, 'reports.js'), path.join(UI, 'core', 'export.js'), path.join(UI, 'core', 'panel.js')];
+  const parts = ['/* ثبت من — رابط برنامه (ساخته‌شده با ابزار/build.js) */', '"use strict";', '(function(){', 'window.SabtMan = window.SabtMan || {};'];
+  for (const f of files) parts.push(`/* ---- ${path.relative(ROOT, f)} ---- */`, read(f));
+  parts.push(`window.SabtMan.themeCss = ${JSON.stringify(read(path.join(UI, 'theme.css')))};`);
+  parts.push(`window.SabtMan.fontCss = ${JSON.stringify(fontCss())};`);
+  parts.push(`(function(){ const s = document.createElement('style'); s.id = 'sabtman-style'; s.textContent = window.SabtMan.fontCss + '\\n' + window.SabtMan.themeCss; (document.head || document.documentElement).appendChild(s); })();`);
+  parts.push('/* ---- رابط/برنامه/app.js ---- */', read(path.join(UI, 'برنامه', 'app.js')));
+  parts.push('})();');
+  return parts.join('\n');
+}
+
 function build() {
   fs.rmSync(DIST, { recursive: true, force: true });
   fs.mkdirSync(DIST, { recursive: true });
 
-  // ۱) بستهٔ عمومی (برای آزمون و WebView2)
+  // ۱) بستهٔ عمومی (رابط درون صفحهٔ سایت؛ برای آزمون روی سایت شبیه‌ساز)
   fs.writeFileSync(path.join(DIST, 'sabt-man.bundle.js'), bundle({}));
 
-  // ۲) پوستهٔ ویندوزی: رابط تزریقی + سرویس + فونت + کد C# و اسکریپت ساخت (خروجی نهایی به دستور کارفرما)
+  // ۲) پوستهٔ ویندوزی: قلاب سمتِ سایت + رابط برنامه + سرویس + فونت + کد C# و اسکریپت ساخت
   const shellDir = path.join(DIST, 'پوسته-ویندوزی');
   copyDir(path.join(ROOT, 'پوسته-ویندوزی'), shellDir);
-  fs.writeFileSync(path.join(shellDir, 'رابط.js'), bundle({ bridge: 'webview' }));
+  fs.writeFileSync(path.join(shellDir, 'قلاب.js'), siteBundle());
+  const appDir = path.join(shellDir, 'برنامه');
+  fs.mkdirSync(appDir, { recursive: true });
+  fs.copyFileSync(path.join(UI, 'برنامه', 'index.html'), path.join(appDir, 'index.html'));
+  fs.copyFileSync(path.join(UI, 'برنامه', 'app.css'), path.join(appDir, 'app.css'));
+  fs.writeFileSync(path.join(appDir, 'app.js'), appBundle());
+  // themes.js میزبان در مخزن نیست؛ جای‌نگهدار تا وقتی ساخت.cmd نسخهٔ واقعی را کپی کند
+  fs.writeFileSync(path.join(appDir, 'themes.js'), '/* تم‌های میزبان شخصی (themes.js) اینجا کپی می‌شود؛ بدون آن، تم‌های پیش‌فرض برنامه به کار می‌رود. */\n');
   copyDir(path.join(ROOT, 'بک‌اند-فایل'), path.join(shellDir, 'بک‌اند-فایل'));
   copyDir(FONTS, path.join(shellDir, 'بک‌اند-فایل', 'فونت'));
+  copyDir(FONTS, path.join(appDir, 'font'));
 
-  // ۵) راهنما
+  // ۳) راهنما
   fs.copyFileSync(path.join(ROOT, 'README.md'), path.join(DIST, 'README.md'));
 
-  const sizes = ['sabt-man.bundle.js', path.join('پوسته-ویندوزی', 'رابط.js')].map((f) => `${f}: ${Math.round(fs.statSync(path.join(DIST, f)).size / 1024)} KB`);
+  const sizes = ['sabt-man.bundle.js', path.join('پوسته-ویندوزی', 'قلاب.js'), path.join('پوسته-ویندوزی', 'برنامه', 'app.js')].map((f) => `${f}: ${Math.round(fs.statSync(path.join(DIST, f)).size / 1024)} KB`);
   console.log('ساخته شد در dist/\n  ' + sizes.join('\n  '));
 }
 
 if (require.main === module) build();
-module.exports = { build, bundle, fontCss, CORE_ORDER };
+module.exports = { build, bundle, siteBundle, appBundle, fontCss, CORE_ORDER };

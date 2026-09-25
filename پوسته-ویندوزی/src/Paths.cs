@@ -16,7 +16,7 @@ namespace SabtMan
         public static readonly string SettingsFile = Path.Combine(DataDir, "تنظیمات.json");
         public static readonly string LogFile = Path.Combine(DataDir, "گزارش-کار.log");
 
-        /// <summary>پوشهٔ خروجی build (رابط.js، بک‌اند-فایل): کنار exe، وگرنه ..\مخزن\dist\پوسته-ویندوزی، وگرنه SABTMAN_REPO.</summary>
+        /// <summary>پوشهٔ خروجی build (قلاب.js، برنامه\، بک‌اند-فایل): کنار exe، وگرنه ..\مخزن\dist\پوسته-ویندوزی، وگرنه SABTMAN_REPO.</summary>
         public static string FindBundleDir()
         {
             List<string> candidates = new List<string>();
@@ -27,7 +27,7 @@ namespace SabtMan
             if (!string.IsNullOrEmpty(repo)) candidates.Add(Path.Combine(repo, "dist", "پوسته-ویندوزی"));
             foreach (string c in candidates)
             {
-                try { if (File.Exists(Path.Combine(c, "رابط.js"))) return Path.GetFullPath(c); } catch (Exception) { }
+                try { if (File.Exists(Path.Combine(c, "قلاب.js")) && Directory.Exists(Path.Combine(c, "برنامه"))) return Path.GetFullPath(c); } catch (Exception) { }
             }
             return null;
         }
@@ -78,6 +78,8 @@ namespace SabtMan
         public bool panelOpen = false;
         public double winWidth = 1400;
         public double winHeight = 900;
+        public double winLeft = -1;
+        public double winTop = -1;
 
         public static Settings Load()
         {
@@ -100,6 +102,8 @@ namespace SabtMan
                         if (d.TryGetValue("panelOpen", out v) && v != null) s.panelOpen = Convert.ToBoolean(v);
                         if (d.TryGetValue("winWidth", out v) && v != null) s.winWidth = Convert.ToDouble(v);
                         if (d.TryGetValue("winHeight", out v) && v != null) s.winHeight = Convert.ToDouble(v);
+                        if (d.TryGetValue("winLeft", out v) && v != null) s.winLeft = Convert.ToDouble(v);
+                        if (d.TryGetValue("winTop", out v) && v != null) s.winTop = Convert.ToDouble(v);
                     }
                 }
             }
@@ -115,7 +119,7 @@ namespace SabtMan
                 Directory.CreateDirectory(Paths.DataDir);
                 Dictionary<string, object> d = new Dictionary<string, object>();
                 d["dest"] = dest; d["siteUrl"] = siteUrl; d["nodePath"] = nodePath; d["browserPath"] = browserPath; d["mode"] = mode;
-                d["port"] = port; d["panelOpen"] = panelOpen; d["winWidth"] = winWidth; d["winHeight"] = winHeight;
+                d["port"] = port; d["panelOpen"] = panelOpen; d["winWidth"] = winWidth; d["winHeight"] = winHeight; d["winLeft"] = winLeft; d["winTop"] = winTop;
                 File.WriteAllText(Paths.SettingsFile, new JavaScriptSerializer().Serialize(d), Encoding.UTF8);
             }
             catch (Exception ex) { Log.Write("warn", "ذخیرهٔ تنظیمات: " + ex.Message); }

@@ -6,7 +6,7 @@
   "scripts": {
     "build": "node ابزار/build.js",
     "test": "node --test آزمون/core.test.js آزمون/service.test.js",
-    "e2e": "node ابزار/build.js && node آزمون/e2e-overlay.js",
+    "e2e": "node ابزار/build.js && node آزمون/e2e-overlay.js && node آزمون/e2e-shell-bridge.js && node آزمون/e2e-app.js",
     "mock": "node ابزار/build.js && node نمونه/serve.js",
     "service": "node بک‌اند-فایل/server.js"
   },

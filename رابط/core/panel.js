@@ -17,10 +17,13 @@
     return t.content.firstElementChild;
   }
 
-  function mount() {
+  function mount(opts) {
     if (ui.root) return;
+    opts = opts || {};
+    ui.embedded = Boolean(opts.embedded);
     const root = document.createElement('div');
     root.id = 'sabtman-root';
+    if (ui.embedded) root.classList.add('sm-embedded', 'sm-open');
     root.innerHTML = `
       <button class="sm-launch" type="button"><span>ثبت من</span><span class="sm-badge">۰</span></button>
       <div class="sm-drawer">
@@ -39,9 +42,10 @@
         </div>
         <div class="sm-foot"><span data-role="queue"></span><span class="sm-log" data-role="log"></span><span data-role="shell" class="sm-muted"></span></div>
       </div>`;
-    document.documentElement.appendChild(root);
+    (opts.container || document.documentElement).appendChild(root);
     ui.root = root;
-    root.querySelector('.sm-launch').addEventListener('click', toggle);
+    if (ui.embedded) { root.querySelector('.sm-launch').remove(); root.querySelector('[data-act=close]').remove(); }
+    if (!ui.embedded) root.querySelector('.sm-launch').addEventListener('click', toggle);
     root.querySelector('.sm-head').addEventListener('click', (e) => {
       const b = e.target.closest('[data-act]');
       if (!b) return;
@@ -69,11 +73,12 @@
       });
       S.bridge.requestState();
     }
-    if (st().state.settings.panelOpen) toggle(true);
+    if (!ui.embedded && st().state.settings.panelOpen) toggle(true);
     scheduleRender();
   }
 
   function toggle(force) {
+    if (ui.embedded) return;
     const open = typeof force === 'boolean' ? force : !ui.root.classList.contains('sm-open');
     ui.root.classList.toggle('sm-open', open);
     st().state.settings.panelOpen = open;
@@ -91,7 +96,8 @@
   function render() {
     if (!ui.root) return;
     const sections = st().sectionList();
-    ui.root.querySelector('.sm-badge').textContent = n(sections.reduce((a, s) => a + s.records.length, 0));
+    const badge = ui.root.querySelector('.sm-badge');
+    if (badge) badge.textContent = n(sections.reduce((a, s) => a + s.records.length, 0));
     const dot = ui.root.querySelector('[data-role=dot]');
     dot.className = 'sm-dot' + (S.hook.sessionExpired ? ' err' : '');
     dot.title = S.hook.sessionExpired ? 'نشست پایان یافته' : 'قلاب فعال است';
@@ -451,5 +457,6 @@
     st().addLog('info', text);
   }
 
-  S.panel = { mount, toggle, render, toast, openRecord, openReport };
+  function show(path) { ui.current = path; ui.chip = null; ui.filter = ''; render(); }
+  S.panel = { mount, toggle, render, toast, openRecord, openReport, openSettings, show, get current() { return ui.current; } };
 })(typeof window !== 'undefined' ? (window.SabtMan = window.SabtMan || {}) : (module.exports = {}));

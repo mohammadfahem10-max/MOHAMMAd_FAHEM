@@ -17,6 +17,7 @@ async function main() {
   const base = `http://127.0.0.1:${server.address().port}`;
   const browser = await playwright.chromium.launch({ executablePath: process.env.CHROME_PATH || undefined });
   const ctx = await browser.newContext({ viewport: { width: 1400, height: 900 }, acceptDownloads: true });
+  await ctx.addCookies([{ name: 'sm_session', value: '1', url: base }]); // نشستِ واردشدهٔ سایت نمونه
   const page = await ctx.newPage();
   const errors = [];
   page.on('pageerror', (e) => errors.push(String(e)));
@@ -28,6 +29,8 @@ async function main() {
   // ۱) بخش مکاتبات (fetch)
   await page.click('nav [data-sec=mech]');
   await page.waitForFunction(() => window.SabtMan.store.state.sections.size >= 1);
+  await page.click('main [data-page="2"]'); // صفحهٔ دوم (پوشش صفحه‌بندی)
+  await page.waitForFunction(() => window.SabtMan.store.state.sections.get('/mechLetter/GetStatusList').records.length === 6);
   // ۲) اسناد رسمی (XHR) + املاک + ثبت موقت + پروفایل
   for (const s of ['ssar', 'estate', 'ilenc', 'profile']) { await page.click(`nav [data-sec=${s}]`); await page.waitForTimeout(150); }
   await page.waitForFunction(() => window.SabtMan.store.state.sections.size >= 5);
@@ -42,6 +45,7 @@ async function main() {
   // ۳) یادگیری «گزارشات» و «پیوست‌ها» از یک کلیک کاربر در سایت
   await page.click('nav [data-sec=mech]');
   await page.waitForSelector('[data-rep="910001"]');
+  await page.click('main [data-page="2"]'); await page.waitForSelector('[data-rep="910005"]'); await page.click('main [data-page="1"]'); await page.waitForSelector('[data-rep="910001"]');
   await page.click('[data-rep="910001"]');
   await page.waitForFunction(() => window.SabtMan.store.linksFor('/mechLetter/GetStatusList', 'روند').length === 1);
   await page.click('[data-att="910001"]');

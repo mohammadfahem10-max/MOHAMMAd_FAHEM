@@ -1,4 +1,5 @@
-// پنجرهٔ اصلی «ثبت من»: نوار بالا (تم طلوع)، WebView2 با سایت، نوار وضعیت پایین، و پل postMessage به رابط تزریقی.
+// پنجرهٔ اصلی «ثبت من»: دو WebView2 — یکی دیدنی (صفحه‌های خود برنامه: ورود، پیشخوان، بخش‌ها) و یکی پنهان (سایت my.ssaa.ir).
+// کاربر هرگز سایت را نمی‌بیند. پوسته فقط پیام‌ها را بین دو WebView رله می‌کند، فایل می‌نویسد و سرویس Node را پنهان اجرا می‌کند.
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -17,20 +18,17 @@ namespace SabtMan
 {
     public class MainWindow : Window
     {
+        const string AppHost = "app.sabtman";           // میزبان مجازی رابط برنامه
         readonly Settings settings;
-        readonly WebView2 web = new WebView2();
-        readonly TextBlock statusSession = new TextBlock();
-        readonly TextBlock statusWork = new TextBlock();
-        readonly TextBlock statusDest = new TextBlock();
+        readonly WebView2 ui = new WebView2();          // دیدنی
+        readonly WebView2 site = new WebView2();        // پنهان
         readonly DispatcherTimer poll = new DispatcherTimer();
         readonly JavaScriptSerializer json = new JavaScriptSerializer();
         ServiceHost service;
         string bundleDir;
-        string overlayScript;
-        bool webReady = false;
-
-        static readonly Brush Base = Hex("#EEF1FB"), Ac = Hex("#0F6CBD"), Ac2 = Hex("#6B5BD6"), Tx = Hex("#1A1F2E"), Tx2 = Hex("#454C63"), Line = Hex("#14C9D8FF");
-        static Brush Hex(string hex) { return new SolidColorBrush((Color)ColorConverter.ConvertFromString(hex)); }
+        string siteScript;
+        bool uiReady = false, siteReady = false;
+        readonly Queue<string> uiBacklog = new Queue<string>();
 
         public MainWindow()
         {
@@ -39,96 +37,45 @@ namespace SabtMan
             Title = "ثبت من — طلوع فردای ایرانیان";
             FlowDirection = FlowDirection.RightToLeft;
             Width = settings.winWidth; Height = settings.winHeight;
-            MinWidth = 900; MinHeight = 600;
-            WindowStartupLocation = WindowStartupLocation.CenterScreen;
-            Background = Base;
-            FontFamily = new FontFamily("Vazirmatn, Tahoma");
-            FontSize = 14;
+            if (settings.winLeft >= 0 && settings.winTop >= 0) { Left = settings.winLeft; Top = settings.winTop; WindowStartupLocation = WindowStartupLocation.Manual; }
+            else WindowStartupLocation = WindowStartupLocation.CenterScreen;
+            MinWidth = 960; MinHeight = 640;
+            Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#EEF1FB"));
             Content = BuildLayout();
             Loaded += OnLoaded;
             Closing += OnClosing;
             Log.Written += OnLog;
+            Backdrop.TryApply(this);
         }
-
-        /* ---------- چیدمان ---------- */
 
         UIElement BuildLayout()
         {
-            DockPanel root = new DockPanel();
-
-            Border top = new Border();
-            top.Background = new SolidColorBrush(Color.FromArgb(190, 255, 255, 255));
-            top.BorderBrush = Line; top.BorderThickness = new Thickness(0, 0, 0, 1);
-            top.Padding = new Thickness(12, 6, 12, 6);
-            StackPanel bar = new StackPanel(); bar.Orientation = Orientation.Horizontal;
-            TextBlock title = new TextBlock(); title.Text = "ثبت من"; title.FontSize = 18; title.FontWeight = FontWeights.Bold; title.Foreground = Ac; title.VerticalAlignment = VerticalAlignment.Center; title.Margin = new Thickness(0, 0, 14, 0);
-            bar.Children.Add(title);
-            bar.Children.Add(MakeButton("نمایش سایت / نمایش داده‌ها", true, delegate { PostToWeb("{\"type\":\"toggle\"}"); }));
-            bar.Children.Add(MakeButton("انتخاب پوشهٔ مقصد", false, delegate { BrowseDest(); }));
-            bar.Children.Add(MakeButton("باز کردن پوشهٔ مقصد", false, delegate { OpenDest(); }));
-            bar.Children.Add(MakeButton("تنظیمات", false, delegate { PostToWeb("{\"type\":\"settings\"}"); }));
-            bar.Children.Add(MakeButton("بازکردن دوبارهٔ سایت", false, delegate { NavigateSite(); }));
-            top.Child = bar;
-            DockPanel.SetDock(top, Dock.Top);
-            root.Children.Add(top);
-
-            Border bottom = new Border();
-            bottom.Background = new SolidColorBrush(Color.FromArgb(190, 255, 255, 255));
-            bottom.BorderBrush = Line; bottom.BorderThickness = new Thickness(0, 1, 0, 0);
-            bottom.Padding = new Thickness(12, 3, 12, 3);
-            StackPanel sb = new StackPanel(); sb.Orientation = Orientation.Horizontal;
-            statusSession.Text = "در حال بارگذاری…"; statusSession.Foreground = Tx2; statusSession.Margin = new Thickness(0, 0, 18, 0);
-            statusWork.Foreground = Tx2; statusWork.Margin = new Thickness(0, 0, 18, 0);
-            statusDest.Foreground = Tx2; statusDest.FlowDirection = FlowDirection.LeftToRight;
-            sb.Children.Add(statusSession); sb.Children.Add(statusWork); sb.Children.Add(statusDest);
-            bottom.Child = sb;
-            DockPanel.SetDock(bottom, Dock.Bottom);
-            root.Children.Add(bottom);
-
-            web.FlowDirection = FlowDirection.LeftToRight;
-            root.Children.Add(web);
+            Grid root = new Grid();
+            // WebView پنهان: زنده ولی ناپیدا (اندازهٔ ۱ پیکسل و شفاف؛ Collapsed رندر را متوقف می‌کند)
+            site.Width = 1; site.Height = 1; site.Opacity = 0; site.IsHitTestVisible = false;
+            site.HorizontalAlignment = HorizontalAlignment.Left; site.VerticalAlignment = VerticalAlignment.Top;
+            site.FlowDirection = FlowDirection.LeftToRight;
+            root.Children.Add(site);
+            ui.FlowDirection = FlowDirection.LeftToRight;
+            ui.DefaultBackgroundColor = System.Drawing.Color.Transparent;
+            root.Children.Add(ui);
             return root;
-        }
-
-        Button MakeButton(string text, bool primary, RoutedEventHandler onClick)
-        {
-            Button b = new Button();
-            b.Content = text;
-            b.Padding = new Thickness(12, 4, 12, 4);
-            b.Margin = new Thickness(0, 0, 8, 0);
-            b.FontWeight = FontWeights.SemiBold;
-            b.Cursor = System.Windows.Input.Cursors.Hand;
-            b.BorderThickness = new Thickness(1);
-            if (primary)
-            {
-                LinearGradientBrush g = new LinearGradientBrush();
-                g.StartPoint = new Point(0, 0); g.EndPoint = new Point(1, 1);
-                g.GradientStops.Add(new GradientStop((Color)ColorConverter.ConvertFromString("#0F6CBD"), 0));
-                g.GradientStops.Add(new GradientStop((Color)ColorConverter.ConvertFromString("#6B5BD6"), 1));
-                b.Background = g; b.Foreground = Brushes.White; b.BorderBrush = Brushes.Transparent;
-            }
-            else { b.Background = Hex("#E6FFFFFF"); b.Foreground = Tx; b.BorderBrush = Line; }
-            b.Click += onClick;
-            return b;
         }
 
         /* ---------- راه‌اندازی ---------- */
 
         async void OnLoaded(object sender, RoutedEventArgs e)
         {
-            UpdateDest();
             bundleDir = Paths.FindBundleDir();
             if (bundleDir == null)
             {
-                statusSession.Text = "رابط.js پیدا نشد (کنار exe یا ..\\مخزن\\dist\\پوسته-ویندوزی).";
-                Log.Write("err", "رابط.js پیدا نشد.");
+                MessageBox.Show("فایل‌های رابط (قلاب.js و پوشهٔ برنامه) کنار exe پیدا نشد. ساخت.cmd را اجرا کنید.", "ثبت من", MessageBoxButton.OK, MessageBoxImage.Error, MessageBoxResult.OK, MessageBoxOptions.RtlReading);
+                Log.Write("err", "قلاب.js پیدا نشد.");
+                return;
             }
-            else
-            {
-                overlayScript = File.ReadAllText(Path.Combine(bundleDir, "رابط.js"), Encoding.UTF8);
-                StartService();
-            }
-            await InitWebView();
+            siteScript = File.ReadAllText(Path.Combine(bundleDir, "قلاب.js"), Encoding.UTF8);
+            StartService();
+            await InitWebViews();
         }
 
         void StartService()
@@ -146,7 +93,7 @@ namespace SabtMan
             }
         }
 
-        async Task InitWebView()
+        async Task InitWebViews()
         {
             try
             {
@@ -154,22 +101,41 @@ namespace SabtMan
                 CoreWebView2EnvironmentOptions opts = new CoreWebView2EnvironmentOptions();
                 opts.Language = "fa";
                 CoreWebView2Environment env = await CoreWebView2Environment.CreateAsync(null, Paths.WebViewDir, opts);
-                await web.EnsureCoreWebView2Async(env);
-                CoreWebView2 core = web.CoreWebView2;
-                core.Settings.AreDefaultContextMenusEnabled = true;
-                core.Settings.AreDevToolsEnabled = true;
-                core.Settings.IsStatusBarEnabled = false;
-                core.Settings.IsZoomControlEnabled = true;
-                core.WebMessageReceived += OnWebMessage;
-                core.NavigationCompleted += OnNavigated;
-                core.NewWindowRequested += OnNewWindow;
-                if (!string.IsNullOrEmpty(overlayScript))
+
+                // ۱) سایت پنهان
+                await site.EnsureCoreWebView2Async(env);
+                CoreWebView2 sc = site.CoreWebView2;
+                sc.Settings.AreDefaultContextMenusEnabled = false;
+                sc.Settings.IsStatusBarEnabled = false;
+                sc.Settings.AreDevToolsEnabled = true;
+                sc.WebMessageReceived += OnSiteMessage;
+                sc.NewWindowRequested += OnSiteNewWindow;
+                // دانلودهای معمولی سایت (ناوبری) روی دیسک نروند؛ فایل‌ها از راه قلاب fetch/XHR گرفته می‌شوند
+                sc.DownloadStarting += delegate(object s, CoreWebView2DownloadStartingEventArgs a) { a.Cancel = true; a.Handled = true; Log.Write("info", "دانلود ناوبری سایت نادیده گرفته شد: " + a.DownloadOperation.Uri); };
+                sc.NavigationCompleted += delegate(object s, CoreWebView2NavigationCompletedEventArgs a) { if (!a.IsSuccess) Log.Write("warn", "بارگذاری سایت: " + a.WebErrorStatus); };
+                string siteConfig = LoadSiteConfig();
+                await sc.AddScriptToExecuteOnDocumentCreatedAsync("window.__sabtmanSiteConfig = " + siteConfig + ";");
+                await sc.AddScriptToExecuteOnDocumentCreatedAsync(siteScript);
+                siteReady = true;
+                sc.Navigate(settings.siteUrl);
+
+                // ۲) رابط برنامه (دیدنی)
+                await ui.EnsureCoreWebView2Async(env);
+                CoreWebView2 uc = ui.CoreWebView2;
+                uc.Settings.AreDefaultContextMenusEnabled = false;
+                uc.Settings.IsStatusBarEnabled = false;
+                uc.Settings.AreDevToolsEnabled = true;
+                uc.Settings.IsZoomControlEnabled = false;
+                uc.SetVirtualHostNameToFolderMapping(AppHost, Path.Combine(bundleDir, "برنامه"), CoreWebView2HostResourceAccessKind.Allow);
+                uc.WebMessageReceived += OnUiMessage;
+                uc.NewWindowRequested += delegate(object s, CoreWebView2NewWindowRequestedEventArgs a) { a.Handled = true; };
+                uc.NavigationCompleted += delegate(object s, CoreWebView2NavigationCompletedEventArgs a)
                 {
-                    // پیش از کد سایت، در هر بارگذاری. رابط خودش فقط در قاب اصلی و دامنه‌های ssaa.ir فعال می‌شود.
-                    await core.AddScriptToExecuteOnDocumentCreatedAsync(overlayScript);
-                }
-                webReady = true;
-                NavigateSite();
+                    uiReady = a.IsSuccess;
+                    while (uiReady && uiBacklog.Count > 0) PostToUi(uiBacklog.Dequeue());
+                    PushState();
+                };
+                uc.Navigate("https://" + AppHost + "/index.html");
             }
             catch (Exception ex)
             {
@@ -178,30 +144,53 @@ namespace SabtMan
             }
         }
 
-        void NavigateSite()
+        /// <summary>پیکربندی-سایت.json (انتخابگرهای فرم ورود و منوها) — بی کامپایل دوباره اصلاح می‌شود</summary>
+        string LoadSiteConfig()
         {
-            if (!webReady) return;
-            try { web.CoreWebView2.Navigate(settings.siteUrl); } catch (Exception ex) { Log.Write("err", "بازکردن سایت: " + ex.Message); }
+            string[] candidates = new string[] { Path.Combine(Paths.AppDir, "پیکربندی-سایت.json"), Path.Combine(bundleDir, "پیکربندی-سایت.json") };
+            foreach (string p in candidates)
+            {
+                try { if (File.Exists(p)) { string t = File.ReadAllText(p, Encoding.UTF8).Trim(); if (t.StartsWith("{")) return t; } } catch (Exception ex) { Log.Write("warn", "پیکربندی سایت: " + ex.Message); }
+            }
+            return "{}";
         }
 
-        void OnNewWindow(object sender, CoreWebView2NewWindowRequestedEventArgs e)
+        void OnSiteNewWindow(object sender, CoreWebView2NewWindowRequestedEventArgs e)
         {
-            // پنجره‌های تازهٔ سایت در همین پنجره باز شوند
+            // تنها جایی که کاربر صفحهٔ بیرونی را می‌بیند (مثلاً «ورود از طریق دولت من»): پنجرهٔ جدا
             e.Handled = true;
-            try { web.CoreWebView2.Navigate(e.Uri); } catch (Exception) { }
+            try
+            {
+                Window w = new Window();
+                w.Title = "سامانه — پنجرهٔ ورود";
+                w.Width = 900; w.Height = 700; w.Owner = this; w.WindowStartupLocation = WindowStartupLocation.CenterOwner;
+                WebView2 wv = new WebView2();
+                w.Content = wv;
+                w.Show();
+                wv.EnsureCoreWebView2Async(site.CoreWebView2.Environment).ContinueWith(delegate { Dispatcher.BeginInvoke(new Action(delegate { wv.CoreWebView2.Navigate(e.Uri); })); });
+            }
+            catch (Exception ex) { Log.Write("err", "پنجرهٔ بیرونی: " + ex.Message); }
         }
 
-        void OnNavigated(object sender, CoreWebView2NavigationCompletedEventArgs e)
+        /* ---------- رله ---------- */
+
+        static string Raw(CoreWebView2WebMessageReceivedEventArgs e)
         {
-            statusSession.Text = e.IsSuccess ? "سایت باز شد" : "بارگذاری سایت ناموفق: " + e.WebErrorStatus;
+            try { return e.TryGetWebMessageAsString(); } catch (Exception) { return e.WebMessageAsJson; }
         }
 
-        /* ---------- پل ---------- */
-
-        void OnWebMessage(object sender, CoreWebView2WebMessageReceivedEventArgs e)
+        /// <summary>سایت پنهان → رابط برنامه (رویدادهای قلاب، پاسخ فرمان‌ها)</summary>
+        void OnSiteMessage(object sender, CoreWebView2WebMessageReceivedEventArgs e)
         {
-            string raw;
-            try { raw = e.TryGetWebMessageAsString(); } catch (Exception) { raw = e.WebMessageAsJson; }
+            string raw = Raw(e);
+            if (string.IsNullOrEmpty(raw)) return;
+            PostToUi(raw);
+        }
+
+        /// <summary>رابط برنامه → پوسته (job/file/browse/…) یا → سایت پنهان (site-cmd)</summary>
+        void OnUiMessage(object sender, CoreWebView2WebMessageReceivedEventArgs e)
+        {
+            string raw = Raw(e);
             if (string.IsNullOrEmpty(raw)) return;
             Dictionary<string, object> msg;
             try { msg = json.Deserialize<Dictionary<string, object>>(raw); } catch (Exception) { return; }
@@ -211,7 +200,8 @@ namespace SabtMan
             {
                 switch (type)
                 {
-                    case "ready": PushState(); break;
+                    case "site-cmd": PostToSite(raw); break;
+                    case "ready": case "state": PushState(); break;
                     case "job": SaveJob(Str(msg, "name"), Str(msg, "base64")); break;
                     case "file": SaveFile(Str(msg, "name"), Str(msg, "base64")); break;
                     case "browse": BrowseDest(); break;
@@ -221,13 +211,22 @@ namespace SabtMan
                         if (msg.ContainsKey("dest") && msg["dest"] != null) SetDest(Convert.ToString(msg["dest"]));
                         settings.Save();
                         break;
-                    case "state": PushState(); break;
-                    case "status":
-                        statusWork.Text = Str(msg, "text");
-                        break;
+                    case "logout": Logout(); break;
                 }
             }
             catch (Exception ex) { Log.Write("err", "پیام " + type + ": " + ex.Message); }
+        }
+
+        void PostToUi(string jsonText)
+        {
+            if (!uiReady) { if (uiBacklog.Count < 500) uiBacklog.Enqueue(jsonText); return; }
+            try { ui.CoreWebView2.PostWebMessageAsJson(jsonText); } catch (Exception ex) { Log.Write("warn", "رله به رابط: " + ex.Message); }
+        }
+
+        void PostToSite(string jsonText)
+        {
+            if (!siteReady) return;
+            try { site.CoreWebView2.PostWebMessageAsJson(jsonText); } catch (Exception ex) { Log.Write("warn", "رله به سایت: " + ex.Message); }
         }
 
         static string Str(Dictionary<string, object> d, string k)
@@ -236,7 +235,20 @@ namespace SabtMan
             return d.TryGetValue(k, out v) && v != null ? Convert.ToString(v) : "";
         }
 
-        /// <summary>بستهٔ کار → پوشهٔ صف؛ سرویس Node همان‌جا را پایش می‌کند و در مقصد مرتب می‌کند.</summary>
+        /// <summary>خروج از حساب: پاک‌کردن کوکی‌های سایت و بازگشت به صفحهٔ ورود سایت (پشت پرده)</summary>
+        void Logout()
+        {
+            try
+            {
+                site.CoreWebView2.CookieManager.DeleteAllCookies();
+                site.CoreWebView2.Navigate(settings.siteUrl);
+                Log.Write("ok", "خروج از حساب انجام شد.");
+            }
+            catch (Exception ex) { Log.Write("err", "خروج: " + ex.Message); }
+        }
+
+        /* ---------- فایل ---------- */
+
         void SaveJob(string name, string base64)
         {
             if (string.IsNullOrEmpty(name) || string.IsNullOrEmpty(base64)) return;
@@ -245,13 +257,11 @@ namespace SabtMan
             string safe = SafeName(name);
             string tmp = Path.Combine(Paths.InboxDir, safe + ".part");
             File.WriteAllBytes(tmp, bytes);
-            File.Move(tmp, Path.Combine(Paths.InboxDir, safe)); // نام نهایی فقط وقتی کامل نوشته شد
-            statusWork.Text = "بسته دریافت شد (" + (bytes.Length / 1024) + " کیلوبایت)؛ در حال مرتب‌سازی…";
-            Log.Write("ok", "بسته دریافت شد: " + safe);
+            File.Move(tmp, Path.Combine(Paths.InboxDir, safe));
+            Log.Write("ok", "بسته دریافت شد: " + safe + " (" + (bytes.Length / 1024) + " کیلوبایت)");
             if (service == null || !service.Running) Log.Write("warn", "سرویس فایل اجرا نیست؛ بسته در پوشهٔ صف ماند: " + Paths.InboxDir);
         }
 
-        /// <summary>فایل‌های دیگر (نقشهٔ کشف‌شده، CSV، JSON) → مقصد\خروجی‌های دیگر</summary>
         void SaveFile(string name, string base64)
         {
             if (string.IsNullOrEmpty(name) || base64 == null) return;
@@ -261,7 +271,6 @@ namespace SabtMan
             string path = Unique(Path.Combine(dir, SafeName(name)));
             File.WriteAllBytes(path, bytes);
             Log.Write("ok", "ذخیره شد: " + path);
-            PostToWeb(json.Serialize(new Dictionary<string, object> { { "type", "log" }, { "level", "ok" }, { "text", "ذخیره شد: " + path } }));
         }
 
         static string SafeName(string name)
@@ -302,8 +311,7 @@ namespace SabtMan
             settings.Save();
             try { Directory.CreateDirectory(dest); } catch (Exception ex) { Log.Write("err", "ساخت پوشهٔ مقصد: " + ex.Message); }
             if (service != null && service.Running) service.SetDest(dest);
-            UpdateDest();
-            PostToWeb(json.Serialize(new Dictionary<string, object> { { "type", "dest" }, { "path", dest } }));
+            PostToUi(json.Serialize(new Dictionary<string, object> { { "type", "dest" }, { "path", dest } }));
             PushState();
             Log.Write("ok", "پوشهٔ مقصد: " + dest);
         }
@@ -313,9 +321,7 @@ namespace SabtMan
             try { Directory.CreateDirectory(settings.dest); Process.Start("explorer.exe", "\"" + settings.dest + "\""); } catch (Exception ex) { Log.Write("err", "باز کردن پوشه: " + ex.Message); }
         }
 
-        void UpdateDest() { statusDest.Text = "مقصد: " + settings.dest; }
-
-        /// <summary>وضعیت پوسته + سرویس → رابط ({type:'state', dest, mode, service:{running, browser, busy, lastText}})</summary>
+        /// <summary>وضعیت پوسته + سرویس → رابط ({type:'state', dest, mode, service:{running, browser, busy, lastText, stats}})</summary>
         void PushState()
         {
             Dictionary<string, object> svc = new Dictionary<string, object>();
@@ -340,22 +346,12 @@ namespace SabtMan
                             svc["lastLevel"] = Str(first, "level");
                         }
                     }
-                    if (st.TryGetValue("آمار", out v) && v is Dictionary<string, object>)
-                    {
-                        Dictionary<string, object> stats = (Dictionary<string, object>)v;
-                        statusWork.Text = "بسته‌ها: " + Str(stats, "processed") + " · PDF: " + Str(stats, "pdfOk") + (Str(stats, "pdfFail") != "0" ? " (ناموفق " + Str(stats, "pdfFail") + ")" : "") + ((bool)svc["busy"] ? " · در حال پردازش…" : "");
-                    }
+                    if (st.TryGetValue("آمار", out v) && v is Dictionary<string, object>) svc["stats"] = v;
                 }
             }
             Dictionary<string, object> msg = new Dictionary<string, object>();
             msg["type"] = "state"; msg["dest"] = settings.dest; msg["mode"] = settings.mode; msg["service"] = svc;
-            PostToWeb(json.Serialize(msg));
-        }
-
-        void PostToWeb(string jsonText)
-        {
-            if (!webReady) return;
-            try { web.CoreWebView2.PostWebMessageAsJson(jsonText); } catch (Exception) { }
+            PostToUi(json.Serialize(msg));
         }
 
         void OnLog(string level, string text)
@@ -363,18 +359,18 @@ namespace SabtMan
             if (level == "svc" || level == "svc-err") return;
             Dispatcher.BeginInvoke(new Action(delegate
             {
-                if (level == "err") statusWork.Text = text;
-                PostToWeb(json.Serialize(new Dictionary<string, object> { { "type", "log" }, { "level", level == "svc" ? "info" : level }, { "text", text } }));
+                PostToUi(json.Serialize(new Dictionary<string, object> { { "type", "log" }, { "level", level }, { "text", text } }));
             }));
         }
 
         void OnClosing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            settings.winWidth = Width; settings.winHeight = Height;
+            if (WindowState == WindowState.Normal) { settings.winWidth = Width; settings.winHeight = Height; settings.winLeft = Left; settings.winTop = Top; }
             settings.Save();
             poll.Stop();
             if (service != null) service.Stop();
-            try { web.Dispose(); } catch (Exception) { }
+            try { site.Dispose(); } catch (Exception) { }
+            try { ui.Dispose(); } catch (Exception) { }
         }
     }
 }

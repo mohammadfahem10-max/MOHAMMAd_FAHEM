@@ -1,0 +1,83 @@
+/* پوستهٔ صفحه‌های برنامه — همان متغیرهای تم طلوع (app.css میزبان). تم‌ها و فونت روی :root اعمال می‌شوند. */
+:root{
+  --fs:17px; --base:#EEF1FB; --b1:#C9D8FF; --b2:#E3D4FF; --b3:#CDEBFF; --b4:#F3DDF5;
+  --ac:#0F6CBD; --ac2:#6B5BD6; --ac-rgb:15,108,189; --ac2-rgb:107,91,214;
+  --tx:#1A1F2E; --tx2:#454C63; --tx3:#737A92;
+  --glass:rgba(255,255,255,.56); --glass-2:rgba(255,255,255,.74); --glass-3:rgba(255,255,255,.9);
+  --edge:rgba(255,255,255,.75); --line:rgba(20,30,70,.08); --line-2:rgba(20,30,70,.14);
+  --shadow:0 10px 40px rgba(40,56,140,.10), 0 2px 8px rgba(40,56,140,.06);
+  --hover:rgba(20,40,120,.05);
+  --ok:#1F8A5B; --warn:#B7791F; --err:#C2413B;
+  --r1:8px; --r2:12px; --r3:16px; --r4:22px;
+  --blur:blur(28px) saturate(170%);
+  --grad:linear-gradient(135deg, var(--ac), var(--ac2));
+  --rail:264px; color-scheme:light;
+}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0}
+body{font-family:'Vazirmatn UI FD','Vazirmatn',Tahoma,sans-serif;font-size:var(--fs);color:var(--tx);direction:rtl;line-height:1.7;
+  background:linear-gradient(160deg,var(--b3) 0%,var(--base) 40%,var(--b2) 100%);background-attachment:fixed}
+button,input,select{font:inherit;color:inherit}
+#app{display:flex;flex-direction:column;height:100%}
+.ap-head{display:flex;align-items:center;gap:16px;padding:8px 18px;background:var(--glass-2);backdrop-filter:var(--blur);-webkit-backdrop-filter:var(--blur);border-bottom:1px solid var(--line);flex:0 0 auto}
+.ap-brand{display:flex;align-items:baseline;gap:8px}
+.ap-logo{width:14px;height:14px;border-radius:50%;background:var(--grad);align-self:center;box-shadow:0 0 0 4px rgba(var(--ac-rgb),.15)}
+.ap-title{font-weight:800;font-size:1.15em;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.ap-sub{color:var(--tx3);font-size:.8em}
+.ap-nav{display:flex;gap:6px;flex:1;flex-wrap:wrap}
+.ap-nav button{padding:5px 12px;border-radius:999px;border:1px solid transparent;background:transparent;cursor:pointer;font-weight:600;font-size:.9em;color:var(--tx2)}
+.ap-nav button:hover{background:var(--hover)}
+.ap-nav button.on{background:var(--grad);color:#fff}
+.ap-nav button.warn{color:var(--err)}
+.ap-status{font-size:.8em;color:var(--tx3);display:flex;gap:10px;align-items:center}
+.ap-status .dot{width:9px;height:9px;border-radius:50%;background:var(--ok);display:inline-block;margin-left:4px}
+.ap-status .dot.err{background:var(--err)} .ap-status .dot.warn{background:var(--warn)}
+.ap-main{flex:1;min-height:0;position:relative;overflow:auto}
+.ap-page{max-width:1100px;margin:0 auto;padding:24px 20px}
+.ap-card{background:var(--glass-2);backdrop-filter:var(--blur);-webkit-backdrop-filter:var(--blur);border:1px solid var(--edge);border-radius:var(--r3);box-shadow:var(--shadow);padding:18px 20px}
+.ap-card h2{margin:0 0 10px;font-size:1.05em;color:var(--ac);border-right:4px solid var(--ac2);padding-right:10px}
+.ap-btn{padding:8px 16px;border-radius:var(--r2);border:1px solid var(--line-2);background:var(--glass-3);cursor:pointer;font-weight:600;display:inline-flex;align-items:center;gap:6px;transition:all .15s}
+.ap-btn:hover{box-shadow:var(--shadow);background:#fff}
+.ap-btn.pri{background:var(--grad);color:#fff;border-color:transparent}
+.ap-btn.pri:hover{filter:brightness(1.07)}
+.ap-btn:disabled{opacity:.5;cursor:not-allowed}
+.ap-btn.sm{padding:4px 10px;font-size:.85em;border-radius:var(--r1)}
+.ap-input{padding:10px 14px;border-radius:var(--r2);border:1px solid var(--line-2);background:var(--glass-3);width:100%;outline:none;font-size:1.05em;letter-spacing:1px}
+.ap-input:focus{border-color:var(--ac);box-shadow:0 0 0 3px rgba(var(--ac-rgb),.15)}
+.ap-input.ltr{direction:ltr;text-align:center}
+.ap-msg{padding:10px 14px;border-radius:var(--r2);margin:10px 0;font-size:.95em}
+.ap-msg.info{background:var(--b3);color:var(--ac)} .ap-msg.ok{background:#DCF3E8;color:var(--ok)} .ap-msg.warn{background:#FBEBD0;color:var(--warn)} .ap-msg.err{background:#F9DEDC;color:var(--err)}
+.ap-muted{color:var(--tx3);font-size:.9em}
+/* ورود */
+.ap-login{max-width:460px;margin:8vh auto 0}
+.ap-login h1{margin:0 0 4px;font-size:1.5em;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.ap-login .lead{color:var(--tx2);margin-bottom:18px}
+.ap-login label{display:block;font-size:.9em;color:var(--tx2);margin:12px 0 6px}
+.ap-login .row{display:flex;gap:8px;align-items:center;margin-top:14px}
+.ap-captcha{display:flex;gap:10px;align-items:center}
+.ap-captcha img{height:48px;border-radius:var(--r1);border:1px solid var(--line-2);background:#fff}
+/* گردآوری */
+.ap-progress{list-style:none;padding:0;margin:0}
+.ap-progress li{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px dashed var(--line)}
+.ap-progress .st{min-width:110px;color:var(--tx3);font-size:.85em}
+.ap-progress .n{background:var(--b1);color:var(--ac);border-radius:999px;padding:0 9px;font-size:.85em}
+.ap-bar{height:8px;background:var(--b1);border-radius:999px;overflow:hidden;margin:10px 0}
+.ap-bar i{display:block;height:100%;background:var(--grad);transition:width .3s}
+/* پیشخوان */
+.ap-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px}
+.ap-tile{background:var(--glass-2);backdrop-filter:var(--blur);-webkit-backdrop-filter:var(--blur);border:1px solid var(--edge);border-radius:var(--r3);box-shadow:var(--shadow);padding:16px 18px;display:flex;flex-direction:column;gap:8px}
+.ap-tile h3{margin:0;font-size:1em}
+.ap-tile .big{font-size:1.9em;font-weight:800;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;line-height:1.2}
+.ap-tile .chips{display:flex;flex-wrap:wrap;gap:4px 6px}
+.ap-tile .chip{font-size:.78em;background:var(--glass-3);border:1px solid var(--line);border-radius:999px;padding:1px 8px}
+.ap-tile .chip b{color:var(--ac)}
+.ap-tile .acts{display:flex;gap:6px;margin-top:auto;flex-wrap:wrap}
+.ap-tile.empty{opacity:.7}
+/* صفحهٔ بخش: پنل جاسازی‌شده تمام‌صفحه */
+.ap-section{position:absolute;inset:0}
+/* تنظیمات */
+.ap-form{display:grid;grid-template-columns:1fr 1fr;gap:12px 18px}
+.ap-form label{display:flex;flex-direction:column;gap:5px;font-size:.9em;color:var(--tx2)}
+.ap-form .full{grid-column:1/-1}
+.ap-form select,.ap-form input{padding:8px 12px;border-radius:var(--r1);border:1px solid var(--line-2);background:var(--glass-3)}
+code.path{direction:ltr;display:inline-block;background:var(--b1);padding:3px 10px;border-radius:8px;font-size:.9em}

@@ -54,11 +54,28 @@ if not defined NODE for %%N in ("%REPO%\..\سرور\node.exe" "%REPO%\..\..\سر
 if not defined NODE ( where node >nul 2>nul && set "NODE=node" )
 if defined NODE (
   "%NODE%" "%REPO%\ابزار\build.js" || ( echo ساخت رابط ناموفق. & exit /b 1 )
-  copy /y "%REPO%\dist\پوسته-ویندوزی\رابط.js" "%OUT%\" >nul
+  copy /y "%REPO%\dist\پوسته-ویندوزی\قلاب.js" "%OUT%\" >nul
+  xcopy /e /i /y /q "%REPO%\dist\پوسته-ویندوزی\برنامه" "%OUT%\برنامه" >nul
   xcopy /e /i /y /q "%REPO%\dist\پوسته-ویندوزی\بک‌اند-فایل" "%OUT%\بک‌اند-فایل" >nul
+  if not exist "%OUT%\پیکربندی-سایت.json" copy /y "%HERE%پیکربندی-سایت.json" "%OUT%\" >nul
   if not exist "%OUT%\node.exe" if not "%NODE%"=="node" copy /y "%NODE%" "%OUT%\node.exe" >nul
 ) else (
-  echo node.exe پیدا نشد؛ رابط.js و بک‌اند-فایل کپی نشد. متغیر SABTMAN_NODE را تنظیم کنید.
+  echo node.exe پیدا نشد؛ قلاب.js و برنامه و بک‌اند-فایل کپی نشد. متغیر SABTMAN_NODE را تنظیم کنید.
+)
+
+rem ---- نوشتار، رنگ‌ها و تم‌های «میزبان شخصی» (بخش ۹ دستور کار؛ در مخزن نیستند) ----
+set "MUI="
+if defined SABTMAN_MIZBAN_UI if exist "%SABTMAN_MIZBAN_UI%\js\themes.js" set "MUI=%SABTMAN_MIZBAN_UI%"
+if not defined MUI for %%D in ("%REPO%\..\اپلیکیشن میزبان\رابط" "%REPO%\..\..\اپلیکیشن میزبان\رابط" "%REPO%\..\..\..\اپلیکیشن میزبان\رابط") do (
+  if not defined MUI if exist "%%~D\js\themes.js" set "MUI=%%~D"
+)
+if defined MUI (
+  copy /y "%MUI%\js\themes.js" "%OUT%\برنامه\themes.js" >nul
+  if exist "%MUI%\css\app.css" copy /y "%MUI%\css\app.css" "%OUT%\برنامه\mizban-app.css" >nul
+  if exist "%MUI%\font" xcopy /e /i /y /q "%MUI%\font" "%OUT%\برنامه\font" >nul
+  echo تم‌ها و فونت میزبان از "%MUI%" کپی شد.
+) else (
+  echo themes.js میزبان پیدا نشد؛ تم‌های پیش‌فرض برنامه به کار می‌رود. متغیر SABTMAN_MIZBAN_UI را به پوشهٔ «اپلیکیشن میزبان\رابط» تنظیم کنید.
 )
 
 echo.

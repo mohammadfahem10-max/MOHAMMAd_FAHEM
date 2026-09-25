@@ -274,13 +274,40 @@
 
   function downloadText(name, text, mime) { downloadBytes(name, U.utf8(text), mime || 'text/plain;charset=utf-8'); }
 
-  /* ---------- صف هوشمند بازپخش ---------- */
+  /* ---------- صف هوشمند بازپخش با سرعت تطبیقی (بخش ۱۰ دستور کار) ----------
+     بیشینهٔ ایمن، بی دکمهٔ دستی: با پاسخ‌های سالم پیاپی فاصله کم و هم‌زمانی زیاد می‌شود؛ با نخستین نشانهٔ فشار
+     (۴۲۹/۴۰۳/صفحهٔ محافظ/کندی) فوراً عقب می‌کشد (backoff) و دوباره آرام بالا می‌آید. هیچ محافظی دور زده نمی‌شود. */
 
-  const queue = { items: [], running: false, paused: false, done: 0, failed: 0, current: null, listeners: [] };
+  const queue = { items: [], running: false, paused: false, done: 0, failed: 0, current: null, listeners: [], workers: 0,
+    rate: { delayMs: 800, concurrency: 1, streak: 0, backoffUntil: 0, minDelay: 150, maxDelay: 15000, maxConcurrency: 3, lastSignal: '' } };
 
   function qNotify() { for (const cb of queue.listeners) { try { cb(queue); } catch (e) { /* ادامه */ } } }
 
-  /** افزودن رکوردها به صف برای گرفتن «گزارشات»/«پیوست‌ها» */
+  function rateOk(elapsedMs) {
+    const r = queue.rate;
+    r.streak++;
+    if (elapsedMs > 6000) { r.delayMs = Math.min(r.maxDelay, Math.round(r.delayMs * 1.5)); r.streak = 0; r.lastSignal = 'کندی'; return; }
+    if (r.streak >= 5) { r.streak = 0; r.delayMs = Math.max(r.minDelay, Math.round(r.delayMs * 0.75)); if (r.delayMs <= 400 && r.concurrency < r.maxConcurrency) r.concurrency++; r.lastSignal = ''; }
+  }
+  function rateBackoff(signal) {
+    const r = queue.rate;
+    r.streak = 0;
+    r.concurrency = 1;
+    r.delayMs = Math.min(r.maxDelay, Math.max(r.delayMs * 2.5, 2000));
+    r.backoffUntil = Date.now() + (signal === 'محافظ' ? 60000 : 20000);
+    r.lastSignal = signal;
+    store().addLog('warn', `نشانهٔ فشار سایت (${signal}) — سرعت کم شد و ${U.faDigits(Math.round((r.backoffUntil - Date.now()) / 1000))} ثانیه صبر می‌کنیم.`);
+  }
+  function isPressure(e) {
+    if (!e) return null;
+    if (e.status === 429) return '۴۲۹';
+    if (e.status === 403) return '۴۰۳';
+    if (e.status === 503) return '۵۰۳';
+    if (/محافظ|captcha|blocked|too many|rate/i.test(String(e.message))) return 'محافظ';
+    return null;
+  }
+
+  /** افزودن رکوردها به صف برای گرفتن «گزارشات»/«پیوست‌ها» — ادامه از نقطهٔ توقف: آنچه گرفته شده دوباره در صف نمی‌رود */
   function enqueueChildren(section, records, kind, opts) {
     opts = opts || {};
     const st = store();
@@ -294,7 +321,7 @@
         const req = st.buildRequest(link, rec);
         if (!req) continue;
         if (queue.items.some((q) => q.rec === rec && q.link === link)) continue;
-        queue.items.push({ section, rec, link, req, kind, tries: 0 });
+        queue.items.push({ section, rec, link, req, kind, tries: 0, busy: false });
         added++;
       }
     }
@@ -303,40 +330,60 @@
     return added;
   }
 
-  async function runQueue() {
-    if (queue.running) return;
-    queue.running = true;
-    qNotify();
+  function nextItem() { return queue.items.find((q) => !q.busy) || null; }
+
+  async function worker() {
     const st = store();
-    while (queue.items.length) {
-      if (queue.paused || S.hook.sessionExpired) { await U.sleep(1500); continue; }
-      const item = queue.items[0];
-      queue.current = item;
-      qNotify();
-      try {
-        const res = await S.hook.replay(item.req);
-        if (res.json !== undefined) st.ingestChild(item.link, item.rec, res.json);
-        queue.items.shift();
-        queue.done++;
-      } catch (e) {
-        if (e && e.code === 'SESSION_EXPIRED') {
-          st.addLog('warn', 'نشست پایان یافته است؛ دوباره وارد شوید — صف از همین‌جا ادامه می‌یابد.');
-          queue.paused = true;
-          qNotify();
-          continue;
+    queue.workers++;
+    try {
+      while (true) {
+        if (queue.paused || S.hook.sessionExpired) { await U.sleep(1500); if (!queue.items.length) break; continue; }
+        if (Date.now() < queue.rate.backoffUntil) { await U.sleep(1000); continue; }
+        if (queue.workers > queue.rate.concurrency) break;   // هم‌زمانی کم شده؛ این کارگر می‌رود
+        const item = nextItem();
+        if (!item) break;
+        item.busy = true;
+        queue.current = item;
+        qNotify();
+        const t0 = Date.now();
+        try {
+          const res = await S.hook.replay(item.req);
+          if (res.json !== undefined) st.ingestChild(item.link, item.rec, res.json);
+          queue.items.splice(queue.items.indexOf(item), 1);
+          queue.done++;
+          rateOk(Date.now() - t0);
+        } catch (e) {
+          item.busy = false;
+          if (e && e.code === 'SESSION_EXPIRED') {
+            st.addLog('warn', 'نشست پایان یافته است؛ دوباره وارد شوید — صف از همین رکورد ادامه می‌یابد.');
+            queue.paused = true; qNotify(); continue;
+          }
+          const sig = isPressure(e);
+          if (sig) { rateBackoff(sig); continue; }
+          item.tries++;
+          if (item.tries >= 3) { queue.items.splice(queue.items.indexOf(item), 1); queue.failed++; st.addLog('err', `گرفتن ${item.kind} برای «${st.caseNameOf(item.section, item.rec)}» ناموفق: ${e.message}`); }
+          else await U.sleep(2000);
         }
-        item.tries++;
-        if (item.tries >= 3) { queue.items.shift(); queue.failed++; st.addLog('err', `گرفتن ${item.kind} برای «${st.caseNameOf(item.section, item.rec)}» ناموفق: ${e.message}`); }
-        else await U.sleep(2000);
+        await U.sleep(queue.rate.delayMs);
+        // با بالا رفتن هم‌زمانی، کارگر تازه اضافه کن
+        if (queue.workers < queue.rate.concurrency && nextItem()) worker();
       }
-      await U.sleep(st.state.settings.delayMs);
+    } finally {
+      queue.workers--;
+      if (queue.workers === 0) { queue.current = null; queue.running = false; qNotify(); }
     }
-    queue.current = null;
-    queue.running = false;
-    qNotify();
   }
 
-  function resumeQueue() { queue.paused = false; qNotify(); if (queue.items.length) runQueue(); }
+  function runQueue() {
+    if (queue.running) return;
+    queue.running = true;
+    const base = store().state.settings.delayMs;
+    if (base && queue.done === 0) queue.rate.delayMs = base;
+    qNotify();
+    worker();
+  }
+
+  function resumeQueue() { queue.paused = false; queue.rate.backoffUntil = 0; qNotify(); if (queue.items.length) runQueue(); }
   function pauseQueue() { queue.paused = true; qNotify(); }
   function clearQueue() { queue.items.length = 0; qNotify(); }
 

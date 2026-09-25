@@ -41,6 +41,7 @@
         if (typeof msg === 'string') { try { msg = JSON.parse(msg); } catch (e) { return; } }
         if (!msg || typeof msg !== 'object') return;
         if (msg.type === 'state') last = msg;
+        else if (msg.type === 'dest') last = Object.assign({}, last || { type: 'state' }, { dest: msg.path });
         for (const cb of listeners) { try { cb(msg); } catch (e) { console.error('[ثبت من] پیام پوسته', e); } }
       });
       post({ type: 'ready', url: location.href });
