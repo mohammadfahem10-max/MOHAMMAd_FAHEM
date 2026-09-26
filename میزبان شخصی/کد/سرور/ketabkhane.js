@@ -40,15 +40,28 @@ function statusLine(){
   if (C.hal && Date.now() - C.halT < 120000) return C.hal.statusLine + jaye + (C.ferestKhata ? '\nفرستادن بسته‌های سامانهٔ ملی: ' + C.ferestKhata : '');
   return 'کتابخانهٔ حقوقی: ' + darang(C.khata) + (C.hal ? ' · آخرین وضعیت (' + new Date(C.halT).toLocaleTimeString('fa-IR') + '): ' + C.hal.statusLine : '') + jaye;
 }
+async function gozareshTaze(ms){ const g = await porsesh('GET', '/gozaresh', undefined, ms || 20000); if (g && !g.khata && g.ok !== false){ C.gozaresh = g; C.gozareshT = Date.now(); return g; } return C.gozaresh || g; }
 function gozareshJson(){ if (!C.gozareshT || Date.now() - C.gozareshT > 30000) tazehGozaresh(); return C.gozaresh || { ok: false, text: darang(C.khata || 'گزارش هنوز نرسیده') }; }
 function hadafJson(){ if (!C.hadafT || Date.now() - C.hadafT > 30000) tazehHadaf(); return C.hadaf || { ok: false, text: darang(C.khata || 'فهرست هنوز نرسیده') }; }
-async function jostojoo(q, had){
-  const r = await porsesh('POST', '/jostojoo', { q, had }, 180000);
-  if (!r || !Array.isArray(r.natayej)) return { q, khata: (r && (r.khata || r.text)) || darang(), natayej: [] };
+/* ۱۴۰۵/۰۷/۰۵ دستور کار «درمان گفتگو»: opt = بازنویسی پرسش (ebarat، vazheha، qanunha، porsesh)، mohlat (بودجهٔ زمان کیس دو، میلی‌ثانیه)، manaei.
+   با mohlat، واسطه بیش از mohlat + ۳ ثانیه منتظر نمی‌ماند (پیش‌تر ۱۸۰ ثانیه) و khata «دیر» برمی‌گرداند؛ نتیجهٔ درست ۱۰ دقیقه نگه داشته می‌شود. */
+const KESH = new Map();
+async function jostojoo(q, had, opt){
+  opt = opt || {};
+  const kk = JSON.stringify([q, had, opt.ebarat || [], opt.vazheha || [], opt.qanunha || [], opt.porsesh || '', opt.manaei !== false]);
+  const k0 = KESH.get(kk); if (k0 && Date.now() - k0.t < 600000) return Object.assign({}, k0.r, { kesh: true });
+  const t0 = Date.now();
+  const r = await porsesh('POST', '/jostojoo', { q, had, opt }, opt.mohlat ? opt.mohlat + 3000 : 180000);
+  if (!r || !Array.isArray(r.natayej)) return { q, khata: (r && (r.khata || r.text)) || darang(), dir: /مهلت/.test(String(r && (r.khata || r.text) || '')), natayej: [], zamanVaseth: Date.now() - t0 };
+  r.zamanVaseth = Date.now() - t0;
   r.natayej.forEach(x => { if (x.eslah) C.eslah.set(x.onvan + '|' + (x.tarikh || ''), x.eslah); });
   if (C.eslah.size > 5000) C.eslah.clear();
+  if (r.natayej.length && (r.manaei || opt.manaei === false || r.chera === 'بی‌بردار')){ KESH.set(kk, { r, t: Date.now() }); if (KESH.size > 200) KESH.delete(KESH.keys().next().value); }
   return r;
 }
+/* متن قانون بخش‌به‌بخش و فهرست صفحه‌به‌صفحه (کیس دو) — برای «متن کامل قانون X» و «فهرست دستهٔ Y» در گفتگو */
+async function matnQanunJson(b){ return porsesh('POST', '/matn', b || {}, 20000); }
+async function fehrestJson(b){ return porsesh('POST', '/fehrest', b || {}, 20000); }
 function akharinEslah(onvan, tarikh){ return C.eslah.get(onvan + '|' + (tarikh || '')) || null; }
 function matnNatayej(r){
   if (r.khata) return 'خطا: ' + r.khata;
@@ -110,4 +123,4 @@ function init(shared, helpers){
 }
 function stopAll(){ C.timers.forEach(t => clearInterval(t)); C.timers = []; }
 
-module.exports = { NASKHE, init, state, gozareshJson, hadafJson, hadafCbi, qavaninFehrest, qavaninKar, qavaninMatn, akharinEslah, tarikhcheMatn, hast, statusLine, jostojoo, matnNatayej, stopAll, TOOLS, MANABE: {}, DASTE: {} };
+module.exports = { NASKHE, init, state, matnQanunJson, fehrestJson, gozareshTaze, gozareshJson, hadafJson, hadafCbi, qavaninFehrest, qavaninKar, qavaninMatn, akharinEslah, tarikhcheMatn, hast, statusLine, jostojoo, matnNatayej, stopAll, TOOLS, MANABE: {}, DASTE: {} };

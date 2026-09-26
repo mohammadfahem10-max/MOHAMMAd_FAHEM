@@ -42,11 +42,13 @@ http.createServer(async (req, res) => {
     if (req.method !== 'POST') return J(res, { ok: false, text: 'نیست' }, 404);
     const b = JSON.parse((await badane(req, 300e6)).toString('utf8') || '{}');
     if (p === '/jostojoo'){
-      const r = await KB.jostojoo(b.q, b.had);
+      const r = await KB.jostojoo(b.q, b.had, b.opt || {});   /* ۱۴۰۵/۰۷/۰۵: بازنویسی پرسش، بودجهٔ زمان و … از کیس یک */
       if (r && Array.isArray(r.natayej)) r.natayej.forEach(x => { try { const a = KB.akharinEslah(x.onvan, x.tarikh); if (a) x.eslah = a; } catch(e){} });
       return J(res, r);
     }
     if (p === '/amal') return J(res, await TOOL.run(b));
+    if (p === '/matn') return J(res, KB.matnQanunJson(b));       /* ۱۴۰۵/۰۷/۰۵: متن قانون بخش‌به‌بخش برای گفتگو */
+    if (p === '/fehrest') return J(res, KB.fehrestJson(b));      /* ۱۴۰۵/۰۷/۰۵: فهرست صفحه‌به‌صفحه با دسته */
     if (p === '/hast') return J(res, { ok: true, hast: !!KB.hast(b.onvan) });
     if (p === '/tarikhche') return J(res, { ok: true, text: KB.tarikhcheMatn(b.onvan) });
     if (p === '/cbi') return J(res, KB.hadafCbi(b.onvanha || []));

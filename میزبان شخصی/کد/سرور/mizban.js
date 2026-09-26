@@ -303,7 +303,10 @@ async function doPanelAmal(kind){
   }catch(e){ return { ok:false, msg: e.message || String(e) }; }
 }
 
-function systemPrompt(){
+/* ۱۴۰۵/۰۷/۰۵: دستورالعمل پایهٔ کوتاه (همان پیشوند ثابت گفتگو) — گرم‌کردن مدل همین را در حافظهٔ مدل می‌گذارد */
+function systemPrompt(){ return require('./goftogoo.js').dastoor('goftogoo', { ghavaninKamel: ghavaninKamel() }); }
+/* دستورالعمل پیشین (۱۳ قانون + فراخوان ابزار به دست مدل) — برای مدل ۴ میلیاردی سنگین و ناپایدار بود؛ برای مرجع نگه داشته شده و دیگر به کار نمی‌رود */
+function systemPromptKohne(){
   const tools = TOOL_DEFS.map(t => '- ' + t.name + ': ' + t.desc + (Object.keys(t.args).length ? ' — ورودی: ' + JSON.stringify(t.args) : '')).join('\n');
   return [
     (global.naghsheGhavaninMizban ? '———— قوانین اجباری کارفرما برای میزبان (اجباری، نه ترجیح یا پیشنهاد) — عین دفتر «قوانین میزبان.xlsx» (قانون ۳) ————\n' + global.naghsheGhavaninMizban() + '\n———— پایان قوانین اجباری ————' : (global.naghsheGhavanin ? '———— قوانین اجباری کارفرما ————\n' + global.naghsheGhavanin() + '\n———— پایان قوانین اجباری ————' : '')),
@@ -342,12 +345,17 @@ async function runTool(call){
   if (call.name === 'naghshe') text = text.slice(0, 6000); else text = text.slice(0, 7000);
   return text || '(خالی)';
 }
-/* یک نوبت تولید از مدل به‌صورت جریانی؛ اگر نشانهٔ ابزار دیده شد، همان‌جا قطع می‌شود */
-function generate(messages, onDelta, maxTok){
+/* یک نوبت تولید از مدل به‌صورت جریانی؛ اگر نشانهٔ ابزار دیده شد، همان‌جا قطع می‌شود
+   ۱۴۰۵/۰۷/۰۵: o.nemoone = تنظیم نمونه‌گیری (temperature، repeat_penalty، presence_penalty، DRY …)؛ o.abzar=false = بی فراخوان ابزار؛
+   o.negah(text) = نگهبان زودهنگام: o.negahTa نویسهٔ نخست نگه داشته و سنجیده می‌شود؛ اگر بد بود (تکرار پاسخ پیشین/«نیست»ِ نابه‌جا) پیش از نمایش قطع می‌شود (why='negah') */
+function generate(messages, onDelta, maxTok, o){
+  o = o || {};
+  const abzar = o.abzar !== false;
   return new Promise((resolve, reject) => {
-    const body = { model:'mizban', stream:true, temperature: 0.1, top_p: 0.9, max_tokens: maxTok || 1500, cache_prompt: true, messages };
+    const body = Object.assign({ model:'mizban', stream:true, temperature: 0.1, top_p: 0.9, max_tokens: maxTok || 1500, cache_prompt: true, messages }, o.nemoone || {});
     const data = Buffer.from(JSON.stringify(body));
-    let text = '', buf = '', done = false, toolSeen = false, sent = 0;
+    let text = '', buf = '', done = false, toolSeen = false, sent = 0, negahDone = typeof o.negah !== 'function';
+    const negahTa = o.negahTa || 100;
     const finishUp = (why) => { if (done) return; done = true; resolve({ text, why }); };
     const req = http.request({ host:'127.0.0.1', port: PORT_LLM, path:'/v1/chat/completions', method:'POST', agent:false, headers:{ 'content-type':'application/json', 'content-length': data.length, accept:'text/event-stream', connection:'close' } }, res => {
       if (res.statusCode !== 200){ let e = ''; res.on('data', c => e += c); res.on('end', () => { done = true; reject(Object.assign(new Error('مدل کد ' + res.statusCode + ' داد: ' + e.slice(0, 300)), { code:'EENGINE' })); }); return; }
@@ -361,6 +369,11 @@ function generate(messages, onDelta, maxTok){
           const ch = j.choices && j.choices[0]; const d = ch && ch.delta && typeof ch.delta.content === 'string' ? ch.delta.content : '';
           if (!d) continue;
           text += d;
+          if (!abzar){
+            if (!negahDone){ if (text.length < negahTa) continue; negahDone = true; if (o.negah(text)){ req.destroy(); finishUp('negah'); return; } }
+            if (text.length > sent){ onDelta(text.slice(sent)); sent = text.length; }
+            continue;
+          }
           if (!toolSeen){
             const k = text.indexOf(MARK);
             if (k >= 0){ toolSeen = true; if (k > sent){ onDelta(text.slice(sent, k)); sent = k; } }
@@ -369,7 +382,10 @@ function generate(messages, onDelta, maxTok){
           if (toolSeen && /⟪\s*\/[^⟫]*⟫/.test(text)){ req.destroy(); finishUp('tool'); return; }
         }
       });
-      res.on('end', () => { if (!toolSeen && text.length > sent){ onDelta(text.slice(sent)); sent = text.length; } finishUp(toolSeen ? 'tool' : 'stop'); });
+      res.on('end', () => {
+        if (done) return;
+        if (!abzar && !negahDone){ negahDone = true; if (o.negah(text)) return finishUp('negah'); }
+        if (!toolSeen && text.length > sent){ onDelta(text.slice(sent)); sent = text.length; } finishUp(toolSeen ? 'tool' : 'stop'); });
       res.on('error', () => finishUp(toolSeen ? 'tool' : 'stop'));
     });
     req.setTimeout(1800000, () => { req.destroy(Object.assign(new Error('مهلت پاسخ مدل تمام شد'), { code:'ETIMEOUT' })); });
@@ -415,75 +431,281 @@ function dagigh(q, natayej, fekr){
     return fekr ? best.concat(natayej.filter(x => !best.includes(x)).slice(0, 3)) : best;
   } catch(e){ return natayej; }
 }
+/* =====================================================================
+   گفتگو — ۱۴۰۵/۰۷/۰۵، دستور کار «درمان گفتگوی میزبان شخصی»
+   پیام ← ۱. فهم منظور (مسیریاب قاعده‌ای؛ اگر نامطمئن، مسیریاب مدلی با JSON schema)
+        ← ۲. بازنویسی پرسش (واژه‌نامهٔ محاوره ← حقوقی + زمینهٔ پیام‌های پیشین)
+        ← ۳. آوردن داده بر پایهٔ قصد (گفتگو بی منبع؛ حقوقی با بودجهٔ ۹ ثانیه؛ متن ماده مستقیم؛ فهرست از گزارش کتابخانه؛ …)
+        ← ۴. پاسخ با دستورالعمل کوتاه ویژهٔ همان قصد و تاریخچهٔ کوتاه‌شده
+        ← ۵. نگهبان: ضدتکرار، «نیست»ِ نابه‌جا، ثبت در «ارزیابی گفتگو.jsonl»
+   ===================================================================== */
+const GF = require('./goftogoo.js');
+const VAZHENAME = () => path.join(S.HERE, 'واژه‌نامهٔ گفتگو.json');
+const ARZYABI = () => path.join(S.HERE, 'ارزیابی گفتگو.jsonl');
+const MOHLAT_BAZYABI = () => Math.max(1500, Math.min(30000, +((S.metaGet && S.metaGet('mizban_mohlat_bazyabi')) || 0) || 9000));   /* بودجهٔ کل بازیابی (دستور کار: ۸ تا ۱۰ ثانیه؛ تنظیم: mizban_mohlat_bazyabi) */
+function ghavaninKamel(){ try { return S.metaGet('mizban_ghavanin_kamel') === '1' && global.naghsheGhavaninMizban ? String(global.naghsheGhavaninMizban()) : ''; } catch(e){ return ''; } }
+/* فراخوان کوتاه و غیرجریانی مدل (برای مسیریاب مدلی)؛ هر خطا ← رشتهٔ تهی تا مسیریاب قاعده‌ای جایش بنشیند */
+function llmJson(body, ms){
+  return new Promise(resolve => {
+    const data = Buffer.from(JSON.stringify(body));
+    const req = http.request({ host:'127.0.0.1', port: PORT_LLM, path:'/v1/chat/completions', method:'POST', agent:false, headers:{ 'content-type':'application/json', 'content-length': data.length } }, res => {
+      let b = ''; res.setEncoding('utf8'); res.on('data', c => b += c);
+      res.on('end', () => { try { const j = JSON.parse(b); resolve(res.statusCode === 200 && j.choices && j.choices[0] && j.choices[0].message ? String(j.choices[0].message.content || '') : ''); } catch(e){ resolve(''); } });
+    });
+    req.setTimeout(ms || 20000, () => req.destroy()); req.on('error', () => resolve('')); req.end(data);
+  });
+}
+function faAdad(n){ return GF.faRagham(Number(n || 0).toLocaleString('en-US')).replace(/,/g, '٬'); }
+function manbaMatn(natayej, saghf){
+  let KB = null; try { KB = require('./ketabkhane.js'); } catch(e){}
+  return natayej.map((x, i) => {
+    let onvan = x.onvan; try { const a = KB && KB.akharinEslah ? KB.akharinEslah(x.onvan, x.tarikh) : null; if (a) onvan += ' [تاریخچه در کتابخانه: ' + a.n + ' متن؛ آخرین اصلاحیه «' + a.onvan + '» مورخ ' + a.tarikh + ']'; } catch(e){}   /* ۱۴۰۵/۰۷/۰۲ تاریخچهٔ قوانین */
+    return (i + 1) + ') ' + onvan + (x.madde ? ' — ' + x.madde : '') + ' (تاریخ تصویب ' + (x.tarikh || '؟') + '، ' + (x.marja || '') + '، ' + x.url + ')\n' + String(x.matn || '').slice(0, saghf || 1200);
+  }).join('\n\n');
+}
+/* عنوان کتابخانه همان قانونِ نام‌برده است؟ (همهٔ واژه‌های نام در عنوان؛ «آیین دادرسی مدنی» ← «آیین دادرسی دادگاه‌های عمومی و انقلاب در امور مدنی») */
+function yekiAst(onvan, nam){
+  const n = s => GF.norm(s).replace(/ئ/g, 'ی').replace(/آ/g, 'ا');
+  const a = n(onvan), aa = a.replace(/ /g, ''), b = n(nam).replace(/^قانون /, '');
+  if (!b) return false;
+  if (aa.includes(b.replace(/ /g, ''))) return true;
+  const w = b.split(' ').filter(x => x.length > 1 && !GF.IST.has(x) && x !== 'قانون');
+  return w.length > 0 && w.every(x => aa.includes(x));
+}
+
 async function chat(history, send, opt){
   opt = opt || {};
+  history = Array.isArray(history) ? history : [];
   /* ۱۴۰۵/۰۷/۰۲ — «حالت تمام‌قدرت آموزش»: کارت گرافیک، حافظه و پردازنده به دانش و نمایهٔ معنایی داده شده؛ مدل گفتگو بالا نمی‌آید */
   if ((S.metaGet && S.metaGet('tamamghodrat')) === '1'){ send('delta', 'حالت «تمام‌قدرت آموزش» روشن است: به دستور شما کارت گرافیک، حافظه و پردازنده همه به ساخت پایگاه دانش و نمایهٔ معنایی کتابخانه داده شده و مدل گفتگو فعلاً خاموش است. وقتی آموزش تمام شود، خودش به حالت عادی برمی‌گردد؛ یا در زبانهٔ «گره دوم» دکمهٔ «پایان حالت تمام‌قدرت» را بزنید.'); send('done', { rounds: 0 }); return ''; }
   L.dar = true; APP.lastAt = Date.now(); try { S.metaSet('mizban_dar_kar', String(Date.now())); } catch(e){}
-  if (L.ready && garmLazem()){ try { send('status', 'بازگرداندن حافظهٔ گرم مدل…'); await garmDoIt(); } catch(e){} try { S.metaSet('mizban_dar_kar', String(Date.now())); } catch(e){} }
+  const id = crypto.randomBytes(6).toString('hex'), t0 = Date.now(), zaman = {};
+  let nokhost = 0, shown = '';
+  const emit = d => { if (!d) return; if (!nokhost){ nokhost = Date.now(); zaman.nokhostinVazhe = nokhost - t0; } shown += d; send('delta', d); };
+  const sabt = { id, t: new Date().toISOString(), porsesh: '', qasd: '', zaman };
+  const modelAmade = async () => {
+    if (L.ready && garmLazem()){ try { send('status', 'بازگرداندن حافظهٔ گرم مدل…'); await garmDoIt(); } catch(e){} }
+    if (!L.ready) send('status', 'مدل میزبان در حال بالا آمدن است…');
+    await startLlm();
+    try { S.metaSet('mizban_dar_kar', String(Date.now())); } catch(e){}
+  };
   try {
-  send('status', L.ready ? 'پرسش به مدل رسید؛ مدل در حال خواندن زمینه است…' : 'مدل میزبان در حال بالا آمدن است…');
-  await startLlm();
-  send('status', 'مدل در حال اندیشیدن است' + (K && K.queueState && K.queueState().running ? ' (صف خوانش هم روشن است و پردازنده مشترک است؛ پاسخ کندتر می‌آید)' : '') + '…');
-  const messages = [{ role:'system', content: systemPrompt() }].concat(history.slice(-16).map(m => ({ role: m.role === 'assistant' ? 'assistant' : 'user', content: String(m.content || '').slice(0, 6000) })));
-  /* ۲٫۰ — بازیابی پیش از پاسخ (اصل خطای صفر): مدل کوچک منتظر نمی‌ماند تا خودش ابزار بزند؛ سرور متن رسمی کتابخانهٔ حقوقی و اسناد مرتبط را خودش می‌آورد و مدل فقط از همان پاسخ می‌دهد */
-  try {
-    const last = messages[messages.length - 1];
-    const q0 = String((history[history.length - 1] || {}).content || '').trim();
-    /* ۱۴۰۵/۰۷/۰۱: سلام و احوال‌پرسی و پیام‌های خیلی کوتاه نیازی به آوردن منابع ندارند (زمینهٔ بی‌جا پاسخ را کند و بلند می‌کرد) */
-    const kootah = q0.length < 14 || /^(سلام|درود|سلام علیکم|صبح بخیر|عصر بخیر|شب بخیر|خسته نباشی|ممنون|مرسی|متشکرم|خداحافظ)[\s!.؟?،]*$/.test(q0);
-    if (last && last.role === 'user' && !kootah){
-      const q = q0.slice(0, 500);
-      const parts = [];
-      try { const KB = require('./ketabkhane.js'); const r = await KB.jostojoo(q, opt.fekr ? 8 : 4); if (r && r.natayej && r.natayej.length) r.natayej = dagigh(q, r.natayej, opt.fekr); if (r && r.natayej && KB.akharinEslah) r.natayej.forEach(x => { const a = KB.akharinEslah(x.onvan, x.tarikh); if (a) x.onvan = x.onvan + ' [تاریخچه در کتابخانه: ' + a.n + ' متن؛ آخرین اصلاحیهٔ این قانون «' + a.onvan + '» مورخ ' + a.tarikh + ']'; });   /* ۱۴۰۵/۰۷/۰۲ تاریخچهٔ قوانین */ if (r && r.natayej && r.natayej.length) parts.push('【متن رسمی از کتابخانهٔ حقوقی】\n' + r.natayej.map((x, i) => (i + 1) + ') ' + x.onvan + (x.madde ? ' — ' + x.madde : '') + ' (تاریخ تصویب ' + (x.tarikh || '؟') + '، ' + (x.marja || '') + '، ' + x.url + ')\n' + String(x.matn || '').slice(0, 1400)).join('\n\n')); } catch(e){}
-      if (/سند|پرونده|قرارداد|نامه|بانک|وکالت|فایل|اسناد|بورس|چک|سفته|دادگاه|رأی|ابلاغ/.test(q)){ try { const dr = await H.runTool('jostojoo_mohtava', { q: q.replace(/[؟?]/g, ' ').split(/\s+/).filter(w => w.length > 2).slice(0, 6).join(' '), limit: 3 }); const t = dr && dr.text ? String(dr.text) : ''; if (t && !/یافت نشد/.test(t.slice(0, 80))) parts.push('【اسناد پرونده از لایهٔ دو】\n' + t.slice(0, 2500)); } catch(e){} }
-      if (parts.length){
-        last.content = last.content + '\n\n' + parts.join('\n\n') + '\n【پایان منابع】\nدستور: فقط بر پایهٔ منابع بالا پاسخ بده و عبارت مربوط را عیناً نقل کن و نام قانون، شمارهٔ ماده/اصل، تاریخ تصویب و نشانی را بیاور. اگر پاسخ در منابع بالا نیست، فقط بنویس «در منابع بازیابی‌شده نیست» و از حافظهٔ خودت چیزی نساز.';
-        send('tool', { name: 'bazyabi', args: { manabe: parts.length } });
+    const lastH = history[history.length - 1] || {};
+    const q0 = String(lastH.content || '').trim();
+    sabt.porsesh = q0.slice(0, 2000);
+    const vn = GF.barVazhename(VAZHENAME());
+    /* ۱. فهم منظور */
+    let masir = GF.masiryab(q0, history, vn);
+    if (masir.etminan === 'payin'){
+      try { await modelAmade(); send('status', 'فهم منظور…'); masir = await GF.masiryabKamel(q0, history, { vn, llm: b => llmJson(b, 25000) }); } catch(e){}
+    }
+    zaman.masir = Date.now() - t0;
+    Object.assign(sabt, { qasd: masir.qasd, dalil: masir.dalil, etminan: masir.etminan, payeh: masir.payeh || '' });
+    send('masir', { qasd: masir.qasd, nam: GF.QASD[masir.qasd], dalil: masir.dalil, etminan: masir.etminan, payeh: masir.payeh || '' });
+    /* ۲ و ۳. داده بر پایهٔ قصد؛ ۴. پاسخ */
+    const bz = GF.afzoodanModelBeBaznevisi(GF.baznevisi(q0, masir, history), masir);
+    const KB = (() => { try { return require('./ketabkhane.js'); } catch(e){ return null; } })();
+    const bazyabiHoghooghi = async (pors, had) => {
+      const t1 = Date.now();
+      send('tool', { name: 'bazyabi', args: { porsesh: bz.porsesh.slice(0, 160), qanunha: bz.qanunha } });
+      send('status', 'جست‌وجو در کتابخانهٔ حقوقی…');
+      const o = { ebarat: bz.ebarat, vazheha: bz.vazheha, qanunha: bz.qanunha, porsesh: bz.porsesh, mohlat: MOHLAT_BAZYABI() };
+      let r = KB ? await KB.jostojoo(String(pors || q0).slice(0, 500), had, o) : { khata: 'کتابخانه در دسترس نیست', natayej: [] };
+      if (r.khata && KB){ send('status', 'کتابخانه دیر جواب داد؛ یک بار دیگر (فقط جست‌وجوی واژه‌ای)…'); r = await KB.jostojoo(String(pors || q0).slice(0, 500), had, Object.assign({}, o, { manaei: false, mohlat: Math.min(6000, MOHLAT_BAZYABI()) })); r.dobare = true; }
+      zaman.bazyabi = Date.now() - t1; sabt.jostojoo = { zaman: r.zaman || null, manaei: !!r.manaei, chera: r.chera || '', khata: r.khata || '', dobare: !!r.dobare, kesh: !!r.kesh };
+      sabt.manabe = (r.natayej || []).map(x => ({ onvan: x.onvan, madde: x.madde, url: x.url }));
+      send('manabe', sabt.manabe);   /* فهرست منابع برای اپلیکیشن و آزمون پذیرش */
+      return r;
+    };
+    const baz = Object.assign({}, bz); sabt.baznevisi = { porsesh: baz.porsesh, ebarat: baz.ebarat, vazheha: baz.vazheha, qanunha: baz.qanunha };
+    let final = '';
+    const q = masir.qasd;
+    if (q === 'vaziat'){
+      final = await pasokhVaziat(emit);
+    } else if (q === 'fehrest'){
+      final = await pasokhFehrest(masir, emit, KB);
+      if (masir.fehrest && masir.fehrest.noe === 'daste'){ await modelAmade(); emit('\n\n'); final += '\n\n' + await tolid(history, 'fehrest_daste', '', emit, opt, masir); }
+    } else if (q === 'matn_qanun'){
+      final = await pasokhMatnQanun(masir, emit, KB);
+    } else if (q === 'matn_madde'){
+      const md = masir.madde; const pm = (md.noe === 'اصل' ? 'اصل ' : 'ماده ') + md.shomare + (md.qanun ? ' ' + md.qanun : '');
+      send('status', 'آوردن متن ' + pm + ' از کتابخانه…');
+      const t1 = Date.now();
+      let r = KB ? await KB.jostojoo(pm, 6, { manaei: false, mohlat: 12000, qanunha: md.qanun ? [md.qanun] : [] }) : { khata: 'کتابخانه در دسترس نیست', natayej: [] };
+      zaman.bazyabi = Date.now() - t1;
+      const hadaf = (md.noe === 'اصل' ? 'اصل ' : 'ماده ') + md.shomare;
+      const dagighha = (r.natayej || []).filter(x => String(x.madde || '').replace(/\s+/g, ' ').trim() === hadaf && (!md.qanun || yekiAst(x.onvan, md.qanun)));
+      sabt.manabe = (dagighha.length ? dagighha : r.natayej || []).map(x => ({ onvan: x.onvan, madde: x.madde, url: x.url }));
+      send('manabe', sabt.manabe);
+      if (dagighha.length){
+        const x = dagighha[0];
+        final = 'متن رسمی ' + x.onvan + ' — ' + x.madde + '\n(تاریخ تصویب ' + (x.tarikh || '؟') + '، ' + (x.marja || '') + '، ' + x.url + ')\n\n' + String(x.matn || '').trim();
+        emit(final);
+        if (md.tozih){ await modelAmade(); emit('\n\n'); final += '\n\n' + await tolid(history, 'matn_madde', '【متن رسمی】\n' + x.onvan + ' — ' + x.madde + '\n' + String(x.matn || '').slice(0, 4000) + '\n【پایان】', emit, opt, masir); }
+        else { const t = '\n\nاگر توضیح ساده‌اش را می‌خواهید، بگویید «ساده توضیح بده».'; emit(t); final += t; }
+      } else if (r.khata){
+        final = 'کتابخانه الان دیر جواب داد و متن ' + pm + ' نرسید. چند لحظهٔ دیگر دوباره بپرسید؛ این نبودن به معنای نبودن ماده در کتابخانه نیست.'; emit(final);
+      } else {
+        const pish = pm + ' را دقیقاً در کتابخانه نیافتم (شاید نام قانون کامل نبود یا هنوز گردآوری نشده). نزدیک‌ترین متن‌هایی که آمد:\n\n'; emit(pish);
+        const rr = r.natayej && r.natayej.length ? r : await bazyabiHoghooghi(q0, opt.fekr ? 8 : 4);
+        await modelAmade();
+        final = pish + await tolid(history, rr.natayej && rr.natayej.length ? 'porsesh_hoghooghi' : 'porsesh_hoghooghi_bimanba', rr.natayej && rr.natayej.length ? '【متن رسمی از کتابخانهٔ حقوقی】\n' + manbaMatn(rr.natayej.slice(0, 4)) + '\n【پایان منابع】' : '', emit, opt, masir);
       }
+    } else if (q === 'porsesh_hoghooghi'){
+      const amade = modelAmade().catch(e => e);   /* بالا آمدن مدل هم‌زمان با جست‌وجو */
+      const r = await bazyabiHoghooghi(q0, opt.fekr ? 8 : 4);
+      const e0 = await amade; if (e0 instanceof Error) throw e0;
+      if (r.natayej && r.natayej.length){
+        let n = r.natayej; if (/(ماد[هّ]?|اصل)\s*[\d۰-۹]/.test(q0)) n = dagigh(q0, n, opt.fekr);
+        final = await tolid(history, 'porsesh_hoghooghi', '【متن رسمی از کتابخانهٔ حقوقی】\n' + manbaMatn(n) + '\n【پایان منابع】', emit, opt, masir);
+      } else {
+        const pish = r.khata ? (r.dir || /مهلت/.test(String(r.khata)) ? 'کتابخانه الان دیر جواب داد (دو بار پرسیدم)' : 'کتابخانه الان در دسترس نیست (' + String(r.khata).slice(0, 120) + ')') + '؛ چند لحظهٔ دیگر دوباره بپرسید تا متن رسمی را بیاورم. تا آن زمان:\n\n' : 'در کتابخانه متنی نزدیک به این پرسش نیافتم. تا روشن‌تر شود:\n\n';
+        emit(pish); final = pish + await tolid(history, 'porsesh_hoghooghi_bimanba', '', emit, opt, masir);
+      }
+    } else if (q === 'asnad'){
+      send('tool', { name: 'jostojoo_mohtava', args: { q: baz.kelidvazheha.slice(0, 6).join(' ') } }); send('status', 'جست‌وجو در اسناد پرونده…');
+      const t1 = Date.now(); let t = '';
+      try { const dr = await H.runTool('jostojoo_mohtava', { q: (baz.kelidvazheha.length ? baz.kelidvazheha : GF.kalamat(q0).filter(w => w.length > 2 && !GF.IST.has(w))).slice(0, 6).join(' '), limit: 3 }); t = dr && dr.text ? String(dr.text) : ''; } catch(e){}
+      zaman.bazyabi = Date.now() - t1;
+      await modelAmade();
+      final = await tolid(history, 'asnad', t && !/یافت نشد/.test(t.slice(0, 80)) ? '【اسناد پرونده از لایهٔ دو】\n' + t.slice(0, 3000) + '\n【پایان اسناد】' : '【اسناد پرونده】 جست‌وجو در اسناد خوانده‌شده چیزی نیافت.', emit, opt, masir);
+    } else {
+      await modelAmade();
+      final = await tolid(history, q === 'namafhoom' ? 'namafhoom' : 'goftogoo', '', emit, opt, masir);
     }
-  } catch(e){ log('بازیابی پیش از پاسخ: ' + (e.message || e)); }
-  /* ۲٫۱ — تصویر پیوست (چشم مدل) و «ژرف‌اندیشی» */
-  try {
-    const lastH = history[history.length - 1] || {}; const lm = messages[messages.length - 1];
-    if (opt.fekr && lm && typeof lm.content === 'string') lm.content += '\nژرف‌اندیشی: پیش از پاسخ، پرسش را به اجزایش بشکن، هر جزء را با منابع بسنج و سپس پاسخ مستندِ مرتب بده؛ هر جا منبع نبود بگو نیست.';
-    if (Array.isArray(lastH.images) && lastH.images.length && lm){
-      if (mmprojFile()) lm.content = [{ type:'text', text: String(lm.content) }].concat(lastH.images.slice(0, 4).map(u => ({ type:'image_url', image_url:{ url: String(u) } })));
-      else lm.content = String(lm.content) + '\n(تصویری پیوست شده ولی چشم مدل نصب نیست؛ بگو نمی‌بینم)';
-    }
-  } catch(e){}
-  let rounds = 0, finalText = '';
-  for (;;){
-    const r = await generate(messages, d => { finalText += d; send('delta', d); }, opt.fekr ? 2500 : 900);
-    if (r.why !== 'tool' || rounds >= 4){ break; }
-    const call = parseToolCall(r.text);
-    if (!call){
-      if (rounds >= 2) break;
-      rounds++;
-      messages.push({ role:'assistant', content: r.text.slice(0, 1500) });
-      messages.push({ role:'user', content: 'قالب فراخوان ابزار درست نبود. اگر به داده نیاز داری دقیقاً همین یک خط را بنویس (نام ابزار داخل JSON): ' + OPEN + ' {"name":"pishraft"} ' + CLOSE + ' — وگرنه بدون هیچ نشانه‌ای پاسخ بده.' });
-      continue;
-    }
-    rounds++;
-    send('tool', { name: call.name, args: Object.assign({}, call, { name: undefined }) });
-    send('status', 'ابزار ' + call.name + ' در حال اجرا…');
-    const result = await runTool(call);
-    const iMark = r.text.indexOf(MARK); const shown = (iMark >= 0 ? r.text.slice(0, iMark) : r.text).trim();
-    messages.push({ role:'assistant', content: (shown ? shown + '\n' : '') + OPEN + ' ' + JSON.stringify(call) + ' ' + CLOSE });
-    messages.push({ role:'user', content: '【نتیجهٔ ابزار ' + call.name + '】\n' + result + '\n【پایان نتیجه】\nحالا با تکیه بر همین نتیجه ادامه بده (اگر باز هم داده لازم است، ابزار دیگری صدا بزن).' });
-    if (finalText && !finalText.endsWith('\n')) { send('delta', '\n'); finalText += '\n'; }
+    zaman.kol = Date.now() - t0;
+    sabt.pasokh = final.slice(0, 4000);
+    send('done', { rounds: 0, id, qasd: q });
+    return final;
+  } catch(e){ sabt.khata = e.message || String(e); zaman.kol = Date.now() - t0; throw e; }
+  finally {
+    try { GF.sabtArzyabi(ARZYABI(), sabt); } catch(e){}
+    L.dar = false; APP.lastAt = Date.now(); try { S.metaSet('mizban_dar_kar', '0'); } catch(e){}
   }
-  if (opt.fekr && finalText.trim()){
-    send('status', 'ژرف‌اندیشی: بازبینی پاسخ با منابع…');
-    messages.push({ role:'assistant', content: finalText });
-    messages.push({ role:'user', content: 'پاسخ بالا را جمله‌به‌جمله با منابع بسنج. اگر ادعای بی‌منبع یا نادرست دارد، فقط فهرست اصلاح‌ها را کوتاه بنویس؛ اگر درست است فقط بنویس: تأیید شد.' });
-    let rev = '';
-    try { await generate(messages, d => { rev += d; send('baznegari', d); }, 600); } catch(e){}
-    if (rev.trim()) finalText += '\n\n〔بازبینی〕 ' + rev.trim();
+  /* ---- تولید پاسخ با نگهبان ---- */
+  async function tolid(history, qasdD, manabe, emit, opt, masir){
+    const th = GF.tarikhcheKootah(history);
+    const msgs = [{ role: 'system', content: GF.dastoor(qasdD, { ghavaninKamel: ghavaninKamel(), kholase: th.kholase }) }].concat(th.messages);
+    let lm = msgs[msgs.length - 1];
+    if (!lm || lm.role !== 'user'){ lm = { role: 'user', content: String((history[history.length - 1] || {}).content || '') }; msgs.push(lm); }
+    if (manabe) lm.content += '\n\n' + manabe;
+    if (opt.fekr) lm.content += '\nژرف‌اندیشی: پیش از پاسخ، پرسش را به اجزایش بشکن، هر جزء را با منابع بسنج و سپس پاسخ مستندِ مرتب بده.';
+    try {   /* ۲٫۱ — تصویر پیوست (چشم مدل) */
+      const lastH = history[history.length - 1] || {};
+      if (Array.isArray(lastH.images) && lastH.images.length){
+        if (mmprojFile()) lm.content = [{ type:'text', text: String(lm.content) }].concat(lastH.images.slice(0, 4).map(u => ({ type:'image_url', image_url:{ url: String(u) } })));
+        else lm.content = String(lm.content) + '\n(تصویری پیوست شده ولی چشم مدل نصب نیست؛ بگو نمی‌بینم)';
+      }
+    } catch(e){}
+    const pishinha = history.filter(m => m && m.role === 'assistant').slice(-2).map(m => GF.paksaziPayam(m.content));
+    const bimanbaGoftogoo = qasdD === 'goftogoo' || qasdD === 'namafhoom' || qasdD === 'fehrest_daste' || qasdD === 'porsesh_hoghooghi' || qasdD === 'matn_madde';
+    const bad = txt => pishinha.some(p => GF.poosheshAghaz(txt, p) >= GF.HAD_TEKRAR) || (bimanbaGoftogoo && GF.nistNabeja(txt));
+    const maxTok = opt.fekr ? 2500 : (qasdD === 'goftogoo' || qasdD === 'namafhoom' ? 500 : 900);
+    let text = '', dobare = false;
+    /* تذکر به همان پیام کاربر افزوده می‌شود (نه یک نوبت تازه) تا پرسش اصلی برای مدل کوچک گم نشود */
+    const tazkar = () => { const c = '\n\n(پاسخ تازه و متفاوت بده و پاسخ پیشین خودت را تکرار نکن' + (bimanbaGoftogoo ? '؛ نگو «در منابع نیست»' : '') + '.)'; if (typeof lm.content === 'string') lm.content += c; else if (Array.isArray(lm.content) && lm.content[0]) lm.content[0].text += c; };
+    for (let bar = 0; bar < 2; bar++){
+      if (bar) send('status', 'پاسخ تکراری/نابه‌جا بود؛ ساختن دوباره…');
+      else send('status', 'مدل در حال نوشتن پاسخ است' + (K && K.queueState && K.queueState().running ? ' (صف خوانش هم روشن است و پردازنده مشترک است؛ پاسخ کندتر می‌آید)' : '') + '…');
+      let local = '';
+      const r = await generate(msgs, d => { local += d; emit(d); }, maxTok, { abzar: false, nemoone: GF.nemoone(qasdD, dobare), negah: bar === 0 ? bad : null, negahTa: 100 });
+      if (r.why === 'negah'){ dobare = true; tazkar(); continue; }
+      text = local;
+      const tk = GF.tekrari(text, pishinha);
+      sabtTekrar(tk, bar);
+      if (bar === 0 && (tk.tekrari || (qasdD === 'goftogoo' && GF.nistNabeja(text)))){
+        dobare = true; const jodakon = '\n\n〔پاسخ بالا تکرار پاسخ پیشین بود؛ پاسخ تازه:〕\n'; emit(jodakon); text += jodakon; tazkar();
+        const r2 = await generate(msgs, d => { text += d; emit(d); }, maxTok, { abzar: false, nemoone: GF.nemoone(qasdD, true) });
+        sabtTekrar(GF.tekrari(r2.text, pishinha), 1);
+      }
+      break;
+    }
+    if (opt.fekr && text.trim() && (qasdD === 'porsesh_hoghooghi' || qasdD === 'asnad')){
+      send('status', 'ژرف‌اندیشی: بازبینی پاسخ با منابع…');
+      msgs.push({ role:'assistant', content: text }, { role:'user', content: 'پاسخ بالا را جمله‌به‌جمله با منابع بسنج. اگر ادعای بی‌منبع یا نادرست دارد، فقط فهرست اصلاح‌ها را کوتاه بنویس؛ اگر درست است فقط بنویس: تأیید شد.' });
+      let rev = ''; try { await generate(msgs, d => { rev += d; send('baznegari', d); }, 600, { abzar: false, nemoone: GF.nemoone('porsesh_hoghooghi') }); } catch(e){}
+      if (rev.trim()) text += '\n\n〔بازبینی〕 ' + rev.trim();
+    }
+    return text;
   }
-  send('done', { rounds });
-  return finalText;
-  } finally { L.dar = false; APP.lastAt = Date.now(); try { S.metaSet('mizban_dar_kar', '0'); } catch(e){} }
+  function sabtTekrar(tk, bar){ sabt.tekrar = { shebahat: Math.round(tk.shebahat * 100) / 100, dobareSakhte: bar > 0 || !!(sabt.tekrar && sabt.tekrar.dobareSakhte) }; }
+}
+/* وضعیت سرور و مدل — گزارش قطعی از خود سیستم، بی مدل */
+async function pasokhVaziat(emit){
+  const L0 = [];
+  const mashkel = [];
+  L0.push(statusLine());
+  let KB = null; try { KB = require('./ketabkhane.js'); } catch(e){}
+  if (KB){ try { const kl = KB.statusLine(); L0.push(kl); if (/در دسترس نیست/.test(kl)) mashkel.push('کتابخانه روی کیس دو در دسترس نیست (گره دوم را بسنجید)'); } catch(e){} }
+  const g = 1024 * 1024 * 1024, azad = os.freemem() / g, kol = os.totalmem() / g;
+  L0.push('حافظه: ' + GF.faRagham(azad.toFixed(1)) + ' از ' + GF.faRagham(kol.toFixed(1)) + ' گیگابایت آزاد · بار پردازنده (۱ دقیقه): ' + GF.faRagham((os.loadavg()[0] || 0).toFixed(2)) + ' · کار سرور: ' + GF.faRagham(Math.round(process.uptime() / 60)) + ' دقیقه');
+  if (!L.ready) mashkel.push(L.starting ? 'مدل گفتگو هنوز در حال بالا آمدن است' : 'مدل گفتگو خاموش است');
+  if (!modelReady()) mashkel.push('پروندهٔ مدل گفتگو نصب نیست');
+  if (azad < 1.5) mashkel.push('حافظهٔ آزاد کم است (کمتر از ۱٫۵ گیگابایت)');
+  try { if (K && K.queueState && K.queueState().running) mashkel.push('صف خوانش روشن است و پردازنده میان خوانش و گفتگو مشترک است'); } catch(e){}
+  try { const r = await Promise.race([H.runTool('salamat', {}), new Promise(res => setTimeout(() => res(null), 8000))]); if (r && r.text) L0.push('— سلامت سرور —\n' + String(r.text).slice(0, 1500)); } catch(e){}
+  const t = 'گزارش وضعیت:\n' + L0.join('\n') + '\n\n' + (mashkel.length ? 'مشکل‌ها:\n' + mashkel.map(x => '• ' + x).join('\n') : 'مشکلی دیده نشد.');
+  emit(t); return t;
+}
+/* فهرست‌خواهی — از گزارش و فهرست کتابخانه، بی جست‌وجوی معنایی */
+async function pasokhFehrest(masir, emit, KB){
+  const f = masir.fehrest || { noe: 'fehrest' };
+  if (!KB){ const t = 'کتابخانه الان در دسترس نیست؛ چند لحظهٔ دیگر دوباره بپرسید.'; emit(t); return t; }
+  if (f.noe === 'daste_safhe'){
+    const j = await KB.fehrestJson({ lar: f.lar || '', offset: f.offset || 0, limit: 50 });
+    if (!j || !j.ok){ const t = 'کتابخانه الان دیر جواب داد و فهرست نرسید؛ چند لحظهٔ دیگر دوباره بپرسید.'; emit(t); return t; }
+    const baadi = j.offset + j.rows.length;
+    const t = (j.lar ? 'دستهٔ «' + j.nam + '»' : 'همهٔ کتابخانه') + ': ' + faAdad(j.kol) + ' متن. ردیف ' + faAdad(j.offset + 1) + ' تا ' + faAdad(baadi) + ' (تازه‌ترین اول):\n' +
+      j.rows.map((r, i) => GF.faRagham(j.offset + i + 1) + '. ' + r.onvan + ' — ' + (r.tarikh || '؟') + (r.mavad ? ' — ' + faAdad(r.mavad) + ' ماده' : '')).join('\n') +
+      (baadi < j.kol ? '\n\nبرای صفحهٔ بعد بگویید «ادامه بده». 〔فهرست ' + (j.lar || 'hame') + ' از ' + baadi + '〕' : '\n\n(پایان این دسته)');
+    emit(t); return t;
+  }
+  let g = KB.gozareshJson ? KB.gozareshJson() : null;
+  if ((!g || g.ok === false || !g.amar) && KB.gozareshTaze){ emit(''); g = await KB.gozareshTaze(20000); }   /* پس از بازراه‌اندازی، گزارش هنوز در حافظه نیست: یک بار مستقیم پرسیده می‌شود */
+  if (!g || g.ok === false || !g.amar){ const t = 'گزارش کتابخانه هنوز از کیس دو نرسیده؛ چند لحظهٔ دیگر دوباره بپرسید. این به معنای خالی بودن کتابخانه نیست.'; emit(t); return t; }
+  const a = g.amar; const daste = (g.daste || []).filter(x => x.gerefte > 0);
+  const sar = f.noe === 'hame' ? 'کتابخانه ' + faAdad(a.mavad) + ' متن (' + faAdad(a.tekke) + ' ماده و تکه) دارد و همهٔ آن در یک پیام جا نمی‌شود؛ این فهرست دسته‌ها و شمار هر دسته است. بگویید کدام دسته را صفحه‌به‌صفحه بیاورم.'
+    : f.noe === 'shomar' ? 'کتابخانه اکنون ' + faAdad(a.mavad) + ' متن (قانون، مقرره، رأی و نظر) و ' + faAdad(a.tekke) + ' ماده و تکه دارد. به تفکیک دسته:'
+    : f.noe === 'daste' ? 'دسته‌بندی واقعی کتابخانه (' + faAdad(a.mavad) + ' متن):'
+    : 'در کتابخانه ' + faAdad(a.mavad) + ' متن در این دسته‌ها هست:';
+  const asli = (g.asli || []).filter(x => x.vaziat !== 'nist');
+  const t = sar + '\n' + daste.map(x => '• ' + x.nam + ': ' + faAdad(x.gerefte) + ' متن').join('\n') +
+    (asli.length ? '\n\nقانون‌های اصلی موجود: ' + asli.map(x => x.nam + (x.mavad ? ' (' + faAdad(x.mavad) + ' ماده)' : '')).join('، ') : '') +
+    '\n\nبرای فهرست یک دسته بگویید مثلاً «فهرست قوانین مجلس را بیاور»؛ برای متن یک قانون: «کل متن قانون صدور چک».';
+  emit(t); return t;
+}
+/* متن قانون بخش‌به‌بخش (۳۰ تکه در هر پیام) */
+async function pasokhMatnQanun(masir, emit, KB){
+  const m = masir.matn || {};
+  if (!KB){ const t = 'کتابخانه الان در دسترس نیست؛ چند لحظهٔ دیگر دوباره بپرسید.'; emit(t); return t; }
+  const j = await KB.matnQanunJson(m.shenase ? { shenase: m.shenase, offset: m.offset || 0, limit: 30 } : { onvan: m.nam, offset: 0, limit: 30 });
+  if (!j || j.ok === false){
+    if (j && j.nist){
+      const sh = await KB.fehrestJson({ q: String(m.nam || '').replace(/^قانون\s+/, '').slice(0, 60), limit: 5 });
+      const t = '«' + (m.nam || '') + '» را با همین نام در کتابخانه نیافتم.' + (sh && sh.ok && sh.rows.length ? ' نزدیک‌ترین عنوان‌ها:\n' + sh.rows.map(r => '• ' + r.onvan + ' — ' + (r.tarikh || '؟')).join('\n') + '\nنام دقیق را بگویید تا متنش را بیاورم.' : ' نام دقیق‌تر را بگویید تا دوباره بگردم.');
+      emit(t); return t;
+    }
+    const t = 'کتابخانه الان دیر جواب داد و متن نرسید؛ چند لحظهٔ دیگر دوباره بپرسید.'; emit(t); return t;
+  }
+  const t = (j.offset ? '' : 'متن رسمی ' + j.onvan + '\n(تاریخ تصویب ' + (j.tarikh || '؟') + '، ' + (j.marja || '') + '، ' + j.url + ' · ' + faAdad(j.kol) + ' ماده و تکه)\n\n') +
+    j.tekkeha.map(x => String(x.matn || '').trim()).join('\n\n') +
+    (j.baadi ? '\n\n(تکهٔ ' + faAdad(j.offset + 1) + ' تا ' + faAdad(j.baadi) + ' از ' + faAdad(j.kol) + '؛ برای بخش بعد بگویید «ادامه بده».) 〔متن ' + j.shenase + ' از ' + j.baadi + '〕' : '\n\n(پایان متن قانون)');
+  emit(t); return t;
+}
+/* «پاسخ بد بود» از اپلیکیشن: برچسب به همان ثبت ارزیابی (افزودنی؛ هیچ ثبتی پاک نمی‌شود) */
+function barchasbBad(id, tozih){ return GF.sabtArzyabi(ARZYABI(), { id: String(id || '').slice(0, 32), bad: true, tozih: String(tozih || '').slice(0, 1000), t: new Date().toISOString() }); }
+/* افزودن مدخل به واژه‌نامه از اپلیکیشن؛ نسخهٔ پیشین به سطل زباله می‌رود */
+function vazhenameAfzoodan(b){
+  const arr = x => (Array.isArray(x) ? x : String(x || '').split(/[|،,\n]/)).map(s => String(s).trim()).filter(Boolean).slice(0, 30);
+  const md = { goruh: 'افزودهٔ کارفرما', mohavere: arr(b.mohavere), hoghooghi: arr(b.hoghooghi), qanunha: arr(b.qanunha) };
+  if (!md.mohavere.length || !md.hoghooghi.length) return { ok: false, msg: 'mohavere و hoghooghi لازم است' };
+  const f = VAZHENAME(); let j;
+  try { j = JSON.parse(fs.readFileSync(f, 'utf8').replace(/^﻿/, '')); } catch(e){ return { ok: false, msg: 'واژه‌نامه خوانده نشد: ' + e.message }; }
+  try { const satl = path.join(S.ROOT, 'سطل زباله', 'خانه کلود', 'سرور', 'واژه‌نامهٔ گفتگو — نسخه‌های پیشین'); fs.mkdirSync(satl, { recursive: true }); fs.copyFileSync(f, path.join(satl, 'واژه‌نامهٔ گفتگو ' + new Date().toISOString().replace(/[:.]/g, '-') + '.json')); } catch(e){ return { ok: false, msg: 'نسخهٔ پیشین به سطل زباله نرفت؛ چیزی تغییر نکرد: ' + e.message }; }
+  j.madkhal = (j.madkhal || []).concat([md]); j.shomar = { madkhal: j.madkhal.length, mohavere: j.madkhal.reduce((a, m) => a + (m.mohavere || []).length, 0) };
+  fs.writeFileSync(f + '.tmp', JSON.stringify(j, null, 1) + '\n', 'utf8'); fs.renameSync(f + '.tmp', f);
+  log('واژه‌نامهٔ گفتگو: مدخل تازه ' + md.mohavere.join('|') + ' ← ' + md.hoghooghi.join('|'));
+  return { ok: true, msg: 'افزوده شد', shomar: j.shomar };
 }
 
 /* ---------------------- برنامهٔ وب محلی ---------------------- */
@@ -526,6 +748,7 @@ async function sendMsg(){const q=inEl.value.trim();if(!q)return;inEl.value='';go
     if(type==='delta'){acc+=JSON.parse(data);a.textContent=acc;logEl.scrollTop=logEl.scrollHeight}
     else if(type==='tool'){const j=JSON.parse(data);const t=document.createElement('div');t.className='m t';t.textContent='🔎 ابزار: '+j.name+' '+JSON.stringify(j.args||{});logEl.insertBefore(t,a)}
     else if(type==='error'){acc+='\\n⚠ '+JSON.parse(data);a.textContent=acc}
+    else if(type==='done'){try{const j=JSON.parse(data);if(j&&j.id){const b=document.createElement('button');b.className='g';b.textContent='👎 پاسخ بد بود';b.style.cssText='align-self:flex-end;padding:4px 10px;font-size:12px';b.onclick=async()=>{b.disabled=true;try{await fetch('/chat/bad',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({id:j.id})});b.textContent='ثبت شد'}catch(e){}};logEl.appendChild(b)}}catch(e){}}
    }}
  }catch(e){acc+='\\n⚠ '+e.message;a.textContent=acc}
  hist.push({role:'assistant',content:acc});save();go.disabled=false;inEl.focus()}
@@ -568,6 +791,9 @@ function startApp(){
       if (req.method === 'POST' && req.url === '/abzar'){ const ch=[]; for await (const c of req) ch.push(c); let bd={}; try{ bd=JSON.parse(Buffer.concat(ch).toString('utf8')); }catch(e){} if (!bd.name) return json({ ok:false, text:'name لازم است' }); const r = await H.runTool(String(bd.name), bd.args || {}); return json({ ok: !r.isError, text: String(r.text || '') }); }
       if (req.method === 'POST' && req.url === '/amal'){ const ch=[]; for await (const c of req) ch.push(c); let bd={}; try{ bd=JSON.parse(Buffer.concat(ch).toString('utf8')); }catch(e){} const r = await doPanelAmal(String(bd.do||'')); return json({ ok: r.ok, msg: r.msg }); }
       if (req.method === 'POST' && req.url === '/web'){ const ch=[]; for await (const c of req) ch.push(c); let bd={}; try{ bd=JSON.parse(Buffer.concat(ch).toString('utf8')); }catch(e){} const r = await webSearch(String(bd.q||'')); return json(r); }
+      if (req.method === 'POST' && req.url === '/chat/bad'){ const ch=[]; for await (const c of req) ch.push(c); let bd={}; try{ bd=JSON.parse(Buffer.concat(ch).toString('utf8')); }catch(e){} if (!bd.id) return json({ ok:false, msg:'id لازم است' }); return json({ ok: barchasbBad(bd.id, bd.tozih) }); }   /* ۱۴۰۵/۰۷/۰۵: دکمهٔ «پاسخ بد بود» */
+      if (req.method === 'GET' && req.url === '/vazhename'){ const GF0 = require('./goftogoo.js'); const v = GF0.barVazhename(path.join(S.HERE, 'واژه‌نامهٔ گفتگو.json')); return json({ ok:true, madkhal: v.n, mohavere: v.olgoo.length }); }
+      if (req.method === 'POST' && req.url === '/vazhename'){ const ch=[]; for await (const c of req) ch.push(c); let bd={}; try{ bd=JSON.parse(Buffer.concat(ch).toString('utf8')); }catch(e){} return json(vazhenameAfzoodan(bd)); }   /* افزودن مدخل از اپلیکیشن */
       if (req.method === 'POST' && req.url === '/chat'){
         const ch = []; for await (const c of req) ch.push(c);
         let body; try { body = JSON.parse(Buffer.concat(ch).toString('utf8')); } catch(e){ res.writeHead(400); return res.end('bad json'); }
@@ -644,4 +870,4 @@ setInterval(() => {
   } catch(e){}
 }, 60000).unref();
 
-module.exports = { init, installModel, roshan, khamoosh, statusLine, state, standalone, autoStart, killStale, stopLlm, stopApp, startApp, startLlm, generate, chat, writeLauncher, writeDesktopIcon, MODEL, PORT_APP, PORT_LLM, DL, L, APP };
+module.exports = { barchasbBad, vazhenameAfzoodan, init, installModel, roshan, khamoosh, statusLine, state, standalone, autoStart, killStale, stopLlm, stopApp, startApp, startLlm, generate, chat, writeLauncher, writeDesktopIcon, MODEL, PORT_APP, PORT_LLM, DL, L, APP };
