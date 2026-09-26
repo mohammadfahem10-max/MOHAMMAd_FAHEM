@@ -10,7 +10,8 @@
     loginUrl: '',                                   // خالی = /usr/login همان سایت
     portalPath: '/portal',
     loginPathPrefix: '/usr/',                       // صفحهٔ ورود my.ssaa.ir: /usr/login (کدملی + رمز پویا در یک صفحه)
-    loggedInTexts: ['خروج', 'املاک من', 'اسناد رسمی من', 'وضعیت مکاتبات'],
+    loggedInTexts: ['خروج', 'پروفایل', 'املاک من'],     // در DOM سربرگ/منو (حتی اگر پنهان باشد) — همراه با توکن
+    tokenKey: 'token',                               // my.ssaa.ir پس از ورود توکن را در localStorage.token می‌گذارد
     nationalInput: ['input[name="username"]', 'input[name*="national" i]', 'input[id*="national" i]', 'input[name*="meli" i]', 'input[placeholder*="ملی"]', 'input[aria-label*="ملی"]', 'input[formcontrolname*="national" i]'],
     sendCodeButton: ['ارسال کد', 'ارسال رمز', 'دریافت کد', 'دریافت رمز', 'ارسال'],
     otpInput: ['input[name="password"]', 'input[name*="otp" i]', 'input[id*="otp" i]', 'input[name*="code" i]', 'input[formcontrolname*="code" i]', 'input[placeholder*="کد"]', 'input[placeholder*="رمز"]', 'input[autocomplete="one-time-code"]'],
@@ -38,6 +39,7 @@
   };
 
   function cfg() { return Object.assign({}, DEFAULTS, window.__sabtmanSiteConfig || {}); }
+  const c0 = cfg;
   const sleep = U.sleep;
   const norm = (s) => String(s || '').replace(/\s+/g, ' ').replace(/ي/g, 'ی').replace(/ك/g, 'ک').trim();
 
@@ -107,13 +109,15 @@
     const nat = q(c.nationalInput), otp = q(c.otpInput), cap = q(c.captchaInput);
     const closed = c.closedTexts.some((t) => body.includes(t));
     const onLoginPath = location.pathname.startsWith(c.loginPathPrefix || '/usr/');
-    const evidence = (c.loggedInTexts || []).some((t) => body.includes(norm(t)));
+    const all = norm(document.body ? document.body.textContent.slice(0, 80000) : '');
+    const evidence = (c.loggedInTexts || []).some((t) => all.includes(norm(t)));
+    let hasToken = false; try { hasToken = !c.tokenKey || Boolean(localStorage.getItem(c.tokenKey)); } catch (e) { /* ادامه */ }
     let page = 'unknown';
     if (closed && !nat && !otp) page = 'closed';
     else if (nat) page = 'login';
     else if (otp) page = 'otp';
-    else if (!onLoginPath && evidence) page = 'loggedIn';   // فقط با نشانهٔ واقعی ورود؛ صفحهٔ در حال بارگذاری «واردشده» شمرده نمی‌شود
-    return { page, url: location.href, captcha: cap ? captchaDataUrl() : null, messages: messages(), title: document.title };
+    else if (!onLoginPath && evidence && hasToken) page = 'loggedIn';   // فقط با نشانهٔ واقعی ورود؛ صفحهٔ در حال بارگذاری «واردشده» شمرده نمی‌شود
+    return { page, url: location.href, path: location.pathname, captcha: cap ? captchaDataUrl() : null, messages: messages(), title: document.title, sample: page === 'unknown' ? body.slice(0, 300) : '' };
   }
 
   async function waitFor(pred, timeoutMs, stepMs) {
@@ -159,22 +163,33 @@
     const btn = byText(c.loginButton);
     if (btn) btn.click(); else otp.form && otp.form.requestSubmit ? otp.form.requestSubmit() : otp.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter', bubbles: true }));
     await waitFor(() => !location.pathname.startsWith(c.loginPathPrefix || '/usr/') || messages().length, 15000);
-    await waitFor(() => detectState().page === 'loggedIn' || messages().length, 8000);
+    await waitFor(() => detectState().page === 'loggedIn' || (messages().length && !messages().some((m) => /خوش ?‌?آمد|موفق/.test(m))), 12000);
     await sleep(500);
     const st = detectState();
     st.wrongCode = st.messages.some((m) => c.wrongCodeTexts.some((t) => m.includes(t)));
     return st;
   }
 
-  /** ناوبری درون‌برنامه‌ای SPA (بدون بارگذاری کامل) یا کلیک روی منو */
+  /** مانند byText ولی بدون شرط پیدا بودن (زیرمنوهای بسته) و فقط تطبیق دقیق */
+  function byTextAny(texts, tags) {
+    const wanted = [].concat(texts).map(norm);
+    const nodes = [...document.querySelectorAll(tags || 'a, button, [role="menuitem"]')];
+    for (const w of wanted) { const el = nodes.find((n) => norm(n.textContent) === w); if (el) return el; }
+    return null;
+  }
+
+  /** ناوبری درون‌برنامه‌ای SPA (بدون بارگذاری کامل): مسیر شناخته‌شده اول، وگرنه کلیک روی منو (حتی زیرمنوی بسته) */
   async function goSection(sec) {
     const before = S.hook.exportDiscovery().درخواست‌ها.length;
-    const menu = byText(sec.menu, 'a, button, li, span, [role="menuitem"], [role="link"]');
-    if (menu) menu.click();
-    else if (sec.path) {
+    if (sec.path) {
+      if (location.pathname === sec.path) { history.pushState({}, '', c0().portalPath); window.dispatchEvent(new PopStateEvent('popstate', { state: {} })); await sleep(600); }
       history.pushState({}, '', sec.path);
       window.dispatchEvent(new PopStateEvent('popstate', { state: {} }));
-    } else return { ok: false, reason: 'منو پیدا نشد' };
+    } else {
+      const menu = byTextAny(sec.menu) || byText(sec.menu, 'a, button, li, span, [role="menuitem"], [role="link"]');
+      if (!menu) return { ok: false, reason: 'منو پیدا نشد' };
+      menu.click();
+    }
     // منتظر درخواست تازهٔ سایت
     const got = await waitFor(() => S.hook.exportDiscovery().درخواست‌ها.length > before, 12000, 300);
     await sleep(1500);
@@ -210,7 +225,8 @@
       if (!next || next.disabled || /disabled/.test(next.className) || (next.parentElement && /disabled/.test(next.parentElement.className))) return i;
       const before = S.hook.exportDiscovery().درخواست‌ها.reduce((n, d) => n + d.count, 0);
       next.click();
-      await waitFor(() => S.hook.exportDiscovery().درخواست‌ها.reduce((n, d) => n + d.count, 0) > before, 8000, 300);
+      const more = await waitFor(() => S.hook.exportDiscovery().درخواست‌ها.reduce((n, d) => n + d.count, 0) > before, 8000, 300);
+      if (!more) return i;   // صفحه‌بندی سمت مرورگر: همهٔ ردیف‌ها از پیش در یک پاسخ آمده است
       await sleep(800);
       if (onPage) onPage(i + 1);
     }

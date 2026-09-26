@@ -12,6 +12,8 @@
   };
 
   const IGNORE_PATH = /(^|\/)(assets?|static|i18n|locale|translations?|config|settings|menu|captcha|map|survey|notification-count|ping|health)(\/|\.|$)/i;
+  // جدول‌های کمکی و شمارنده‌های my.ssaa.ir که دادهٔ کاربر نیستند
+  const LOOKUP_PATH = /(getissuestates|getfeedbackcount|getsignabledocumentscount|checktoken|generateotp)$|^\/login$/i;
 
   const CATEGORICAL_KEY = /(type|kind|category|status|state|group|unit|office|نوع|وضعیت|دسته|واحد|دفتر)/i;
   const DATE_KEY = /(date|time|تاریخ|زمان|ساعت)/i;
@@ -130,10 +132,12 @@
     return { records: [], meta: data, shape: 'scalar' };
   }
 
+  function hashText(s) { let h = 5381; for (let i = 0; i < s.length; i++) h = ((h << 5) + h + s.charCodeAt(i)) | 0; return (h >>> 0).toString(36); }
+
   function recordKey(flat, index) {
     const keys = Object.keys(flat);
     const idKeys = keys.filter((k) => ID_KEY.test(k) && flat[k] !== null && flat[k] !== undefined && flat[k] !== '');
-    if (idKeys.length) return idKeys.map((k) => k + '=' + flat[k]).slice(0, 2).join('|');
+    if (idKeys.length) return idKeys.map((k) => k + '=' + flat[k]).join('|');
     return '#' + index;
   }
 
@@ -200,7 +204,8 @@
     const env = U.readEnvelope(cap.json);
     if (!env.isEnvelope) return null;
     if (env.data === undefined || env.data === null) return null;
-    if (IGNORE_PATH.test(cap.path)) return null;
+    if (IGNORE_PATH.test(cap.path) || LOOKUP_PATH.test(cap.path)) return null;
+    if (U.isPlainObject(env.data) && env.data.totalCount === 0) return null;   // فهرست خالی (مثلاً «موردی برای نمایش وجود ندارد»)
     const { records: rawRecords, meta, shape } = splitData(env.data);
     if (shape === 'scalar') return null;
 
@@ -228,10 +233,15 @@
     if (!isPaged && !fresh && section.shape === 'array') section.records = [];
     if (shape === 'object') section.records = [];
     const existing = new Map(section.records.map((r) => [r.key, r]));
+    const inBatch = new Set();
     rawRecords.forEach((raw, i) => {
       if (!U.isPlainObject(raw)) raw = { مقدار: raw };
       const flat = U.flatten(raw);
-      const key = recordKey(flat, section.records.length + i);
+      let key = recordKey(flat, section.records.length + i);
+      // کلید تکراری در همان پاسخ = شناسه‌ها یکتا نیستند (مثلاً کد ملی خودِ کاربر در همهٔ اسناد): اثر کل رکورد افزوده می‌شود تا هیچ رکوردی گم نشود
+      if (inBatch.has(key)) key += '|h=' + hashText(JSON.stringify(flat));
+      if (inBatch.has(key)) key += '|#' + i;
+      inBatch.add(key);
       const prev = existing.get(key);
       if (prev) { prev.raw = raw; prev.flat = flat; prev.seenTs = cap.ts; return; }
       const rec = { key, raw, flat, section: section.path, firstTs: cap.ts, seenTs: cap.ts };

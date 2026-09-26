@@ -10,11 +10,11 @@
   const SECTIONS = [
     { key: 'estate', label: 'املاک من', module: 'estate' },
     { key: 'ssar', label: 'اسناد رسمی من', module: 'ssar' },
-    { key: 'sset', label: 'وقایع ازدواج و طلاق من', module: 'sset' },
-    { key: 'companies', label: 'شرکت‌های من', module: 'companies' },
+    { key: 'sset', label: 'وقایع ازدواج و طلاق من', module: 'sset', note: 'این بخش در خود سامانه فعال نیست (پیوندش در سایت کار نمی‌کند).' },
+    { key: 'companies', label: 'شرکت‌های من', module: 'companies', note: 'این بخش در خود سامانه فعال نیست (پیوندش در سایت کار نمی‌کند).' },
     { key: 'ilenc', label: 'شناسه‌های ثبت موقت', module: 'ilenc' },
-    { key: 'mechLetter', label: 'وضعیت مکاتبات', module: 'mechletter' },
-    { key: 'profile', label: 'پروفایل', module: 'profile' },
+    { key: 'mechLetter', label: 'وضعیت مکاتبات', module: 'mechletter', note: 'سامانه برای این بخش فهرستی ندارد؛ فقط استعلام تکی با شمارهٔ ۱۸ رقمی مکاتبه است.' },
+    { key: 'profile', label: 'پروفایل', module: 'user' },
   ];
 
   const app = {
@@ -217,6 +217,10 @@
       const wrong = res.wrongCode || (res.messages || []).some((m) => /نادرست|اشتباه|نامعتبر|منقضی/.test(m));
       if (wrong) { setMsg('err', 'کد نادرست است.'); return go('login'); }
       if (res.page === 'navigating') { await waitSiteReady(20000); if (app.siteState && app.siteState.page === 'loggedIn') return afterLogin(); }
+      // سایت «خوش آمدید» می‌گوید و خودش جابه‌جا می‌شود (گاهی با بارگذاری کامل): چند ثانیه وضعیت پرسیده می‌شود
+      setMsg('info', 'ورود پذیرفته شد؛ در حال باز شدن سامانه…'); go('login');
+      if (await waitLoggedIn(25000)) return afterLogin();
+      S.bridge.post({ type: 'log', level: 'warn', text: 'ورود: وضعیت سایت پس از رمز پویا ' + JSON.stringify(app.siteState || {}).slice(0, 800) });
       setMsg('warn', res.messages && res.messages.length ? res.messages.join(' | ') : 'ورود انجام نشد؛ دوباره تلاش کنید.');
       go('login');
     } catch (e) { setMsg('err', 'خطا در ورود: ' + e.message); go('login'); }
@@ -245,7 +249,18 @@
 
   /* ---------- پس از ورود: گردآوری پشت پرده ---------- */
 
+  /** پرسیدن پیاپی وضعیت سایت پنهان تا «وارد شده» (در بارگذاری کامل صفحه، فرمان‌ها شکست می‌خورند و دوباره پرسیده می‌شود) */
+  async function waitLoggedIn(ms) {
+    const end = Date.now() + ms;
+    while (Date.now() < end) {
+      try { const s = await S.hook.cmd('state', {}, 4000); if (s) { app.siteState = s; if (s.page === 'loggedIn') return true; } } catch (e) { /* در حال بارگذاری */ }
+      await new Promise((r) => setTimeout(r, 1000));
+    }
+    return false;
+  }
+
   async function afterLogin() {
+    if (app.collecting && !app.collecting.done) return;
     stopCountdown();
     app.login.otpSent = false; app.login.needCaptcha = false; app.login.otpDraft = ''; app.login.capDraft = ''; app.login.focus = null; setMsg(null);
     S.hook.sessionExpired = false;
@@ -300,7 +315,11 @@
     const tiles = SECTIONS.map((spec) => {
       const sec = sectionFor(spec.key);
       const all = st().sectionList().filter((s) => s.module === spec.module);
-      if (!sec) return `<div class="ap-tile empty"><h3>${esc(spec.label)}</h3><div class="ap-muted">داده‌ای گرفته نشده است.</div><div class="acts"><button class="ap-btn sm" data-collect="${spec.key}">گردآوری این بخش</button></div></div>`;
+      if (!sec) {
+        const it = app.collecting && app.collecting.items.find((i) => i.key === spec.key);
+        const why = spec.note || (it && it.step === 'انجام شد' ? 'در سامانه موردی برای شما ثبت نشده است.' : 'داده‌ای گرفته نشده است.');
+        return `<div class="ap-tile empty"><h3>${esc(spec.label)}</h3><div class="ap-muted">${esc(why)}</div>${spec.note ? '' : `<div class="acts"><button class="ap-btn sm" data-collect="${spec.key}">گردآوری این بخش</button></div>`}</div>`;
+      }
       const total = all.reduce((a, s) => a + s.records.length, 0);
       const chips = (sec.counters || []).slice(0, 2).flatMap((c) => c.values.slice(0, 5).map((v) => `<span class="chip">${esc(v.label)} <b>${n(v.count)}</b></span>`)).join('');
       return `<div class="ap-tile"><h3>${esc(spec.label)}</h3><div class="big">${n(total)} داده</div><div class="chips">${chips}</div>

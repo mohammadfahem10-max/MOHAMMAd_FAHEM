@@ -106,6 +106,8 @@ namespace SabtMan
                 Directory.CreateDirectory(Paths.WebViewDir);
                 CoreWebView2EnvironmentOptions opts = new CoreWebView2EnvironmentOptions();
                 opts.Language = "fa";
+                // فقط برای عیب‌یابی روی همین رایانه (127.0.0.1)؛ پیش‌فرض ۰ = خاموش
+                if (settings.debugPort > 0) opts.AdditionalBrowserArguments = "--remote-debugging-port=" + settings.debugPort;
                 CoreWebView2Environment env = await CoreWebView2Environment.CreateAsync(null, Paths.WebViewDir, opts);
 
                 // ۱) سایت پنهان
@@ -125,6 +127,9 @@ namespace SabtMan
                 siteReady = true;
                 // نخستین صفحه همیشه صفحهٔ ورود خود برنامه است: نشست کهنهٔ سایت پاک می‌شود
                 await ClearSiteSession();
+                // WebView پنهان ۱ پیکسل است؛ بی این، سایت چیدمان موبایل می‌گیرد و منوها پنهان می‌شوند: نمای رومیزی ثابت
+                try { await sc.CallDevToolsProtocolMethodAsync("Emulation.setDeviceMetricsOverride", "{\"width\":1366,\"height\":900,\"deviceScaleFactor\":1,\"mobile\":false}"); }
+                catch (Exception ex) { Log.Write("warn", "نمای رومیزی سایت: " + ex.Message); }
                 sc.Navigate(settings.siteUrl);
 
                 // ۲) رابط برنامه (دیدنی)
@@ -221,6 +226,7 @@ namespace SabtMan
                         settings.Save();
                         break;
                     case "logout": Logout(); break;
+                    case "log": Log.Write(Str(msg, "level") == "" ? "info" : Str(msg, "level"), Str(msg, "text")); break;
                 }
             }
             catch (Exception ex) { Log.Write("err", "پیام " + type + ": " + ex.Message); }
