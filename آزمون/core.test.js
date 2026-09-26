@@ -108,6 +108,64 @@ test('خروجی متن و md همهٔ فیلدها و روند را دارد', 
   const section = st.state.sections.get('/mechLetter/GetStatusList');
   const txt = S.exporter.recordText(section, section.records[0]);
   const md = S.exporter.recordMarkdown(section, section.records[0]);
-  assert.ok(txt.includes('DocumentType: ابلاغیه') && txt.includes('روند / رخدادها'));
-  assert.ok(md.includes('| DocumentNumber | ۱۲۳ |') && md.includes('## روند / رخدادها'));
+  assert.ok(txt.includes('Document Type: ابلاغیه') && txt.includes('روند / رخدادها'), 'برچسب انسانی‌شدهٔ فیلد ناشناخته + روند');
+  assert.ok(md.includes('| Document Number | ۱۲۳ |') && md.includes('## روند / رخدادها'));
+});
+
+
+test('نقشهٔ سایت: پرونده‌های اجرایی، مدارک و رخدادها با برچسب فارسی، گزارش TIFF و کارنامهٔ پرونده', () => {
+  const st = S.store;
+  const cap = (path, body, json) => ({ method: 'POST', url: 'https://my.ssaa.ir' + path, path, status: 200, json, ts: Date.now(), requestHeaders: { authorization: 'Bearer x' }, requestBody: body, contentType: 'application/json' });
+  st.ingest(cap('/executive/getallcases', 'pageIndex=1&pageSize=100', { success: true, message: '', data: { xCaseInformationList: [{ no: '140204029116000150', subNo: '1.0', archiveNo: '140200244', caseState: 'جاري', unitName: 'واحد اجراي اسناد رسمي مهدي شهر' }, { no: '140204001107000797', subNo: '1.0', archiveNo: '1', caseState: 'مختومه', unitName: 'رباط كريم' }] } }));
+  const cases = st.state.sections.get('/executive/getallcases');
+  assert.equal(cases.records.length, 2);
+  assert.equal(st.labelFor('/executive/getallcases'), 'پرونده‌های اجرایی');
+  assert.equal(st.fieldLabel(cases, 'caseState'), 'وضعیت پرونده');
+  assert.equal(cases.records[0].key, '140204029116000150|1.0');
+  st.ingest(cap('/executive/getcasedocuments', 'caseNo=140204029116000150&caseSubNo=1.0', { success: true, message: '', data: { xCaseDocuments: [
+    { documentId: 'd1', documentTypeId: 't1', documentNo: null, documentTypeName: 'اجرائيه', xCaseDocumentWorkFloItems: [{ changeDateTime: '1402/12/16-10:00', previousState: 'تاييد ثبت اوليه', nextState: 'تاييد تكميل' }, { changeDateTime: '1402/12/16-09:41', previousState: 'تنظيم شده', nextState: 'تاييد ثبت اوليه' }] },
+    { documentId: 'd2', documentTypeId: 't2', documentNo: '140205129116000942', documentTypeName: 'ابلاغيه', xCaseDocumentWorkFloItems: [{ changeDateTime: '1402/12/16-14:00', previousState: 'تاييد شده جهت ارسال', nextState: 'رويت نتيجه ابلاغ شده' }] },
+  ] } }));
+  const docs = st.state.sections.get('/executive/documents');
+  assert.equal(docs.records.length, 2);
+  const d1 = docs.records[0];
+  assert.equal(d1.flat.currentState, 'تاييد تكميل', 'رخدادها به ترتیب زمان مرتب می‌شوند');
+  assert.equal(d1.flat.previousState, 'تاييد ثبت اوليه');
+  assert.equal(d1.flat.eventCount, 2);
+  assert.equal(d1.flat.unitName, 'واحد اجراي اسناد رسمي مهدي شهر', 'واحد اجرا از پرونده به مدرک می‌رسد');
+  assert.ok(docs.timelines.get(d1.key).rows.length === 2);
+  assert.equal(cases.records[0].flat.docCount, 2);
+  assert.equal(cases.records[0].flat.eventCount, 3);
+  assert.equal(st.caseNameOf(docs, docs.records[1]), 'ابلاغيه ۱۴۰۲۰۵۱۲۹۱۱۶۰۰۰۹۴۲ — پروندهٔ ۱۴۰۲۰۴۰۲۹۱۱۶۰۰۰۱۵۰');
+  // فهرست گزارش‌های رسمی یک مدرک و فایل TIFF آن
+  st.ingest(cap('/executive/getdocumentreports', 'docTypeId=t1&docId=d1&caseNo=140204029116000150&caseSubNo=1.0', { success: true, message: '', data: { reportTypes: [{ reportTypeName: 'چاپ اجراییه جاری', objectId: 'd1', reportTypeCode: '1', reportCommand: null }] } }));
+  assert.equal(docs.details.get(d1.key).rows.length, 1);
+  st.ingest(cap('/executive/getreport', 'caseNo=140204029116000150&caseSubNo=1.0&documentTypeId=t1&documentId=d1&reportCommand=null&reportTypeCode=1', { success: true, message: '', data: { base64FileResult: Buffer.from('II*\0abc').toString('base64'), fileType: 'ImageTiff' } }));
+  assert.equal(d1.files.length, 1);
+  const f = st.state.files.get(d1.files[0]);
+  assert.ok(f && /\.tif$/.test(f.fileName) && f.bytes.length === 7, 'فایل TIFF با نام فارسی');
+  // صف فایل‌ها از روی نقشه
+  const q = S.exporter.queue; q.items.length = 0;
+  const added = S.exporter.enqueueTyped(docs, [docs.records[1]], 'گزارش‌ها');
+  assert.equal(added, 1);
+  assert.ok(q.items[0].req.body.includes('docId=d2') && q.items[0].req.body.includes('caseNo=140204029116000150'));
+  q.items.length = 0;
+  // کارنامهٔ پرونده و گزارش جامع
+  const html = S.reports.caseSheetHtml(cases.records[0]);
+  assert.ok(html.includes('کارنامهٔ روند') && html.includes('ابلاغيه') && html.includes('نسخهٔ کنترل‌شده'), 'مهر ضدکپی طبق قانون ۶۴');
+  const merged = S.reports.combine([cases, docs], {});
+  assert.equal(merged.records.length, 4);
+  const rep = S.reports.build(merged, {});
+  assert.ok(rep.allEvents.length === 3 && rep.byType.length >= 2);
+  const sec = S.reports.sectionReportHtml(rep, { parts: ['counts', 'table'] });
+  assert.ok(sec.includes('نوع مدرک') && !sec.includes('خط زمانی هر رکورد'));
+  // فیلتر بازهٔ زمانی
+  const only = S.reports.filterRecords(docs, docs.records, { from: '1402/12/16', to: '1402/12/16', status: ['تاييد تكميل'] });
+  assert.equal(only.length, 1);
+  // بستهٔ پرونده‌های اجرایی
+  return S.exporter.buildExecutiveJob([cases.records[0]], 'pdf+text', { withFiles: false }).then((job) => {
+    const names = job.entries.map((e) => e.name);
+    assert.ok(names.some((x) => /کارنامهٔ روند .*\.pdf\.html$/.test(x)) && names.some((x) => /\.tif$/.test(x)) && names.some((x) => /\.md$/.test(x)));
+    assert.equal(job.manifest['پوشه‌ها'][0]['برگه‌ها'][0].name, 'مدارک');
+  });
 });

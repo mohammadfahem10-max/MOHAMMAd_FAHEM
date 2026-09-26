@@ -35,7 +35,8 @@
         case 'state': reply(id, true, S.auto ? S.auto.detectState() : { page: 'unknown', url: location.href }); break;
         case 'login': reply(id, true, await S.auto.startLogin(cmd.nationalCode, cmd.captcha)); break;
         case 'otp': reply(id, true, await S.auto.submitOtp(cmd.code)); break;
-        case 'collect': reply(id, true, await S.auto.collect(cmd.sections, (p) => post({ event: 'progress', progress: p }))); break;
+        case 'collect': reply(id, true, await S.auto.collect(cmd.sections, (p) => post({ event: 'progress', progress: p }), { have: cmd.have, noLearn: cmd.noLearn })); break;
+        case 'api': reply(id, true, await S.hook.api(cmd.path, cmd.params, { method: cmd.method, emit: cmd.emit !== false })); break;
         case 'click': reply(id, true, await S.auto.clickText(cmd.text)); break;
         case 'eval': reply(id, true, String((0, eval)(cmd.code))); break;
         default: reply(id, false, null, 'فرمان ناشناخته: ' + cmd.cmd);

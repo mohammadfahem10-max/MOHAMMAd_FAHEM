@@ -233,28 +233,127 @@
     return c.maxPages;
   }
 
-  /** گردآوری یک یا چند بخش (پشت پرده). sections: کلیدهای بخش یا خالی = همه */
-  async function collect(keys, onProgress) {
-    const c = cfg();
-    const list = c.sections.filter((s) => !keys || !keys.length || keys.includes(s.key));
+  /* ---------- گردآوری بر پایهٔ نقشهٔ سایت (site-map) ----------
+     هر بخش: رفتن به صفحهٔ بخش در SPA → صبر تا پاسخ فهرست → (صفحه‌های بعدی با API) → یادگیری کلیدهای هر ردیف (یک بار روی ردیف نخست).
+     بخش اجرای اسناد رسمی: پس از فهرست پرونده‌ها، مدارک و رخدادهای هر پرونده مستقیم با API همان نشست گرفته می‌شود. */
+
+  const captures = new Map();     // مسیر → آخرین پاسخ
+  let capSeq = 0;
+  function watchCaptures() {
+    if (watchCaptures.done) return; watchCaptures.done = true;
+    S.hook.on('capture', (cap) => { captures.set(cap.path, Object.assign({ seq: ++capSeq }, cap)); });
+  }
+
+  function goPath(p) {
+    if (location.pathname === p) { history.pushState({}, '', cfg().portalPath); window.dispatchEvent(new PopStateEvent('popstate', { state: {} })); }
+    history.pushState({}, '', p);
+    window.dispatchEvent(new PopStateEvent('popstate', { state: {} }));
+  }
+
+  async function waitCapture(path, sinceSeq, timeoutMs) {
+    return waitFor(() => { const c = captures.get(path); return c && c.seq > sinceSeq ? c : null; }, timeoutMs || 15000, 250);
+  }
+
+  function dataOf(cap) { const env = U.readEnvelope(cap.json); return env.isEnvelope ? env.data : cap.json; }
+  function listOf(data, listKey) { if (Array.isArray(data)) return data; if (data && listKey && Array.isArray(data[listKey])) return data[listKey]; return []; }
+
+  /** یادگیری کلیدهای هر ردیف: یک بار روی ردیف نخست (پاسخ‌ها به رابط می‌رسند و به رکورد وصل می‌شوند) */
+  async function learnRowActions(plan) {
+    const out = [];
+    for (const text of plan.rowActions || []) {
+      const btn = byText([text], 'table tbody tr button, table tbody tr a, table tbody tr [role="button"]');
+      if (!btn) continue;
+      const before = capSeq;
+      btn.click();
+      await waitFor(() => capSeq > before, 5000, 250);
+      await sleep(800);
+      out.push(text);
+      await closeDialogs();
+      if (location.pathname !== plan.page) { goPath(plan.page); await sleep(2500); }
+    }
+    return out;
+  }
+
+  /** مدارک و رخدادهای هر پروندهٔ اجرایی — مستقیم با API (بی کلیک) */
+  async function collectExecutive(cases, have, p, onProgress) {
+    const skip = new Set(have || []);
+    let n = 0;
+    for (const c of cases) {
+      const key = String(c.no) + '|' + String(c.subNo);
+      n++;
+      if (skip.has(key)) continue;
+      p.step = 'مدارک پرونده'; p.page = n; p.total = cases.length; if (onProgress) onProgress(p);
+      await S.hook.api('/executive/getcasedocuments', { caseNo: c.no, caseSubNo: c.subNo });
+      p.done = (p.done || 0) + 1;
+      await sleep(rateDelay());
+    }
+  }
+
+  /* سرعت تطبیقی سبک برای فراخوانی‌های پیاپی (بند ۱۰): با پاسخ سالم کم می‌شود، با خطا زیاد */
+  const rate = { delay: 700, min: 250, max: 8000 };
+  function rateDelay() { rate.delay = Math.max(rate.min, Math.round(rate.delay * 0.9)); return rate.delay; }
+  function rateBackoff() { rate.delay = Math.min(rate.max, Math.round(rate.delay * 2.5)); return rate.delay; }
+
+  /** گردآوری بخش‌ها. keys: شناسه‌های بخش (نقشهٔ سایت) یا خالی = همه؛ opts.have: کلید پرونده‌های اجرایی که مدارکشان پیش‌تر گرفته شده */
+  async function collect(keys, onProgress, opts) {
+    opts = opts || {};
+    watchCaptures();
+    const plans = (S.siteMap ? S.siteMap.collectPlan() : []).filter((pl) => !keys || !keys.length || keys.includes(pl.key));
     const result = [];
-    for (const sec of list) {
-      const p = { key: sec.key, label: sec.label, step: 'ناوبری' };
+    for (const plan of plans) {
+      const p = { key: plan.key, label: plan.label, step: 'ناوبری' };
       if (onProgress) onProgress(p);
-      const nav = await goSection(sec);
-      p.step = nav.ok ? 'خواندن' : 'یافت نشد';
-      if (onProgress) onProgress(p);
-      if (nav.ok) {
-        const learned = await learnRowLinks();
-        p.step = 'صفحه‌بندی'; if (onProgress) onProgress(p);
-        p.pages = await paginate((n) => { p.page = n; if (onProgress) onProgress(p); });
-        p.learned = learned;
+      try {
+        const before = capSeq;
+        goPath(plan.page);
+        const cap = await waitCapture(plan.api, before, 15000);
+        if (!cap) { p.step = 'یافت نشد'; p.note = 'پاسخ فهرست نرسید'; result.push(p); if (onProgress) onProgress(p); continue; }
+        p.step = 'خواندن'; if (onProgress) onProgress(p);
+        let data = dataOf(cap);
+        let rows = listOf(data, plan.list);
+        p.count = rows.length;
+        // صفحه‌های بعدی (اگر سایت صفحه‌بندی سمت سرور دارد)
+        if (plan.paged && cap.requestBody) {
+          const body = S.siteMap.parseBody(cap.requestBody);
+          const size = Number(body.pageSize) || plan.paged.pageSize || 100;
+          const total = data && plan.paged.total ? Number(data[plan.paged.total]) : null;
+          let page = Number(body.pageIndex) || 1;
+          while ((total !== null ? page * size < total : rows.length === size) && page < 50) {
+            page++;
+            p.step = 'صفحهٔ ' + page; if (onProgress) onProgress(p);
+            const r = await S.hook.api(plan.api, Object.assign({}, body, { pageIndex: page }));
+            const more = listOf(dataOf({ json: r.json }), plan.list);
+            rows = rows.concat(more);
+            p.count = rows.length;
+            if (!more.length) break;
+            await sleep(rateDelay());
+          }
+        }
+        if (plan.deep === 'executive') await collectExecutive(rows.map((r) => ({ no: r.no, subNo: r.subNo })), opts.have, p, onProgress);
+        if (plan.rowActions && plan.rowActions.length && rows.length && !opts.noLearn) {
+          p.step = 'یادگیری کلیدها'; if (onProgress) onProgress(p);
+          if (location.pathname !== plan.page) { goPath(plan.page); await sleep(2500); }
+          p.learned = await learnRowActions(plan);
+        }
         p.step = 'انجام شد';
+      } catch (e) {
+        if (e && e.code === 'SESSION_EXPIRED') { p.step = 'نشست تمام شد'; result.push(p); if (onProgress) onProgress(p); throw e; }
+        rateBackoff();
+        p.step = 'خطا'; p.note = String(e && e.message || e);
       }
       if (onProgress) onProgress(p);
       result.push(p);
     }
     return result;
+  }
+
+  /** یک بخش با کلیک روی منو (پشتیبان برای بخش‌های ناشناخته) */
+  async function goSectionByMenu(menuTexts) {
+    const menu = byTextAny(menuTexts) || byText(menuTexts, 'a, button, li, span, [role="menuitem"], [role="link"]');
+    if (!menu) return false;
+    menu.click();
+    await sleep(1500);
+    return true;
   }
 
   async function clickText(text) {
@@ -265,5 +364,5 @@
     return true;
   }
 
-  S.auto = { cfg, detectState, startLogin, submitOtp, collect, goSection, learnRowLinks, paginate, clickText, setValue, byText, DEFAULTS };
+  S.auto = { cfg, detectState, startLogin, submitOtp, collect, collectExecutive, goPath, goSection, goSectionByMenu, learnRowLinks, learnRowActions, paginate, clickText, setValue, byText, DEFAULTS };
 })(typeof window !== 'undefined' ? (window.SabtMan = window.SabtMan || {}) : (module.exports = {}));

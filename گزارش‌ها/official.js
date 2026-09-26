@@ -4,6 +4,8 @@
   'use strict';
   const U = S.util;
   const PREPARER = 'تهیه و تنظیم: محمدعلی کریمی‌پور';
+  const STAMP = 'نسخهٔ کنترل‌شده — تهیه‌کننده: محمدعلی کریمی‌پور — هرگونه تکثیر، انتشار یا استناد به این سند بدون مجوز کتبی تهیه‌کننده مجاز نیست';
+  const ORG = 'شرکت طلوع فردای ایرانیان';
   const FONT_MARK = '/*SABTMAN_FONT*/';
 
   const CSS = `
@@ -28,7 +30,7 @@ tbody tr:nth-child(even) td { background: #F7F9FF; }
 .kv td:first-child { width: 32%; color: #454C63; background: #F7F9FF; font-weight: 600; }
 .badge { display: inline-block; padding: 1px 8px; border-radius: 8px; font-size: 11px; background: #E3D4FF; color: #1A1F2E; }
 .ok { background: #DCF3E8; color: #1F8A5B; } .warn { background: #FBEBD0; color: #B7791F; } .err { background: #F9DEDC; color: #C2413B; }
-.stamp { position: fixed; top: 42%; left: 8%; right: 8%; text-align: center; transform: rotate(-28deg); font-size: 44px; font-weight: 700; color: rgba(15,108,189,.09); letter-spacing: 4px; pointer-events: none; z-index: 0; white-space: nowrap; }
+.stamp { position: fixed; top: 46%; left: -12%; right: -12%; text-align: center; transform: rotate(-32deg); font-size: 26px; font-weight: 700; color: rgba(15,108,189,.11); letter-spacing: 1px; pointer-events: none; z-index: 0; white-space: nowrap; line-height: 1.4; }
 .content { position: relative; z-index: 1; }
 .ftr { position: fixed; bottom: 0; left: 0; right: 0; border-top: 1px solid #C9D8FF; padding-top: 4px; font-size: 10.5px; color: #737A92; display: flex; justify-content: space-between; }
 .muted { color: #737A92; } .num { font-variant-numeric: tabular-nums; }
@@ -78,7 +80,7 @@ tbody tr:nth-child(even) td { background: #F7F9FF; }
    */
   function render(doc) {
     const now = U.formatSystemDate();
-    const stamp = doc.stamp || 'نسخهٔ رسمی — کپی‌برداری بدون مجوز ممنوع';
+    const stamp = doc.stamp || STAMP;
     const css = doc.fontCss ? CSS.replace(FONT_MARK, doc.fontCss) : CSS;
     return `<!doctype html>
 <html lang="fa" dir="rtl">
@@ -92,7 +94,7 @@ tbody tr:nth-child(even) td { background: #F7F9FF; }
 <div class="sheet">
   <div class="hdr">
     <div>
-      <div class="t">${esc(doc.header || 'سامانهٔ «ثبت من» — استخراج و گزارش')}</div>
+      <div class="t">${esc(doc.header || ORG + ' — سامانهٔ «ثبت من»')}</div>
       <div class="s">${esc(doc.subtitle || '')}</div>
     </div>
     <div class="m">
@@ -110,5 +112,5 @@ tbody tr:nth-child(even) td { background: #F7F9FF; }
 </html>`;
   }
 
-  S.official = { render, kvTable, rowsTable, PREPARER, FONT_MARK, CSS };
+  S.official = { render, kvTable, rowsTable, PREPARER, STAMP, ORG, FONT_MARK, CSS };
 })(typeof window !== 'undefined' ? (window.SabtMan = window.SabtMan || {}) : (module.exports = {}));

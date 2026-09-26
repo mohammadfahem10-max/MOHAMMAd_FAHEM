@@ -14,10 +14,11 @@
     const st = store();
     const label = st.labelFor(section.path);
     const caseName = st.caseNameOf(section, rec);
+    const L = (k) => st.fieldLabel(section, k);
     const lines = [`${label}`, `پرونده: ${caseName}`, `تاریخ استخراج: ${U.formatSystemDate()}`, ''];
     for (const [k, v] of Object.entries(rec.flat)) {
-      if (k.endsWith('[]')) { lines.push(`${k.slice(0, -2)}:`); for (const row of v) lines.push('  - ' + Object.entries(U.flatten(row)).map(([a, b]) => `${a}: ${U.formatValue(b)}`).join(' | ')); }
-      else lines.push(`${k}: ${U.formatValue(v)}`);
+      if (k.endsWith('[]')) { lines.push(`${L(k)}:`); for (const row of v) lines.push('  - ' + Object.entries(U.flatten(row)).map(([a, b]) => `${L(a)}: ${U.formatValue(b)}`).join(' | ')); }
+      else lines.push(`${L(k)}: ${U.formatValue(v)}`);
     }
     const tl = section.timelines.get(rec.key);
     if (tl && tl.rows.length) {
@@ -39,8 +40,9 @@
     const caseName = st.caseNameOf(section, rec);
     const out = [`# ${caseName}`, '', `**بخش:** ${label}  `, `**تاریخ استخراج:** ${U.formatSystemDate()}`, '', '## مشخصات', '', '| فیلد | مقدار |', '|---|---|'];
     const cell = (s) => String(s).replace(/\|/g, '\\|').replace(/\n/g, ' ');
-    for (const [k, v] of Object.entries(rec.flat)) if (!k.endsWith('[]')) out.push(`| ${cell(k)} | ${cell(U.formatValue(v))} |`);
-    for (const [k, v] of Object.entries(rec.flat)) if (k.endsWith('[]') && v.length) { out.push('', `## ${k.slice(0, -2)}`, ''); out.push(...mdTable(v.map((r) => U.flatten(r)))); }
+    const L = (k) => st.fieldLabel(section, k);
+    for (const [k, v] of Object.entries(rec.flat)) if (!k.endsWith('[]')) out.push(`| ${cell(L(k))} | ${cell(U.formatValue(v))} |`);
+    for (const [k, v] of Object.entries(rec.flat)) if (k.endsWith('[]') && v.length) { out.push('', `## ${L(k)}`, ''); out.push(...mdTable(v.map((r) => U.flatten(r)), L)); }
     const tl = section.timelines.get(rec.key);
     if (tl && tl.rows.length) {
       const a = S.reports.analyzeTimeline(tl.rows);
@@ -54,12 +56,12 @@
     return out.join('\n') + '\n';
   }
 
-  function mdTable(flats) {
+  function mdTable(flats, L) {
     const cols = [];
     const seen = new Set();
     for (const f of flats) for (const k of Object.keys(f)) if (!k.endsWith('[]') && !seen.has(k)) { seen.add(k); cols.push(k); }
     const cell = (s) => String(s).replace(/\|/g, '\\|').replace(/\n/g, ' ');
-    return ['| ' + cols.map(cell).join(' | ') + ' |', '|' + cols.map(() => '---').join('|') + '|', ...flats.map((f) => '| ' + cols.map((c) => cell(U.formatValue(f[c]))).join(' | ') + ' |')];
+    return ['| ' + cols.map((c) => cell(L ? L(c) : c)).join(' | ') + ' |', '|' + cols.map(() => '---').join('|') + '|', ...flats.map((f) => '| ' + cols.map((c) => cell(U.formatValue(f[c]))).join(' | ') + ' |')];
   }
 
   /* ---------- فایل‌های اصل ---------- */
@@ -104,6 +106,11 @@
         }
       }
     };
+    // فایل‌های رسمی گرفته‌شده از نقشهٔ سایت (مثلاً تصویر اجرائیه/ابلاغیه) — عین اصل
+    for (const key of rec.files || []) {
+      const f = st.state.files.get(key);
+      if (f && f.bytes) { out.push({ name: uniqueName(f.fileName), bytes: f.bytes, folder: FOLDERS.docs, original: true }); if (onProgress) onProgress(out.length); }
+    }
     await pull(rec.flat, false);
     // پیوست‌های یادگرفته‌شده (ردیف‌های «پیوست‌ها») و پیوند دانلود فایل
     const att = section.attachments.get(rec.key);
@@ -197,6 +204,78 @@
     const manifest = {
       نسخه: 1, شناسه: U.uid(), ساخته‌شده: U.formatSystemDate(), بخش: label, مسیر: section.path, حالت: mode,
       پوشه‌ها: folders.map((f) => ({ نام: f.name, پایه: f.base, فایل‌ها: f.files, فهرست: f.index, روند: f.timelineRows || null })),
+      زیرپوشه‌ها: Object.values(FOLDERS),
+    };
+    entries.unshift({ name: 'manifest.json', data: JSON.stringify(manifest, null, 2) });
+    return { entries, manifest };
+  }
+
+  /* ---------- بستهٔ پرونده‌های اجرایی: هر پرونده یک پوشه با همهٔ مدارک، فایل‌های رسمی، رخدادها و کارنامه ---------- */
+
+  function caseMarkdown(caseRec, dossier) {
+    const st = store();
+    const casesSec = st.state.sections.get('/executive/getallcases');
+    const L = (k) => st.fieldLabel(casesSec, k), LD = (k) => st.fieldLabel('/executive/documents', k);
+    const cell = (x) => String(x).replace(/\|/g, '\\|').replace(/\n/g, ' ');
+    const out = [`# ${st.caseNameOf(casesSec, caseRec)}`, '', `**واحد اجرا:** ${U.formatValue(caseRec.flat.unitName)}  `, `**وضعیت پرونده:** ${U.formatValue(caseRec.flat.caseState)}  `, `**تاریخ استخراج:** ${U.formatSystemDate()}`, '', '## مشخصات پرونده', '', '| فیلد | مقدار |', '|---|---|'];
+    for (const [k, v] of Object.entries(caseRec.flat)) out.push(`| ${cell(L(k))} | ${cell(U.formatValue(v))} |`);
+    out.push('', `## مدارک (${U.faDigits(dossier.items.length)})`, '', '| # | نوع مدرک | شمارهٔ مدرک | وضعیت پیشین | وضعیت جاری | آخرین تغییر | رخدادها |', '|---|---|---|---|---|---|---|');
+    dossier.items.forEach((it, i) => { const f = it.rec.flat; out.push(`| ${U.faDigits(i + 1)} | ${cell(U.formatValue(f.documentTypeName))} | ${cell(U.formatValue(f.documentNo))} | ${cell(U.formatValue(f.previousState))} | ${cell(U.formatValue(f.currentState))} | ${cell(U.formatValue(f.lastChange))} | ${U.faDigits(f.eventCount || 0)} |`); });
+    for (const it of dossier.items) {
+      if (!it.analysis || !it.analysis.steps.length) continue;
+      out.push('', `### ${U.formatValue(it.rec.flat.documentTypeName)} ${it.rec.flat.documentNo ? U.faDigits(it.rec.flat.documentNo) : ''}`.trim(), '', '| تاریخ و ساعت | وضعیت پیشین | وضعیت جاری | ماندگاری |', '|---|---|---|---|');
+      for (const s of it.analysis.steps) out.push(`| ${cell(s.dateText)} | ${cell(s.prev || '—')} | ${cell(s.status)} | ${s.durationMs !== null ? U.formatDuration(s.durationMs) : '—'} |`);
+    }
+    return out.join('\n') + '\n';
+  }
+
+  function caseText(caseRec, dossier) {
+    const st = store();
+    const lines = [st.caseNameOf(st.state.sections.get('/executive/getallcases'), caseRec), `واحد اجرا: ${U.formatValue(caseRec.flat.unitName)}`, `وضعیت پرونده: ${U.formatValue(caseRec.flat.caseState)}`, `تاریخ استخراج: ${U.formatSystemDate()}`, ''];
+    for (const it of dossier.items) {
+      const f = it.rec.flat;
+      lines.push(`— ${U.formatValue(f.documentTypeName)} ${f.documentNo ? U.faDigits(f.documentNo) : ''} | وضعیت جاری: ${U.formatValue(f.currentState)} | آخرین تغییر: ${U.formatValue(f.lastChange)}`);
+      if (it.analysis) for (const s of it.analysis.steps) lines.push(`    ${s.dateText} | ${s.prev && s.prev !== '—' ? s.prev + ' ← ' : ''}${s.status}${s.durationMs !== null ? ' | ' + (s.open ? 'از این مرحله: ' : 'ماندگاری: ') + U.formatDuration(s.durationMs) : ''}`);
+    }
+    return lines.join('\n') + '\n';
+  }
+
+  /** cases: رکوردهای بخش پرونده‌های اجرایی؛ mode: pdf+text | pdf | text */
+  async function buildExecutiveJob(cases, mode, opts) {
+    opts = opts || {};
+    const st = store();
+    const casesSec = st.state.sections.get('/executive/getallcases');
+    const wantPdf = mode !== 'text', wantText = mode !== 'pdf';
+    const entries = [];
+    const folders = [];
+    let i = 0;
+    for (const caseRec of cases) {
+      i++;
+      if (opts.onProgress) opts.onProgress({ index: i, total: cases.length, rec: caseRec });
+      const d = S.reports.caseDossier(caseRec);
+      const name = st.caseNameOf(casesSec, caseRec);
+      const base = `files/${U.faDigits(i)}`;
+      const folder = { name, base, files: [], index: [] };
+      const used = new Set();
+      const uniq = (nm) => { let x = U.safeFileName(nm, 'فایل'); const dot = x.lastIndexOf('.'); const b = dot > 0 ? x.slice(0, dot) : x, e = dot > 0 ? x.slice(dot) : ''; let k = 2; while (used.has(x)) x = `${b} (${U.faDigits(k++)})${e}`; used.add(x); return x; };
+      const push = (sub, nm, data, kind) => { const fname = uniq(nm); const path = `${base}/${sub}/${fname}`; entries.push({ name: path, data }); folder.files.push({ path, sub, name: fname, kind }); folder.index.push({ پوشه: sub, نام: fname, نوع: kind, تاریخ: U.formatSystemDate() }); };
+      if (wantText) { push(FOLDERS.reports, `${name}.md`, caseMarkdown(caseRec, d), 'متن'); push(FOLDERS.reports, `${name}.txt`, caseText(caseRec, d), 'متن'); }
+      if (wantPdf) push(FOLDERS.reports, `کارنامهٔ روند ${name}.pdf.html`, S.reports.caseSheetHtml(caseRec), 'pdf');
+      push(FOLDERS.reports, `${name}.json`, JSON.stringify({ پرونده: caseRec.raw, مدارک: d.items.map((it) => ({ مدرک: it.rec.raw, رخدادها: (d.docsSection.timelines.get(it.rec.key) || { rows: [] }).rows, گزارش‌ها: it.reports, پیوست‌ها: it.attachments })) }, null, 2), 'json');
+      const tlRows = [['مدرک', 'شمارهٔ مدرک', 'تاریخ و ساعت', 'وضعیت پیشین', 'وضعیت جاری', 'ماندگاری']];
+      for (const it of d.items) {
+        const f = it.rec.flat;
+        if (it.analysis) for (const s of it.analysis.steps) tlRows.push([U.formatValue(f.documentTypeName), U.formatValue(f.documentNo), s.dateText, s.prev || '—', s.status, s.durationMs !== null ? U.formatDuration(s.durationMs) : '—']);
+        for (const file of it.files) if (file.bytes) push(FOLDERS.docs, file.fileName, file.bytes, 'اصل');
+        if (opts.withFiles !== false) { const extra = await collectOriginalFiles(d.docsSection, it.rec); for (const x of extra) if (!(it.files || []).some((ff) => ff.fileName === x.name)) push(x.folder, x.name, x.bytes, 'اصل'); }
+      }
+      folder.timelineRows = tlRows;
+      folder.sheets = [{ name: 'مدارک', rows: [['#', 'نوع مدرک', 'شمارهٔ مدرک', 'وضعیت پیشین', 'وضعیت جاری', 'آخرین تغییر', 'رخدادها'], ...d.items.map((it, k) => [U.faDigits(k + 1), U.formatValue(it.rec.flat.documentTypeName), U.formatValue(it.rec.flat.documentNo), U.formatValue(it.rec.flat.previousState), U.formatValue(it.rec.flat.currentState), U.formatValue(it.rec.flat.lastChange), U.faDigits(it.rec.flat.eventCount || 0)])] }];
+      folders.push(folder);
+    }
+    const manifest = {
+      نسخه: 1, شناسه: U.uid(), ساخته‌شده: U.formatSystemDate(), بخش: 'پرونده‌های اجرایی', مسیر: '/executive/getallcases', حالت: mode,
+      پوشه‌ها: folders.map((f) => ({ نام: f.name, پایه: f.base, فایل‌ها: f.files, فهرست: f.index, روند: f.timelineRows || null, برگه‌ها: f.sheets || [] })),
       زیرپوشه‌ها: Object.values(FOLDERS),
     };
     entries.unshift({ name: 'manifest.json', data: JSON.stringify(manifest, null, 2) });
@@ -330,6 +409,52 @@
     return added;
   }
 
+  /** صف بخش‌های شناخته‌شده (نقشهٔ سایت): گزارش‌ها/پیوست‌های هر مدرک و سپس فایل هر گزارش — ادامه از نقطهٔ توقف */
+  function enqueueTyped(section, records, stage, opts) {
+    opts = opts || {};
+    const sec = S.siteMap && S.siteMap.sectionFor(section.path);
+    if (!sec) return 0;
+    let added = 0;
+    const push = (rec, req, kind, tag) => {
+      if (queue.items.some((q) => q.rec === rec && q.tag === tag)) return;
+      queue.items.push({ section, rec, link: null, req, kind, tag, typed: true, tries: 0, busy: false });
+      added++;
+    };
+    if (stage === 'فایل') {
+      const fo = sec.fileOf;
+      if (!fo) return 0;
+      for (const rec of records) {
+        const det = section.details.get(rec.key);
+        const rows = det && det.kind === 'گزارش‌ها' ? det.rows : [];
+        rows.forEach((row, i) => {
+          const code = row.reportTypeCode || String(i + 1);
+          if (!opts.force && rec.files && rec.files.includes(`file:${rec.key}:${code}`)) return;
+          const body = S.siteMap.fill(fo.body, rec.flat, { reportTypeCode: code, reportCommand: row.reportCommand === null || row.reportCommand === undefined ? 'null' : row.reportCommand });
+          push(rec, { method: fo.method, url: new URL(fo.path, siteOrigin()).href, headers: {}, body }, 'فایل', 'file:' + code);
+        });
+      }
+    } else {
+      for (const ch of sec.children || []) {
+        if (stage && ch.kind !== stage) continue;
+        for (const rec of records) {
+          const bucket = ch.kind === 'پیوست‌ها' ? section.attachments : section.details;
+          if (!opts.force && bucket.has(rec.key)) continue;
+          push(rec, { method: ch.method, url: new URL(ch.path, siteOrigin()).href, headers: {}, body: S.siteMap.fill(ch.body, rec.flat) }, ch.kind, 'child:' + ch.kind);
+        }
+      }
+    }
+    if (added) runQueue();
+    qNotify();
+    return added;
+  }
+
+  function siteOrigin() {
+    const s = store().state.siteOrigin;
+    if (s) return s;
+    for (const sec of store().state.sections.values()) if (sec.request && sec.request.url) { try { return new URL(sec.request.url).origin; } catch (e) { /* ادامه */ } }
+    return 'https://my.ssaa.ir';
+  }
+
   function nextItem() { return queue.items.find((q) => !q.busy) || null; }
 
   async function worker() {
@@ -348,7 +473,13 @@
         const t0 = Date.now();
         try {
           const res = await S.hook.replay(item.req);
-          if (res.json !== undefined) st.ingestChild(item.link, item.rec, res.json);
+          if (res.json !== undefined) {
+            const cap = { method: item.req.method, url: item.req.url, path: S.hook.pathKey(item.req.url), status: res.status, json: res.json, ts: Date.now(), requestHeaders: item.req.headers || {}, requestBody: item.req.body ?? null, contentType: res.contentType };
+            if (item.typed || (S.siteMap && S.siteMap.CHILD_PATHS.test(cap.path))) st.ingest(cap);
+            else st.ingestChild(item.link, item.rec, res.json);
+          } else if (res.bytes) {
+            st.ingestFile({ method: item.req.method, url: item.req.url, path: S.hook.pathKey(item.req.url), status: res.status, bytes: res.bytes, contentType: res.contentType, fileName: res.fileName, requestHeaders: item.req.headers || {}, requestBody: item.req.body ?? null, ts: Date.now() });
+          }
           queue.items.splice(queue.items.indexOf(item), 1);
           queue.done++;
           rateOk(Date.now() - t0);
@@ -388,7 +519,7 @@
   function clearQueue() { queue.items.length = 0; qNotify(); }
 
   S.exporter = {
-    FOLDERS, JOB_PREFIX, recordText, recordMarkdown, reportMarkdown, collectOriginalFiles, buildJob, buildReportJob, sendJob, downloadBytes, downloadText,
-    queue, enqueueChildren, resumeQueue, pauseQueue, clearQueue, onQueue: (cb) => queue.listeners.push(cb),
+    FOLDERS, JOB_PREFIX, recordText, recordMarkdown, reportMarkdown, collectOriginalFiles, buildJob, buildExecutiveJob, caseMarkdown, buildReportJob, sendJob, downloadBytes, downloadText,
+    queue, enqueueChildren, enqueueTyped, siteOrigin, resumeQueue, pauseQueue, clearQueue, onQueue: (cb) => queue.listeners.push(cb),
   };
 })(typeof window !== 'undefined' ? (window.SabtMan = window.SabtMan || {}) : (module.exports = {}));

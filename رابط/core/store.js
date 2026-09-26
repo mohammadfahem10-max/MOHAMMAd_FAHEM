@@ -79,6 +79,8 @@
 
   function labelFor(path) {
     if (state.settings.labels[path]) return state.settings.labels[path];
+    const known = S.siteMap && S.siteMap.sectionFor(path);
+    if (known) return known.label;
     const parts = String(path).split('?')[0].split('/').filter(Boolean);
     const mod = MODULE_LABELS[(parts[0] || '').toLowerCase()];
     const op = parts.slice(1).join('/');
@@ -200,7 +202,110 @@
   }
 
   /** ثبت یک پاسخ JSON در انبار */
+  /* ---------- بخش‌های شناخته‌شدهٔ سایت (site-map): رکوردهای برچسب‌دار، مدارک/رخدادهای اجرا، گزارش‌ها و فایل‌ها ---------- */
+
+  function newSection(path, init) {
+    const s = Object.assign({
+      path, module: moduleOf(path), method: 'POST', url: '', records: [], meta: null, shape: 'array',
+      ok: true, message: '', lastTs: 0, request: null, autoCounterFields: [], dateField: null, nameField: null,
+      selected: new Set(), timelines: new Map(), attachments: new Map(), details: new Map(), lastRaw: null, requests: [], columns: [], counters: [],
+    }, init || {});
+    state.sections.set(path, s);
+    return s;
+  }
+
+  function findRecord(path, pred) {
+    const s = state.sections.get(path);
+    if (!s) return null;
+    return s.records.find((r) => pred(r.flat)) || null;
+  }
+
+  function finishSection(section, cap) {
+    const sec = S.siteMap && S.siteMap.sectionFor(section.path);
+    section.autoCounterFields = sec && sec.counters ? sec.counters.filter((k) => section.records.some((r) => r.flat[k] !== undefined)) : detectCounterFields(section.records);
+    section.dateField = (sec && sec.date) || detectDateField(section.records);
+    section.nameField = state.settings.caseNameField[section.path] || (sec && (sec.status ? null : null)) || detectNameField(section.records);
+    section.columns = collectColumns(section.records);
+    section.counters = computeCounters(section);
+    if (cap) {
+      state.captures.unshift({ path: cap.path, method: cap.method, url: cap.url, body: cap.requestBody, headers: cap.requestHeaders, ts: cap.ts, records: section.records.length });
+      if (state.captures.length > 60) state.captures.length = 60;
+    }
+    notify('section', section);
+  }
+
+  /** پاسخ فهرست یک بخش شناخته‌شده */
+  function ingestTyped(tr, cap) {
+    const sec = tr.section;
+    let section = state.sections.get(sec.path);
+    if (!section) section = newSection(sec.path, { module: sec.module, typed: sec.id, virtual: !!sec.virtual });
+    section.typed = sec.id;
+    section.lastTs = cap.ts || Date.now();
+    section.meta = tr.meta || section.meta;
+    section.lastRaw = cap.json;
+    if (cap.url) {
+      section.request = { method: cap.method, url: cap.url, headers: cap.requestHeaders, body: cap.requestBody };
+      if (!section.requests.some((r) => r.body === cap.requestBody && r.url === cap.url)) section.requests.push(section.request);
+    }
+    // جایگزینی: فهرست کامل (یا صفحهٔ ۱)؛ افزودن: صفحه‌های بعدی یا زیرمجموعهٔ یک پرونده (scope)
+    if (tr.replace) section.records = [];
+    else if (tr.scope) section.records = section.records.filter((r) => !tr.scope(r.flat));
+    const existing = new Map(section.records.map((r) => [r.key, r]));
+    for (const rec of tr.records) {
+      const prev = existing.get(rec.key);
+      if (prev) { prev.raw = rec.raw; prev.flat = rec.flat; prev.seenTs = cap.ts; }
+      else { const r = { key: rec.key, raw: rec.raw, flat: rec.flat, section: sec.path, firstTs: cap.ts, seenTs: cap.ts }; section.records.push(r); existing.set(rec.key, r); }
+    }
+    if (tr.timelines) for (const [k, rows] of tr.timelines) section.timelines.set(k, { path: cap.path, rows, ts: Date.now() });
+    if (tr.parentPatch && tr.parentPatch.record) {
+      Object.assign(tr.parentPatch.record.flat, tr.parentPatch.patch);
+      const ps = state.sections.get(tr.parentPatch.path);
+      if (ps) finishSection(ps, null);
+    }
+    finishSection(section, cap);
+    return section;
+  }
+
+  /** پاسخ فرزند (گزارش‌ها/پیوست‌های یک مدرک) */
+  function ingestTypedChild(ch) {
+    const parent = state.sections.get(ch.parentPath);
+    if (!parent) return null;
+    const rec = parent.records.find((r) => ch.match(r.flat));
+    if (!rec) return null;
+    const rows = ch.rows.map((r) => (U.isPlainObject(r) ? r : { مقدار: r }));
+    const bucket = ch.kind === 'روند' ? parent.timelines : ch.kind === 'پیوست‌ها' ? parent.attachments : parent.details;
+    if (ch.kind === 'گزارش‌ها') parent.details.set(rec.key, { path: ch.childPath, rows, ts: Date.now(), kind: 'گزارش‌ها' });
+    else bucket.set(rec.key, { path: ch.childPath, rows, ts: Date.now() });
+    notify('child', { section: parent, record: rec, kind: ch.kind });
+    return rec;
+  }
+
+  /** فایل رسمی یک مدرک (مثلاً تصویر TIFF اجرائیه/ابلاغیه) از پاسخ JSON */
+  function ingestTypedFile(f, cap) {
+    const parent = state.sections.get(f.parentPath);
+    if (!parent) return null;
+    const rec = parent.records.find((r) => f.match(r.flat));
+    if (!rec) return null;
+    const bytes = U.base64ToBytes(f.base64);
+    const name = U.safeFileName(`${rec.flat.documentTypeName || 'مدرک'}${rec.flat.documentNo ? ' ' + rec.flat.documentNo : ''}${f.reportTypeCode ? ' گزارش ' + f.reportTypeCode : ''}.${f.ext}`);
+    const key = `file:${rec.key}:${f.reportTypeCode || '1'}`;
+    state.files.set(key, { bytes, fileName: name, contentType: f.mime, ts: cap.ts || Date.now(), request: f.request, record: rec.key, section: parent.path });
+    const list = rec.files || (rec.files = []);
+    if (!list.includes(key)) list.push(key);
+    notify('file', { key, fileName: name, record: rec });
+    return rec;
+  }
+
   function ingest(cap) {
+    if (S.siteMap) {
+      const tr = S.siteMap.transform(cap, { findRecord });
+      if (tr) {
+        if (tr.ignore) return null;
+        if (tr.child) return ingestTypedChild(tr.child);
+        if (tr.file) return ingestTypedFile(tr.file, cap);
+        if (tr.section) return ingestTyped(tr, cap);
+      }
+    }
     const env = U.readEnvelope(cap.json);
     if (!env.isEnvelope) return null;
     if (env.data === undefined || env.data === null) return null;
@@ -350,14 +455,13 @@
   }
 
   /** ساخت درخواست بازپخش برای یک رکورد از روی پیوند یادگرفته‌شده */
-  function buildRequest(link, rec) {
-    const id = rec.flat[link.idField];
-    if (id === null || id === undefined || id === '') return null;
-    const sid = String(id);
-    return {
-      method: link.method, url: link.urlTemplate.split('{{id}}').join(encodeURIComponent(sid)),
-      body: link.bodyTemplate ? link.bodyTemplate.split('{{id}}').join(sid) : null, headers: link.headers,
-    };
+  function buildRequest(link, rec, extra) {
+    const id = link.idField ? rec.flat[link.idField] : null;
+    if (link.idField && (id === null || id === undefined || id === '')) return null;
+    const sid = id === null || id === undefined ? '' : String(id);
+    const fillAll = (t, enc) => String(t).split('{{id}}').join(enc ? encodeURIComponent(sid) : sid)
+      .replace(/\{\{(\w+)\}\}/g, (m, k) => { const v = extra && extra[k] !== undefined ? extra[k] : rec.flat[k]; return v === null || v === undefined ? '' : (enc ? encodeURIComponent(String(v)) : String(v)); });
+    return { method: link.method, url: fillAll(link.urlTemplate, true), body: link.bodyTemplate ? fillAll(link.bodyTemplate, true) : null, headers: link.headers };
   }
 
   /** ثبت پاسخ بازپخش‌شده برای یک رکورد */
@@ -432,20 +536,32 @@
   }
 
   function caseNameOf(section, rec) {
+    const known = S.siteMap && S.siteMap.sectionFor(section.path);
+    if (known && known.nameOf && !state.settings.caseNameField[section.path]) {
+      try { const nm = known.nameOf(rec.flat); if (nm) return U.safeFileName(U.faDigits(nm), 'پرونده'); } catch (e) { /* ادامه */ }
+    }
     const f = section.nameField;
     const v = f ? rec.flat[f] : null;
     const base = v === null || v === undefined || v === '' ? rec.key : U.formatValue(v);
     return U.safeFileName(base, 'پرونده');
   }
 
+  /** برچسب فارسی فیلد (بخش شناخته‌شده → نقشه؛ وگرنه خودِ کلید) */
+  function fieldLabel(section, key) {
+    const path = typeof section === 'string' ? section : section && section.path;
+    return S.siteMap ? S.siteMap.fieldLabel(path, key) : key;
+  }
+
   function sectionList() {
     const childPaths = new Set(state.links.map((l) => l.child));
-    return [...state.sections.values()].filter((s) => !s.hidden && !childPaths.has(s.path)).sort((a, b) => a.lastTs - b.lastTs);
+    const known = (p) => S.siteMap && S.siteMap.sectionFor(p);
+    return [...state.sections.values()].filter((s) => !s.hidden && !childPaths.has(s.path) && !(S.siteMap && S.siteMap.CHILD_PATHS.test(s.path)))
+      .sort((a, b) => { const ka = known(a.path), kb = known(b.path); if (ka && kb) return ka.order - kb.order; if (ka) return -1; if (kb) return 1; return a.lastTs - b.lastTs; });
   }
 
   S.store = {
     state, subscribe, notify, ingest, ingestFile, ingestChild, buildRequest, linksFor, setLinkKind, labelFor, moduleOf,
-    computeCounters, caseNameOf, fileFieldsOf, setSetting, setSectionLabel, setCaseNameField, setCounterFields, sectionList,
-    addLog, splitData, detectCounterFields, detectDateField, detectNameField, MODULE_LABELS,
+    computeCounters, caseNameOf, fieldLabel, fileFieldsOf, setSetting, setSectionLabel, setCaseNameField, setCounterFields, sectionList,
+    addLog, splitData, detectCounterFields, detectDateField, detectNameField, MODULE_LABELS, newSection, findRecord, finishSection,
   };
 })(typeof window !== 'undefined' ? (window.SabtMan = window.SabtMan || {}) : (module.exports = {}));

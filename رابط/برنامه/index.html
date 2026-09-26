@@ -8,14 +8,20 @@
 <script src="themes.js"></script>
 </head>
 <body>
-<div id="app">
-  <header class="ap-head">
-    <div class="ap-brand"><img class="ap-logo-img" src="لوگو.png" alt="طلوع فردای ایرانیان"><span class="ap-brand-text"><span class="ap-title">ثبت من</span><span class="ap-sub">طلوع فردای ایرانیان</span></span></div>
-    <nav class="ap-nav" data-role="nav"></nav>
-    <div class="ap-status" data-role="status"></div>
-  </header>
-  <main class="ap-main" data-role="page"></main>
+<div id="bg"><i class="b1"></i><i class="b2"></i><i class="b3"></i><i class="b4"></i></div>
+<div id="app" class="is-login">
+  <aside id="rail" class="glass">
+    <div class="brand"><img class="logo-mark" src="نشان.png" alt=""><div class="brand-txt"><b class="brand-name">ثبت من</b><small>طلوع فردای ایرانیان</small></div></div>
+    <nav id="nav" data-role="nav"></nav>
+    <div class="rail-foot" data-role="railfoot"></div>
+  </aside>
+  <main id="main">
+    <header class="topbar" data-role="topbar"></header>
+    <section class="content" data-role="page"></section>
+  </main>
 </div>
+<div id="drawer" class="drawer" hidden></div>
+<div id="toasts"></div>
 <script src="app.js"></script>
 </body>
 </html>

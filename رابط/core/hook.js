@@ -10,6 +10,7 @@
   let originalFetch = null;
   let installed = false;
   let sessionExpired = false;
+  let lastHeaders = {};           // سرآیندهای آخرین درخواست خودِ سایت به همان مبدأ (احراز هویت، نوع محتوا) — برای بازپخش
 
   function on(event, cb) { (listeners[event] || (listeners[event] = [])).push(cb); }
   function emit(event, payload) {
@@ -97,6 +98,10 @@
     // info: {method, url, finalUrl, status, contentType, text?, bytes?, requestHeaders, requestBody, disposition, ts}
     const method = String(info.method || 'GET').toUpperCase();
     const ct = String(info.contentType || '').toLowerCase();
+    try {
+      const h = info.requestHeaders || {};
+      if (h.authorization && String(info.url).startsWith(location.origin)) lastHeaders = Object.assign({}, h);
+    } catch (e) { /* ادامه */ }
     if (info.status === 401 || info.status === 403 || (info.status >= 300 && info.status < 400 && isLoginRedirect(info.finalUrl)) ||
         (info.finalUrl && info.finalUrl !== info.url && isLoginRedirect(info.finalUrl))) {
       markSessionExpired(info);
@@ -216,10 +221,23 @@
    * بازپخش یک درخواست در همان نشست کاربر (برای گرفتن «گزارشات»/«پیوست‌ها» هر رکورد).
    * خروجی: {status, json?, bytes?, fileName?, contentType}
    */
-  async function replay(req) {
+  /** سرآیندهای احراز هویت جاری سایت (از آخرین درخواست خودِ سایت؛ وگرنه توکن localStorage) */
+  function authHeaders() {
+    const h = Object.assign({}, lastHeaders);
+    if (!h.authorization) {
+      try { const t = localStorage.getItem('token'); if (t) h.authorization = 'Bearer ' + t.replace(/^"|"$/g, ''); } catch (e) { /* ادامه */ }
+    }
+    return h;
+  }
+
+  async function replay(req, opts) {
+    opts = opts || {};
     const f = originalFetch || window.fetch;
     const headers = Object.assign({}, req.headers || {});
     delete headers['content-length'];
+    if (!headers.authorization) { const a = authHeaders(); if (a.authorization) headers.authorization = a.authorization; }
+    if (!headers['content-type'] && req.body && (req.method || 'GET') !== 'GET') headers['content-type'] = /^\s*[{[]/.test(String(req.body)) ? 'application/json' : 'application/x-www-form-urlencoded';
+    if (!headers.accept) headers.accept = 'application/json, text/plain, */*';
     const init = { method: req.method || 'GET', headers, credentials: 'include' };
     if (req.body !== null && req.body !== undefined && init.method !== 'GET' && init.method !== 'HEAD') init.body = req.body;
     const res = await f(req.url, init);
@@ -252,13 +270,20 @@
       }
       recordDiscovery(String(init.method).toUpperCase(), req.url, json, false, ct);
       if (sessionExpired) { sessionExpired = false; emit('session', { expired: false }); }
+      if (opts.emit) emit('capture', { method: String(init.method).toUpperCase(), url: req.url, path: pathKey(req.url), status: res.status, json, ts: Date.now(), requestHeaders: headers, requestBody: req.body ?? null, contentType: ct });
       return { status: res.status, json, contentType: ct };
     }
     const bytes = new Uint8Array(await res.arrayBuffer());
-    return {
-      status: res.status, bytes, contentType: ct,
-      fileName: U.fileNameFromDisposition(disposition) || U.fileNameFromUrl(req.url),
-    };
+    const fileName = U.fileNameFromDisposition(disposition) || U.fileNameFromUrl(req.url);
+    if (opts.emit) emit('file', { method: String(init.method).toUpperCase(), url: req.url, path: pathKey(req.url), status: res.status, bytes, contentType: ct, fileName, requestHeaders: headers, requestBody: req.body ?? null, ts: Date.now() });
+    return { status: res.status, bytes, contentType: ct, fileName };
+  }
+
+  /** فراخوانی مستقیم یک API سایت با احراز هویت جاری؛ پاسخ به رابط هم فرستاده می‌شود (emit) */
+  function api(path, params, opts) {
+    opts = opts || {};
+    const body = params ? (typeof params === 'string' ? params : new URLSearchParams(params).toString()) : null;
+    return replay({ method: opts.method || 'POST', url: new URL(path, location.origin).href, headers: {}, body }, { emit: opts.emit !== false });
   }
 
   function exportDiscovery() {
@@ -270,5 +295,5 @@
     };
   }
 
-  S.hook = { install, on, replay, exportDiscovery, pathKey, get sessionExpired() { return sessionExpired; }, schema, _handleResponse: handleResponse };
+  S.hook = { install, on, replay, api, authHeaders, exportDiscovery, pathKey, get sessionExpired() { return sessionExpired; }, schema, _handleResponse: handleResponse };
 })(typeof window !== 'undefined' ? (window.SabtMan = window.SabtMan || {}) : (module.exports = {}));

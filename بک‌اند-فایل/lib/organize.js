@@ -7,6 +7,7 @@ const path = require('path');
 const zip = require('./zip');
 const xlsx = require('./xlsx');
 const pdf = require('./pdf');
+const tiff = require('./tiff');
 
 const SUBFOLDERS = ['۱ اسناد', '۲ پیوست‌ها', '۳ روند و رخدادها', '۴ گزارش‌ها'];
 const FA = '۰۱۲۳۴۵۶۷۸۹';
@@ -86,6 +87,16 @@ async function processJob(zipPath, opts) {
       } else {
         const p = writeFile(dir, f.name, data);
         info.files.push(p);
+        // تصویر TIFF رسمی (اجرائیه/ابلاغیه) → نسخهٔ PDF خوانا کنار اصل (اصل دست‌نخورده می‌ماند)
+        if (/\.tiff?$/i.test(f.name) && manifest['حالت'] !== 'text') {
+          const pdfName = f.name.replace(/\.tiff?$/i, '.pdf');
+          const out = uniquePath(dir, pdfName, null);
+          try {
+            await tiff.toPdf(p, out, { fontDir: opts.fontDir, browser: opts.browser, tmpDir: opts.tmpDir });
+            info.pdfOk++; info.files.push(out);
+            indexRows.push([sub, path.basename(out), 'pdf', manifest['ساخته‌شده'] || '', 'از تصویر TIFF ساخته شد']);
+          } catch (e) { info.pdfFail++; log('warn', `PDF از TIFF «${f.name}» ساخته نشد: ${e.message}`); }
+        }
       }
       indexRows.push([sub, finalName, f.kind || '', (folder['فهرست'] || []).find((x) => x['نام'] === f.name)?.['تاریخ'] || manifest['ساخته‌شده'] || '', status]);
     }

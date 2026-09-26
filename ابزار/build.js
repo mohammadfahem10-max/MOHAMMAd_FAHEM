@@ -15,6 +15,7 @@ const FONTS = path.join(ROOT, 'دارایی‌ها', 'فونت');
 
 const CORE_ORDER = [
   path.join(UI, 'core', 'util.js'),
+  path.join(UI, 'core', 'site-map.js'),
   path.join(UI, 'core', 'hook.js'),
   path.join(UI, 'core', 'store.js'),
   path.join(UI, 'core', 'bridge.js'),
@@ -59,7 +60,7 @@ function copyDir(src, dst, filter) {
 
 /** بستهٔ سمتِ سایت (قلاب.js): قلاب + رله + خودکارسازی — بی‌رابط، در WebView2ِ پنهان */
 function siteBundle() {
-  const files = [path.join(UI, 'core', 'util.js'), path.join(UI, 'core', 'hook.js'), path.join(UI, 'site', 'relay.js'), path.join(UI, 'site', 'automation.js'), path.join(UI, 'site', 'entry.js')];
+  const files = [path.join(UI, 'core', 'util.js'), path.join(UI, 'core', 'site-map.js'), path.join(UI, 'core', 'hook.js'), path.join(UI, 'site', 'relay.js'), path.join(UI, 'site', 'automation.js'), path.join(UI, 'site', 'entry.js')];
   const parts = ['/* ثبت من — قلاب سمتِ سایت (ساخته‌شده با ابزار/build.js) */', '"use strict";', '(function(){', 'window.SabtMan = window.SabtMan || {};'];
   for (const f of files) parts.push(`/* ---- ${path.relative(ROOT, f)} ---- */`, read(f));
   parts.push('})();');
@@ -68,13 +69,14 @@ function siteBundle() {
 
 /** بستهٔ رابط برنامه (برنامه/app.js): S.hook = remote-hook؛ پنل جاسازی‌شده؛ صفحه‌های ورود/گردآوری/پیشخوان/تنظیمات */
 function appBundle() {
-  const files = [path.join(UI, 'core', 'util.js'), path.join(UI, 'core', 'bridge.js'), path.join(UI, 'core', 'remote-hook.js'), path.join(UI, 'core', 'store.js'),
-    path.join(REPORTS, 'official.js'), path.join(REPORTS, 'reports.js'), path.join(UI, 'core', 'export.js'), path.join(UI, 'core', 'panel.js')];
+  const files = [path.join(UI, 'core', 'util.js'), path.join(UI, 'core', 'site-map.js'), path.join(UI, 'core', 'bridge.js'), path.join(UI, 'core', 'remote-hook.js'), path.join(UI, 'core', 'store.js'),
+    path.join(REPORTS, 'official.js'), path.join(REPORTS, 'reports.js'), path.join(UI, 'core', 'export.js'),
+    ...['ui-core.js', 'ui-charts.js', 'ui-dashboard.js', 'ui-section.js', 'ui-reports.js', 'ui-settings.js'].map((f) => path.join(UI, 'برنامه', f))];
   const parts = ['/* ثبت من — رابط برنامه (ساخته‌شده با ابزار/build.js) */', '"use strict";', '(function(){', 'window.SabtMan = window.SabtMan || {};'];
   for (const f of files) parts.push(`/* ---- ${path.relative(ROOT, f)} ---- */`, read(f));
   parts.push(`window.SabtMan.themeCss = ${JSON.stringify(read(path.join(UI, 'theme.css')))};`);
   parts.push(`window.SabtMan.fontCss = ${JSON.stringify(fontCss())};`);
-  parts.push(`(function(){ const s = document.createElement('style'); s.id = 'sabtman-style'; s.textContent = window.SabtMan.fontCss + '\\n' + window.SabtMan.themeCss; (document.head || document.documentElement).appendChild(s); })();`);
+  parts.push(`(function(){ const s = document.createElement('style'); s.id = 'sabtman-style'; s.textContent = window.SabtMan.fontCss; (document.head || document.documentElement).appendChild(s); })();`);
   parts.push('/* ---- رابط/برنامه/app.js ---- */', read(path.join(UI, 'برنامه', 'app.js')));
   parts.push('})();');
   return parts.join('\n');
