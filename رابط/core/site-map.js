@@ -225,7 +225,7 @@
 
   /* ---------- برای خودکارسازی سمت سایت ---------- */
   function collectPlan() {
-    return SECTIONS.filter((s) => !s.virtual).sort((a, b) => a.order - b.order).map((s) => ({ key: s.id, label: s.label, page: s.page, api: s.path, paged: s.paged || null, rowActions: s.rowActions || [], deep: s.id === 'executive-cases' ? 'executive' : null, single: !!s.single }));
+    return SECTIONS.filter((s) => !s.virtual).sort((a, b) => a.order - b.order).map((s) => ({ key: s.id, label: s.label, page: s.page, api: s.path, list: s.list || null, paged: s.paged || null, rowActions: s.rowActions || [], deep: s.id === 'executive-cases' ? 'executive' : null, single: !!s.single }));
   }
 
   S.siteMap = { SECTIONS, sectionFor, byId, fieldLabel, humanize, transform, parseBody, fill, recordKey, tone, collectPlan, IGNORE, CHILD_PATHS, COMMON };
