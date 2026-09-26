@@ -132,7 +132,8 @@
       <div class="lead">کد ملی خود را بنویسید؛ کد یک‌بارمصرف به تلفن همراه شما ارسال می‌شود.</div>
       ${app.msg ? `<div class="msg ${app.msg.level}">${esc(app.msg.text)}</div>` : ''}
       ${closed ? '<div class="msg warn">سامانه در دسترس نیست (سامانه شب‌ها بسته است). بعداً دوباره بزنید.</div>' : ''}
-      ${!app.siteReady ? '<div class="msg info"><span class="spin"></span> در حال اتصال به سامانه…</div>' : ''}
+      ${!app.siteReady && !app.connTrouble ? '<div class="msg info"><span class="spin"></span> در حال اتصال به سامانه…</div>' : ''}
+      ${app.connTrouble ? connHelpHtml() : ''}
       <label class="lbl">کد ملی<input class="input ltr" data-f="nat" autocomplete="off" name="sm-nat" inputmode="numeric" maxlength="10" value="${esc(L.nationalCode)}" ${L.otpSent ? 'disabled' : ''}></label>
       ${L.needCaptcha && stt.captcha ? `<label class="lbl">تصویر امنیتی سامانه (عین تصویر را بنویسید)<div class="captcha"><img src="${esc(stt.captcha)}" alt="تصویر امنیتی"><input class="input ltr" data-f="cap" autocomplete="off" value="${esc(L.capDraft || '')}" style="max-width:180px"></div></label>` : ''}
       ${!L.otpSent ? `<label class="check"><input type="checkbox" data-f="remember" ${L.remember ? 'checked' : ''}> کد ملی مرا به خاطر بسپار</label><div class="row"><button class="btn pri" data-act="send" ${!app.siteReady || closed ? 'disabled' : ''}>ارسال کد</button></div>` : `
@@ -146,6 +147,8 @@
       if (b.dataset.act === 'send' || b.dataset.act === 'resend') await sendCode(d);
       else if (b.dataset.act === 'login') await submitOtp(d);
       else if (b.dataset.act === 'back') { L.otpSent = false; L.needCaptcha = false; app.msg = null; stopCountdown(); go('login'); }
+      else if (b.dataset.act === 'applydns') { const sel = d.querySelector('[data-role=dnssel]'); const ips = sel.value; const name = (UI.DNS_PRESETS.find((x) => x.ips === ips) || { name: 'DNS سیستم' }).name; toast('DNS «' + name + '» اعمال می‌شود؛ برنامه یک لحظه بسته و باز می‌شود…'); S.bridge.setDns(name, ips); }
+      else if (b.dataset.act === 'retryconn') { app.connTrouble = false; app.siteReady = false; setMsg('info', 'در حال تلاش دوباره برای اتصال…'); S.bridge.reloadSite(); go('login'); scheduleConnCheck(); }
     });
     d.addEventListener('keydown', (e) => { if (e.key === 'Enter') { const btn = d.querySelector('[data-act=login]') || d.querySelector('[data-act=send]'); if (btn && !btn.disabled) btn.click(); } });
     if (L.otpSent) startCountdown(d);
@@ -155,6 +158,17 @@
   }
 
   function setMsg(level, text) { app.msg = text ? { level, text } : null; }
+
+  /** پنل کمک اتصال روی صفحهٔ ورود: تغییر DNS/آی‌پی + تلاش دوباره (وقتی سامانه بلاک می‌کند) */
+  function connHelpHtml() {
+    const sh = S.bridge.last || {};
+    return `<div class="msg warn" style="text-align:right">
+      <b>اتصال به سامانه برقرار نشد.</b> اینترنت شما سالم است ولی سامانه (my.ssaa.ir) پاسخ نمی‌دهد؛ ممکن است آی‌پی شما موقتاً بلاک شده باشد. DNS را عوض کنید یا کمی بعد دوباره تلاش کنید.
+      <div style="margin-top:8px"><select class="input sm" data-role="dnssel" style="width:100%">${UI.DNS_PRESETS.map((d) => `<option value="${esc(d.ips)}" ${(sh.dnsIps || '') === d.ips ? 'selected' : ''}>${esc(d.name)}${d.ips ? ' — ' + esc(d.ips) : ''}</option>`).join('')}</select></div>
+      <div class="row" style="margin-top:8px"><button class="btn sm pri" data-act="applydns">اعمال DNS و راه‌اندازی دوباره</button><button class="btn sm" data-act="retryconn">تلاش دوباره</button></div>
+      ${sh.hostIp ? `<div class="muted" style="font-size:.82em;margin-top:6px">آی‌پی فعلی سامانه: <span class="num">${esc(sh.hostIp)}</span></div>` : ''}
+    </div>`;
+  }
 
   function siteCall(name, payload, timeoutMs) {
     return new Promise((resolve, reject) => {
@@ -220,6 +234,12 @@
   }
   function stopCountdown() { if (app.countdown) clearInterval(app.countdown); app.countdown = null; }
 
+  let connCheckTimer = null;
+  function scheduleConnCheck() {
+    if (connCheckTimer) clearTimeout(connCheckTimer);
+    connCheckTimer = setTimeout(() => { if (!app.siteReady && (app.page === 'login')) { app.connTrouble = true; go('login'); } }, 16000);
+  }
+
   function waitSiteReady(ms) {
     return new Promise((resolve) => {
       app.siteReady = false;
@@ -271,9 +291,8 @@
         if (!ok) { app.collecting.error = e.message; break; }
       }
     }
-    // گام دوم: فهرست گزارش‌های رسمی و پیوست‌های هر مدرک اجرایی (پشت پرده، با سرعت تطبیقی) + روند/پیوست بخش‌های دیگر
-    const docs = st().state.sections.get('/executive/documents');
-    if (docs) S.exporter.enqueueTyped(docs, docs.records, null);
+    // روند و رخداد همهٔ مدارک همین حالا در دست است (از getcasedocuments). فهرست فایل‌های رسمی و خود فایل‌ها
+    // فقط هنگام «دانلود» گرفته می‌شود تا محافظ سامانه با درخواست انبوه حساس نشود (بند ۱۰ دستور کار).
     for (const sec of st().sectionList()) { if (S.siteMap.sectionFor(sec.path)) continue; S.exporter.enqueueChildren(sec, sec.records, 'روند'); S.exporter.enqueueChildren(sec, sec.records, 'پیوست‌ها'); }
     app.collecting.done = true;
     app.lastCollect = Date.now();
@@ -342,7 +361,7 @@
     S.hook.onSite((msg) => {
       if (msg.event === 'ready') {
         const wasReady = app.siteReady, prevPage = app.siteState && app.siteState.page;
-        app.siteReady = true; app.siteState = msg.state || app.siteState;
+        app.siteReady = true; app.connTrouble = false; app.siteState = msg.state || app.siteState;
         for (const cb of [...siteWaiters]) cb(msg);
         if (app.page === 'login' && !app.login.otpSent) {
           if (msg.state && msg.state.page === 'loggedIn' && !app.lastCollect) afterLogin();
@@ -357,6 +376,7 @@
     S.bridge.onMessage((msg) => { if (msg.type === 'state' || msg.type === 'dest') { renderStatus(); if (msg.type === 'dest' && app.page === 'settings') go('settings'); } if (msg.type === 'log' && msg.level === 'err') toast(msg.text, 'err'); });
     st().subscribe((what, payload) => {
       renderStatus();
+      if (what === 'blocked') { app.connTrouble = true; toast('سامانه اتصال را بست؛ برای ادامه DNS/آی‌پی را عوض کنید یا کمی بعد دوباره وارد شوید.', 'err'); if (app.page === 'login') go('login'); return; }
       if (what === 'section' || what === 'child' || what === 'file') { renderNav(); if (app.page === 'dashboard' || app.page === 'collecting' || app.page === 'section') scheduleRerender(); }
     });
     S.exporter.onQueue(renderStatus);
@@ -373,6 +393,7 @@
     loadLogo();
     startSessionTimer();
     go('login');
+    scheduleConnCheck();
     S.bridge.requestState();
     S.hook.cmd('state', {}, 8000).then((stt) => { if (!app.siteReady) { app.siteReady = true; app.siteState = stt; if (app.page === 'login') { if (stt && stt.page === 'loggedIn' && !app.lastCollect) afterLogin(); else go('login'); } } }).catch(() => {});
   }

@@ -30,6 +30,8 @@
   function openDest() { return post({ type: 'openDest' }); }
   function setConfig(cfg) { return post(Object.assign({ type: 'setConfig' }, cfg)); }
   function requestState() { return post({ type: 'state' }); }
+  function setDns(name, ips) { return post({ type: 'setDns', name: name || '', ips: ips || '' }); }
+  function reloadSite() { return post({ type: 'reloadSite' }); }
 
   function onMessage(cb) { listeners.push(cb); if (last) cb(last); }
 
@@ -48,5 +50,5 @@
     } catch (e) { console.error('[ثبت من] پل', e); }
   }
 
-  S.bridge = { available, post, sendJob, sendFile, browseDest, openDest, setConfig, requestState, onMessage, install, toBase64, get last() { return last; } };
+  S.bridge = { available, post, sendJob, sendFile, browseDest, openDest, setConfig, requestState, setDns, reloadSite, onMessage, install, toBase64, get last() { return last; } };
 })(typeof window !== 'undefined' ? (window.SabtMan = window.SabtMan || {}) : (module.exports = {}));

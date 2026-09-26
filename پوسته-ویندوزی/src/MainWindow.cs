@@ -106,8 +106,13 @@ namespace SabtMan
                 Directory.CreateDirectory(Paths.WebViewDir);
                 CoreWebView2EnvironmentOptions opts = new CoreWebView2EnvironmentOptions();
                 opts.Language = "fa";
+                string args = "";
                 // فقط برای عیب‌یابی روی همین رایانه (127.0.0.1)؛ پیش‌فرض ۰ = خاموش
-                if (settings.debugPort > 0) opts.AdditionalBrowserArguments = "--remote-debugging-port=" + settings.debugPort;
+                if (settings.debugPort > 0) args += "--remote-debugging-port=" + settings.debugPort + " ";
+                // تغییر آی‌پی/DNS: نام my.ssaa.ir با DNSِ انتخابی حل و به همان آی‌پی سنجاق می‌شود (وقتی سامانه بلاک می‌کند)
+                string rule = SiteHostRule();
+                if (rule.Length > 0) args += rule + " ";
+                if (args.Length > 0) opts.AdditionalBrowserArguments = args.Trim();
                 CoreWebView2Environment env = await CoreWebView2Environment.CreateAsync(null, Paths.WebViewDir, opts);
 
                 // ۱) سایت پنهان
@@ -169,6 +174,55 @@ namespace SabtMan
             return "{}";
         }
 
+        /// <summary>اگر DNSی انتخاب شده، my.ssaa.ir را با آن حل می‌کند و قاعدهٔ host-resolver می‌سازد؛ وگرنه رشتهٔ خالی.</summary>
+        string SiteHostRule()
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(settings.siteDnsIps)) { settings.siteHostIp = ""; return ""; }
+                string[] servers = settings.siteDnsIps.Split(new char[] { ',', ' ', ';' }, StringSplitOptions.RemoveEmptyEntries);
+                string host = "my.ssaa.ir";
+                try { host = new Uri(settings.siteUrl).Host; } catch (Exception) { }
+                string ip = DnsMini.ResolveA(host, servers, 4000);
+                if (ip != null && ip.Length > 0)
+                {
+                    settings.siteHostIp = ip; settings.Save();
+                    Log.Write("ok", "DNS «" + settings.siteDnsName + "»: " + host + " → " + ip);
+                    return "--host-resolver-rules=\"MAP " + host + " " + ip + ",MAP www.ssaa.ir " + ip + "\"";
+                }
+                Log.Write("warn", "حل نام " + host + " با DNS انتخابی نشد؛ DNS سیستم به کار می‌رود.");
+            }
+            catch (Exception ex) { Log.Write("warn", "DNS: " + ex.Message); }
+            settings.siteHostIp = "";
+            return "";
+        }
+
+        /// <summary>ذخیرهٔ DNS و راه‌اندازی دوبارهٔ برنامه برای اعمال (host-resolver فقط هنگام ساخت محیط اعمال می‌شود).</summary>
+        void SetDns(string name, string ips)
+        {
+            settings.siteDnsName = name == null ? "" : name;
+            settings.siteDnsIps = ips == null ? "" : ips;
+            settings.Save();
+            Log.Write("ok", "DNS انتخاب شد: " + (settings.siteDnsName == "" ? "سیستم" : settings.siteDnsName) + " (" + settings.siteDnsIps + ") — برنامه دوباره باز می‌شود.");
+            RestartApp();
+        }
+
+        void RestartApp()
+        {
+            try
+            {
+                string exe = Process.GetCurrentProcess().MainModule.FileName;
+                Process p = new Process();
+                p.StartInfo.FileName = "cmd.exe";
+                p.StartInfo.Arguments = "/c timeout /t 2 /nobreak >nul & start \"\" \"" + exe + "\"";
+                p.StartInfo.CreateNoWindow = true;
+                p.StartInfo.UseShellExecute = false;
+                p.Start();
+            }
+            catch (Exception ex) { Log.Write("err", "راه‌اندازی دوباره: " + ex.Message); }
+            try { Application.Current.Shutdown(); } catch (Exception) { Close(); }
+        }
+
         void OnSiteNewWindow(object sender, CoreWebView2NewWindowRequestedEventArgs e)
         {
             // تنها جایی که کاربر صفحهٔ بیرونی را می‌بیند (مثلاً «ورود از طریق دولت من»): پنجرهٔ جدا
@@ -226,6 +280,8 @@ namespace SabtMan
                         settings.Save();
                         break;
                     case "logout": Logout(); break;
+                    case "setDns": SetDns(Str(msg, "name"), Str(msg, "ips")); break;
+                    case "reloadSite": try { site.CoreWebView2.Navigate(settings.siteUrl); Log.Write("info", "تلاش دوباره برای اتصال به سامانه."); } catch (Exception rex) { Log.Write("warn", "تلاش دوباره: " + rex.Message); } break;
                     case "log": Log.Write(Str(msg, "level") == "" ? "info" : Str(msg, "level"), Str(msg, "text")); break;
                 }
             }
@@ -379,6 +435,7 @@ namespace SabtMan
             }
             Dictionary<string, object> msg = new Dictionary<string, object>();
             msg["type"] = "state"; msg["dest"] = settings.dest; msg["mode"] = settings.mode; msg["service"] = svc;
+            msg["dnsName"] = settings.siteDnsName; msg["dnsIps"] = settings.siteDnsIps; msg["hostIp"] = settings.siteHostIp;
             PostToUi(json.Serialize(msg));
         }
 

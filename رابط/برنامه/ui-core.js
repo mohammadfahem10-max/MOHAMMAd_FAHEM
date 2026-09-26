@@ -145,5 +145,17 @@
 
   function debounce(fn, ms) { let t; return (...a) => { clearTimeout(t); t = setTimeout(() => fn(...a), ms); }; }
 
-  S.ui = Object.assign(S.ui || {}, { icon, ICONS, el, $, $$, toast, badge, openDrawer, closeDrawer, openMenu, closeMenu, themes, applyTheme, kvRows, timelineHtml, debounce, esc, n });
+  /* DNSهای پرکاربرد برای دسترسی به سایت‌های داخلی وقتی سامانه بلاک می‌کند (فقط حل نام؛ هیچ محافظی دور زده نمی‌شود) */
+  const DNS_PRESETS = [
+    { name: 'DNS سیستم (پیش‌فرض)', ips: '' },
+    { name: 'شکن (Shecan)', ips: '178.22.122.100, 185.51.200.2' },
+    { name: '۴۰۳.online', ips: '10.202.10.202, 10.202.10.102' },
+    { name: 'الکترو (Electro)', ips: '78.157.42.100, 78.157.42.101' },
+    { name: 'بگذر (Begzar)', ips: '185.55.226.26, 185.55.225.25' },
+    { name: 'رادار گیم (Radar)', ips: '10.202.10.10, 10.202.10.11' },
+    { name: 'گوگل (Google)', ips: '8.8.8.8, 8.8.4.4' },
+    { name: 'کلاد‌فلر (Cloudflare)', ips: '1.1.1.1, 1.0.0.1' },
+  ];
+
+  S.ui = Object.assign(S.ui || {}, { icon, ICONS, el, $, $$, toast, badge, openDrawer, closeDrawer, openMenu, closeMenu, themes, applyTheme, kvRows, timelineHtml, debounce, esc, n, DNS_PRESETS });
 })(window.SabtMan = window.SabtMan || {});

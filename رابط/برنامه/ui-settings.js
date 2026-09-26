@@ -33,6 +33,13 @@
           <div class="set-row"><div>داده‌ها<div class="d">هیچ داده‌ای به بیرون فرستاده نمی‌شود؛ فقط روی دیسک خود شما</div></div><span class="badge ok">محلی</span></div>
           <div class="set-row"><div>نقشهٔ بخش‌ها<div class="d">فهرست درخواست‌ها و نام فیلدها بی مقدار (برای دقیق‌تر شدن نگاشت)</div></div><button class="btn sm" data-act="map">${icon('map')}ذخیرهٔ نقشه</button></div>
         </div>
+        <div class="card"><h2>${icon('map')}اتصال به سامانه (تغییر آی‌پی / DNS)</h2>
+          <div class="muted" style="font-size:.84em;margin-bottom:8px">اگر سامانه اتصال شما را بست («بلاک»)، با عوض‌کردن DNS، نام <code class="path">my.ssaa.ir</code> به آی‌پی دیگری حل می‌شود و اغلب دوباره باز می‌شود. برای اعمال، برنامه یک بار بسته و باز می‌شود.</div>
+          <div class="set-row"><div>وضعیت اتصال<div class="d" data-role="connstate">${sh.hostIp ? 'آی‌پی سامانه: ' + esc(sh.hostIp) : 'با DNS سیستم'}</div></div><span class="badge ${(S.app.state.siteState && S.app.state.siteState.page && S.app.state.siteState.page !== 'closed') ? 'ok' : 'warn'}">${(S.app.state.siteState && S.app.state.siteState.page && S.app.state.siteState.page !== 'closed') ? 'برقرار' : 'برقرار نیست'}</span></div>
+          <label class="lbl" style="margin-top:6px">انتخاب DNS<select class="input" data-role="dnssel">${UI.DNS_PRESETS.map((d) => `<option value="${esc(d.ips)}" ${(sh.dnsIps || '') === d.ips ? 'selected' : ''}>${esc(d.name)}${d.ips ? ' — ' + esc(d.ips) : ''}</option>`).join('')}<option value="__custom" ${sh.dnsIps && !UI.DNS_PRESETS.some((d) => d.ips === sh.dnsIps) ? 'selected' : ''}>دلخواه…</option></select></label>
+          <label class="lbl" style="margin-top:6px" data-role="customwrap" ${sh.dnsIps && !UI.DNS_PRESETS.some((d) => d.ips === sh.dnsIps) ? '' : 'hidden'}>آی‌پی‌های DNS (با کاما)<input class="input sm ltr" data-role="dnsips" placeholder="8.8.8.8, 8.8.4.4" value="${esc(sh.dnsIps && !UI.DNS_PRESETS.some((d) => d.ips === sh.dnsIps) ? sh.dnsIps : '')}"></label>
+          <div class="toolbar" style="margin-top:10px"><button class="btn pri" data-act="applydns">${icon('refresh')}اعمال DNS و راه‌اندازی دوباره</button><button class="btn" data-act="retryconn">${icon('refresh')}تلاش دوباره برای اتصال</button></div>
+        </div>
         <div class="card"><h2>${icon('sun')}نوشتار و حرکت</h2>
           <div class="set-row"><div>اندازهٔ نوشته<div class="d">${n(s.fontSize || 17)} پیکسل</div></div><input type="range" data-k="fontSize" min="13" max="22" value="${s.fontSize || 17}" style="width:160px"></div>
           <div class="set-row"><div>حرکت پس‌زمینه<div class="d">جریان آرام رنگ‌ها</div></div><span class="switch ${s.motion === false ? '' : 'on'}" data-sw="motion"></span></div>
@@ -53,6 +60,7 @@
       toast('ذخیره شد.');
     });
     page.addEventListener('input', (e) => { if (e.target.dataset.k === 'fontSize') { document.documentElement.style.setProperty('--fs', e.target.value + 'px'); } });
+    page.addEventListener('change', (e) => { if (e.target.dataset.role === 'dnssel') { const cw = page.querySelector('[data-role=customwrap]'); if (cw) cw.hidden = e.target.value !== '__custom'; } });
     page.addEventListener('click', async (e) => {
       const th = e.target.closest('[data-theme]'); if (th) { st().setSetting('theme', th.dataset.theme); S.app.applyAppearance(); page.querySelectorAll('.theme-sw').forEach((x) => x.classList.toggle('on', x === th)); return; }
       const sw = e.target.closest('[data-sw]');
@@ -64,6 +72,16 @@
         return;
       }
       const a = e.target.closest('[data-act]'); if (!a) return;
+      if (a.dataset.act === 'applydns') {
+        const sel = page.querySelector('[data-role=dnssel]'); let ips = sel.value; let name = sel.options[sel.selectedIndex].textContent;
+        if (ips === '__custom') { ips = U.enDigits((page.querySelector('[data-role=dnsips]').value || '').trim()); name = 'دلخواه'; }
+        else name = (UI.DNS_PRESETS.find((d) => d.ips === ips) || { name: 'DNS سیستم' }).name;
+        if (ips && !/^[0-9.,;\s]+$/.test(ips)) return toast('آی‌پی DNS نامعتبر است.', 'err');
+        toast('DNS «' + name + '» اعمال می‌شود؛ برنامه یک لحظه بسته و باز می‌شود…');
+        S.bridge.setDns(name, ips);
+        return;
+      }
+      if (a.dataset.act === 'retryconn') { S.bridge.reloadSite(); toast('در حال تلاش دوباره برای اتصال به سامانه…'); return; }
       if (a.dataset.act === 'browse') S.bridge.browseDest();
       else if (a.dataset.act === 'open') S.bridge.openDest();
       else if (a.dataset.act === 'map') { await S.hook.refreshDiscovery(); S.exporter.downloadText(U.safeFileName(`نقشهٔ بخش‌ها ${U.formatSystemDate().replace(/[:\/]/g, '-')}.json`), JSON.stringify(S.hook.exportDiscovery(), null, 2), 'application/json'); toast('نقشهٔ بخش‌ها (بدون داده) در «خروجی‌های دیگر» ذخیره شد.'); }

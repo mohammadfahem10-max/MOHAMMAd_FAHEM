@@ -358,7 +358,7 @@
      (۴۲۹/۴۰۳/صفحهٔ محافظ/کندی) فوراً عقب می‌کشد (backoff) و دوباره آرام بالا می‌آید. هیچ محافظی دور زده نمی‌شود. */
 
   const queue = { items: [], running: false, paused: false, done: 0, failed: 0, current: null, listeners: [], workers: 0,
-    rate: { delayMs: 800, concurrency: 1, streak: 0, backoffUntil: 0, minDelay: 150, maxDelay: 15000, maxConcurrency: 3, lastSignal: '' } };
+    rate: { delayMs: 900, concurrency: 1, streak: 0, backoffUntil: 0, minDelay: 400, maxDelay: 30000, maxConcurrency: 2, lastSignal: '', netFails: 0 } };
 
   function qNotify() { for (const cb of queue.listeners) { try { cb(queue); } catch (e) { /* ادامه */ } } }
 
@@ -366,23 +366,30 @@
     const r = queue.rate;
     r.streak++;
     if (elapsedMs > 6000) { r.delayMs = Math.min(r.maxDelay, Math.round(r.delayMs * 1.5)); r.streak = 0; r.lastSignal = 'کندی'; return; }
-    if (r.streak >= 5) { r.streak = 0; r.delayMs = Math.max(r.minDelay, Math.round(r.delayMs * 0.75)); if (r.delayMs <= 400 && r.concurrency < r.maxConcurrency) r.concurrency++; r.lastSignal = ''; }
+    r.netFails = 0; if (r.streak >= 8) { r.streak = 0; r.delayMs = Math.max(r.minDelay, Math.round(r.delayMs * 0.85)); if (r.delayMs <= r.minDelay + 50 && r.concurrency < r.maxConcurrency) r.concurrency++; r.lastSignal = ''; }
   }
   function rateBackoff(signal) {
     const r = queue.rate;
     r.streak = 0;
     r.concurrency = 1;
-    r.delayMs = Math.min(r.maxDelay, Math.max(r.delayMs * 2.5, 2000));
-    r.backoffUntil = Date.now() + (signal === 'محافظ' ? 60000 : 20000);
+    r.delayMs = Math.min(r.maxDelay, Math.max(r.delayMs * 2.5, 3000));
+    const hard = signal === 'قطع اتصال' || signal === 'محافظ';
+    if (signal === 'قطع اتصال') r.netFails++;
+    r.backoffUntil = Date.now() + (signal === 'قطع اتصال' ? 90000 : hard ? 60000 : 20000);
     r.lastSignal = signal;
-    store().addLog('warn', `نشانهٔ فشار سایت (${signal}) — سرعت کم شد و ${U.faDigits(Math.round((r.backoffUntil - Date.now()) / 1000))} ثانیه صبر می‌کنیم.`);
+    store().addLog('warn', `نشانهٔ فشار سامانه (${signal}) — سرعت کم شد و ${U.faDigits(Math.round((r.backoffUntil - Date.now()) / 1000))} ثانیه صبر می‌کنیم.`);
+    // بلاک پیاپیِ آی‌پی: صف نگه داشته می‌شود و به رابط خبر داده می‌شود تا پیشنهاد تغییر DNS/آی‌پی بدهد
+    if (r.netFails >= 3) { queue.paused = true; store().addLog('err', 'سامانه اتصال را پیاپی می‌بندد؛ احتمالاً آی‌پی شما موقتاً بلاک شده است. از «تنظیمات ← اتصال به سامانه» DNS/آی‌پی را عوض کنید یا کمی بعد دوباره تلاش کنید.'); store().notify('blocked', { reason: 'net' }); }
   }
   function isPressure(e) {
     if (!e) return null;
     if (e.status === 429) return '۴۲۹';
     if (e.status === 403) return '۴۰۳';
     if (e.status === 503) return '۵۰۳';
+    if (e.code === 'SESSION_EXPIRED') return null;
     if (/محافظ|captcha|blocked|too many|rate/i.test(String(e.message))) return 'محافظ';
+    // قطع اتصال/خطای شبکه (TLS بسته شد، Failed to fetch، aborted): نشانهٔ بلاک‌شدن آی‌پی توسط سامانه
+    if (e.status === undefined && /failed to fetch|networkerror|load failed|aborted|connection|شبکه|اتصال|ssl|tls/i.test(String(e && e.message))) return 'قطع اتصال';
     return null;
   }
 

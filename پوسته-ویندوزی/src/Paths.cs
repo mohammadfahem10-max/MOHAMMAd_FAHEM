@@ -76,6 +76,9 @@ namespace SabtMan
         public string mode = "pdf+text";
         public int port = 0;
         public int debugPort = 0;
+        public string siteDnsName = "";
+        public string siteDnsIps = "";
+        public string siteHostIp = "";
         public bool panelOpen = false;
         public double winWidth = 1400;
         public double winHeight = 900;
@@ -101,6 +104,9 @@ namespace SabtMan
                         if (d.TryGetValue("mode", out v) && v != null) s.mode = v.ToString();
                         if (d.TryGetValue("port", out v) && v != null) s.port = Convert.ToInt32(v);
                         if (d.TryGetValue("debugPort", out v) && v != null) s.debugPort = Convert.ToInt32(v);
+                        if (d.TryGetValue("siteDnsName", out v) && v != null) s.siteDnsName = v.ToString();
+                        if (d.TryGetValue("siteDnsIps", out v) && v != null) s.siteDnsIps = v.ToString();
+                        if (d.TryGetValue("siteHostIp", out v) && v != null) s.siteHostIp = v.ToString();
                         if (d.TryGetValue("panelOpen", out v) && v != null) s.panelOpen = Convert.ToBoolean(v);
                         if (d.TryGetValue("winWidth", out v) && v != null) s.winWidth = Convert.ToDouble(v);
                         if (d.TryGetValue("winHeight", out v) && v != null) s.winHeight = Convert.ToDouble(v);
@@ -121,7 +127,7 @@ namespace SabtMan
                 Directory.CreateDirectory(Paths.DataDir);
                 Dictionary<string, object> d = new Dictionary<string, object>();
                 d["dest"] = dest; d["siteUrl"] = siteUrl; d["nodePath"] = nodePath; d["browserPath"] = browserPath; d["mode"] = mode;
-                d["port"] = port; d["debugPort"] = debugPort; d["panelOpen"] = panelOpen; d["winWidth"] = winWidth; d["winHeight"] = winHeight; d["winLeft"] = winLeft; d["winTop"] = winTop;
+                d["port"] = port; d["debugPort"] = debugPort; d["siteDnsName"] = siteDnsName; d["siteDnsIps"] = siteDnsIps; d["siteHostIp"] = siteHostIp; d["panelOpen"] = panelOpen; d["winWidth"] = winWidth; d["winHeight"] = winHeight; d["winLeft"] = winLeft; d["winTop"] = winTop;
                 File.WriteAllText(Paths.SettingsFile, new JavaScriptSerializer().Serialize(d), Encoding.UTF8);
             }
             catch (Exception ex) { Log.Write("warn", "ذخیرهٔ تنظیمات: " + ex.Message); }
