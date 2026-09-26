@@ -173,6 +173,32 @@ def assemble_line(paws: list[PawOut]) -> str:
     return normalize("".join(out))
 
 
+def _is_latin_label(label: str | None) -> bool:
+    return bool(label) and all(c.isascii() and c.isalpha() for c in label)
+
+
+def _is_persian_label(label: str | None) -> bool:
+    return bool(label) and any("\u0600" <= c <= "\u06ff" for c in label)
+
+
+def _enforce_script_consistency(paws: list[PawOut], counts: dict) -> None:
+    """A Latin-letter label glued to Persian letters inside one word is a
+    look-alike error (l vs ا, o vs ه): demote it to unknown."""
+    for k, p in enumerate(paws):
+        if p.status not in ("ok", "ambiguous") or not _is_latin_label(p.label):
+            continue
+        prev_p = paws[k - 1] if k > 0 else None
+        next_p = paws[k + 1] if k + 1 < len(paws) else None
+        touching = [q for q in (prev_p, next_p) if q is not None and q.word_index == p.word_index]
+        if touching and all(_is_persian_label(q.label) or q.status == "unknown" for q in touching) \
+                and any(_is_persian_label(q.label) for q in touching):
+            counts[p.status] -= 1
+            counts["unknown"] += 1
+            p.alt = p.label
+            p.label = None
+            p.status = "unknown"
+
+
 # ----------------------------------------------------------------- pipeline
 class Processor:
     def __init__(self, libraries_root: str, profile: str | None, workdir: str, dpi: int = 300,
@@ -219,15 +245,28 @@ class Processor:
                        numbers=[asdict(n) for n in find_numbers(res.text)])
 
     # -- image page
+    TARGET_XHEIGHT = 34     # px; what 300-dpi renders of 11-12 pt text give
+
     def _image_page(self, i: int, bgr: np.ndarray) -> PageOut:
         pre = preprocess(bgr, self.dpi, fix_orientation=self.fix_orientation)
         wg = self.library.meta.get("word_gap_ratio") if self.library else None
         lines = segment_page(pre.binary, self.dpi, wg)
+        upscale = 1.0
+        if lines:
+            xh = float(np.median([l.x_height for l in lines]))
+            if 0 < xh < 0.7 * self.TARGET_XHEIGHT:
+                # low-resolution photo / screenshot: enlarge so glyphs have the
+                # size the templates were made at, then redo everything
+                upscale = min(4.0, self.TARGET_XHEIGHT / xh)
+                big = cv2.resize(bgr, None, fx=upscale, fy=upscale, interpolation=cv2.INTER_CUBIC)
+                pre = preprocess(big, self.dpi, fix_orientation=self.fix_orientation)
+                lines = segment_page(pre.binary, self.dpi, wg)
         h, w = pre.binary.shape
         img_path = self._save_display(i, pre.gray)
         hw = handwriting_score(lines, pre.binary)
         stats = {"skew_deg": round(pre.angle, 2), "orientation": pre.orientation, "lines": len(lines),
-                 "paws": sum(len(l.paws) for l in lines), "handwriting_score": round(hw, 3)}
+                 "paws": sum(len(l.paws) for l in lines), "handwriting_score": round(hw, 3),
+                 "upscale": round(upscale, 2)}
         if not lines:
             return PageOut(i, "empty", "", [], img_path, w, h, stats)
         has_lib = self.library is not None and bool(self.library.templates)
@@ -267,6 +306,7 @@ class Processor:
                 paw_outs.append(PawOut(box=(paw.x0, paw.y0, paw.x1, paw.y1), label=label, score=round(m.score, 4),
                                        status=status, word_index=paw.word_index, template_id=m.template_id,
                                        alt=m.second_label, crop=crop))
+            _enforce_script_consistency(paw_outs, counts)
             text = assemble_line(paw_outs)
             box = (min(p.x0 for p in ln.paws), ln.y0, max(p.x1 for p in ln.paws), ln.y1)
             outs.append(LineOut(box=box, text=text, paws=paw_outs, x_height=ln.x_height, baseline=ln.baseline))
