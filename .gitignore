@@ -1,0 +1,7 @@
+dist/
+node_modules/
+بک‌اند-فایل/تنظیمات.json
+بک‌اند-فایل/گزارش-کار.log
+*.log
+.DS_Store
+Thumbs.db

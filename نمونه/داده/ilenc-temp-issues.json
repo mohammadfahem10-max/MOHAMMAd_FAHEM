@@ -1,0 +1,8 @@
+{
+  "Success": true,
+  "Message": "",
+  "Data": [
+    { "TempId": 440001, "TrackingCode": "۸۸۷۷۶۶۵۵", "RequestType": "شناسهٔ ثبت موقت ملک", "RequestDate": "۱۴۰۳/۰۵/۱۲-۱۰:۱۰", "Status": "در انتظار بررسی", "Unit": "واحد ثبتی نمونه ۱" },
+    { "TempId": 440002, "TrackingCode": "۷۷۶۶۵۵۴۴", "RequestType": "شناسهٔ ثبت موقت سند", "RequestDate": "۱۴۰۳/۰۷/۰۱-۱۵:۲۰", "Status": "تایید شده", "Unit": "واحد ثبتی نمونه ۲" }
+  ]
+}

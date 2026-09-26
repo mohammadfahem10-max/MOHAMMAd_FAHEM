@@ -1,0 +1,14 @@
+{
+  "name": "sabt-man",
+  "version": "0.1.0",
+  "private": true,
+  "description": "اپلیکیشن «ثبت من» — رابط تزریقی + سرویس فایل محلی (بدون وابستگی؛ فقط ماژول‌های داخلی Node)",
+  "scripts": {
+    "build": "node ابزار/build.js",
+    "test": "node --test آزمون/core.test.js آزمون/service.test.js",
+    "e2e": "node ابزار/build.js && node آزمون/e2e-overlay.js && node آزمون/e2e-shell-bridge.js && node آزمون/e2e-app.js",
+    "mock": "node ابزار/build.js && node نمونه/serve.js",
+    "service": "node بک‌اند-فایل/server.js"
+  },
+  "engines": { "node": ">=18" }
+}

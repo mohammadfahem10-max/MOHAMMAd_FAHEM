@@ -1,0 +1,9 @@
+{
+  "success": true,
+  "message": "",
+  "data": [
+    { "estateId": 330001, "plaqueMain": "۱۲۳", "plaqueSub": "۴۵", "section": "۳", "district": "منطقهٔ نمونه", "address": "نشانی نمونهٔ یک", "area": "۱۲۵٫۵", "estateType": "آپارتمان", "ownershipType": "شش‌دانگ", "deedStatus": "تک‌برگ صادر شده", "deedNumber": "۹۸۷۶۵۴", "issueDate": "۱۴۰۱/۰۶/۱۰", "deedImageUrl": "/estate/deedimage/330001" },
+    { "estateId": 330002, "plaqueMain": "۲۲۰", "plaqueSub": "۷", "section": "۳", "district": "منطقهٔ نمونه", "address": "نشانی نمونهٔ دو", "area": "۸۰", "estateType": "زمین", "ownershipType": "مشاع", "deedStatus": "در جریان صدور", "deedNumber": "", "issueDate": "", "deedImageUrl": "" },
+    { "estateId": 330003, "plaqueMain": "۴۱", "plaqueSub": "۱۲", "section": "۵", "district": "منطقهٔ نمونهٔ دو", "address": "نشانی نمونهٔ سه", "area": "۲۱۰", "estateType": "آپارتمان", "ownershipType": "شش‌دانگ", "deedStatus": "تک‌برگ صادر شده", "deedNumber": "۱۱۲۲۳۳", "issueDate": "۱۳۹۹/۰۳/۰۱", "deedImageUrl": "/estate/deedimage/330003" }
+  ]
+}

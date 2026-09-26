@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<title>سایت نمونه — شبیه‌ساز «ثبت من» (فقط برای آزمون)</title>
+<style>
+  body { font-family: Tahoma, sans-serif; margin: 0; background: #f4f4f4; color: #222; }
+  header { background: #2b3a55; color: #fff; padding: 10px 16px; }
+  nav a, nav button { margin: 4px; padding: 6px 12px; cursor: pointer; display: inline-block; color: #123; background: #dde; border: 1px solid #99a; text-decoration: none; }
+  main { padding: 16px; }
+  table { border-collapse: collapse; background: #fff; width: 100%; }
+  th, td { border: 1px solid #ccc; padding: 6px 8px; font-size: 13px; }
+  .row-btn { font-size: 12px; margin-left: 4px; }
+  .pager button { margin: 6px 4px; }
+</style>
+<script src="/__overlay/sabt-man.bundle.js"></script>
+</head>
+<body>
+<header><b>سایت نمونه</b> — شبیه‌ساز SPA «ثبت من» برای آزمون رابط (هیچ دادهٔ واقعی نیست)</header>
+<nav>
+  <a href="/portal/mechLetter/status-viwe" data-sec="mech">وضعیت مکاتبات</a>
+  <a href="/portal/ssar/my-documents" data-sec="ssar">اسناد رسمی من</a>
+  <a href="/portal/estate/list-estate" data-sec="estate">املاک من</a>
+  <a href="/portal/ilenc/temp-issues" data-sec="ilenc">شناسه‌های ثبت موقت</a>
+  <a href="#" data-sec="profile">پروفایل</a>
+  <a href="#" data-sec="sset">وقایع ازدواج و طلاق من</a>
+  <a href="#" data-sec="companies">شرکت‌های من</a>
+  <button data-sec="expire" style="margin-right:30px">شبیه‌سازی پایان نشست</button>
+  <button data-sec="login">ورود دوباره</button>
+</nav>
+<main id="main"><p>یک بخش را انتخاب کنید.</p></main>
+<script>
+  // درخواست‌ها عمداً با fetch و XHR هر دو انجام می‌شوند تا هر دو قلاب آزموده شوند.
+  const post = (url, body) => fetch(url, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(body || {}) }).then((r) => r.json());
+  const xhrPost = (url, body) => new Promise((resolve, reject) => {
+    const x = new XMLHttpRequest(); x.open('POST', url); x.setRequestHeader('content-type', 'application/json');
+    x.onload = () => { try { resolve(JSON.parse(x.responseText)); } catch (e) { reject(e); } }; x.onerror = reject; x.send(JSON.stringify(body || {}));
+  });
+  const main = document.getElementById('main');
+  const rows = (list, actions) => {
+    if (!list || !list.length) return '<p>خالی</p>';
+    const cols = Object.keys(list[0]).filter((k) => typeof list[0][k] !== 'object');
+    return '<table><thead><tr>' + cols.map((c) => `<th>${c}</th>`).join('') + (actions ? '<th>عملیات</th>' : '') + '</tr></thead><tbody>' +
+      list.map((r) => '<tr>' + cols.map((c) => `<td>${r[c]}</td>`).join('') + (actions ? `<td>${actions(r)}</td>` : '') + '</tr>').join('') + '</tbody></table>';
+  };
+  let mechPage = 1;
+  async function loadMech(page) {
+    mechPage = page || 1;
+    const res = await post('/mechLetter/GetStatusList', { pageIndex: mechPage, pageSize: 4 });
+    const pages = Math.ceil(res.Data.TotalCount / res.Data.PageSize);
+    main.innerHTML = '<h3>وضعیت مکاتبات</h3>' + rows(res.Data.Items, (r) => `<button class="row-btn" data-rep="${r.Id}">گزارشات</button><button class="row-btn" data-att="${r.Id}">پیوست‌ها</button>`) +
+      `<div class="pager">صفحهٔ ${mechPage} از ${pages} <button data-page="${mechPage - 1}" ${mechPage <= 1 ? 'disabled' : ''}>قبلی</button><button data-page="${mechPage + 1}" ${mechPage >= pages ? 'disabled' : ''}>بعدی</button></div><div id="sub"></div>`;
+  }
+  async function show(sec) {
+    fetch('/i18n/fa.json'); // پارازیت: نباید بخش شود
+    if (sec === 'mech') await loadMech(1);
+    else if (sec === 'ssar') { const res = await xhrPost('/ssar/getalldocuments', {}); main.innerHTML = '<h3>اسناد رسمی من</h3>' + rows(res.Data.Documents, (r) => `<button class="row-btn" data-text="${r.DocumentId}">متن سند</button>`); }
+    else if (sec === 'estate') { const res = await post('/estate/GetEstatePersonList', { personType: 1 }); main.innerHTML = '<h3>املاک من</h3>' + rows(res.data, (r) => r.deedImageUrl ? `<button class="row-btn" data-img="${r.deedImageUrl}">سند تک‌برگ</button>` : ''); }
+    else if (sec === 'ilenc') { const res = await post('/ilenc/GetTempIssues', {}); main.innerHTML = '<h3>شناسه‌های ثبت موقت</h3>' + rows(res.Data); }
+    else if (sec === 'profile') { const res = await post('/profile/GetInfo', {}); main.innerHTML = '<h3>پروفایل</h3><pre>' + JSON.stringify(res.data, null, 2) + '</pre>'; }
+    else if (sec === 'sset' || sec === 'companies') { main.innerHTML = '<h3>' + sec + '</h3><p>این ماژول در سایت نمونه داده ندارد.</p>'; }
+  }
+  const routes = { '/portal/mechLetter/status-viwe': 'mech', '/portal/ssar/my-documents': 'ssar', '/portal/estate/list-estate': 'estate', '/portal/ilenc/temp-issues': 'ilenc' };
+  document.querySelector('nav').addEventListener('click', async (e) => {
+    const b = e.target.closest('[data-sec]'); if (!b) return;
+    e.preventDefault();
+    const sec = b.dataset.sec;
+    if (sec === 'expire') { await post('/__mock/expire'); await post('/mechLetter/GetStatusList', {}).catch(() => {}); return; }
+    if (sec === 'login') { await post('/account/login', { user: 'x' }); await loadMech(1); return; }
+    if (b.getAttribute('href') && b.getAttribute('href') !== '#') history.pushState({}, '', b.getAttribute('href'));
+    show(sec);
+  });
+  window.addEventListener('popstate', () => { const sec = routes[location.pathname]; if (sec) show(sec); });
+  main.addEventListener('click', async (e) => {
+    const t = e.target;
+    if (t.dataset.page) return loadMech(Number(t.dataset.page));
+    if (t.dataset.rep) { const res = await post('/mechLetter/GetReports', { letterId: Number(t.dataset.rep) }); document.getElementById('sub').innerHTML = '<h4>گزارشات</h4>' + rows(res.Data) + '<button data-close="1">بستن</button>'; }
+    if (t.dataset.att) {
+      const res = await post('/mechLetter/GetAttachments', { letterId: Number(t.dataset.att) });
+      document.getElementById('sub').innerHTML = '<h4>پیوست‌ها</h4>' + rows(res.Data, (r) => `<button class="row-btn" data-file="${r.FileId}">دانلود</button>`) + '<button data-close="1">بستن</button>';
+    }
+    if (t.dataset.close) document.getElementById('sub').innerHTML = '';
+    if (t.dataset.file) { const r = await fetch('/mechLetter/DownloadFile?fileId=' + t.dataset.file); await r.blob(); }
+    if (t.dataset.text) { const res = await post('/ssar/getdocumenttext', { documentId: Number(t.dataset.text) }); alert(res.Data.Text); }
+    if (t.dataset.img) { const r = await fetch(t.dataset.img); await r.blob(); }
+  });
+  const initial = routes[location.pathname];
+  if (initial) show(initial);
+</script>
+</body>
+</html>
