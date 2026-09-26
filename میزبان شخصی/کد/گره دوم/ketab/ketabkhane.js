@@ -8,6 +8,11 @@
 const fs = require('fs'), path = require('path'), https = require('https'), http = require('http'), crypto = require('crypto');
 
 let S = null, H = null, DB = null, DB_ERR = '';
+/* ۱۴۰۵/۰۷/۰۵ دستور کار «درمان گفتگو»: رتبهٔ قانون‌های مادر، بودجهٔ زمان جست‌وجو، حافظهٔ نهان، مکث نمایه هنگام گفتگو */
+const RT = require('./rotbe.js');
+const JOST = { akharin: 0, dar: 0, n: 0 };
+const KESH_NATIJE = new RT.Kesh(600000, 200), KESH_BORDAR = new RT.Kesh(600000, 300);
+const MOKS_NAMAYE = 90000;   /* تا ۹۰ ثانیه پس از آخرین جست‌وجو، ساخت نمایه دستهٔ تازه نمی‌فرستد تا بردار پرسش پشت صف نماند */
 const NASKHE = '1.1.0';   /* ۱۴۰۵/۰۷/۰۱: تکه‌بندی ماده‌های وسط سطر و پس از ZWNJ + یافتن مستقیم «مادهٔ N قانون X» */
 const UA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) naghshe-ketabkhane/1.0 (personal legal library; polite crawler)';
 const PORT_EMB = 8793;
@@ -605,8 +610,9 @@ async function g2Amade(){
   G2.ok = !!(r && r.json && r.json.gere === 'mizban-gere2' && r.json.emb);
   return G2.ok;
 }
-async function g2Bordarha(matnha){
-  const r = await g2Req(G2.ip, '/bordar', { model: 'danesh', input: matnha }, 900000);
+async function g2Bordarha(matnha, ms){
+  const r = await g2Req(G2.ip, '/bordar', { model: 'danesh', input: matnha }, ms || 900000);
+  if (!r && ms){ throw new Error('بردار پرسش در ' + Math.round(ms / 1000) + ' ثانیه نرسید'); }   /* مهلت پرسش گفتگو؛ گره را «از دسترس بیرون» نمی‌شمارد */
   if (!r || r.status !== 200 || !r.json || !Array.isArray(r.json.data)){ G2.at = 0; G2.ok = false; throw new Error('گره دوم بردار نداد (' + (r ? r.status : 'بی‌پاسخ') + ')'); }
   const arr = r.json.data.sort((a, b) => a.index - b.index).map(x => x.embedding);
   if (arr.length !== matnha.length) throw new Error('شمار بردارهای گره دوم ناهمخوان است');
@@ -617,6 +623,7 @@ const G2_RESHTE = 3;
 async function halgheGere(k){
   k = k || 0;
   if (malekK()){ G2.timers[k] = setTimeout(() => halgheGere(k), 30000); return; }
+  if (JOST.dar || Date.now() - JOST.akharin < MOKS_NAMAYE){ G2.dar = false; G2.timers[k] = setTimeout(() => halgheGere(k), 5000); return; }   /* گفتگو اولویت کارفرماست */
   let bad = 30000;
   try {
     if (await g2Amade()){
@@ -738,7 +745,7 @@ async function vkSakht(){
         const v = new Float32Array(u.buffer.slice(u.byteOffset, u.byteOffset + u.length)); let m = 0; for (let i = 0; i < dim; i++){ const a = Math.abs(v[i]); if (a > m) m = a; }
         const k = m ? 127 / m : 0, o = n * dim; for (let i = 0; i < dim; i++) q[o + i] = Math.round(v[i] * k); ids[n] = r.id; sc[n] = m / 127; n++;
       }
-      await khab(5);
+      await khab(JOST.dar ? 60 : 5);
     }
     Object.assign(VK, { n, dim, ids, q, sc, t: Date.now() }); log('نمایهٔ معنایی در حافظه: ' + n + ' بردار');
   } catch(e){ log('نمایهٔ معنایی در حافظه: ' + e.message); } finally { VK.dar = false; }
@@ -998,7 +1005,7 @@ function madeDagigh(d, q){
 /* نام قانونی که در پرسش آمده (کامل یا نام رایج کوتاه) ← جست‌وجوی واژه‌ای درون همان قانون هم امتیاز می‌گیرد */
 const ONVANHA = { at: 0, list: [] };
 function qanunhayePorsesh(d, q){
-  if (Date.now() - ONVANHA.at > 600000){ ONVANHA.list = d.prepare('SELECT id, onvan, tarikh FROM qanun').all().map(r => ({ id: r.id, on: saf(r.onvan), tarikh: r.tarikh || '' })).filter(r => r.on.split(' ').length >= 2); ONVANHA.at = Date.now(); }
+  onvanha(d);
   const qs0 = saf(q), qs = ' ' + qs0 + ' ';
   const alias = NAM_KOOTAH.filter(([re]) => re.test(qs0)).map(([, n]) => saf(n));
   let best = [], bl = 0;
@@ -1012,12 +1019,50 @@ function qanunhayePorsesh(d, q){
 /* آیا قانونی با همین عنوان (یکسان‌شده) در کتابخانه هست؟ — برای پایگاه دانش تا متن قانون را از ویکی‌نبشته دوباره نخواند */
 const HAST = { at: 0, set: new Set() };
 function hast(onvan){ const d = db(); if (!d) return false; if (Date.now() - HAST.at > 600000){ HAST.set = new Set(d.prepare('SELECT onvan FROM qanun').all().map(r => saf(r.onvan))); HAST.at = Date.now(); } return HAST.set.has(saf(onvan)); }
-async function jostojoo(q, had){
+/* فهرست عنوان‌ها (یکسان‌شده) — ده دقیقه نگه داشته می‌شود؛ در آغاز کار هم در پس‌زمینه ساخته می‌شود تا نخستین پرسش منتظر نماند */
+function onvanha(d){
+  if (Date.now() - ONVANHA.at > 600000 || !ONVANHA.list.length){ ONVANHA.list = d.prepare('SELECT id, onvan, tarikh FROM qanun').all().map(r => ({ id: r.id, on: saf(r.onvan), k: RT.kelidNam(r.onvan), tarikh: r.tarikh || '' })).filter(r => r.on.split(' ').length >= 2); ONVANHA.at = Date.now(); }
+  return ONVANHA.list;
+}
+/* نام قانون‌هایی که بازنویسی پرسش آورده (واژه‌نامهٔ محاوره ← حقوقی) ← شناسهٔ خود همان قانون‌ها (نه اصلاحیه‌ها)، تازه‌ترین اول */
+function qanunhayeNam(d, namha){
+  const L = onvanha(d); const out = [];
+  for (const nam of (Array.isArray(namha) ? namha : []).slice(0, 4)){
+    const k = RT.kelidNam(nam); if (k.length < 6) continue;
+    const c = [];
+    for (const r of L){ if (r.k === k) c.push({ r, e: 3 }); else if (r.k.startsWith(k) && /^(مصوب|\d|با|ایران|جمهوری)/.test(r.k.slice(k.length))) c.push({ r, e: 2 }); }
+    c.sort((a, b) => (b.e - a.e) || (b.r.tarikh > a.r.tarikh ? 1 : b.r.tarikh < a.r.tarikh ? -1 : 0));
+    for (const x of c.slice(0, 2)) if (!out.includes(x.r.id)) out.push(x.r.id);
+  }
+  return out.slice(0, 6);
+}
+/* جست‌وجو (واژه‌ای + معنایی) — ۱۴۰۵/۰۷/۰۵:
+   opt.ebarat/opt.vazheha: بازنویسی پرسش (پرسش FTS از این‌ها ساخته می‌شود، نه از متن خام محاوره‌ای)
+   opt.qanunha: نام قانون‌های محتمل · opt.porsesh: پرسش مستقل برای بردار معنایی
+   opt.mohlat: بودجهٔ زمان (میلی‌ثانیه)؛ اگر برای بردار معنایی وقت نماند، فقط نتیجهٔ واژه‌ای · opt.manaei=false: بی معنایی
+   زمان هر مرحله در r.zaman برمی‌گردد و در گزارش نوشته می‌شود؛ نتیجهٔ کامل ۱۰ دقیقه نگه داشته می‌شود. */
+async function jostojoo(q, had, opt){
+  opt = opt || {};
   const d = db(); if (!d) return { khata: DB_ERR || 'پایگاه باز نشد', natayej: [] };
   had = Math.max(1, Math.min(+had || 8, 30));
+  const mohlat = Math.max(1500, Math.min(+opt.mohlat || 600000, 600000));
+  const kk = JSON.stringify([String(q), had, opt.ebarat || [], opt.vazheha || [], opt.qanunha || [], opt.porsesh || '', opt.manaei !== false]);
+  const k0 = KESH_NATIJE.get(kk); if (k0) return Object.assign({}, k0, { kesh: true, zaman: { kol: 0 } });
+  const zs = RT.zamansanj(); JOST.dar++; JOST.akharin = Date.now(); JOST.n++;
+  try {
+    const r = await jostojoo0(d, q, had, opt, mohlat, zs);
+    r.zaman = zs.kol();
+    log('جست‌وجو ' + (r.zaman.kol / 1000).toFixed(1) + ' ثانیه ' + JSON.stringify(r.zaman) + (r.manaei ? '' : ' (فقط واژه‌ای' + (r.chera ? ': ' + r.chera : '') + ')') + ' — ' + String(q).replace(/\s+/g, ' ').slice(0, 70));
+    if (r.natayej.length && (r.manaei || opt.manaei === false || r.chera === 'بی‌بردار')) KESH_NATIJE.set(kk, r);
+    return r;
+  } finally { JOST.dar--; JOST.akharin = Date.now(); }
+}
+async function jostojoo0(d, q, had, opt, mohlat, zs){
   const score = new Map();
-  const fq = ftsQuery(q);
+  const baz = (Array.isArray(opt.ebarat) && opt.ebarat.length) || (Array.isArray(opt.vazheha) && opt.vazheha.length);
+  const fq = (baz && RT.sazandeFts(opt, norm, IST_FTS)) || ftsQuery(q);
   if (fq){ try { d.prepare('SELECT rowid AS id, bm25(tekke_fts, 1.0, 3.0) AS b FROM tekke_fts WHERE tekke_fts MATCH ? ORDER BY b LIMIT 60').all(fq).forEach((r, i) => score.set(r.id, (score.get(r.id) || 0) + 1 / (60 + i))); } catch(e){} }
+  zs.gam('fts');
   /* پرسش تعریفی («X چیست»، «تعریف X»): ماده‌هایی که با «X عبارت …» یا «X کسی است …» آغاز می‌شوند مستقیم جست‌وجو می‌شوند */
   if (fq && /تعریف|چیست|یعنی|کیست/.test(q)){ try { const kw = fq.split(' OR ').map(x => x.replace(/"/g, '')).filter(x => x.length > 2).slice(0, 4);
     const ph = kw.flatMap(w => ['"' + w + ' عبارت"', '"' + w + ' کسی است"', '"' + w + ' عقدی است"', '"' + w + ' آن است"']).join(' OR ');
@@ -1026,44 +1071,67 @@ async function jostojoo(q, had){
   /* ماده‌ای که «موضوعش» واژهٔ پرسش است («ماده 1 - تاجر کسی است…»، «ماده 1259 - اقرار عبارت است…») برای پرسش‌های تعریفی جلوتر می‌آید */
   if (fq){ try { const kw = fq.split(' OR ').map(x => x.replace(/"/g, '')).filter(x => x.length > 2); const g = d.prepare('SELECT matn FROM tekke WHERE id=?');
     for (const id of [...score.keys()]){ const r = g.get(id); if (!r) continue; const bad = norm(r.matn).replace(/^[^\-–—ـ:]{0,30}[\-–—ـ:]\s*/, '').slice(0, 40); if (kw.some(w => bad.startsWith(w + ' ') || bad.startsWith(w + 'ی '))) score.set(id, score.get(id) + (/تعریف|چیست|یعنی|کیست/.test(q) ? 0.03 : 0.01)); } } catch(e){} }
-  if (fq){ try { const qids = qanunhayePorsesh(d, q); if (qids.length) d.prepare('SELECT tekke_fts.rowid AS id, bm25(tekke_fts, 1.0, 3.0) AS b FROM tekke_fts JOIN tekke t ON t.id=tekke_fts.rowid WHERE tekke_fts MATCH ? AND t.qid IN (' + qids.map(() => '?').join(',') + ') ORDER BY b LIMIT 20').all(fq, ...qids).forEach((r, i) => score.set(r.id, (score.get(r.id) || 0) + 0.02 + 1 / (60 + i))); } catch(e){} }
+  /* درون قانون‌هایی که پرسش نام برده یا بازنویسی حدس زده: واژه‌های تک عبارت‌ها هم (دقت بیشتر، چون دامنه همان قانون است) */
+  const qids = [...new Set(qanunhayePorsesh(d, q).concat(qanunhayeNam(d, opt.qanunha)))].slice(0, 8);
+  if (fq && qids.length){ try {
+    const tak = [...new Set((opt.ebarat || []).flatMap(e => norm(e).split(/[^\p{L}\p{N}]+/u)).filter(w => w.length > 1 && !IST_FTS.has(w) && !RT.IST_MOHAVERE.has(w)))].slice(0, 10).map(w => '"' + w + '"');
+    const fqD = [fq].concat(tak).join(' OR ');
+    d.prepare('SELECT tekke_fts.rowid AS id, bm25(tekke_fts, 1.0, 3.0) AS b FROM tekke_fts JOIN tekke t ON t.id=tekke_fts.rowid WHERE tekke_fts MATCH ? AND t.qid IN (' + qids.map(() => '?').join(',') + ') ORDER BY b LIMIT 20').all(fqD, ...qids).forEach((r, i) => score.set(r.id, (score.get(r.id) || 0) + 0.02 + 1 / (60 + i))); } catch(e){} }
+  zs.gam('ghanun');
   /* ۱۴۰۵/۰۷/۰۱: اگر پرسش «ماده/اصل N قانون X» است، همان مادهٔ همان قانون مستقیم یافته و بالای فهرست گذاشته می‌شود
      (نام قانون از عنوان‌ها سنجیده می‌شود، نه از واژه‌های پرسش؛ نام‌های رایج کوتاه به عنوان رسمی برگردانده می‌شوند) */
   for (const x of madeDagigh(d, q)) score.set(x.id, (score.get(x.id) || 0) + x.b);
-  let manaei = false;
-  try {
+  zs.gam('madde');
+  let manaei = false, chera = '';
+  if (opt.manaei === false) chera = 'خواسته نشد';
+  else try {
     const DN = require('./danesh.js');
     const hast = d.prepare('SELECT 1 FROM tekke WHERE bordar IS NOT NULL LIMIT 1').get();
-    let g2 = hast && await g2Amade();
-    if (hast && !g2 && S.metaGet && S.metaGet('gere2_ip')){ G2.at = 0; g2 = await g2Amade(); }   /* تقسیم کارفرما: بردار پرسش با گره دوم؛ کیس یک فقط اگر گره دوم واقعاً در دسترس نباشد */
-    if (hast && (g2 || (DN.startEmb && DN.bordarha && await DN.startEmb()))){
-      let qv; try { qv = g2 ? (await g2Bordarha([String(q).slice(0, 2000)]))[0] : null; } catch(e){ try { qv = g2 ? (await g2Bordarha([String(q).slice(0, 2000)]))[0] : null; } catch(e2){ qv = null; } }
-      if (!qv) { if (!(DN.startEmb && DN.bordarha && await DN.startEmb())) throw new Error('بردار پرسش ساخته نشد'); [qv] = await DN.bordarha([String(q).slice(0, 2000)]); }
-      if (!VK.n || Date.now() - VK.t > 1200000) vkSakht();   /* ۱۴۰۵/۰۷/۰۳: بردارهای فشرده در حافظه؛ ساخت در پس‌زمینه */
-      let top = [];
-      if (VK.n && VK.dim === qv.length){
-        const { n, dim, q: QV, sc, ids } = VK; const cand = []; let minS = -Infinity;
-        for (let j = 0; j < n; j++){ const o = j * dim; let s = 0; for (let i = 0; i < dim; i++) s += QV[o + i] * qv[i]; s *= sc[j]; if (cand.length < 200){ cand.push({ id: ids[j], s }); if (cand.length === 200){ cand.sort((a, b) => a.s - b.s); minS = cand[0].s; } } else if (s > minS){ cand[0] = { id: ids[j], s }; cand.sort((a, b) => a.s - b.s); minS = cand[0].s; } }
-        const gb = d.prepare('SELECT bordar FROM tekke WHERE id=?');
-        for (const c of cand){ const r = gb.get(c.id); if (!r || !r.bordar) continue; const u = new Uint8Array(r.bordar); const v = new Float32Array(u.buffer.slice(u.byteOffset, u.byteOffset + u.length)); let s = 0; for (let i = 0; i < v.length; i++) s += v[i] * qv[i]; top.push({ id: c.id, s }); }
-        top.sort((a, b) => b.s - a.s); top = top.slice(0, 60);
-      } else if (VK.dar) { throw new Error('نمایهٔ معنایی در حال بار شدن در حافظه است؛ این بار فقط جست‌وجوی واژه‌ای'); }
-      else for (const r of d.prepare('SELECT id, bordar FROM tekke WHERE bordar IS NOT NULL').iterate()){
-        const u = new Uint8Array(r.bordar); const c = new ArrayBuffer(u.length); new Uint8Array(c).set(u); const v = new Float32Array(c);
-        let s = 0; for (let i = 0; i < v.length; i++) s += v[i] * qv[i];
-        if (top.length < 60 || s > top[top.length - 1].s){ top.push({ id: r.id, s }); top.sort((a, b) => b.s - a.s); if (top.length > 60) top.pop(); }
+    const mande = () => mohlat - zs.gozashte();
+    if (!hast) chera = 'بی‌بردار';
+    else if (mande() < 1500) chera = 'بودجهٔ زمان تمام شد';
+    else {
+      const matnQ = String(opt.porsesh || q).slice(0, 2000);
+      let qv = KESH_BORDAR.get(matnQ) || null;
+      if (!qv){
+        let g2 = await g2Amade();
+        if (!g2 && S.metaGet && S.metaGet('gere2_ip')){ G2.at = 0; g2 = await g2Amade(); }   /* تقسیم کارفرما: بردار پرسش با گره دوم؛ کیس یک فقط اگر گره دوم واقعاً در دسترس نباشد */
+        if (g2){ try { qv = (await g2Bordarha([matnQ], Math.max(800, Math.min(mande() - 700, 15000))))[0]; } catch(e){ chera = e.message; qv = null; } }
+        else if (DN.startEmb && DN.bordarha && await RT.baMohlat(DN.startEmb(), Math.max(0, mande() - 700))){ const v = await RT.baMohlat(DN.bordarha([matnQ]), Math.max(0, mande() - 700)); qv = v ? v[0] : null; if (!qv) chera = 'بردار پرسش در مهلت نرسید'; }
+        if (qv) KESH_BORDAR.set(matnQ, qv);
       }
-      top.forEach((r, i) => score.set(r.id, (score.get(r.id) || 0) + 1 / (60 + i)));
-      manaei = true;
+      zs.gam('bordar');
+      if (qv){
+        if (!VK.n || Date.now() - VK.t > 1200000) vkSakht();   /* ۱۴۰۵/۰۷/۰۳: بردارهای فشرده در حافظه؛ ساخت در پس‌زمینه */
+        let top = [];
+        if (VK.n && VK.dim === qv.length){
+          const { n, dim, q: QV, sc, ids } = VK; const cand = []; let minS = -Infinity;
+          for (let j = 0; j < n; j++){ const o = j * dim; let s = 0; for (let i = 0; i < dim; i++) s += QV[o + i] * qv[i]; s *= sc[j]; if (cand.length < 200){ cand.push({ id: ids[j], s }); if (cand.length === 200){ cand.sort((a, b) => a.s - b.s); minS = cand[0].s; } } else if (s > minS){ cand[0] = { id: ids[j], s }; cand.sort((a, b) => a.s - b.s); minS = cand[0].s; } }
+          const gb = d.prepare('SELECT bordar FROM tekke WHERE id=?');
+          for (const c of cand){ const r = gb.get(c.id); if (!r || !r.bordar) continue; const u = new Uint8Array(r.bordar); const v = new Float32Array(u.buffer.slice(u.byteOffset, u.byteOffset + u.length)); let s = 0; for (let i = 0; i < v.length; i++) s += v[i] * qv[i]; top.push({ id: c.id, s }); }
+          top.sort((a, b) => b.s - a.s); top = top.slice(0, 60);
+        } else chera = VK.dar ? 'نمایهٔ معنایی در حال بار شدن در حافظه است' : 'نمایهٔ معنایی در حافظه آماده نیست';   /* اسکن کامل از دیسک (دقیقه‌ها) هرگز در مسیر گفتگو نیست */
+        top.forEach((r, i) => score.set(r.id, (score.get(r.id) || 0) + 1 / (60 + i)));
+        manaei = top.length > 0;
+        zs.gam('scan');
+      } else if (!chera) chera = 'بردار پرسش ساخته نشد';
     }
-  } catch(e){ R.khata = 'جست‌وجوی معنایی: ' + (e.message || e); }
+  } catch(e){ chera = e.message || String(e); R.khata = 'جست‌وجوی معنایی: ' + chera; }
+  /* رتبهٔ قانون‌های مادر و ضریب منفی مصوبه‌های موردی (دستور کار ۲-۳) */
   let ids = [...score.entries()].sort((a, b) => b[1] - a[1]).map(x => x[0]);
+  try {
+    const gr = d.prepare('SELECT n.onvan, n.lar, n.id qid FROM tekke t JOIN qanun n ON n.id=t.qid WHERE t.id=?'); const hq = new Set(qids); const pors = String(opt.porsesh || q);
+    for (const id of ids.slice(0, 150)){ const r = gr.get(id); if (r) score.set(id, score.get(id) + RT.zarib(r, pors, hq)); }
+    ids = ids.slice(0, 150).sort((a, b) => score.get(b) - score.get(a)).concat(ids.slice(150));
+  } catch(e){}
+  zs.gam('rotbe');
   /* ۱۴۰۵/۰۷/۰۳ بررسی عمیق: با بیش از ۲۰ هزار رأی دادگاه، رأی‌ها متن قانون را از بالای فهرست کنار می‌زدند؛ اگر پرسش دربارهٔ رأی نیست، حداکثر یک‌سوم نتایج رأی است و بقیهٔ رأی‌ها پس از قوانین می‌آیند */
   if (!/رأی|رای|دادنامه|رویه|نمونه/.test(q)){ try { const gm = d.prepare('SELECT n.manba FROM tekke t JOIN qanun n ON n.id=t.qid WHERE t.id=?'); const saghf = Math.max(1, Math.floor(had / 3)); const a1 = [], a2 = []; let nr = 0; for (const id of ids){ const r = gm.get(id); if (r && r.manba === 'ara' && ++nr > saghf) a2.push(id); else a1.push(id); } ids = a1.concat(a2); } catch(e){} }
   ids = ids.slice(0, had);
   const getT = d.prepare('SELECT t.id, t.madde, t.matn, t.shomare, n.onvan, n.url, n.tarikh, n.marja, n.manba, n.shenase FROM tekke t JOIN qanun n ON n.id=t.qid WHERE t.id=?');
-  const natayej = ids.map(id => getT.get(id)).filter(Boolean).map(r => ({ onvan: r.onvan, madde: r.madde, url: r.url, tarikh: r.tarikh, marja: r.marja, manba: MANABE[r.manba] ? MANABE[r.manba].onvan : r.manba, emtiaz: MANABE[r.manba] ? MANABE[r.manba].emtiaz : 0, hoshdar: MANABE[r.manba] ? MANABE[r.manba].hoshdar : '', matn: r.matn }));
-  return { q, manaei, natayej };
+  const natayej = ids.map(id => getT.get(id)).filter(Boolean).map(r => ({ onvan: r.onvan, madde: r.madde, url: r.url, tarikh: r.tarikh, marja: r.marja, manba: MANABE[r.manba] ? MANABE[r.manba].onvan : r.manba, emtiaz: MANABE[r.manba] ? MANABE[r.manba].emtiaz : 0, hoshdar: MANABE[r.manba] ? MANABE[r.manba].hoshdar : '', shenase: r.shenase, matn: r.matn }));
+  zs.gam('edgham');
+  return { q, manaei, chera, bazneveshte: !!baz, natayej };
 }
 function matnNatayej(r){
   if (r.khata) return 'خطا: ' + r.khata;
@@ -1073,18 +1141,44 @@ function matnNatayej(r){
 function matnQanun(a){
   const d = db(); if (!d) return S.fail('پایگاه باز نشد');
   const q = String(a.shenase || a.url || a.onvan || '').trim(); if (!q) return S.fail('shenase یا url یا onvan لازم است');
-  const r = d.prepare('SELECT * FROM qanun WHERE shenase=? OR url=? OR onvan LIKE ? ORDER BY id LIMIT 1').get(q, q, '%' + q + '%');
+  const r = qanunBaNam(d, a);
   if (!r) return S.ok('در کتابخانه نیست: ' + q);
   const off = Math.max(0, +a.offset || 0), lim = Math.max(1000, Math.min(+a.limit || 30000, 60000));
   return S.ok(r.onvan + '\nتاریخ تصویب: ' + r.tarikh + ' · مرجع: ' + r.marja + ' · شناسه: ' + r.shenase + ' · ' + r.url + '\nاثر انگشت متن: ' + r.sha256.slice(0, 16) + ' · ' + fa(r.hajm) + ' نویسه · ' + fa(r.mavad) + ' ماده · دریافت: ' + r.ts + '\n———\n' + r.matn.slice(off, off + lim) + (r.matn.length > off + lim ? '\n… (ادامه با offset=' + (off + lim) + ')' : ''));
 }
-function fehrest(a){
-  const d = db(); if (!d) return S.fail('پایگاه باز نشد');
+/* ۱۴۰۵/۰۷/۰۵: فهرست صفحه‌به‌صفحه، با دسته (lar) — برای «فهرست‌خواهی» گفتگو بی جست‌وجوی معنایی */
+function fehrestJson(a){
+  a = a || {}; const d = db(); if (!d) return { ok: false, text: 'پایگاه باز نشد' };
   const lim = Math.max(1, Math.min(+a.limit || 50, 300)), off = Math.max(0, +a.offset || 0);
-  const kw = String(a.q || '').trim();
-  const rows = kw ? d.prepare('SELECT shenase, onvan, tarikh, marja, mavad FROM qanun WHERE onvan LIKE ? ORDER BY tarikh DESC LIMIT ? OFFSET ?').all('%' + kw + '%', lim, off) : d.prepare('SELECT shenase, onvan, tarikh, marja, mavad FROM qanun ORDER BY tarikh DESC LIMIT ? OFFSET ?').all(lim, off);
-  const kol = kw ? d.prepare('SELECT COUNT(*) c FROM qanun WHERE onvan LIKE ?').get('%' + kw + '%').c : d.prepare('SELECT COUNT(*) c FROM qanun').get().c;
-  return S.ok(fa(kol) + ' مورد' + (kw ? ' برای «' + kw + '»' : '') + ' (نمایش ' + fa(rows.length) + ' از ردیف ' + fa(off) + '):\n' + rows.map(r => r.shenase + ' · ' + r.onvan + ' — ' + r.tarikh + ' — ' + r.marja + ' — ' + fa(r.mavad) + ' ماده').join('\n'));
+  const kw = String(a.q || '').trim(), lar = String(a.lar || '').trim();
+  const sh = []; const x = [];
+  if (kw){ sh.push('onvan LIKE ?'); x.push('%' + kw + '%'); }
+  if (lar){ sh.push('lar=?'); x.push(lar); }
+  const w = sh.length ? ' WHERE ' + sh.join(' AND ') : '';
+  const rows = d.prepare('SELECT shenase, onvan, tarikh, marja, mavad FROM qanun' + w + ' ORDER BY tarikh DESC LIMIT ? OFFSET ?').all(...x, lim, off);
+  const kol = d.prepare('SELECT COUNT(*) c FROM qanun' + w).get(...x).c;
+  return { ok: true, kol, offset: off, lar, nam: lar ? (NAM_DASTE[lar] || lar) : '', q: kw, rows };
+}
+function fehrest(a){
+  const j = fehrestJson(a); if (!j.ok) return S.fail(j.text);
+  return S.ok(fa(j.kol) + ' مورد' + (j.q ? ' برای «' + j.q + '»' : '') + (j.lar ? ' در دستهٔ «' + j.nam + '»' : '') + ' (نمایش ' + fa(j.rows.length) + ' از ردیف ' + fa(j.offset) + '):\n' + j.rows.map(r => r.shenase + ' · ' + r.onvan + ' — ' + r.tarikh + ' — ' + r.marja + ' — ' + fa(r.mavad) + ' ماده').join('\n'));
+}
+/* قانون با شناسه/نشانی/نام: نام رایج به خود قانون (نه اصلاحیه) برگردانده می‌شود و نسخهٔ ماده‌بندی‌شده ترجیح دارد */
+function qanunBaNam(d, a){
+  const q = String(a.shenase || a.url || a.onvan || '').trim(); if (!q) return null;
+  let r = d.prepare('SELECT * FROM qanun WHERE shenase=? OR url=? LIMIT 1').get(q, q);
+  if (!r && a.onvan){ const rows = qanunhayeNam(d, [a.onvan]).map(id => d.prepare('SELECT * FROM qanun WHERE id=?').get(id)).filter(Boolean); rows.sort((x, y) => (y.mavad || 0) - (x.mavad || 0)); r = rows[0] || null; }
+  if (!r) r = d.prepare("SELECT * FROM qanun WHERE onvan LIKE ? ORDER BY (onvan LIKE 'قانون اصلاح%'), mavad DESC, id LIMIT 1").get('%' + q + '%');
+  return r || null;
+}
+/* متن قانون بخش‌به‌بخش (هر بخش چند ماده) — برای «متن کامل قانون X» و «ادامه بده» در گفتگو */
+function matnQanunJson(a){
+  a = a || {}; const d = db(); if (!d) return { ok: false, text: 'پایگاه باز نشد' };
+  const r = qanunBaNam(d, a); if (!r) return { ok: false, nist: true, text: 'در کتابخانه نیست: ' + (a.onvan || a.shenase || a.url || '') };
+  const off = Math.max(0, +a.offset || 0), lim = Math.max(1, Math.min(+a.limit || 30, 80));
+  const kol = d.prepare('SELECT COUNT(*) c FROM tekke WHERE qid=?').get(r.id).c;
+  const tekkeha = d.prepare('SELECT madde, matn FROM tekke WHERE qid=? ORDER BY shomare LIMIT ? OFFSET ?').all(r.id, lim, off);
+  return { ok: true, onvan: r.onvan, tarikh: r.tarikh, marja: r.marja, shenase: r.shenase || r.url, url: r.url, mavad: r.mavad, kol, offset: off, tekkeha, baadi: off + tekkeha.length < kol ? off + tekkeha.length : 0 };
 }
 
 function init(shared, helpers){
@@ -1101,6 +1195,7 @@ function init(shared, helpers){
   setTimeout(() => { try { db().exec('CREATE INDEX IF NOT EXISTS qanun_manba ON qanun(manba, hajm, mavad); CREATE INDEX IF NOT EXISTS qanun_lar ON qanun(lar, hajm, mavad, tarikh); CREATE INDEX IF NOT EXISTS qanun_ts ON qanun(ts);'); } catch(e){ log('شاخص‌ها: ' + e.message); } }, 45000);   /* ۱۴۰۵/۰۷/۰۳ شمارش‌های وضعیت بی خواندن کل جدول */
   setTimeout(() => { try { if (malekK() || HD.dar) return; const d0 = db(); hadafJadval(); const L = d0.prepare('SELECT DISTINCT c.jostojoo j FROM cbi_onvan c LEFT JOIN hadaf h ON h.onvan=c.jostojoo WHERE h.onvan IS NULL').all().map(r => r.j).filter(Boolean); if (L.length){ hdLog('بانک مرکزی: ادامهٔ جست‌وجوی ' + fa(L.length) + ' عنوان پس از بازراه‌اندازی'); hadafRun(L, 'cbi').catch(e => hdLog('بانک مرکزی: ' + e.message)); } } catch(e){} }, 60000);   /* ۱۴۰۵/۰۷/۰۲ */
   MC.timer = setTimeout(halghePardazande, 30000);
+  setTimeout(() => { try { const d0 = db(); if (d0){ const t0 = Date.now(); onvanha(d0); log('فهرست عنوان‌ها برای جست‌وجو آماده شد (' + fa(ONVANHA.list.length) + ' عنوان، ' + fa(Date.now() - t0) + ' میلی‌ثانیه)'); } } catch(e){} }, 8000);   /* ۱۴۰۵/۰۷/۰۵: نخستین پرسش گفتگو منتظر ساخت فهرست نماند */
   try { fs.mkdirSync(qvdPoshe(), { recursive: true }); QVD.timer = setInterval(qvdGam, 3000); } catch(e){ log('پوشهٔ دریافت مرورگر: ' + e.message); }
   if (mget('auto') === '1') setTimeout(() => { try { R.on = true; R.gam = 'ادامه پس از بازراه‌اندازی'; halghe(); log('کار از پیش روشن بود — ادامه یافت'); } catch(e){ log('آغاز: ' + e.message); } }, 12000);
 }
@@ -1463,7 +1558,7 @@ function stopAll(){ if (HD.timer) clearInterval(HD.timer); R.on = false; if (R.t
 const TOOLS = [{
   name: 'ketabkhane', title: 'کتابخانهٔ حقوقی',
   description: 'کتابخانهٔ حقوقی معتبر: متن رسمی قوانین و مقررات ایران، کلمه‌به‌کلمه از منبع رسمی (اکنون: مرکز پژوهش‌های مجلس rc.majlis.ir)، با شناسه، تاریخ و مرجع تصویب، نشانی و اثر انگشت؛ تکه‌بندی به تفکیک ماده؛ هرگز ویکی‌پدیا. amal=vaziat · amal=shoroo (manabe = فهرست منابع [majlis…]، daste = فهرست دسته‌ها یا کدهای lar) · amal=beroz (فقط تازه‌ها) · amal=ist · amal=gozaresh · amal=jostojoo با q و had (واژه‌ای + معنایی) · amal=matn با shenase یا url یا onvan (متن کامل، offset/limit) · amal=fehrest با q/limit/offset · amal=namaye (ساخت نمایهٔ معنایی با BGE-M3). هیچ‌چیز خودبه‌خود آغاز نمی‌شود؛ فقط به دستور کارفرما.',
-  inputSchema: { type: 'object', properties: { amal: { type: 'string' }, taeed: { type: 'string' }, onvanha: { type: 'array', items: { type: 'string' } }, manabe: { type: 'array', items: { type: 'string' } }, daste: { type: 'array', items: { type: 'string' } }, q: { type: 'string' }, had: { type: 'number' }, shenase: { type: 'string' }, url: { type: 'string' }, onvan: { type: 'string' }, offset: { type: 'number' }, limit: { type: 'number' } }, required: ['amal'], additionalProperties: false },
+  inputSchema: { type: 'object', properties: { amal: { type: 'string' }, taeed: { type: 'string' }, onvanha: { type: 'array', items: { type: 'string' } }, manabe: { type: 'array', items: { type: 'string' } }, daste: { type: 'array', items: { type: 'string' } }, q: { type: 'string' }, had: { type: 'number' }, lar: { type: 'string' }, shenase: { type: 'string' }, url: { type: 'string' }, onvan: { type: 'string' }, offset: { type: 'number' }, limit: { type: 'number' } }, required: ['amal'], additionalProperties: false },
   async run(a){
     a = a || {}; const amal = String(a.amal || 'vaziat');
     if (amal === 'vaziat') return S.ok(statusLine());
@@ -1497,4 +1592,4 @@ const TOOLS = [{
   }
 }];
 
-module.exports = { NASKHE, rrkTest: { rrkSatrha, rrkUnesc, rrkVal, matnAzHtml }, init, state, gozareshJson, hadafJson, hadafCbi, cbiMatn, qavaninFehrest, qavaninKar, qavaninMatn, akharinEslah, tarikhcheMatn, hast, statusLine, jostojoo, matnNatayej, stopAll, TOOLS, MANABE, DASTE, _test: { gamDaryaftAra, gamDaryaftDotic, tekkehaRay, tekkeha, sarha, madeDagigh, MJ, matnAzHtml, strip, sarMadde, vazheBeAdad } };
+module.exports = { NASKHE, rrkTest: { rrkSatrha, rrkUnesc, rrkVal, matnAzHtml }, init, state, gozareshJson, hadafJson, hadafCbi, cbiMatn, qavaninFehrest, qavaninKar, qavaninMatn, akharinEslah, tarikhcheMatn, hast, statusLine, jostojoo, matnNatayej, fehrestJson, matnQanunJson, JOST, stopAll, TOOLS, MANABE, DASTE, NAM_DASTE, _test: { qanunhayeNam, onvanha, KESH_NATIJE, KESH_BORDAR, gamDaryaftAra, gamDaryaftDotic, tekkehaRay, tekkeha, sarha, madeDagigh, MJ, matnAzHtml, strip, sarMadde, vazheBeAdad } };
