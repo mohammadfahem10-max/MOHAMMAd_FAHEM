@@ -1,0 +1,1399 @@
+{
+ "profile": "sabt_asnad_tahoma",
+ "norm_h": 40,
+ "meta": {
+  "word_gap_ratio": 0.45
+ },
+ "templates": [
+  {
+   "id": "546321afbc3a",
+   "label": "1",
+   "rel_h": 1.0,
+   "rel_w": 0.4839,
+   "rel_top": 0.8065,
+   "rel_bottom": 0.1935,
+   "count": 3,
+   "source": "label:sabt-samples"
+  },
+  {
+   "id": "b9051ce11f2c",
+   "label": "ا",
+   "rel_h": 1.25,
+   "rel_w": 0.25,
+   "rel_top": -3.875,
+   "rel_bottom": 5.125,
+   "count": 2,
+   "source": "label:sabt-samples"
+  },
+  {
+   "id": "2a3fd5442418",
+   "label": "ا",
+   "rel_h": 1.375,
+   "rel_w": 0.25,
+   "rel_top": -2.25,
+   "rel_bottom": 3.625,
+   "count": 1,
+   "source": "label:sabt-samples"
+  },
+  {
+   "id": "79a7b4cc81f2",
+   "label": "ا",
+   "rel_h": 0.875,
+   "rel_w": 0.25,
+   "rel_top": -1.25,
+   "rel_bottom": 2.125,
+   "count": 1,
+   "source": "label:sabt-samples"
+  },
+  {
+   "id": "52f8cf293512",
+   "label": "ا",
+   "rel_h": 1.0,
+   "rel_w": 0.25,
+   "rel_top": 0.0,
+   "rel_bottom": 1.0,
+   "count": 1,
+   "source": "label:sabt-samples"
+  },
+  {
+   "id": "fc74446b74c5",
+   "label": "ا",
+   "rel_h": 0.875,
+   "rel_w": 0.25,
+   "rel_top": -3.25,
+   "rel_bottom": 4.125,
+   "count": 1,
+   "source": "label:sabt-samples"
+  },
+  {
+   "id": "674f589ca2b6",
+   "label": "و",
+   "rel_h": 1.087,
+   "rel_w": 0.8043,
+   "rel_top": 0.5652,
+   "rel_bottom": 0.5217,
+   "count": 6,
+   "source": "label:sabt-samples"
+  },
+  {
+   "id": "71b654de8c3d",
+   "label": "ر",
+   "rel_h": 0.8043,
+   "rel_w": 0.913,
+   "rel_top": 0.2826,
+   "rel_bottom": 0.5217,
+   "count": 2,
+   "source": "label:sabt-samples"
+  },
+  {
+   "id": "a161b7384199",
+   "label": "ر",
+   "rel_h": 0.6129,
+   "rel_w": 0.6774,
+   "rel_top": 0.1452,
+   "rel_bottom": 0.4677,
+   "count": 1,
+   "source": "label:sabt-samples"
+  },
+  {
+   "id": "e0bac18e9ff0",
+   "label": "به",
+   "rel_h": 0.9206,
+   "rel_w": 0.873,
+   "rel_top": 0.6032,
+   "rel_bottom": 0.3175,
+   "count": 2,
+   "source": "label:sabt-samples"
+  },
+  {
+   "id": "f8bcdd33f805",
+   "label": "به",
+   "rel_h": 1.18,
+   "rel_w": 1.08,
+   "rel_top": 0.78,
+   "rel_bottom": 0.4,
+   "count": 1,
+   "source": "label:sabt-samples"
+  },
+  {
+   "id": "cdd5acc775fc",
+   "label": "د",
+   "rel_h": 0.8261,
+   "rel_w": 0.7391,
+   "rel_top": 0.6522,
+   "rel_bottom": 0.1739,
+   "count": 3,
+   "source": "label:sabt-samples"
+  },
+  {
+   "id": "123353785837",
+   "label": "ل",
+   "rel_h": 1.5435,
+   "rel_w": 0.913,
+   "rel_top": 1.1957,
+   "rel_bottom": 0.3478,
+   "count": 2,
+   "source": "label:sabt-samples"
+  },
+  {
+   "id": "1aa78fc5af8e",
+   "label": "ل",
+   "rel_h": 1.3148,
+   "rel_w": 0.7778,
+   "rel_top": 1.0185,
+   "rel_bottom": 0.2963,
+   "count": 1,
+   "source": "label:sabt-samples"
+  },
+  {
+   "id": "8d13ebf9ec88",
+   "label": "متر",
+   "rel_h": 1.26,
+   "rel_w": 1.92,
+   "rel_top": 0.78,
+   "rel_bottom": 0.48,
+   "count": 1,
+   "source": "label:sabt-samples"
+  },
+  {
+   "id": "abe324a64cf3",
+   "label": "متر",
+   "rel_h": 1.24,
+   "rel_w": 1.92,
+   "rel_top": 0.7,
+   "rel_bottom": 0.54,
+   "count": 2,
+   "source": "label:sabt-samples"
+  },
+  {
+   "id": "22e0924770f9",
+   "label": "ن",
+   "rel_h": 1.0,
+   "rel_w": 1.0,
+   "rel_top": 0.4783,
+   "rel_bottom": 0.5217,
+   "count": 2,
+   "source": "label:sabt-samples"
+  },
+  {
+   "id": "0b81d742a9e3",
+   "label": "ن",
+   "rel_h": 0.92,
+   "rel_w": 0.92,
+   "rel_top": 0.44,
+   "rel_bottom": 0.48,
+   "count": 3,
+   "source": "label:sabt-samples"
+  },
+  {
+   "id": "f47b2b018838",
+   "label": "ز",
+   "rel_h": 0.871,
+   "rel_w": 0.6774,
+   "rel_top": 0.4032,
+   "rel_bottom": 0.4677,
+   "count": 1,
+   "source": "label:sabt-samples"
+  },
+  {
+   "id": "5c97e05400eb",
+   "label": "ز",
+   "rel_h": 0.873,
+   "rel_w": 0.6667,
+   "rel_top": 0.4762,
+   "rel_bottom": 0.3968,
+   "count": 1,
+   "source": "label:sabt-samples"
+  },
+  {
+   "id": "1746805c988e",
+   "label": "ز",
+   "rel_h": 0.8571,
+   "rel_w": 0.6508,
+   "rel_top": 0.5556,
+   "rel_bottom": 0.3016,
+   "count": 1,
+   "source": "label:sabt-samples"
+  },
+  {
+   "id": "84591bb1a516",
+   "label": "ح",
+   "rel_h": 0.5968,
+   "rel_w": 0.5323,
+   "rel_top": 0.1935,
+   "rel_bottom": 0.4032,
+   "count": 3,
+   "source": "label:sabt-samples"
+  },
+  {
+   "id": "3040af56efdc",
+   "label": "7",
+   "rel_h": 1.0,
+   "rel_w": 0.7302,
+   "rel_top": 0.873,
+   "rel_bottom": 0.127,
+   "count": 1,
+   "source": "label:sabt-samples"
+  },
+  {
+   "id": "d8ed8ce85dea",
+   "label": "7",
+   "rel_h": 1.0,
+   "rel_w": 0.7302,
+   "rel_top": 0.9524,
+   "rel_bottom": 0.0476,
+   "count": 2,
+   "source": "label:sabt-samples"
+  },
+  {
+   "id": "9816da63cfb4",
+   "label": "شما",
+   "rel_h": 1.0,
+   "rel_w": 1.5484,
+   "rel_top": 0.8065,
+   "rel_bottom": 0.1935,
+   "count": 2,
+   "source": "label:sabt-samples"
+  },
+  {
+   "id": "ce5d6cf911d8",
+   "label": "شما",
+   "rel_h": 1.1667,
+   "rel_w": 1.7593,
+   "rel_top": 1.1296,
+   "rel_bottom": 0.037,
+   "count": 1,
+   "source": "label:sabt-samples"
+  },
+  {
+   "id": "08aab55d7ab0",
+   "label": "در",
+   "rel_h": 1.0,
+   "rel_w": 1.2963,
+   "rel_top": 0.537,
+   "rel_bottom": 0.463,
+   "count": 2,
+   "source": "label:sabt-samples"
+  },
+  {
+   "id": "fae922b46f4a",
+   "label": "در",
+   "rel_h": 1.08,
+   "rel_w": 1.42,
+   "rel_top": 0.54,
+   "rel_bottom": 0.54,
+   "count": 1,
+   "source": "label:sabt-samples"
+  },
+  {
+   "id": "61269115ea21",
+   "label": "فر",
+   "rel_h": 1.2742,
+   "rel_w": 1.0806,
+   "rel_top": 0.8065,
+   "rel_bottom": 0.4677,
+   "count": 1,
+   "source": "label:sabt-samples"
+  },
+  {
+   "id": "b204fb82bc8c",
+   "label": "فر",
+   "rel_h": 1.254,
+   "rel_w": 1.0635,
+   "rel_top": 0.9524,
+   "rel_bottom": 0.3016,
+   "count": 1,
+   "source": "label:sabt-samples"
+  },
+  {
+   "id": "75fc5ed19a6d",
+   "label": "فر",
+   "rel_h": 1.463,
+   "rel_w": 1.2222,
+   "rel_top": 1.0,
+   "rel_bottom": 0.463,
+   "count": 1,
+   "source": "label:sabt-samples"
+  },
+  {
+   "id": "5c0dc3d8ba52",
+   "label": "عی",
+   "rel_h": 1.18,
+   "rel_w": 1.92,
+   "rel_top": 0.58,
+   "rel_bottom": 0.6,
+   "count": 2,
+   "source": "label:sabt-samples"
+  },
+  {
+   "id": "3eaae0770bc9",
+   "label": "عی",
+   "rel_h": 1.0741,
+   "rel_w": 1.7778,
+   "rel_top": 0.6296,
+   "rel_bottom": 0.4444,
+   "count": 1,
+   "source": "label:sabt-samples"
+  },
+  {
+   "id": "d32e59e5dfb6",
+   "label": "دیو",
+   "rel_h": 1.0,
+   "rel_w": 1.7037,
+   "rel_top": 0.5556,
+   "rel_bottom": 0.4444,
+   "count": 3,
+   "source": "label:sabt-samples"
+  },
+  {
+   "id": "f72a20585885",
+   "label": "ا",
+   "rel_h": 1.125,
+   "rel_w": 0.5,
+   "rel_top": 1.0,
+   "rel_bottom": 0.125,
+   "count": 1,
+   "source": "label:sabt-samples"
+  },
+  {
+   "id": "c1bcccb574f7",
+   "label": "ا",
+   "rel_h": 1.5,
+   "rel_w": 0.625,
+   "rel_top": -0.875,
+   "rel_bottom": 2.375,
+   "count": 1,
+   "source": "label:sabt-samples"
+  },
+  {
+   "id": "bac6b261d430",
+   "label": "ا",
+   "rel_h": 1.375,
+   "rel_w": 0.625,
+   "rel_top": 0.5,
+   "rel_bottom": 0.875,
+   "count": 1,
+   "source": "label:sabt-samples"
+  },
+  {
+   "id": "e179d66a19fc",
+   "label": "با",
+   "rel_h": 1.2097,
+   "rel_w": 0.5968,
+   "rel_top": 0.871,
+   "rel_bottom": 0.3387,
+   "count": 2,
+   "source": "label:sabt-samples"
+  },
+  {
+   "id": "9b0218e2eb48",
+   "label": "با",
+   "rel_h": 1.1905,
+   "rel_w": 0.6032,
+   "rel_top": 0.9524,
+   "rel_bottom": 0.2381,
+   "count": 1,
+   "source": "label:sabt-samples"
+  },
+  {
+   "id": "76fb50bee952",
+   "label": "د",
+   "rel_h": 0.5968,
+   "rel_w": 0.5323,
+   "rel_top": 0.4677,
+   "rel_bottom": 0.129,
+   "count": 3,
+   "source": "label:sabt-samples"
+  },
+  {
+   "id": "87f74fd2095c",
+   "label": "نا",
+   "rel_h": 1.0,
+   "rel_w": 0.5968,
+   "rel_top": 0.8065,
+   "rel_bottom": 0.1935,
+   "count": 2,
+   "source": "label:sabt-samples"
+  },
+  {
+   "id": "bcbc5eb7a8e1",
+   "label": "نا",
+   "rel_h": 1.1481,
+   "rel_w": 0.7037,
+   "rel_top": 1.0,
+   "rel_bottom": 0.1481,
+   "count": 1,
+   "source": "label:sabt-samples"
+  },
+  {
+   "id": "93924ba7c13f",
+   "label": "ست",
+   "rel_h": 0.7778,
+   "rel_w": 1.9259,
+   "rel_top": 0.7407,
+   "rel_bottom": 0.037,
+   "count": 1,
+   "source": "label:sabt-samples"
+  },
+  {
+   "id": "2f8781cb92b4",
+   "label": "ست",
+   "rel_h": 0.7593,
+   "rel_w": 1.9259,
+   "rel_top": 0.6296,
+   "rel_bottom": 0.1296,
+   "count": 2,
+   "source": "label:sabt-samples"
+  },
+  {
+   "id": "2d07fbeda654",
+   "label": "یک",
+   "rel_h": 1.1905,
+   "rel_w": 1.127,
+   "rel_top": 0.9524,
+   "rel_bottom": 0.2381,
+   "count": 2,
+   "source": "label:sabt-samples"
+  },
+  {
+   "id": "8c11c3c2d507",
+   "label": "یک",
+   "rel_h": 1.5,
+   "rel_w": 1.42,
+   "rel_top": 1.0,
+   "rel_bottom": 0.5,
+   "count": 1,
+   "source": "label:sabt-samples"
+  },
+  {
+   "id": "2dc9ed62a065",
+   "label": "قطعه",
+   "rel_h": 1.0,
+   "rel_w": 2.254,
+   "rel_top": 0.9524,
+   "rel_bottom": 0.0476,
+   "count": 2,
+   "source": "label:sabt-samples"
+  },
+  {
+   "id": "0a797a68d92b",
+   "label": "قطعه",
+   "rel_h": 1.24,
+   "rel_w": 2.84,
+   "rel_top": 1.1,
+   "rel_bottom": 0.14,
+   "count": 1,
+   "source": "label:sabt-samples"
+  },
+  {
+   "id": "695ab2a014d4",
+   "label": "ما",
+   "rel_h": 1.24,
+   "rel_w": 1.0,
+   "rel_top": 1.08,
+   "rel_bottom": 0.16,
+   "count": 3,
+   "source": "label:sabt-samples"
+  },
+  {
+   "id": "f24db9df9af7",
+   "label": "ی",
+   "rel_h": 1.2609,
+   "rel_w": 1.1739,
+   "rel_top": 0.8261,
+   "rel_bottom": 0.4348,
+   "count": 3,
+   "source": "label:sabt-samples"
+  },
+  {
+   "id": "56be8bf80535",
+   "label": "پلاک",
+   "rel_h": 1.3387,
+   "rel_w": 1.9516,
+   "rel_top": 0.8065,
+   "rel_bottom": 0.5323,
+   "count": 3,
+   "source": "label:sabt-samples"
+  },
+  {
+   "id": "3a870931ea5c",
+   "label": "ن",
+   "rel_h": 0.7302,
+   "rel_w": 0.7302,
+   "rel_top": 0.3492,
+   "rel_bottom": 0.381,
+   "count": 1,
+   "source": "label:sabt-samples"
+  },
+  {
+   "id": "60998a6e769c",
+   "label": "نو",
+   "rel_h": 1.0,
+   "rel_w": 1.3148,
+   "rel_top": 0.6667,
+   "rel_bottom": 0.3333,
+   "count": 3,
+   "source": "label:sabt-samples"
+  },
+  {
+   "id": "8b5468dfebd8",
+   "label": "بطو",
+   "rel_h": 1.463,
+   "rel_w": 2.0741,
+   "rel_top": 1.0185,
+   "rel_bottom": 0.4444,
+   "count": 2,
+   "source": "label:sabt-samples"
+  },
+  {
+   "id": "05cb75c3e9af",
+   "label": "بطو",
+   "rel_h": 1.4545,
+   "rel_w": 2.0545,
+   "rel_top": 1.0,
+   "rel_bottom": 0.4545,
+   "count": 1,
+   "source": "label:sabt-samples"
+  },
+  {
+   "id": "eeae545cacca",
+   "label": "پنج",
+   "rel_h": 1.26,
+   "rel_w": 1.76,
+   "rel_top": 0.68,
+   "rel_bottom": 0.58,
+   "count": 1,
+   "source": "label:sabt-samples"
+  },
+  {
+   "id": "1149895a00a8",
+   "label": "پنج",
+   "rel_h": 1.26,
+   "rel_w": 1.74,
+   "rel_top": 0.7,
+   "rel_bottom": 0.56,
+   "count": 2,
+   "source": "label:sabt-samples"
+  },
+  {
+   "id": "49250a9ee8f8",
+   "label": "تهر",
+   "rel_h": 1.3478,
+   "rel_w": 2.087,
+   "rel_top": 0.8261,
+   "rel_bottom": 0.5217,
+   "count": 1,
+   "source": "label:sabt-samples"
+  },
+  {
+   "id": "371349c8fcd9",
+   "label": "تهر",
+   "rel_h": 1.26,
+   "rel_w": 1.9,
+   "rel_top": 0.78,
+   "rel_bottom": 0.48,
+   "count": 2,
+   "source": "label:sabt-samples"
+  },
+  {
+   "id": "328b1f92a5ea",
+   "label": "مورخ",
+   "rel_h": 1.1452,
+   "rel_w": 2.5645,
+   "rel_top": 0.6774,
+   "rel_bottom": 0.4677,
+   "count": 2,
+   "source": "label:sabt-samples"
+  },
+  {
+   "id": "b0180940c423",
+   "label": "مورخ",
+   "rel_h": 1.1452,
+   "rel_w": 2.5484,
+   "rel_top": 0.7419,
+   "rel_bottom": 0.4032,
+   "count": 1,
+   "source": "label:sabt-samples"
+  },
+  {
+   "id": "e772325c38ef",
+   "label": "ت",
+   "rel_h": 0.6667,
+   "rel_w": 0.9206,
+   "rel_top": 0.619,
+   "rel_bottom": 0.0476,
+   "count": 2,
+   "source": "label:sabt-samples"
+  },
+  {
+   "id": "5dba39de60bb",
+   "label": "ت",
+   "rel_h": 0.7778,
+   "rel_w": 1.0926,
+   "rel_top": 0.7407,
+   "rel_bottom": 0.037,
+   "count": 1,
+   "source": "label:sabt-samples"
+  },
+  {
+   "id": "b2007dca8361",
+   "label": "جز",
+   "rel_h": 1.08,
+   "rel_w": 1.76,
+   "rel_top": 0.54,
+   "rel_bottom": 0.54,
+   "count": 3,
+   "source": "label:sabt-samples"
+  },
+  {
+   "id": "cac29d895d9d",
+   "label": "5",
+   "rel_h": 1.0,
+   "rel_w": 0.7419,
+   "rel_top": 0.871,
+   "rel_bottom": 0.129,
+   "count": 2,
+   "source": "label:sabt-samples"
+  },
+  {
+   "id": "f4f9188dbfa8",
+   "label": "5",
+   "rel_h": 1.0,
+   "rel_w": 0.7302,
+   "rel_top": 0.8571,
+   "rel_bottom": 0.1429,
+   "count": 1,
+   "source": "label:sabt-samples"
+  },
+  {
+   "id": "fa2db9e9d246",
+   "label": "",
+   "rel_h": 0.375,
+   "rel_w": 1.125,
+   "rel_top": -3.875,
+   "rel_bottom": 4.25,
+   "count": 2,
+   "source": "label:sabt-samples"
+  },
+  {
+   "id": "69cb63e93276",
+   "label": "",
+   "rel_h": 0.375,
+   "rel_w": 1.0,
+   "rel_top": -1.625,
+   "rel_bottom": 2.0,
+   "count": 1,
+   "source": "label:sabt-samples"
+  },
+  {
+   "id": "aeb35cdc53f0",
+   "label": "شنا",
+   "rel_h": 1.3696,
+   "rel_w": 1.8261,
+   "rel_top": 1.1957,
+   "rel_bottom": 0.1739,
+   "count": 1,
+   "source": "label:sabt-samples"
+  },
+  {
+   "id": "630a99fa2b49",
+   "label": "شنا",
+   "rel_h": 1.24,
+   "rel_w": 1.68,
+   "rel_top": 1.1,
+   "rel_bottom": 0.14,
+   "count": 1,
+   "source": "label:sabt-samples"
+  },
+  {
+   "id": "393552374f71",
+   "label": "شنا",
+   "rel_h": 1.069,
+   "rel_w": 1.431,
+   "rel_top": 1.0172,
+   "rel_bottom": 0.0517,
+   "count": 1,
+   "source": "label:sabt-samples"
+  },
+  {
+   "id": "e5d09bc5d12c",
+   "label": "ک",
+   "rel_h": 0.8413,
+   "rel_w": 0.8571,
+   "rel_top": 0.9524,
+   "rel_bottom": -0.1111,
+   "count": 1,
+   "source": "label:sabt-samples"
+  },
+  {
+   "id": "43f7faa161c0",
+   "label": "ک",
+   "rel_h": 1.06,
+   "rel_w": 1.08,
+   "rel_top": 1.1,
+   "rel_bottom": -0.04,
+   "count": 2,
+   "source": "label:sabt-samples"
+  },
+  {
+   "id": "e17ff17aaef3",
+   "label": "نی",
+   "rel_h": 0.9841,
+   "rel_w": 1.127,
+   "rel_top": 0.6825,
+   "rel_bottom": 0.3016,
+   "count": 1,
+   "source": "label:sabt-samples"
+  },
+  {
+   "id": "7def3e45375a",
+   "label": "نی",
+   "rel_h": 1.26,
+   "rel_w": 1.42,
+   "rel_top": 0.78,
+   "rel_bottom": 0.48,
+   "count": 2,
+   "source": "label:sabt-samples"
+  },
+  {
+   "id": "ac4d07b42271",
+   "label": "4",
+   "rel_h": 1.1481,
+   "rel_w": 0.8519,
+   "rel_top": 1.0,
+   "rel_bottom": 0.1481,
+   "count": 2,
+   "source": "label:sabt-samples"
+  },
+  {
+   "id": "0edeff60b763",
+   "label": "4",
+   "rel_h": 1.24,
+   "rel_w": 0.92,
+   "rel_top": 1.02,
+   "rel_bottom": 0.22,
+   "count": 1,
+   "source": "label:sabt-samples"
+  },
+  {
+   "id": "9af19f408253",
+   "label": "قع",
+   "rel_h": 1.463,
+   "rel_w": 1.1667,
+   "rel_top": 1.0,
+   "rel_bottom": 0.463,
+   "count": 1,
+   "source": "label:sabt-samples"
+  },
+  {
+   "id": "e71b44667e53",
+   "label": "قع",
+   "rel_h": 1.58,
+   "rel_w": 1.24,
+   "rel_top": 1.04,
+   "rel_bottom": 0.54,
+   "count": 1,
+   "source": "label:sabt-samples"
+  },
+  {
+   "id": "b369fa996cb2",
+   "label": "قع",
+   "rel_h": 1.58,
+   "rel_w": 1.24,
+   "rel_top": 1.02,
+   "rel_bottom": 0.56,
+   "count": 1,
+   "source": "label:sabt-samples"
+  },
+  {
+   "id": "dca521c473ee",
+   "label": "6",
+   "rel_h": 1.24,
+   "rel_w": 0.9,
+   "rel_top": 1.1,
+   "rel_bottom": 0.14,
+   "count": 1,
+   "source": "label:sabt-samples"
+  },
+  {
+   "id": "c88f9303c0c9",
+   "label": "6",
+   "rel_h": 1.0,
+   "rel_w": 0.7302,
+   "rel_top": 0.8889,
+   "rel_bottom": 0.1111,
+   "count": 2,
+   "source": "label:sabt-samples"
+  },
+  {
+   "id": "4847c19196c5",
+   "label": "مر",
+   "rel_h": 1.0,
+   "rel_w": 1.5,
+   "rel_top": 0.52,
+   "rel_bottom": 0.48,
+   "count": 3,
+   "source": "label:sabt-samples"
+  },
+  {
+   "id": "21440d7f42c1",
+   "label": "که",
+   "rel_h": 1.26,
+   "rel_w": 1.32,
+   "rel_top": 1.04,
+   "rel_bottom": 0.22,
+   "count": 2,
+   "source": "label:sabt-samples"
+  },
+  {
+   "id": "6646b87c1f82",
+   "label": "که",
+   "rel_h": 1.24,
+   "rel_w": 1.34,
+   "rel_top": 1.08,
+   "rel_bottom": 0.16,
+   "count": 1,
+   "source": "label:sabt-samples"
+  },
+  {
+   "id": "ada02fa09ec3",
+   "label": "پنج",
+   "rel_h": 1.2222,
+   "rel_w": 1.6296,
+   "rel_top": 0.8148,
+   "rel_bottom": 0.4074,
+   "count": 2,
+   "source": "label:sabt-samples"
+  },
+  {
+   "id": "b10401442cf7",
+   "label": "پنج",
+   "rel_h": 1.2407,
+   "rel_w": 1.6111,
+   "rel_top": 0.7222,
+   "rel_bottom": 0.5185,
+   "count": 1,
+   "source": "label:sabt-samples"
+  },
+  {
+   "id": "1d53b3a27ab6",
+   "label": "سا",
+   "rel_h": 1.24,
+   "rel_w": 1.26,
+   "rel_top": 1.0,
+   "rel_bottom": 0.24,
+   "count": 2,
+   "source": "label:sabt-samples"
+  },
+  {
+   "id": "3770a2ed9698",
+   "label": "سا",
+   "rel_h": 1.26,
+   "rel_w": 1.26,
+   "rel_top": 1.04,
+   "rel_bottom": 0.22,
+   "count": 1,
+   "source": "label:sabt-samples"
+  },
+  {
+   "id": "eda9c8552801",
+   "label": "محو",
+   "rel_h": 1.0,
+   "rel_w": 2.42,
+   "rel_top": 0.5,
+   "rel_bottom": 0.5,
+   "count": 2,
+   "source": "label:sabt-samples"
+  },
+  {
+   "id": "e261b949abd2",
+   "label": "محو",
+   "rel_h": 1.0,
+   "rel_w": 2.4,
+   "rel_top": 0.5,
+   "rel_bottom": 0.5,
+   "count": 1,
+   "source": "label:sabt-samples"
+  },
+  {
+   "id": "ff1ac168b7fa",
+   "label": "طه",
+   "rel_h": 1.26,
+   "rel_w": 1.68,
+   "rel_top": 1.08,
+   "rel_bottom": 0.18,
+   "count": 3,
+   "source": "label:sabt-samples"
+  },
+  {
+   "id": "96530f8cdb42",
+   "label": "ا",
+   "rel_h": 1.25,
+   "rel_w": 0.375,
+   "rel_top": -1.25,
+   "rel_bottom": 2.5,
+   "count": 2,
+   "source": "label:sabt-samples"
+  },
+  {
+   "id": "758e9bed5c49",
+   "label": "ا",
+   "rel_h": 1.375,
+   "rel_w": 0.375,
+   "rel_top": -2.25,
+   "rel_bottom": 3.625,
+   "count": 1,
+   "source": "label:sabt-samples"
+  },
+  {
+   "id": "27f4a743218e",
+   "label": "مه",
+   "rel_h": 0.7419,
+   "rel_w": 1.0806,
+   "rel_top": 0.5484,
+   "rel_bottom": 0.1935,
+   "count": 3,
+   "source": "label:sabt-samples"
+  },
+  {
+   "id": "bacb642579b1",
+   "label": "علا",
+   "rel_h": 1.0,
+   "rel_w": 1.5238,
+   "rel_top": 0.873,
+   "rel_bottom": 0.127,
+   "count": 1,
+   "source": "label:sabt-samples"
+  },
+  {
+   "id": "ef21b6f0c309",
+   "label": "علا",
+   "rel_h": 1.069,
+   "rel_w": 1.6552,
+   "rel_top": 1.0172,
+   "rel_bottom": 0.0517,
+   "count": 2,
+   "source": "label:sabt-samples"
+  },
+  {
+   "id": "1048e1ad2d3b",
+   "label": "",
+   "rel_h": 0.2698,
+   "rel_w": 1.6508,
+   "rel_top": 0.2222,
+   "rel_bottom": 0.0476,
+   "count": 1,
+   "source": "label:sabt-samples"
+  },
+  {
+   "id": "160e15d770c6",
+   "label": "",
+   "rel_h": 0.32,
+   "rel_w": 2.08,
+   "rel_top": 0.1,
+   "rel_bottom": 0.22,
+   "count": 2,
+   "source": "label:sabt-samples"
+  },
+  {
+   "id": "47fe384701cd",
+   "label": "پا",
+   "rel_h": 1.3333,
+   "rel_w": 0.5873,
+   "rel_top": 0.9524,
+   "rel_bottom": 0.381,
+   "count": 3,
+   "source": "label:sabt-samples"
+  },
+  {
+   "id": "f4c3532c76c1",
+   "label": "ک",
+   "rel_h": 0.7302,
+   "rel_w": 0.8571,
+   "rel_top": 0.6825,
+   "rel_bottom": 0.0476,
+   "count": 2,
+   "source": "label:sabt-samples"
+  },
+  {
+   "id": "a0f2cdbc15fc",
+   "label": "ک",
+   "rel_h": 0.92,
+   "rel_w": 1.1,
+   "rel_top": 0.7,
+   "rel_bottom": 0.22,
+   "count": 1,
+   "source": "label:sabt-samples"
+  },
+  {
+   "id": "01ee85862447",
+   "label": "شده",
+   "rel_h": 0.8333,
+   "rel_w": 1.8519,
+   "rel_top": 0.6852,
+   "rel_bottom": 0.1481,
+   "count": 1,
+   "source": "label:sabt-samples"
+  },
+  {
+   "id": "e1f0982549e4",
+   "label": "شده",
+   "rel_h": 0.92,
+   "rel_w": 2.0,
+   "rel_top": 0.66,
+   "rel_bottom": 0.26,
+   "count": 2,
+   "source": "label:sabt-samples"
+  },
+  {
+   "id": "68469ab737b4",
+   "label": "ثبت",
+   "rel_h": 1.34,
+   "rel_w": 2.0,
+   "rel_top": 0.94,
+   "rel_bottom": 0.4,
+   "count": 2,
+   "source": "label:sabt-samples"
+  },
+  {
+   "id": "a2fa3d0a2df2",
+   "label": "ثبت",
+   "rel_h": 1.0635,
+   "rel_w": 1.5873,
+   "rel_top": 0.7302,
+   "rel_bottom": 0.3333,
+   "count": 1,
+   "source": "label:sabt-samples"
+  },
+  {
+   "id": "2648e1aff7f2",
+   "label": "حت",
+   "rel_h": 0.82,
+   "rel_w": 2.08,
+   "rel_top": 0.68,
+   "rel_bottom": 0.14,
+   "count": 3,
+   "source": "label:sabt-samples"
+  },
+  {
+   "id": "e9b1fd2ffa2c",
+   "label": "بع",
+   "rel_h": 1.16,
+   "rel_w": 1.18,
+   "rel_top": 0.68,
+   "rel_bottom": 0.48,
+   "count": 2,
+   "source": "label:sabt-samples"
+  },
+  {
+   "id": "860a9278f5e9",
+   "label": "بع",
+   "rel_h": 1.16,
+   "rel_w": 1.18,
+   "rel_top": 0.62,
+   "rel_bottom": 0.54,
+   "count": 1,
+   "source": "label:sabt-samples"
+  },
+  {
+   "id": "4a85991d0edc",
+   "label": "چها",
+   "rel_h": 1.68,
+   "rel_w": 1.9,
+   "rel_top": 1.0,
+   "rel_bottom": 0.68,
+   "count": 3,
+   "source": "label:sabt-samples"
+  },
+  {
+   "id": "95b66355dbff",
+   "label": "/",
+   "rel_h": 1.26,
+   "rel_w": 0.68,
+   "rel_top": 1.0,
+   "rel_bottom": 0.26,
+   "count": 1,
+   "source": "label:sabt-samples"
+  },
+  {
+   "id": "dd92a41c758f",
+   "label": "/",
+   "rel_h": 1.26,
+   "rel_w": 0.66,
+   "rel_top": 1.04,
+   "rel_bottom": 0.22,
+   "count": 1,
+   "source": "label:sabt-samples"
+  },
+  {
+   "id": "63aa4b054d6b",
+   "label": "/",
+   "rel_h": 1.069,
+   "rel_w": 0.569,
+   "rel_top": 1.0172,
+   "rel_bottom": 0.0517,
+   "count": 1,
+   "source": "label:sabt-samples"
+  },
+  {
+   "id": "ccdfc8d56047",
+   "label": "حدو",
+   "rel_h": 1.0,
+   "rel_w": 2.1481,
+   "rel_top": 0.6667,
+   "rel_bottom": 0.3333,
+   "count": 1,
+   "source": "label:sabt-samples"
+  },
+  {
+   "id": "424c5f421892",
+   "label": "حدو",
+   "rel_h": 0.9643,
+   "rel_w": 2.0893,
+   "rel_top": 0.5179,
+   "rel_bottom": 0.4464,
+   "count": 2,
+   "source": "label:sabt-samples"
+  },
+  {
+   "id": "cb8d24ddb938",
+   "label": "غر",
+   "rel_h": 1.3889,
+   "rel_w": 1.6296,
+   "rel_top": 1.0556,
+   "rel_bottom": 0.3333,
+   "count": 2,
+   "source": "label:sabt-samples"
+  },
+  {
+   "id": "492bd8804bec",
+   "label": "غر",
+   "rel_h": 1.3889,
+   "rel_w": 1.6111,
+   "rel_top": 0.9259,
+   "rel_bottom": 0.463,
+   "count": 1,
+   "source": "label:sabt-samples"
+  },
+  {
+   "id": "c4d0e2d67704",
+   "label": "سه",
+   "rel_h": 0.8519,
+   "rel_w": 1.463,
+   "rel_top": 0.7222,
+   "rel_bottom": 0.1296,
+   "count": 3,
+   "source": "label:sabt-samples"
+  },
+  {
+   "id": "697259bb2179",
+   "label": "شر",
+   "rel_h": 1.24,
+   "rel_w": 1.74,
+   "rel_top": 0.7,
+   "rel_bottom": 0.54,
+   "count": 1,
+   "source": "label:sabt-samples"
+  },
+  {
+   "id": "2ac9bac8f689",
+   "label": "شر",
+   "rel_h": 1.26,
+   "rel_w": 1.76,
+   "rel_top": 0.7,
+   "rel_bottom": 0.56,
+   "count": 1,
+   "source": "label:sabt-samples"
+  },
+  {
+   "id": "9c2f45a49f42",
+   "label": "شر",
+   "rel_h": 1.1481,
+   "rel_w": 1.6296,
+   "rel_top": 0.6852,
+   "rel_bottom": 0.463,
+   "count": 1,
+   "source": "label:sabt-samples"
+  },
+  {
+   "id": "21e4d5693b91",
+   "label": "هفت",
+   "rel_h": 1.0,
+   "rel_w": 2.42,
+   "rel_top": 0.78,
+   "rel_bottom": 0.22,
+   "count": 1,
+   "source": "label:sabt-samples"
+  },
+  {
+   "id": "8fc4877f76b1",
+   "label": "هفت",
+   "rel_h": 1.0,
+   "rel_w": 2.42,
+   "rel_top": 0.84,
+   "rel_bottom": 0.16,
+   "count": 2,
+   "source": "label:sabt-samples"
+  },
+  {
+   "id": "6beab0f1227c",
+   "label": "فضا",
+   "rel_h": 1.1481,
+   "rel_w": 2.0926,
+   "rel_top": 1.0,
+   "rel_bottom": 0.1481,
+   "count": 1,
+   "source": "label:sabt-samples"
+  },
+  {
+   "id": "fba11bc15f8b",
+   "label": "فضا",
+   "rel_h": 1.1455,
+   "rel_w": 2.0364,
+   "rel_top": 1.0,
+   "rel_bottom": 0.1455,
+   "count": 2,
+   "source": "label:sabt-samples"
+  },
+  {
+   "id": "e020cc3f8b95",
+   "label": "نو",
+   "rel_h": 1.1667,
+   "rel_w": 1.1481,
+   "rel_top": 0.7037,
+   "rel_bottom": 0.463,
+   "count": 1,
+   "source": "label:sabt-samples"
+  },
+  {
+   "id": "492fb1e1295b",
+   "label": "نو",
+   "rel_h": 1.1481,
+   "rel_w": 1.1481,
+   "rel_top": 0.6852,
+   "rel_bottom": 0.463,
+   "count": 2,
+   "source": "label:sabt-samples"
+  },
+  {
+   "id": "7414d1b22a2c",
+   "label": "2",
+   "rel_h": 1.0,
+   "rel_w": 0.7419,
+   "rel_top": 0.871,
+   "rel_bottom": 0.129,
+   "count": 1,
+   "source": "label:sabt-samples"
+  },
+  {
+   "id": "274712ae9e74",
+   "label": "2",
+   "rel_h": 1.26,
+   "rel_w": 0.92,
+   "rel_top": 1.08,
+   "rel_bottom": 0.18,
+   "count": 2,
+   "source": "label:sabt-samples"
+  },
+  {
+   "id": "fee00cf567c9",
+   "label": "خط",
+   "rel_h": 1.1698,
+   "rel_w": 1.9623,
+   "rel_top": 0.9434,
+   "rel_bottom": 0.2264,
+   "count": 2,
+   "source": "label:sabt-samples"
+  },
+  {
+   "id": "46ad965c76c5",
+   "label": "خط",
+   "rel_h": 1.26,
+   "rel_w": 2.08,
+   "rel_top": 1.08,
+   "rel_bottom": 0.18,
+   "count": 1,
+   "source": "label:sabt-samples"
+  },
+  {
+   "id": "62605495338d",
+   "label": "ضی",
+   "rel_h": 1.26,
+   "rel_w": 2.42,
+   "rel_top": 0.76,
+   "rel_bottom": 0.5,
+   "count": 2,
+   "source": "label:sabt-samples"
+  },
+  {
+   "id": "a2c932109e39",
+   "label": "ضی",
+   "rel_h": 1.24,
+   "rel_w": 2.4,
+   "rel_top": 0.74,
+   "rel_bottom": 0.5,
+   "count": 1,
+   "source": "label:sabt-samples"
+  },
+  {
+   "id": "81b1103cff0b",
+   "label": "دقی",
+   "rel_h": 1.3621,
+   "rel_w": 1.8103,
+   "rel_top": 1.0172,
+   "rel_bottom": 0.3448,
+   "count": 2,
+   "source": "label:sabt-samples"
+  },
+  {
+   "id": "a0c21016a4a9",
+   "label": "دقی",
+   "rel_h": 1.2742,
+   "rel_w": 1.6129,
+   "rel_top": 0.871,
+   "rel_bottom": 0.4032,
+   "count": 1,
+   "source": "label:sabt-samples"
+  },
+  {
+   "id": "cf88d0e7db7b",
+   "label": "شهر",
+   "rel_h": 1.24,
+   "rel_w": 2.4,
+   "rel_top": 0.88,
+   "rel_bottom": 0.36,
+   "count": 1,
+   "source": "label:sabt-samples"
+  },
+  {
+   "id": "6300c725667a",
+   "label": "شهر",
+   "rel_h": 0.9841,
+   "rel_w": 1.9206,
+   "rel_top": 0.6032,
+   "rel_bottom": 0.381,
+   "count": 2,
+   "source": "label:sabt-samples"
+  },
+  {
+   "id": "9ce384feda41",
+   "label": "ز",
+   "rel_h": 1.2,
+   "rel_w": 0.9333,
+   "rel_top": 0.7778,
+   "rel_bottom": 0.4222,
+   "count": 1,
+   "source": "label:sabt-samples"
+  },
+  {
+   "id": "59206df30c9e",
+   "label": "ز",
+   "rel_h": 1.1739,
+   "rel_w": 0.913,
+   "rel_top": 0.7826,
+   "rel_bottom": 0.3913,
+   "count": 2,
+   "source": "label:sabt-samples"
+  }
+ ]
+}

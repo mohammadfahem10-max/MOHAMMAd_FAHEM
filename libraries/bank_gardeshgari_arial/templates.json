@@ -1,0 +1,4350 @@
+{
+ "profile": "bank_gardeshgari_arial",
+ "norm_h": 40,
+ "meta": {
+  "word_gap_ratio": 0.37,
+  "word_gap_accuracy": 0.9216
+ },
+ "templates": [
+  {
+   "id": "323aa5c6f4d4",
+   "label": "با",
+   "rel_h": 1.2857,
+   "rel_w": 0.8095,
+   "rel_top": 0.8095,
+   "rel_bottom": 0.4762,
+   "count": 2,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "f9ef24ea7e15",
+   "label": "نکد",
+   "rel_h": 1.0,
+   "rel_w": 1.7143,
+   "rel_top": 0.8095,
+   "rel_bottom": 0.1905,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "d0525e3e3fb1",
+   "label": "ا",
+   "rel_h": 1.0,
+   "rel_w": 0.1905,
+   "rel_top": 0.8095,
+   "rel_bottom": 0.1905,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "ca41ce79c6c6",
+   "label": "ر",
+   "rel_h": 0.9048,
+   "rel_w": 0.7619,
+   "rel_top": 0.3333,
+   "rel_bottom": 0.5714,
+   "count": 2,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "45b22b0efc21",
+   "label": "ی",
+   "rel_h": 0.8571,
+   "rel_w": 0.9524,
+   "rel_top": 0.381,
+   "rel_bottom": 0.4762,
+   "count": 2,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "89392ee044d0",
+   "label": "مجا",
+   "rel_h": 1.2857,
+   "rel_w": 1.8571,
+   "rel_top": 0.8095,
+   "rel_bottom": 0.4762,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "ed2ba57f82fc",
+   "label": "ز",
+   "rel_h": 1.2381,
+   "rel_w": 0.7619,
+   "rel_top": 0.6667,
+   "rel_bottom": 0.5714,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "c681364e5770",
+   "label": "نک",
+   "rel_h": 1.0,
+   "rel_w": 1.9048,
+   "rel_top": 0.8095,
+   "rel_bottom": 0.1905,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "e101b973d0e4",
+   "label": "گر",
+   "rel_h": 1.619,
+   "rel_w": 1.381,
+   "rel_top": 1.0476,
+   "rel_bottom": 0.5714,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "ab73d26e3147",
+   "label": "دشگر",
+   "rel_h": 1.619,
+   "rel_w": 2.9524,
+   "rel_top": 1.0476,
+   "rel_bottom": 0.5714,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "479c46ea9386",
+   "label": "ی",
+   "rel_h": 0.8571,
+   "rel_w": 1.0,
+   "rel_top": 0.381,
+   "rel_bottom": 0.4762,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "2e772958f82d",
+   "label": "صو",
+   "rel_h": 1.0,
+   "rel_w": 2.5294,
+   "rel_top": 0.3529,
+   "rel_bottom": 0.6471,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "0096b714a7cd",
+   "label": "ت",
+   "rel_h": 0.7059,
+   "rel_w": 1.4118,
+   "rel_top": 0.4706,
+   "rel_bottom": 0.2353,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "f9b7d5249e4b",
+   "label": "حسا",
+   "rel_h": 1.2353,
+   "rel_w": 2.5882,
+   "rel_top": 1.0,
+   "rel_bottom": 0.2353,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "21671377f07e",
+   "label": "ب",
+   "rel_h": 1.0588,
+   "rel_w": 1.4118,
+   "rel_top": 0.4706,
+   "rel_bottom": 0.5882,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "152d8ead1bec",
+   "label": "سر",
+   "rel_h": 1.1765,
+   "rel_w": 2.4706,
+   "rel_top": 0.4706,
+   "rel_bottom": 0.7059,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "a54906fa38b7",
+   "label": "پ",
+   "rel_h": 0.5294,
+   "rel_w": 0.5294,
+   "rel_top": -0.2941,
+   "rel_bottom": 0.8235,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "550a15a0e054",
+   "label": "د",
+   "rel_h": 0.8824,
+   "rel_w": 0.6471,
+   "rel_top": 0.6471,
+   "rel_bottom": 0.2353,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "dafdc66f8dd9",
+   "label": "ه",
+   "rel_h": 0.6471,
+   "rel_w": 0.5294,
+   "rel_top": 0.4118,
+   "rel_bottom": 0.2353,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "666fe3ecc858",
+   "label": "ل.",
+   "rel_h": 1.3158,
+   "rel_w": 1.6842,
+   "rel_top": 0.9474,
+   "rel_bottom": 0.3684,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "73254687314c",
+   "label": "بر",
+   "rel_h": 0.9474,
+   "rel_w": 1.2105,
+   "rel_top": 0.4211,
+   "rel_bottom": 0.5263,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "d2a6835e9349",
+   "label": "ا",
+   "rel_h": 1.0,
+   "rel_w": 0.1579,
+   "rel_top": 0.8947,
+   "rel_bottom": 0.1053,
+   "count": 8,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "f80afab4fd6a",
+   "label": "ی",
+   "rel_h": 0.8421,
+   "rel_w": 1.0526,
+   "rel_top": 0.4211,
+   "rel_bottom": 0.4211,
+   "count": 2,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "43a7b8582271",
+   "label": "ا",
+   "rel_h": 1.0,
+   "rel_w": 0.2105,
+   "rel_top": 0.8947,
+   "rel_bottom": 0.1053,
+   "count": 12,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "540b341e9d57",
+   "label": "ر",
+   "rel_h": 0.8947,
+   "rel_w": 0.7368,
+   "rel_top": 0.3684,
+   "rel_bottom": 0.5263,
+   "count": 14,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "62c63d17e552",
+   "label": "ز",
+   "rel_h": 1.2632,
+   "rel_w": 0.7895,
+   "rel_top": 0.7368,
+   "rel_bottom": 0.5263,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "b4ecb94b694d",
+   "label": "یا",
+   "rel_h": 1.3684,
+   "rel_w": 0.7895,
+   "rel_top": 0.8947,
+   "rel_bottom": 0.4737,
+   "count": 3,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "705c4bfd2d93",
+   "label": "1",
+   "rel_h": 1.2632,
+   "rel_w": 0.4211,
+   "rel_top": 0.8947,
+   "rel_bottom": 0.3684,
+   "count": 14,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "df16e9d216f8",
+   "label": "9",
+   "rel_h": 1.2632,
+   "rel_w": 0.8421,
+   "rel_top": 0.8947,
+   "rel_bottom": 0.3684,
+   "count": 11,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "30a3c306dfa6",
+   "label": "/",
+   "rel_h": 1.2632,
+   "rel_w": 0.4737,
+   "rel_top": 0.8947,
+   "rel_bottom": 0.3684,
+   "count": 4,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "de6bb122079e",
+   "label": "0",
+   "rel_h": 1.2632,
+   "rel_w": 0.7895,
+   "rel_top": 0.8947,
+   "rel_bottom": 0.3684,
+   "count": 31,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "baa3bc88927b",
+   "label": "/",
+   "rel_h": 1.2632,
+   "rel_w": 0.4737,
+   "rel_top": 0.8947,
+   "rel_bottom": 0.3684,
+   "count": 5,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "c54c8720cc7a",
+   "label": "1",
+   "rel_h": 1.2632,
+   "rel_w": 0.4737,
+   "rel_top": 0.8947,
+   "rel_bottom": 0.3684,
+   "count": 22,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "0d15a7b7218c",
+   "label": "4",
+   "rel_h": 1.2632,
+   "rel_w": 0.8947,
+   "rel_top": 0.8947,
+   "rel_bottom": 0.3684,
+   "count": 14,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "6fd5ba33964d",
+   "label": "3",
+   "rel_h": 1.2632,
+   "rel_w": 0.7895,
+   "rel_top": 0.8947,
+   "rel_bottom": 0.3684,
+   "count": 4,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "3250b0dcec8a",
+   "label": "تا",
+   "rel_h": 1.0,
+   "rel_w": 0.8421,
+   "rel_top": 0.8947,
+   "rel_bottom": 0.1053,
+   "count": 3,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "60d1613f22c7",
+   "label": "ر",
+   "rel_h": 0.8947,
+   "rel_w": 0.7895,
+   "rel_top": 0.3684,
+   "rel_bottom": 0.5263,
+   "count": 21,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "1e0081929dd7",
+   "label": "یخ",
+   "rel_h": 1.4737,
+   "rel_w": 1.3158,
+   "rel_top": 0.7368,
+   "rel_bottom": 0.7368,
+   "count": 2,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "2b0c5615a9ec",
+   "label": "0",
+   "rel_h": 1.2632,
+   "rel_w": 0.8421,
+   "rel_top": 0.8947,
+   "rel_bottom": 0.3684,
+   "count": 47,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "a0a7395f024b",
+   "label": "2",
+   "rel_h": 1.2632,
+   "rel_w": 0.7895,
+   "rel_top": 0.8947,
+   "rel_bottom": 0.3684,
+   "count": 11,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "6729539ae5ce",
+   "label": "2",
+   "rel_h": 1.2632,
+   "rel_w": 0.8421,
+   "rel_top": 0.8947,
+   "rel_bottom": 0.3684,
+   "count": 11,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "1549c82b38a5",
+   "label": "مر",
+   "rel_h": 0.8947,
+   "rel_w": 1.4737,
+   "rel_top": 0.3684,
+   "rel_bottom": 0.5263,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "47994a359578",
+   "label": "بو",
+   "rel_h": 0.9474,
+   "rel_w": 1.0526,
+   "rel_top": 0.4211,
+   "rel_bottom": 0.5263,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "2426fbc7b732",
+   "label": "ط",
+   "rel_h": 1.1053,
+   "rel_w": 1.0526,
+   "rel_top": 1.0,
+   "rel_bottom": 0.1053,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "96de091f2c12",
+   "label": "به",
+   "rel_h": 1.0526,
+   "rel_w": 1.1053,
+   "rel_top": 0.6316,
+   "rel_bottom": 0.4211,
+   "count": 3,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "011c58b75199",
+   "label": "سپر",
+   "rel_h": 1.1053,
+   "rel_w": 2.1053,
+   "rel_top": 0.4211,
+   "rel_bottom": 0.6842,
+   "count": 4,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "51753a5aec19",
+   "label": "د",
+   "rel_h": 0.6842,
+   "rel_w": 0.5263,
+   "rel_top": 0.5789,
+   "rel_bottom": 0.1053,
+   "count": 12,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "f3e3015e588b",
+   "label": "ه",
+   "rel_h": 0.5263,
+   "rel_w": 0.4211,
+   "rel_top": 0.3684,
+   "rel_bottom": 0.1579,
+   "count": 4,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "8d50fb13fd76",
+   "label": "حسا",
+   "rel_h": 1.0,
+   "rel_w": 2.2632,
+   "rel_top": 0.8947,
+   "rel_bottom": 0.1053,
+   "count": 2,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "e8a11eb4de5f",
+   "label": "ب",
+   "rel_h": 0.8421,
+   "rel_w": 1.2105,
+   "rel_top": 0.4211,
+   "rel_bottom": 0.4211,
+   "count": 2,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "3abc806953fd",
+   "label": "قر",
+   "rel_h": 1.4211,
+   "rel_w": 1.2105,
+   "rel_top": 0.8947,
+   "rel_bottom": 0.5263,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "427eef300234",
+   "label": "ض",
+   "rel_h": 1.1053,
+   "rel_w": 1.8421,
+   "rel_top": 0.6316,
+   "rel_bottom": 0.4737,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "041bfa1738b7",
+   "label": "لحسنه",
+   "rel_h": 1.0526,
+   "rel_w": 3.3158,
+   "rel_top": 0.9474,
+   "rel_bottom": 0.1053,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "b6c02496b5c5",
+   "label": "جا",
+   "rel_h": 1.3158,
+   "rel_w": 1.3158,
+   "rel_top": 0.8947,
+   "rel_bottom": 0.4211,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "fa5b062ad8ac",
+   "label": "ی",
+   "rel_h": 1.1579,
+   "rel_w": 1.0526,
+   "rel_top": 0.4211,
+   "rel_bottom": 0.7368,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "db1e4005d9d1",
+   "label": "حقو",
+   "rel_h": 1.4211,
+   "rel_w": 2.0,
+   "rel_top": 0.8947,
+   "rel_bottom": 0.5263,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "2b692c6f41b4",
+   "label": "قی",
+   "rel_h": 1.6842,
+   "rel_w": 1.4737,
+   "rel_top": 0.9474,
+   "rel_bottom": 0.7368,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "c77a2cdd94b7",
+   "label": "شر",
+   "rel_h": 1.4211,
+   "rel_w": 1.7368,
+   "rel_top": 0.8947,
+   "rel_bottom": 0.5263,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "6f0feb3db6ef",
+   "label": "کت",
+   "rel_h": 1.0,
+   "rel_w": 1.8947,
+   "rel_top": 0.8947,
+   "rel_bottom": 0.1053,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "7a68aad3bfe5",
+   "label": "طلو",
+   "rel_h": 1.5263,
+   "rel_w": 2.0526,
+   "rel_top": 1.0,
+   "rel_bottom": 0.5263,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "a43ca0c642fd",
+   "label": "ع",
+   "rel_h": 1.3158,
+   "rel_w": 0.8421,
+   "rel_top": 0.5789,
+   "rel_bottom": 0.7368,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "1e598c10d9eb",
+   "label": "فر",
+   "rel_h": 1.4211,
+   "rel_w": 1.2632,
+   "rel_top": 0.8947,
+   "rel_bottom": 0.5263,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "ad3f02e4cc03",
+   "label": "د",
+   "rel_h": 0.6842,
+   "rel_w": 0.4737,
+   "rel_top": 0.5789,
+   "rel_bottom": 0.1053,
+   "count": 7,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "b87736509788",
+   "label": "ی",
+   "rel_h": 1.1579,
+   "rel_w": 1.0,
+   "rel_top": 0.4211,
+   "rel_bottom": 0.7368,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "61ccfc986b03",
+   "label": "یر",
+   "rel_h": 0.9474,
+   "rel_w": 1.2105,
+   "rel_top": 0.4211,
+   "rel_bottom": 0.5263,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "4aad440c4457",
+   "label": "نیا",
+   "rel_h": 1.3684,
+   "rel_w": 1.2632,
+   "rel_top": 0.8947,
+   "rel_bottom": 0.4737,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "c1bdad811e8f",
+   "label": "ن",
+   "rel_h": 1.0526,
+   "rel_w": 0.8947,
+   "rel_top": 0.5789,
+   "rel_bottom": 0.4737,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "343820ef974f",
+   "label": "ز",
+   "rel_h": 1.2632,
+   "rel_w": 0.7368,
+   "rel_top": 0.7368,
+   "rel_bottom": 0.5263,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "f2d26492f39c",
+   "label": "0.",
+   "rel_h": 1.2632,
+   "rel_w": 1.2105,
+   "rel_top": 0.8947,
+   "rel_bottom": 0.3684,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "d48a1a4813d7",
+   "label": ".",
+   "rel_h": 0.1579,
+   "rel_w": 0.1579,
+   "rel_top": -0.2105,
+   "rel_bottom": 0.3684,
+   "count": 1,
+   "source": "pdf:soorathesab:split"
+  },
+  {
+   "id": "a2f2112b7fb7",
+   "label": "7",
+   "rel_h": 1.2632,
+   "rel_w": 0.8421,
+   "rel_top": 0.8947,
+   "rel_bottom": 0.3684,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "97e92e7ca1a6",
+   "label": ".1",
+   "rel_h": 1.2632,
+   "rel_w": 1.0,
+   "rel_top": 0.8947,
+   "rel_bottom": 0.3684,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "014ccde61e8b",
+   "label": ".",
+   "rel_h": 0.1579,
+   "rel_w": 0.2105,
+   "rel_top": -0.2105,
+   "rel_bottom": 0.3684,
+   "count": 2,
+   "source": "pdf:soorathesab:split"
+  },
+  {
+   "id": "d63f20c5a4fd",
+   "label": "6",
+   "rel_h": 1.2632,
+   "rel_w": 0.8421,
+   "rel_top": 0.8947,
+   "rel_bottom": 0.3684,
+   "count": 10,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "e1f42817a060",
+   "label": "8",
+   "rel_h": 1.2632,
+   "rel_w": 0.8421,
+   "rel_top": 0.8947,
+   "rel_bottom": 0.3684,
+   "count": 7,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "59243423bfea",
+   "label": "5",
+   "rel_h": 1.2632,
+   "rel_w": 0.8421,
+   "rel_top": 0.8947,
+   "rel_bottom": 0.3684,
+   "count": 11,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "96c1f0733090",
+   "label": "2.",
+   "rel_h": 1.2632,
+   "rel_w": 1.2632,
+   "rel_top": 0.8947,
+   "rel_bottom": 0.3684,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "ca38d87453f5",
+   "label": "صو",
+   "rel_h": 0.8421,
+   "rel_w": 2.2105,
+   "rel_top": 0.3158,
+   "rel_bottom": 0.5263,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "781fb6ad9dbb",
+   "label": "ت",
+   "rel_h": 0.8421,
+   "rel_w": 1.2105,
+   "rel_top": 0.7368,
+   "rel_bottom": 0.1053,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "c12882eb3efd",
+   "label": "سپر",
+   "rel_h": 1.1053,
+   "rel_w": 2.1053,
+   "rel_top": 0.4211,
+   "rel_bottom": 0.6842,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "187823d4efbb",
+   "label": "یا",
+   "rel_h": 0.9655,
+   "rel_w": 0.3448,
+   "rel_top": 0.6552,
+   "rel_bottom": 0.3103,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "b19a13731079",
+   "label": "دداشت",
+   "rel_h": 1.069,
+   "rel_w": 2.8621,
+   "rel_top": 0.7586,
+   "rel_bottom": 0.3103,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "32c7a0b17e6f",
+   "label": "م",
+   "rel_h": 0.6207,
+   "rel_w": 0.7241,
+   "rel_top": 0.6552,
+   "rel_bottom": -0.0345,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "90c686d0293f",
+   "label": "انه",
+   "rel_h": 0.7241,
+   "rel_w": 1.8621,
+   "rel_top": 0.5172,
+   "rel_bottom": 0.2069,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "0612d62a4660",
+   "label": "د",
+   "rel_h": 0.5862,
+   "rel_w": 0.4483,
+   "rel_top": 0.7241,
+   "rel_bottom": -0.1379,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "d8e506599ea3",
+   "label": "وا",
+   "rel_h": 0.931,
+   "rel_w": 0.7931,
+   "rel_top": 0.5862,
+   "rel_bottom": 0.3448,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "d627a93b925c",
+   "label": "ر",
+   "rel_h": 0.7241,
+   "rel_w": 0.6552,
+   "rel_top": 0.5862,
+   "rel_bottom": 0.1379,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "b996b977b948",
+   "label": "ی",
+   "rel_h": 0.8966,
+   "rel_w": 0.8621,
+   "rel_top": 0.5172,
+   "rel_bottom": 0.3793,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "a8cda3af70f9",
+   "label": "ز",
+   "rel_h": 0.5517,
+   "rel_w": 0.3793,
+   "rel_top": 0.4138,
+   "rel_bottom": 0.1379,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "5351260616a3",
+   "label": "بر",
+   "rel_h": 0.7931,
+   "rel_w": 0.6897,
+   "rel_top": 0.4483,
+   "rel_bottom": 0.3448,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "1863c166d92d",
+   "label": "داشت",
+   "rel_h": 1.0,
+   "rel_w": 2.5517,
+   "rel_top": 0.7586,
+   "rel_bottom": 0.2414,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "350172a54069",
+   "label": "توضیحا",
+   "rel_h": 1.0,
+   "rel_w": 3.931,
+   "rel_top": 0.6552,
+   "rel_bottom": 0.3448,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "4a5a168bb9fd",
+   "label": "ت",
+   "rel_h": 0.5517,
+   "rel_w": 0.7586,
+   "rel_top": 0.6897,
+   "rel_bottom": -0.1379,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "d8166a70a224",
+   "label": "شما",
+   "rel_h": 1.0,
+   "rel_w": 1.6897,
+   "rel_top": 0.6552,
+   "rel_bottom": 0.3448,
+   "count": 2,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "b8ce1f8af1b8",
+   "label": "رهچ",
+   "rel_h": 1.0345,
+   "rel_w": 2.9655,
+   "rel_top": 0.6552,
+   "rel_bottom": 0.3793,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "97d1ec2c6afb",
+   "label": "ک",
+   "rel_h": 0.6207,
+   "rel_w": 0.5862,
+   "rel_top": 0.7586,
+   "rel_bottom": -0.1379,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "047e7975aaf2",
+   "label": "رهقب",
+   "rel_h": 1.0345,
+   "rel_w": 3.1379,
+   "rel_top": 0.6552,
+   "rel_bottom": 0.3793,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "26318344b22c",
+   "label": "ض",
+   "rel_h": 0.5862,
+   "rel_w": 1.069,
+   "rel_top": 0.7241,
+   "rel_bottom": -0.1379,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "c3d95c68fc9d",
+   "label": "سد",
+   "rel_h": 0.7586,
+   "rel_w": 1.2759,
+   "rel_top": 0.5517,
+   "rel_bottom": 0.2069,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "a249708ea836",
+   "label": "ن",
+   "rel_h": 0.4828,
+   "rel_w": 0.3103,
+   "rel_top": 0.6207,
+   "rel_bottom": -0.1379,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "9d2f67547f89",
+   "label": "سا",
+   "rel_h": 0.4138,
+   "rel_w": 0.6552,
+   "rel_top": 0.5862,
+   "rel_bottom": -0.1724,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "1267366f74f5",
+   "label": "عت",
+   "rel_h": 0.8276,
+   "rel_w": 2.4483,
+   "rel_top": 0.6207,
+   "rel_bottom": 0.2069,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "d37bb4a2651a",
+   "label": "تا",
+   "rel_h": 0.6897,
+   "rel_w": 0.5862,
+   "rel_top": 0.7241,
+   "rel_bottom": -0.0345,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "80c11fa132a1",
+   "label": "ر",
+   "rel_h": 0.7586,
+   "rel_w": 0.6207,
+   "rel_top": 0.6207,
+   "rel_bottom": 0.1379,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "32bfa5e7fe10",
+   "label": "ی",
+   "rel_h": 0.6207,
+   "rel_w": 1.8966,
+   "rel_top": 0.1724,
+   "rel_bottom": 0.4483,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "7183ea0825b3",
+   "label": "خ",
+   "rel_h": 1.1034,
+   "rel_w": 0.931,
+   "rel_top": 0.6207,
+   "rel_bottom": 0.4828,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "4a5fd5c37cfc",
+   "label": "شعبه",
+   "rel_h": 0.931,
+   "rel_w": 2.0345,
+   "rel_top": 0.6552,
+   "rel_bottom": 0.2759,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "207d19ad3308",
+   "label": "0",
+   "rel_h": 1.0,
+   "rel_w": 0.6667,
+   "rel_top": 0.0833,
+   "rel_bottom": 0.9167,
+   "count": 17,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "574ae46a0418",
+   "label": "0",
+   "rel_h": 1.0,
+   "rel_w": 0.625,
+   "rel_top": 0.0833,
+   "rel_bottom": 0.9167,
+   "count": 8,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "d7df07f84565",
+   "label": "3",
+   "rel_h": 1.0,
+   "rel_w": 0.6667,
+   "rel_top": 0.0833,
+   "rel_bottom": 0.9167,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "01103549e106",
+   "label": "8,",
+   "rel_h": 1.2083,
+   "rel_w": 1.0,
+   "rel_top": 0.0833,
+   "rel_bottom": 1.125,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "0895052e5ab5",
+   "label": "8",
+   "rel_h": 1.0,
+   "rel_w": 0.6667,
+   "rel_top": 0.0833,
+   "rel_bottom": 0.9167,
+   "count": 1,
+   "source": "pdf:soorathesab:split"
+  },
+  {
+   "id": "c8be89b896d7",
+   "label": ",",
+   "rel_h": 0.3333,
+   "rel_w": 0.1667,
+   "rel_top": -0.7917,
+   "rel_bottom": 1.125,
+   "count": 2,
+   "source": "pdf:soorathesab:split"
+  },
+  {
+   "id": "0513994ecbe5",
+   "label": "8",
+   "rel_h": 1.0,
+   "rel_w": 0.6667,
+   "rel_top": 0.0833,
+   "rel_bottom": 0.9167,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "9b0ab08d0387",
+   "label": "6",
+   "rel_h": 1.0,
+   "rel_w": 0.6667,
+   "rel_top": 0.0833,
+   "rel_bottom": 0.9167,
+   "count": 2,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "b10d7fb49f16",
+   "label": "1",
+   "rel_h": 1.0,
+   "rel_w": 0.375,
+   "rel_top": 0.0833,
+   "rel_bottom": 0.9167,
+   "count": 6,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "9a0379bc9206",
+   "label": ",6",
+   "rel_h": 1.1667,
+   "rel_w": 0.9583,
+   "rel_top": 0.0833,
+   "rel_bottom": 1.0833,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "ceaee1b8a2e4",
+   "label": ",",
+   "rel_h": 0.2917,
+   "rel_w": 0.125,
+   "rel_top": -0.7917,
+   "rel_bottom": 1.0833,
+   "count": 6,
+   "source": "pdf:soorathesab:split"
+  },
+  {
+   "id": "9152b9f89a2c",
+   "label": "6",
+   "rel_h": 1.0,
+   "rel_w": 0.625,
+   "rel_top": 0.0833,
+   "rel_bottom": 0.9167,
+   "count": 3,
+   "source": "pdf:soorathesab:split"
+  },
+  {
+   "id": "dc5a7fb526f4",
+   "label": "ه:",
+   "rel_h": 0.9444,
+   "rel_w": 1.3333,
+   "rel_top": 0.5,
+   "rel_bottom": 0.4444,
+   "count": 2,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "b25b282e4214",
+   "label": "با",
+   "rel_h": 1.3889,
+   "rel_w": 0.8333,
+   "rel_top": 0.8889,
+   "rel_bottom": 0.5,
+   "count": 7,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "3ea5a78c3fd6",
+   "label": "بت",
+   "rel_h": 1.2222,
+   "rel_w": 1.7778,
+   "rel_top": 0.7222,
+   "rel_bottom": 0.5,
+   "count": 7,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "e1eb309afe7a",
+   "label": "نا",
+   "rel_h": 1.0556,
+   "rel_w": 0.8889,
+   "rel_top": 0.8889,
+   "rel_bottom": 0.1667,
+   "count": 3,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "d76fc0dc7c32",
+   "label": "مه",
+   "rel_h": 0.7778,
+   "rel_w": 1.4444,
+   "rel_top": 0.6111,
+   "rel_bottom": 0.1667,
+   "count": 5,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "c5d40a3d0dee",
+   "label": "شما",
+   "rel_h": 1.0556,
+   "rel_w": 2.1111,
+   "rel_top": 0.8889,
+   "rel_bottom": 0.1667,
+   "count": 3,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "f84fbdb7f974",
+   "label": "ن-",
+   "rel_h": 1.1111,
+   "rel_w": 1.5,
+   "rel_top": 0.5556,
+   "rel_bottom": 0.5556,
+   "count": 2,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "4c46a0cb856b",
+   "label": "حسا",
+   "rel_h": 1.0556,
+   "rel_w": 2.3889,
+   "rel_top": 0.8889,
+   "rel_bottom": 0.1667,
+   "count": 3,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "2f83596cd800",
+   "label": "ب",
+   "rel_h": 0.8889,
+   "rel_w": 1.2778,
+   "rel_top": 0.3889,
+   "rel_bottom": 0.5,
+   "count": 3,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "e1f86dd29656",
+   "label": "صلی",
+   "rel_h": 1.6111,
+   "rel_w": 3.0,
+   "rel_top": 0.9444,
+   "rel_bottom": 0.6667,
+   "count": 3,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "9702b08ade2b",
+   "label": "مشتر",
+   "rel_h": 1.5,
+   "rel_w": 2.9444,
+   "rel_top": 0.8889,
+   "rel_bottom": 0.6111,
+   "count": 3,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "7d5db63850d2",
+   "label": "یا",
+   "rel_h": 1.4444,
+   "rel_w": 0.8889,
+   "rel_top": 0.8889,
+   "rel_bottom": 0.5556,
+   "count": 2,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "5402f28cd819",
+   "label": "یی-",
+   "rel_h": 0.95,
+   "rel_w": 2.3,
+   "rel_top": 0.35,
+   "rel_bottom": 0.6,
+   "count": 4,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "6a823f74d134",
+   "label": "-به",
+   "rel_h": 1.0,
+   "rel_w": 2.0,
+   "rel_top": 0.55,
+   "rel_bottom": 0.45,
+   "count": 6,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "e031d04eec7d",
+   "label": "علت",
+   "rel_h": 1.0,
+   "rel_w": 2.3,
+   "rel_top": 0.85,
+   "rel_bottom": 0.15,
+   "count": 6,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "ffb0461c06bb",
+   "label": ":د",
+   "rel_h": 0.9,
+   "rel_w": 1.25,
+   "rel_top": 0.5,
+   "rel_bottom": 0.4,
+   "count": 6,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "68a9530fd6bb",
+   "label": "ستو",
+   "rel_h": 1.25,
+   "rel_w": 1.9,
+   "rel_top": 0.7,
+   "rel_bottom": 0.55,
+   "count": 4,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "87c42a3018e5",
+   "label": "مقا",
+   "rel_h": 0.95,
+   "rel_w": 1.45,
+   "rel_top": 0.8,
+   "rel_bottom": 0.15,
+   "count": 6,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "ffc2e9f50389",
+   "label": "م",
+   "rel_h": 0.9,
+   "rel_w": 0.55,
+   "rel_top": 0.2,
+   "rel_bottom": 0.7,
+   "count": 5,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "a72684ed7d3c",
+   "label": "قضا",
+   "rel_h": 0.95,
+   "rel_w": 2.2,
+   "rel_top": 0.8,
+   "rel_bottom": 0.15,
+   "count": 4,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "2f43638b27e5",
+   "label": "چک",
+   "rel_h": 1.5263,
+   "rel_w": 2.5263,
+   "rel_top": 0.8421,
+   "rel_bottom": 0.6842,
+   "count": 4,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "5be822411854",
+   "label": "بر",
+   "rel_h": 0.9474,
+   "rel_w": 1.1579,
+   "rel_top": 0.3684,
+   "rel_bottom": 0.5789,
+   "count": 4,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "d6a4d6b530bb",
+   "label": "گشتی",
+   "rel_h": 1.4737,
+   "rel_w": 3.0526,
+   "rel_top": 0.8421,
+   "rel_bottom": 0.6316,
+   "count": 4,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "53e2b1c08d5d",
+   "label": "شما",
+   "rel_h": 1.0,
+   "rel_w": 2.0,
+   "rel_top": 0.8421,
+   "rel_bottom": 0.1579,
+   "count": 4,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "e9a127f9653b",
+   "label": "ه",
+   "rel_h": 0.5263,
+   "rel_w": 0.4211,
+   "rel_top": 0.3158,
+   "rel_bottom": 0.2105,
+   "count": 6,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "631c20e6a165",
+   "label": "پیگیر",
+   "rel_h": 1.5789,
+   "rel_w": 2.9474,
+   "rel_top": 0.8421,
+   "rel_bottom": 0.7368,
+   "count": 4,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "ef8712a8fe79",
+   "label": "ی",
+   "rel_h": 0.8421,
+   "rel_w": 1.0,
+   "rel_top": 0.3684,
+   "rel_bottom": 0.4737,
+   "count": 2,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "0b0b313a06d3",
+   "label": "_نا",
+   "rel_h": 1.2917,
+   "rel_w": 1.0,
+   "rel_top": -0.25,
+   "rel_bottom": 1.5417,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "535b3393f70d",
+   "label": "سمنهد",
+   "rel_h": 2.3333,
+   "rel_w": 1.4583,
+   "rel_top": 0.7917,
+   "rel_bottom": 1.5417,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "60fdfa7bc2f5",
+   "label": "شانم",
+   "rel_h": 2.4583,
+   "rel_w": 1.625,
+   "rel_top": 0.9167,
+   "rel_bottom": 1.5417,
+   "count": 2,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "8e005962f85a",
+   "label": "سا",
+   "rel_h": 0.6667,
+   "rel_w": 1.4583,
+   "rel_top": 0.7917,
+   "rel_bottom": -0.125,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "89cb19eb1547",
+   "label": "در",
+   "rel_h": 0.7083,
+   "rel_w": 0.5833,
+   "rel_top": -1.1667,
+   "rel_bottom": 1.875,
+   "count": 2,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "0705d2d3b207",
+   "label": "هد",
+   "rel_h": 2.25,
+   "rel_w": 0.4167,
+   "rel_top": 0.6667,
+   "rel_bottom": 1.5833,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "a6f4f755d2e0",
+   "label": ":سپر",
+   "rel_h": 2.2917,
+   "rel_w": 1.7083,
+   "rel_top": 0.5417,
+   "rel_bottom": 1.75,
+   "count": 2,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "721ce714fba6",
+   "label": "ده",
+   "rel_h": 0.5833,
+   "rel_w": 0.8333,
+   "rel_top": 0.6667,
+   "rel_bottom": -0.0833,
+   "count": 2,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "97350a70ba12",
+   "label": "01",
+   "rel_h": 2.6667,
+   "rel_w": 0.625,
+   "rel_top": 0.9167,
+   "rel_bottom": 1.75,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "4dbc6f86c105",
+   "label": "0",
+   "rel_h": 2.0417,
+   "rel_w": 0.375,
+   "rel_top": 0.9167,
+   "rel_bottom": 1.125,
+   "count": 1,
+   "source": "pdf:soorathesab:split"
+  },
+  {
+   "id": "4ed66088a1d3",
+   "label": "1",
+   "rel_h": 2.6667,
+   "rel_w": 0.25,
+   "rel_top": 0.9167,
+   "rel_bottom": 1.75,
+   "count": 1,
+   "source": "pdf:soorathesab:split"
+  },
+  {
+   "id": "27e5653c6197",
+   "label": "61",
+   "rel_h": 2.6667,
+   "rel_w": 0.6667,
+   "rel_top": 0.9167,
+   "rel_bottom": 1.75,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "2f5521fb50d8",
+   "label": "6",
+   "rel_h": 2.0,
+   "rel_w": 0.375,
+   "rel_top": 0.9167,
+   "rel_bottom": 1.0833,
+   "count": 1,
+   "source": "pdf:soorathesab:split"
+  },
+  {
+   "id": "854e962edcb0",
+   "label": "1",
+   "rel_h": 2.6667,
+   "rel_w": 0.2917,
+   "rel_top": 0.9167,
+   "rel_bottom": 1.75,
+   "count": 1,
+   "source": "pdf:soorathesab:split"
+  },
+  {
+   "id": "b29df3d29730",
+   "label": "40",
+   "rel_h": 2.6667,
+   "rel_w": 0.75,
+   "rel_top": 0.9167,
+   "rel_bottom": 1.75,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "45ced876c132",
+   "label": "4",
+   "rel_h": 2.5833,
+   "rel_w": 0.4167,
+   "rel_top": 0.8333,
+   "rel_bottom": 1.75,
+   "count": 1,
+   "source": "pdf:soorathesab:split"
+  },
+  {
+   "id": "d51e0c1c8282",
+   "label": "0",
+   "rel_h": 2.6667,
+   "rel_w": 0.3333,
+   "rel_top": 0.9167,
+   "rel_bottom": 1.75,
+   "count": 1,
+   "source": "pdf:soorathesab:split"
+  },
+  {
+   "id": "d664b4df3688",
+   "label": ".3",
+   "rel_h": 2.6667,
+   "rel_w": 0.625,
+   "rel_top": 0.9167,
+   "rel_bottom": 1.75,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "f35581b67c47",
+   "label": "3",
+   "rel_h": 2.6667,
+   "rel_w": 0.3333,
+   "rel_top": 0.9167,
+   "rel_bottom": 1.75,
+   "count": 1,
+   "source": "pdf:soorathesab:split"
+  },
+  {
+   "id": "d869c8ba124b",
+   "label": ".",
+   "rel_h": 1.0,
+   "rel_w": 0.2917,
+   "rel_top": 0.9167,
+   "rel_bottom": 0.0833,
+   "count": 1,
+   "source": "pdf:soorathesab:split"
+  },
+  {
+   "id": "d6c9eaf57d2d",
+   "label": "6",
+   "rel_h": 1.0,
+   "rel_w": 0.625,
+   "rel_top": 0.9167,
+   "rel_bottom": 0.0833,
+   "count": 4,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "9367920f0aab",
+   "label": "0.",
+   "rel_h": 2.6667,
+   "rel_w": 0.7083,
+   "rel_top": 0.9167,
+   "rel_bottom": 1.75,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "d6740be6f675",
+   "label": "0",
+   "rel_h": 2.6667,
+   "rel_w": 0.5833,
+   "rel_top": 0.9167,
+   "rel_bottom": 1.75,
+   "count": 1,
+   "source": "pdf:soorathesab:split"
+  },
+  {
+   "id": "9a84dad3dd56",
+   "label": ".",
+   "rel_h": 2.5,
+   "rel_w": 0.125,
+   "rel_top": 0.75,
+   "rel_bottom": 1.75,
+   "count": 1,
+   "source": "pdf:soorathesab:split"
+  },
+  {
+   "id": "6959bca05b39",
+   "label": "1O",
+   "rel_h": 2.6667,
+   "rel_w": 0.9583,
+   "rel_top": 0.9167,
+   "rel_bottom": 1.75,
+   "count": 2,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "2b118a3fe035",
+   "label": "O",
+   "rel_h": 2.6667,
+   "rel_w": 0.5,
+   "rel_top": 0.9167,
+   "rel_bottom": 1.75,
+   "count": 2,
+   "source": "pdf:soorathesab:split"
+  },
+  {
+   "id": "9588f14ad9e8",
+   "label": "1",
+   "rel_h": 2.6667,
+   "rel_w": 0.4583,
+   "rel_top": 0.9167,
+   "rel_bottom": 1.75,
+   "count": 2,
+   "source": "pdf:soorathesab:split"
+  },
+  {
+   "id": "cfa02b7164ad",
+   "label": "2r",
+   "rel_h": 2.4167,
+   "rel_w": 0.6667,
+   "rel_top": 0.6667,
+   "rel_bottom": 1.75,
+   "count": 2,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "35133da2d44e",
+   "label": "2",
+   "rel_h": 2.4167,
+   "rel_w": 0.4583,
+   "rel_top": 0.6667,
+   "rel_bottom": 1.75,
+   "count": 2,
+   "source": "pdf:soorathesab:split"
+  },
+  {
+   "id": "ece8936efe15",
+   "label": "r",
+   "rel_h": 2.4167,
+   "rel_w": 0.2083,
+   "rel_top": 0.6667,
+   "rel_bottom": 1.75,
+   "count": 2,
+   "source": "pdf:soorathesab:split"
+  },
+  {
+   "id": "1f794bd5c6a8",
+   "label": "g6",
+   "rel_h": 2.4167,
+   "rel_w": 0.7083,
+   "rel_top": 0.6667,
+   "rel_bottom": 1.75,
+   "count": 2,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "d730edf25f0f",
+   "label": "g",
+   "rel_h": 2.4167,
+   "rel_w": 0.375,
+   "rel_top": 0.6667,
+   "rel_bottom": 1.75,
+   "count": 2,
+   "source": "pdf:soorathesab:split"
+  },
+  {
+   "id": "cd731bcf9c41",
+   "label": "6",
+   "rel_h": 2.375,
+   "rel_w": 0.3333,
+   "rel_top": 0.625,
+   "rel_bottom": 1.75,
+   "count": 2,
+   "source": "pdf:soorathesab:split"
+  },
+  {
+   "id": "e75a38485bfa",
+   "label": "a0",
+   "rel_h": 2.4167,
+   "rel_w": 0.75,
+   "rel_top": 0.6667,
+   "rel_bottom": 1.75,
+   "count": 2,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "311807dc1d37",
+   "label": "a",
+   "rel_h": 2.4167,
+   "rel_w": 0.375,
+   "rel_top": 0.6667,
+   "rel_bottom": 1.75,
+   "count": 2,
+   "source": "pdf:soorathesab:split"
+  },
+  {
+   "id": "cd0983368021",
+   "label": "0",
+   "rel_h": 2.4167,
+   "rel_w": 0.375,
+   "rel_top": 0.6667,
+   "rel_bottom": 1.75,
+   "count": 2,
+   "source": "pdf:soorathesab:split"
+  },
+  {
+   "id": "87eca14b3caa",
+   "label": "n8",
+   "rel_h": 2.4167,
+   "rel_w": 0.7083,
+   "rel_top": 0.6667,
+   "rel_bottom": 1.75,
+   "count": 2,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "c68ca847921e",
+   "label": "n",
+   "rel_h": 2.4167,
+   "rel_w": 0.3333,
+   "rel_top": 0.6667,
+   "rel_bottom": 1.75,
+   "count": 2,
+   "source": "pdf:soorathesab:split"
+  },
+  {
+   "id": "012ed938b1b9",
+   "label": "8",
+   "rel_h": 2.4167,
+   "rel_w": 0.375,
+   "rel_top": 0.6667,
+   "rel_bottom": 1.75,
+   "count": 2,
+   "source": "pdf:soorathesab:split"
+  },
+  {
+   "id": "f4cbd9b576af",
+   "label": "i",
+   "rel_h": 1.0,
+   "rel_w": 0.125,
+   "rel_top": 0.9167,
+   "rel_bottom": 0.0833,
+   "count": 6,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "54a88670de34",
+   "label": "z",
+   "rel_h": 0.7083,
+   "rel_w": 0.6667,
+   "rel_top": 0.625,
+   "rel_bottom": 0.0833,
+   "count": 2,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "734255b17509",
+   "label": "2a",
+   "rel_h": 2.4167,
+   "rel_w": 0.7917,
+   "rel_top": 0.6667,
+   "rel_bottom": 1.75,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "d1c4083bc1cf",
+   "label": "2",
+   "rel_h": 2.4167,
+   "rel_w": 0.4167,
+   "rel_top": 0.6667,
+   "rel_bottom": 1.75,
+   "count": 1,
+   "source": "pdf:soorathesab:split"
+  },
+  {
+   "id": "8bcd5cb5fd2f",
+   "label": "a",
+   "rel_h": 2.4167,
+   "rel_w": 0.375,
+   "rel_top": 0.6667,
+   "rel_bottom": 1.75,
+   "count": 1,
+   "source": "pdf:soorathesab:split"
+  },
+  {
+   "id": "b30bb28bff08",
+   "label": ".t",
+   "rel_h": 2.625,
+   "rel_w": 0.375,
+   "rel_top": 0.875,
+   "rel_bottom": 1.75,
+   "count": 2,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "0bd5e7995a90",
+   "label": ".",
+   "rel_h": 2.5833,
+   "rel_w": 0.1667,
+   "rel_top": 0.8333,
+   "rel_bottom": 1.75,
+   "count": 2,
+   "source": "pdf:soorathesab:split"
+  },
+  {
+   "id": "dd37ec9bc704",
+   "label": "t",
+   "rel_h": 0.9583,
+   "rel_w": 0.2083,
+   "rel_top": 0.875,
+   "rel_bottom": 0.0833,
+   "count": 2,
+   "source": "pdf:soorathesab:split"
+  },
+  {
+   "id": "14d49f0847ee",
+   "label": "i1",
+   "rel_h": 2.6667,
+   "rel_w": 0.375,
+   "rel_top": 0.9167,
+   "rel_bottom": 1.75,
+   "count": 2,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "4979a26ee22a",
+   "label": "1",
+   "rel_h": 2.6667,
+   "rel_w": 0.2917,
+   "rel_top": 0.9167,
+   "rel_bottom": 1.75,
+   "count": 2,
+   "source": "pdf:soorathesab:split"
+  },
+  {
+   "id": "341b37d25083",
+   "label": "i",
+   "rel_h": 1.0,
+   "rel_w": 0.0833,
+   "rel_top": -0.75,
+   "rel_bottom": 1.75,
+   "count": 2,
+   "source": "pdf:soorathesab:split"
+  },
+  {
+   "id": "d76197cbca59",
+   "label": "o",
+   "rel_h": 0.75,
+   "rel_w": 0.6667,
+   "rel_top": 0.6667,
+   "rel_bottom": 0.0833,
+   "count": 2,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "643d165c19f4",
+   "label": "n",
+   "rel_h": 0.75,
+   "rel_w": 0.5833,
+   "rel_top": 0.6667,
+   "rel_bottom": 0.0833,
+   "count": 6,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "d5ba5b799b8a",
+   "label": "7",
+   "rel_h": 1.0,
+   "rel_w": 0.625,
+   "rel_top": -0.75,
+   "rel_bottom": 1.75,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "89805a9fbb4c",
+   "label": "1",
+   "rel_h": 1.0,
+   "rel_w": 0.375,
+   "rel_top": -0.75,
+   "rel_bottom": 1.75,
+   "count": 2,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "78fc95345f32",
+   "label": "5",
+   "rel_h": 1.0,
+   "rel_w": 0.625,
+   "rel_top": -0.75,
+   "rel_bottom": 1.75,
+   "count": 2,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "c1ab68a93ecd",
+   "label": "6",
+   "rel_h": 1.0,
+   "rel_w": 0.6667,
+   "rel_top": 0.9167,
+   "rel_bottom": 0.0833,
+   "count": 2,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "24b6a7427c63",
+   "label": "3",
+   "rel_h": 1.0,
+   "rel_w": 0.6667,
+   "rel_top": 0.9167,
+   "rel_bottom": 0.0833,
+   "count": 5,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "b36c76f87919",
+   "label": "O",
+   "rel_h": 1.0,
+   "rel_w": 0.9167,
+   "rel_top": 0.9167,
+   "rel_bottom": 0.0833,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "7046cdf062e2",
+   "label": "r",
+   "rel_h": 0.75,
+   "rel_w": 0.375,
+   "rel_top": 0.6667,
+   "rel_bottom": 0.0833,
+   "count": 2,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "fc1b1ff2b52a",
+   "label": "g",
+   "rel_h": 1.0417,
+   "rel_w": 0.625,
+   "rel_top": 0.6667,
+   "rel_bottom": 0.375,
+   "count": 2,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "fb9cb2b2bed5",
+   "label": "a",
+   "rel_h": 0.75,
+   "rel_w": 0.625,
+   "rel_top": 0.6667,
+   "rel_bottom": 0.0833,
+   "count": 2,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "2a624587febb",
+   "label": "z",
+   "rel_h": 0.7083,
+   "rel_w": 0.625,
+   "rel_top": 0.625,
+   "rel_bottom": 0.0833,
+   "count": 2,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "7e9bf3418497",
+   "label": "a",
+   "rel_h": 0.75,
+   "rel_w": 0.6667,
+   "rel_top": 0.6667,
+   "rel_bottom": 0.0833,
+   "count": 3,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "5f8834988404",
+   "label": "t",
+   "rel_h": 0.9583,
+   "rel_w": 0.3333,
+   "rel_top": 0.875,
+   "rel_bottom": 0.0833,
+   "count": 2,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "70022316b078",
+   "label": "o",
+   "rel_h": 0.75,
+   "rel_w": 0.6667,
+   "rel_top": 0.6667,
+   "rel_bottom": 0.0833,
+   "count": 2,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "822883304da0",
+   "label": "5",
+   "rel_h": 1.0,
+   "rel_w": 0.625,
+   "rel_top": 0.9167,
+   "rel_bottom": 0.0833,
+   "count": 5,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "abc62ecff071",
+   "label": "42",
+   "rel_h": 2.6667,
+   "rel_w": 0.7083,
+   "rel_top": 0.9167,
+   "rel_bottom": 1.75,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "1d433c28e4d8",
+   "label": "4",
+   "rel_h": 2.5,
+   "rel_w": 0.375,
+   "rel_top": 0.75,
+   "rel_bottom": 1.75,
+   "count": 1,
+   "source": "pdf:soorathesab:split"
+  },
+  {
+   "id": "bd69663ddfcc",
+   "label": "2",
+   "rel_h": 2.6667,
+   "rel_w": 0.3333,
+   "rel_top": 0.9167,
+   "rel_bottom": 1.75,
+   "count": 1,
+   "source": "pdf:soorathesab:split"
+  },
+  {
+   "id": "1ef237aa5a2f",
+   "label": "4",
+   "rel_h": 1.0,
+   "rel_w": 0.6667,
+   "rel_top": 0.9167,
+   "rel_bottom": 0.0833,
+   "count": 13,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "f02a9edd6943",
+   "label": "1",
+   "rel_h": 1.0,
+   "rel_w": 0.3333,
+   "rel_top": 0.0833,
+   "rel_bottom": 0.9167,
+   "count": 9,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "59d9eec31a89",
+   "label": "6:",
+   "rel_h": 1.0,
+   "rel_w": 0.9583,
+   "rel_top": 0.0833,
+   "rel_bottom": 0.9167,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "0816156dad69",
+   "label": ":",
+   "rel_h": 0.7083,
+   "rel_w": 0.125,
+   "rel_top": -0.2083,
+   "rel_bottom": 0.9167,
+   "count": 8,
+   "source": "pdf:soorathesab:split"
+  },
+  {
+   "id": "0f7a5293d3ed",
+   "label": ":2",
+   "rel_h": 1.0,
+   "rel_w": 0.9583,
+   "rel_top": 0.0833,
+   "rel_bottom": 0.9167,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "0e0f5781e4c9",
+   "label": "2",
+   "rel_h": 1.0,
+   "rel_w": 0.625,
+   "rel_top": 0.0833,
+   "rel_bottom": 0.9167,
+   "count": 7,
+   "source": "pdf:soorathesab:split"
+  },
+  {
+   "id": "e7be744512d6",
+   "label": "4",
+   "rel_h": 1.0,
+   "rel_w": 0.6667,
+   "rel_top": 0.0833,
+   "rel_bottom": 0.9167,
+   "count": 5,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "75dacab8db95",
+   "label": "/",
+   "rel_h": 1.0,
+   "rel_w": 0.375,
+   "rel_top": 0.0833,
+   "rel_bottom": 0.9167,
+   "count": 2,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "d0c2d0979bcb",
+   "label": "/",
+   "rel_h": 1.0,
+   "rel_w": 0.375,
+   "rel_top": 0.0833,
+   "rel_bottom": 0.9167,
+   "count": 2,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "5779a14677a2",
+   "label": "4",
+   "rel_h": 1.0,
+   "rel_w": 0.7083,
+   "rel_top": 0.0833,
+   "rel_bottom": 0.9167,
+   "count": 7,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "768151cdfa54",
+   "label": "ستا",
+   "rel_h": 0.7917,
+   "rel_w": 1.375,
+   "rel_top": 0.0833,
+   "rel_bottom": 0.7083,
+   "count": 2,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "4ce1504cec6b",
+   "label": "د",
+   "rel_h": 0.5417,
+   "rel_w": 0.4167,
+   "rel_top": -0.1667,
+   "rel_bottom": 0.7083,
+   "count": 2,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "3a5430a03e72",
+   "label": "3",
+   "rel_h": 1.0417,
+   "rel_w": 0.6667,
+   "rel_top": 0.0833,
+   "rel_bottom": 0.9583,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "57b64d122988",
+   "label": "8,",
+   "rel_h": 1.1667,
+   "rel_w": 0.9583,
+   "rel_top": 0.0833,
+   "rel_bottom": 1.0833,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "8c46b2b8dfe1",
+   "label": "8",
+   "rel_h": 1.0417,
+   "rel_w": 0.6667,
+   "rel_top": 0.0833,
+   "rel_bottom": 0.9583,
+   "count": 1,
+   "source": "pdf:soorathesab:split"
+  },
+  {
+   "id": "b0e0ce9d87fe",
+   "label": "8",
+   "rel_h": 1.0417,
+   "rel_w": 0.6667,
+   "rel_top": 0.0833,
+   "rel_bottom": 0.9583,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "5f0ed6173554",
+   "label": "6",
+   "rel_h": 1.0417,
+   "rel_w": 0.6667,
+   "rel_top": 0.0833,
+   "rel_bottom": 0.9583,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "6e300ea0eddc",
+   "label": "1",
+   "rel_h": 1.0,
+   "rel_w": 0.4167,
+   "rel_top": 0.0833,
+   "rel_bottom": 0.9167,
+   "count": 8,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "3139dc3daaa0",
+   "label": ",6",
+   "rel_h": 1.2083,
+   "rel_w": 1.0,
+   "rel_top": 0.0833,
+   "rel_bottom": 1.125,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "39de0d5517f4",
+   "label": ",",
+   "rel_h": 0.375,
+   "rel_w": 0.1667,
+   "rel_top": -0.75,
+   "rel_bottom": 1.125,
+   "count": 2,
+   "source": "pdf:soorathesab:split"
+  },
+  {
+   "id": "f192317943c2",
+   "label": "6",
+   "rel_h": 1.0417,
+   "rel_w": 0.6667,
+   "rel_top": 0.0833,
+   "rel_bottom": 0.9583,
+   "count": 2,
+   "source": "pdf:soorathesab:split"
+  },
+  {
+   "id": "d7e0e03811ff",
+   "label": "0",
+   "rel_h": 1.0417,
+   "rel_w": 0.625,
+   "rel_top": 0.0833,
+   "rel_bottom": 0.9583,
+   "count": 4,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "2e5a3ceb5258",
+   "label": "0",
+   "rel_h": 1.0417,
+   "rel_w": 0.6667,
+   "rel_top": 0.0833,
+   "rel_bottom": 0.9583,
+   "count": 6,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "cb59565aec20",
+   "label": "4,",
+   "rel_h": 1.1667,
+   "rel_w": 1.0,
+   "rel_top": 0.0833,
+   "rel_bottom": 1.0833,
+   "count": 2,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "c617559d1ef8",
+   "label": "4",
+   "rel_h": 1.0,
+   "rel_w": 0.7083,
+   "rel_top": 0.0833,
+   "rel_bottom": 0.9167,
+   "count": 1,
+   "source": "pdf:soorathesab:split"
+  },
+  {
+   "id": "d20f24203151",
+   "label": "د",
+   "rel_h": 0.7647,
+   "rel_w": 0.5882,
+   "rel_top": 0.5882,
+   "rel_bottom": 0.1765,
+   "count": 2,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "44ef982387d9",
+   "label": "یا",
+   "rel_h": 1.5294,
+   "rel_w": 0.9412,
+   "rel_top": 0.9412,
+   "rel_bottom": 0.5882,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "82385a5b3495",
+   "label": "فت",
+   "rel_h": 1.1176,
+   "rel_w": 1.8824,
+   "rel_top": 0.9412,
+   "rel_bottom": 0.1765,
+   "count": 2,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "45021ec898ff",
+   "label": "کا",
+   "rel_h": 1.1176,
+   "rel_w": 1.1765,
+   "rel_top": 0.9412,
+   "rel_bottom": 0.1765,
+   "count": 2,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "f9a672e5c15a",
+   "label": "مز",
+   "rel_h": 1.4118,
+   "rel_w": 1.6471,
+   "rel_top": 0.7647,
+   "rel_bottom": 0.6471,
+   "count": 2,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "eb502e9b08f4",
+   "label": "چا",
+   "rel_h": 1.7647,
+   "rel_w": 1.4706,
+   "rel_top": 0.9412,
+   "rel_bottom": 0.8235,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "d14165f5900c",
+   "label": "پ",
+   "rel_h": 1.2353,
+   "rel_w": 1.3529,
+   "rel_top": 0.4118,
+   "rel_bottom": 0.8235,
+   "count": 4,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "608bb9d253b7",
+   "label": "و",
+   "rel_h": 0.9412,
+   "rel_w": 0.7647,
+   "rel_top": 0.2941,
+   "rel_bottom": 0.6471,
+   "count": 2,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "e2c00efb5615",
+   "label": "صد",
+   "rel_h": 0.7647,
+   "rel_w": 2.2353,
+   "rel_top": 0.5882,
+   "rel_bottom": 0.1765,
+   "count": 2,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "067556be3013",
+   "label": "گو",
+   "rel_h": 1.5882,
+   "rel_w": 1.5294,
+   "rel_top": 0.9412,
+   "rel_bottom": 0.6471,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "915840d61999",
+   "label": "هینا",
+   "rel_h": 1.5294,
+   "rel_w": 2.1176,
+   "rel_top": 0.9412,
+   "rel_bottom": 0.5882,
+   "count": 2,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "5355155d10f5",
+   "label": "عد",
+   "rel_h": 0.7647,
+   "rel_w": 1.4706,
+   "rel_top": 0.5882,
+   "rel_bottom": 0.1765,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "c6ebe1f7ca99",
+   "label": "م",
+   "rel_h": 1.0588,
+   "rel_w": 0.5882,
+   "rel_top": 0.2353,
+   "rel_bottom": 0.8235,
+   "count": 2,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "0145aa363a52",
+   "label": "پ",
+   "rel_h": 0.4706,
+   "rel_w": 0.4118,
+   "rel_top": -0.3529,
+   "rel_bottom": 0.8235,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "94f25cad361a",
+   "label": "ر",
+   "rel_h": 1.0588,
+   "rel_w": 1.3529,
+   "rel_top": 0.4118,
+   "rel_bottom": 0.6471,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "3fd12e39d1c6",
+   "label": "ا",
+   "rel_h": 1.1176,
+   "rel_w": 0.2353,
+   "rel_top": 0.9412,
+   "rel_bottom": 0.1765,
+   "count": 3,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "749a6b44fdab",
+   "label": "خت",
+   "rel_h": 0.9412,
+   "rel_w": 2.4118,
+   "rel_top": 0.7647,
+   "rel_bottom": 0.1765,
+   "count": 2,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "a1b55c408ea6",
+   "label": "چک",
+   "rel_h": 1.7647,
+   "rel_w": 2.8235,
+   "rel_top": 0.9412,
+   "rel_bottom": 0.8235,
+   "count": 4,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "2d03c84a0961",
+   "label": "با",
+   "rel_h": 1.0417,
+   "rel_w": 0.6667,
+   "rel_top": 0.9167,
+   "rel_bottom": 0.125,
+   "count": 2,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "5ae7811e454a",
+   "label": "مبلغ",
+   "rel_h": 1.3333,
+   "rel_w": 1.7917,
+   "rel_top": 0.9583,
+   "rel_bottom": 0.375,
+   "count": 2,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "9748e0f38bc2",
+   "label": "ثا",
+   "rel_h": 0.8333,
+   "rel_w": 0.6667,
+   "rel_top": 0.9583,
+   "rel_bottom": -0.125,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "b7e187f7e624",
+   "label": "بت_",
+   "rel_h": 1.875,
+   "rel_w": 2.125,
+   "rel_top": 0.7917,
+   "rel_bottom": 1.0833,
+   "count": 2,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "bc54346fe183",
+   "label": "سند",
+   "rel_h": 0.6667,
+   "rel_w": 1.5,
+   "rel_top": 0.7917,
+   "rel_bottom": -0.125,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "8d0ddb37249e",
+   "label": "فت",
+   "rel_h": 2.0,
+   "rel_w": 1.3333,
+   "rel_top": 0.9167,
+   "rel_bottom": 1.0833,
+   "count": 2,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "8966bfba2241",
+   "label": "کا",
+   "rel_h": 0.7917,
+   "rel_w": 0.875,
+   "rel_top": 0.9167,
+   "rel_bottom": -0.125,
+   "count": 2,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "9d468dbee816",
+   "label": "مز",
+   "rel_h": 1.0,
+   "rel_w": 1.1667,
+   "rel_top": 0.7917,
+   "rel_bottom": 0.2083,
+   "count": 2,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "1881383a0fa1",
+   "label": "د",
+   "rel_h": 0.5417,
+   "rel_w": 0.4167,
+   "rel_top": 0.6667,
+   "rel_bottom": -0.125,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "043264a84242",
+   "label": "8",
+   "rel_h": 1.0417,
+   "rel_w": 0.6667,
+   "rel_top": 0.9167,
+   "rel_bottom": 0.125,
+   "count": 2,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "348048357ec0",
+   "label": "7",
+   "rel_h": 1.9167,
+   "rel_w": 0.6667,
+   "rel_top": 0.9167,
+   "rel_bottom": 1.0,
+   "count": 2,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "fdd53a2498cc",
+   "label": "9",
+   "rel_h": 1.0417,
+   "rel_w": 0.6667,
+   "rel_top": 0.9167,
+   "rel_bottom": 0.125,
+   "count": 6,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "3c8c416643c4",
+   "label": "0",
+   "rel_h": 1.75,
+   "rel_w": 0.6667,
+   "rel_top": 0.9167,
+   "rel_bottom": 0.8333,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "cff20f7c1462",
+   "label": "/",
+   "rel_h": 1.0417,
+   "rel_w": 0.375,
+   "rel_top": 0.9167,
+   "rel_bottom": 0.125,
+   "count": 2,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "7e50c176eb90",
+   "label": "6",
+   "rel_h": 1.0417,
+   "rel_w": 0.6667,
+   "rel_top": 0.9167,
+   "rel_bottom": 0.125,
+   "count": 2,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "a69644ea793e",
+   "label": "8",
+   "rel_h": 1.0417,
+   "rel_w": 0.6667,
+   "rel_top": 0.9167,
+   "rel_bottom": 0.125,
+   "count": 5,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "486b8aadc839",
+   "label": "9",
+   "rel_h": 1.0417,
+   "rel_w": 0.6667,
+   "rel_top": 0.9167,
+   "rel_bottom": 0.125,
+   "count": 3,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "591dcca3cad7",
+   "label": "0",
+   "rel_h": 1.0417,
+   "rel_w": 0.625,
+   "rel_top": 0.9167,
+   "rel_bottom": 0.125,
+   "count": 8,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "a6dd6a94a558",
+   "label": "شما",
+   "rel_h": 0.7917,
+   "rel_w": 1.5833,
+   "rel_top": 0.9167,
+   "rel_bottom": -0.125,
+   "count": 2,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "4bad29965ecb",
+   "label": "ره",
+   "rel_h": 0.7083,
+   "rel_w": 1.0417,
+   "rel_top": 0.5,
+   "rel_bottom": 0.2083,
+   "count": 2,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "c2bc49166c80",
+   "label": "چا",
+   "rel_h": 1.5789,
+   "rel_w": 1.3158,
+   "rel_top": 0.8421,
+   "rel_bottom": 0.7368,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "1179e8a55c45",
+   "label": "و",
+   "rel_h": 0.8421,
+   "rel_w": 0.7368,
+   "rel_top": 0.2632,
+   "rel_bottom": 0.5789,
+   "count": 2,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "6187cb789e9e",
+   "label": "گو",
+   "rel_h": 1.4211,
+   "rel_w": 1.4211,
+   "rel_top": 0.8421,
+   "rel_bottom": 0.5789,
+   "count": 2,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "e41ad6ac64ea",
+   "label": "هینا",
+   "rel_h": 1.3684,
+   "rel_w": 1.8947,
+   "rel_top": 0.8421,
+   "rel_bottom": 0.5263,
+   "count": 2,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "6b8f3e4d1127",
+   "label": "مه",
+   "rel_h": 0.7368,
+   "rel_w": 1.3684,
+   "rel_top": 0.5789,
+   "rel_bottom": 0.1579,
+   "count": 2,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "4720a1332278",
+   "label": "عد",
+   "rel_h": 0.6842,
+   "rel_w": 1.3158,
+   "rel_top": 0.5263,
+   "rel_bottom": 0.1579,
+   "count": 2,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "2b12e0188e84",
+   "label": "م",
+   "rel_h": 0.9474,
+   "rel_w": 0.5789,
+   "rel_top": 0.2105,
+   "rel_bottom": 0.7368,
+   "count": 3,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "08554f927890",
+   "label": "پر",
+   "rel_h": 1.1053,
+   "rel_w": 1.1579,
+   "rel_top": 0.3684,
+   "rel_bottom": 0.7368,
+   "count": 2,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "f365131b5086",
+   "label": "خت",
+   "rel_h": 0.5263,
+   "rel_w": 2.1579,
+   "rel_top": 0.3684,
+   "rel_bottom": 0.1579,
+   "count": 2,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "512a62cf5d97",
+   "label": "به",
+   "rel_h": 1.0526,
+   "rel_w": 1.1053,
+   "rel_top": 0.5789,
+   "rel_bottom": 0.4737,
+   "count": 2,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "c351f9d72ef5",
+   "label": "شما",
+   "rel_h": 1.0,
+   "rel_w": 2.0,
+   "rel_top": 0.8421,
+   "rel_bottom": 0.1579,
+   "count": 2,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "da79339016cb",
+   "label": "با",
+   "rel_h": 1.0417,
+   "rel_w": 0.625,
+   "rel_top": 0.6667,
+   "rel_bottom": 0.375,
+   "count": 6,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "65e37025b063",
+   "label": "مبلغ",
+   "rel_h": 1.3333,
+   "rel_w": 1.75,
+   "rel_top": 0.7083,
+   "rel_bottom": 0.625,
+   "count": 2,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "dea26c2a9e11",
+   "label": "ثا",
+   "rel_h": 0.8333,
+   "rel_w": 0.6667,
+   "rel_top": 0.7083,
+   "rel_bottom": 0.125,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "5fce18beee68",
+   "label": "بت",
+   "rel_h": 0.9167,
+   "rel_w": 1.2917,
+   "rel_top": 0.5417,
+   "rel_bottom": 0.375,
+   "count": 2,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "03b3fcb51e65",
+   "label": "7",
+   "rel_h": 1.0,
+   "rel_w": 0.6667,
+   "rel_top": 0.6667,
+   "rel_bottom": 0.3333,
+   "count": 5,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "f6d0f8fc6fa7",
+   "label": "2",
+   "rel_h": 1.0,
+   "rel_w": 0.6667,
+   "rel_top": 0.6667,
+   "rel_bottom": 0.3333,
+   "count": 6,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "6a88cdb2f9ee",
+   "label": "6",
+   "rel_h": 1.0417,
+   "rel_w": 0.6667,
+   "rel_top": 0.6667,
+   "rel_bottom": 0.375,
+   "count": 4,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "725528d97279",
+   "label": "4",
+   "rel_h": 1.0,
+   "rel_w": 0.7083,
+   "rel_top": 0.6667,
+   "rel_bottom": 0.3333,
+   "count": 2,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "37692171591c",
+   "label": "/",
+   "rel_h": 1.0417,
+   "rel_w": 0.375,
+   "rel_top": 0.9167,
+   "rel_bottom": 0.125,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "66335cf41de0",
+   "label": "0",
+   "rel_h": 1.3158,
+   "rel_w": 0.8421,
+   "rel_top": 0.8421,
+   "rel_bottom": 0.4737,
+   "count": 2,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "00c916c8094b",
+   "label": "3",
+   "rel_h": 1.0417,
+   "rel_w": 0.6667,
+   "rel_top": 0.0833,
+   "rel_bottom": 0.9583,
+   "count": 2,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "fd93bcfd50d2",
+   "label": ":4",
+   "rel_h": 1.0,
+   "rel_w": 0.9583,
+   "rel_top": 0.0833,
+   "rel_bottom": 0.9167,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "be16a533a04a",
+   "label": "4:",
+   "rel_h": 1.0,
+   "rel_w": 1.0417,
+   "rel_top": 0.0833,
+   "rel_bottom": 0.9167,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "eb22a9df5571",
+   "label": "2",
+   "rel_h": 1.0,
+   "rel_w": 0.6667,
+   "rel_top": 0.0833,
+   "rel_bottom": 0.9167,
+   "count": 4,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "a19ab9adeee8",
+   "label": "/",
+   "rel_h": 1.0417,
+   "rel_w": 0.375,
+   "rel_top": 0.0833,
+   "rel_bottom": 0.9583,
+   "count": 2,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "5c15a0e2bca5",
+   "label": "/",
+   "rel_h": 1.0417,
+   "rel_w": 0.375,
+   "rel_top": 0.0833,
+   "rel_bottom": 0.9583,
+   "count": 2,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "6e873bc9a0f5",
+   "label": "7",
+   "rel_h": 1.0,
+   "rel_w": 0.6667,
+   "rel_top": 0.0833,
+   "rel_bottom": 0.9167,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "afc5995a2aee",
+   "label": "مر",
+   "rel_h": 0.7083,
+   "rel_w": 1.1667,
+   "rel_top": -0.3333,
+   "rel_bottom": 1.0417,
+   "count": 2,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "fcebdbb36973",
+   "label": "کز",
+   "rel_h": 1.125,
+   "rel_w": 1.125,
+   "rel_top": 0.0833,
+   "rel_bottom": 1.0417,
+   "count": 2,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "41a5016e3dbd",
+   "label": "ی",
+   "rel_h": 0.7083,
+   "rel_w": 0.8333,
+   "rel_top": -0.2917,
+   "rel_bottom": 1.0,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "a0e9b0a357bc",
+   "label": "2",
+   "rel_h": 1.0,
+   "rel_w": 0.6667,
+   "rel_top": 0.0833,
+   "rel_bottom": 0.9167,
+   "count": 2,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "ceb1ec615a2f",
+   "label": "9,",
+   "rel_h": 1.1667,
+   "rel_w": 0.9583,
+   "rel_top": 0.9167,
+   "rel_bottom": 0.25,
+   "count": 2,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "a1098cfb9cdd",
+   "label": ",",
+   "rel_h": 0.2917,
+   "rel_w": 0.125,
+   "rel_top": 0.0417,
+   "rel_bottom": 0.25,
+   "count": 4,
+   "source": "pdf:soorathesab:split"
+  },
+  {
+   "id": "e58e8840c51c",
+   "label": "5,",
+   "rel_h": 1.2083,
+   "rel_w": 0.9583,
+   "rel_top": 0.9167,
+   "rel_bottom": 0.2917,
+   "count": 3,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "a0334b5fc63b",
+   "label": ",",
+   "rel_h": 0.3333,
+   "rel_w": 0.1667,
+   "rel_top": 0.0417,
+   "rel_bottom": 0.2917,
+   "count": 4,
+   "source": "pdf:soorathesab:split"
+  },
+  {
+   "id": "0505f03c0df3",
+   "label": "9,",
+   "rel_h": 1.2083,
+   "rel_w": 1.0,
+   "rel_top": 0.9167,
+   "rel_bottom": 0.2917,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "468d1567a570",
+   "label": "9",
+   "rel_h": 1.0,
+   "rel_w": 0.6667,
+   "rel_top": 0.9167,
+   "rel_bottom": 0.0833,
+   "count": 4,
+   "source": "pdf:soorathesab:split"
+  },
+  {
+   "id": "a90686dae578",
+   "label": "7",
+   "rel_h": 1.2,
+   "rel_w": 0.75,
+   "rel_top": 0.8,
+   "rel_bottom": 0.4,
+   "count": 5,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "2c271584900b",
+   "label": "ف.ع",
+   "rel_h": 2.6667,
+   "rel_w": 0.9583,
+   "rel_top": 1.75,
+   "rel_bottom": 0.9167,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "923e3b7e722c",
+   "label": "د",
+   "rel_h": 0.5417,
+   "rel_w": 0.4167,
+   "rel_top": 1.5,
+   "rel_bottom": -0.9583,
+   "count": 2,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "1dd461e23b4b",
+   "label": "ی.",
+   "rel_h": 2.2917,
+   "rel_w": 0.8333,
+   "rel_top": 1.375,
+   "rel_bottom": 0.9167,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "7613d54f42e2",
+   "label": "1_0",
+   "rel_h": 1.5,
+   "rel_w": 1.0417,
+   "rel_top": 0.5833,
+   "rel_bottom": 0.9167,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "ecaa6bfff101",
+   "label": "1",
+   "rel_h": 0.125,
+   "rel_w": 0.2083,
+   "rel_top": 0.5833,
+   "rel_bottom": -0.4583,
+   "count": 1,
+   "source": "pdf:soorathesab:split"
+  },
+  {
+   "id": "99c5c09e205a",
+   "label": "_",
+   "rel_h": 1.4583,
+   "rel_w": 0.375,
+   "rel_top": 0.5833,
+   "rel_bottom": 0.875,
+   "count": 1,
+   "source": "pdf:soorathesab:split"
+  },
+  {
+   "id": "081963b95029",
+   "label": "0",
+   "rel_h": 1.5,
+   "rel_w": 0.4583,
+   "rel_top": 0.5833,
+   "rel_bottom": 0.9167,
+   "count": 1,
+   "source": "pdf:soorathesab:split"
+  },
+  {
+   "id": "3f53c6b6086a",
+   "label": "سد",
+   "rel_h": 2.5417,
+   "rel_w": 1.5417,
+   "rel_top": 1.625,
+   "rel_bottom": 0.9167,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "b38b542a10a5",
+   "label": "ارب",
+   "rel_h": 2.2917,
+   "rel_w": 0.5833,
+   "rel_top": 1.3333,
+   "rel_bottom": 0.9583,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "5efcc4ebc94b",
+   "label": "فتع",
+   "rel_h": 2.4583,
+   "rel_w": 1.2917,
+   "rel_top": 1.75,
+   "rel_bottom": 0.7083,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "ab59bab55ef9",
+   "label": "اننا",
+   "rel_h": 2.4583,
+   "rel_w": 0.625,
+   "rel_top": 1.75,
+   "rel_bottom": 0.7083,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "61b2749b7a4f",
+   "label": "مسهد",
+   "rel_h": 2.3333,
+   "rel_w": 1.4583,
+   "rel_top": 1.625,
+   "rel_bottom": 0.7083,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "d6b61120ee64",
+   "label": "ا",
+   "rel_h": 0.7917,
+   "rel_w": 0.1667,
+   "rel_top": 1.75,
+   "rel_bottom": -0.9583,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "64c0158eb8a9",
+   "label": "دشمس",
+   "rel_h": 2.2083,
+   "rel_w": 1.625,
+   "rel_top": 1.5,
+   "rel_bottom": 0.7083,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "ba7e0c0c9e9b",
+   "label": "اپرره",
+   "rel_h": 2.4167,
+   "rel_w": 1.7917,
+   "rel_top": 1.375,
+   "rel_bottom": 1.0417,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "46985ef242a7",
+   "label": "د:ه",
+   "rel_h": 2.4167,
+   "rel_w": 0.8333,
+   "rel_top": 1.5,
+   "rel_bottom": 0.9167,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "be72f0e655a7",
+   "label": "ب",
+   "rel_h": 1.0417,
+   "rel_w": 0.625,
+   "rel_top": 0.0833,
+   "rel_bottom": 0.9583,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "33b50daf2c1c",
+   "label": "7",
+   "rel_h": 1.0,
+   "rel_w": 0.625,
+   "rel_top": 0.0833,
+   "rel_bottom": 0.9167,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "60af06969206",
+   "label": "فع",
+   "rel_h": 1.4706,
+   "rel_w": 1.3529,
+   "rel_top": 0.5882,
+   "rel_bottom": 0.8824,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "393367dc4e93",
+   "label": "نسد",
+   "rel_h": 0.7647,
+   "rel_w": 2.0588,
+   "rel_top": 0.5882,
+   "rel_bottom": 0.1765,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "498e29f5623d",
+   "label": "مو",
+   "rel_h": 1.0,
+   "rel_w": 1.5882,
+   "rel_top": 0.3529,
+   "rel_bottom": 0.6471,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "140abfb74add",
+   "label": "جو",
+   "rel_h": 1.0,
+   "rel_w": 1.8235,
+   "rel_top": 0.3529,
+   "rel_bottom": 0.6471,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "3ac93d00f9e2",
+   "label": "2",
+   "rel_h": 1.0,
+   "rel_w": 0.625,
+   "rel_top": 1.75,
+   "rel_bottom": -0.75,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "4b92b26c6571",
+   "label": "4",
+   "rel_h": 1.0,
+   "rel_w": 0.7083,
+   "rel_top": 1.75,
+   "rel_bottom": -0.75,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "0e2eede214b7",
+   "label": "6",
+   "rel_h": 1.0,
+   "rel_w": 0.625,
+   "rel_top": 1.75,
+   "rel_bottom": -0.75,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "07c2006d1748",
+   "label": "77",
+   "rel_h": 2.6667,
+   "rel_w": 0.625,
+   "rel_top": 1.75,
+   "rel_bottom": 0.9167,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "5164b3a7cd19",
+   "label": "7",
+   "rel_h": 2.6667,
+   "rel_w": 0.2917,
+   "rel_top": 1.75,
+   "rel_bottom": 0.9167,
+   "count": 1,
+   "source": "pdf:soorathesab:split"
+  },
+  {
+   "id": "d54f17c7e5d2",
+   "label": "7",
+   "rel_h": 2.3333,
+   "rel_w": 0.3333,
+   "rel_top": 1.75,
+   "rel_bottom": 0.5833,
+   "count": 1,
+   "source": "pdf:soorathesab:split"
+  },
+  {
+   "id": "15307a9c2035",
+   "label": "5",
+   "rel_h": 1.0,
+   "rel_w": 0.6667,
+   "rel_top": 1.75,
+   "rel_bottom": -0.75,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "66ccb33d9c72",
+   "label": "1",
+   "rel_h": 1.0,
+   "rel_w": 0.3333,
+   "rel_top": 1.75,
+   "rel_bottom": -0.75,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "4693ccf98c27",
+   "label": "3",
+   "rel_h": 1.0,
+   "rel_w": 0.6667,
+   "rel_top": 1.75,
+   "rel_bottom": -0.75,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "a52668adbb8c",
+   "label": "5:",
+   "rel_h": 1.0,
+   "rel_w": 0.9583,
+   "rel_top": 0.9167,
+   "rel_bottom": 0.0833,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "adce01566cab",
+   "label": ":",
+   "rel_h": 0.7083,
+   "rel_w": 0.125,
+   "rel_top": 0.625,
+   "rel_bottom": 0.0833,
+   "count": 2,
+   "source": "pdf:soorathesab:split"
+  },
+  {
+   "id": "b4745146e382",
+   "label": "9:",
+   "rel_h": 1.0,
+   "rel_w": 1.0,
+   "rel_top": 0.9167,
+   "rel_bottom": 0.0833,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "28d571c46f29",
+   "label": "ستا",
+   "rel_h": 0.7917,
+   "rel_w": 1.375,
+   "rel_top": 0.9167,
+   "rel_bottom": -0.125,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "728c3cc62a26",
+   "label": "9,",
+   "rel_h": 1.2083,
+   "rel_w": 1.0,
+   "rel_top": 0.0833,
+   "rel_bottom": 1.125,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "8ca6203a4376",
+   "label": "9",
+   "rel_h": 1.0417,
+   "rel_w": 0.6667,
+   "rel_top": 0.0833,
+   "rel_bottom": 0.9583,
+   "count": 1,
+   "source": "pdf:soorathesab:split"
+  },
+  {
+   "id": "6d084232b951",
+   "label": "5,",
+   "rel_h": 1.1667,
+   "rel_w": 0.9583,
+   "rel_top": 0.0833,
+   "rel_bottom": 1.0833,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "ab5e895c6429",
+   "label": "5",
+   "rel_h": 1.0417,
+   "rel_w": 0.6667,
+   "rel_top": 0.0833,
+   "rel_bottom": 0.9583,
+   "count": 2,
+   "source": "pdf:soorathesab:split"
+  },
+  {
+   "id": "ae717516c9e4",
+   "label": "6",
+   "rel_h": 1.0417,
+   "rel_w": 0.625,
+   "rel_top": 0.0833,
+   "rel_bottom": 0.9583,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "8fc034f26a1f",
+   "label": "ه:",
+   "rel_h": 0.9444,
+   "rel_w": 1.3333,
+   "rel_top": 0.5,
+   "rel_bottom": 0.4444,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "7fe20c36856b",
+   "label": "ن-",
+   "rel_h": 1.1667,
+   "rel_w": 1.5556,
+   "rel_top": 0.5556,
+   "rel_bottom": 0.6111,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "feb7af39d4c8",
+   "label": "ه",
+   "rel_h": 0.5556,
+   "rel_w": 0.4444,
+   "rel_top": 0.3333,
+   "rel_bottom": 0.2222,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "296bf55d1c1f",
+   "label": "یا",
+   "rel_h": 1.4444,
+   "rel_w": 0.8889,
+   "rel_top": 0.8889,
+   "rel_bottom": 0.5556,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "221173c9edc9",
+   "label": "یی-",
+   "rel_h": 0.95,
+   "rel_w": 2.35,
+   "rel_top": 0.35,
+   "rel_bottom": 0.6,
+   "count": 2,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "f1cb8c9ab3a0",
+   "label": "ستو",
+   "rel_h": 1.25,
+   "rel_w": 1.95,
+   "rel_top": 0.7,
+   "rel_bottom": 0.55,
+   "count": 2,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "46fc1a4831c7",
+   "label": "قضا",
+   "rel_h": 0.95,
+   "rel_w": 2.2,
+   "rel_top": 0.8,
+   "rel_bottom": 0.15,
+   "count": 2,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "a0d758920ca1",
+   "label": "5",
+   "rel_h": 1.25,
+   "rel_w": 0.8,
+   "rel_top": 0.8,
+   "rel_bottom": 0.45,
+   "count": 5,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "0f100057c703",
+   "label": "1",
+   "rel_h": 1.2,
+   "rel_w": 0.5,
+   "rel_top": 0.8,
+   "rel_bottom": 0.4,
+   "count": 4,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "fa98f92f9413",
+   "label": "3",
+   "rel_h": 1.25,
+   "rel_w": 0.8,
+   "rel_top": 0.8,
+   "rel_bottom": 0.45,
+   "count": 2,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "734fdc21e1b0",
+   "label": "ی",
+   "rel_h": 0.8947,
+   "rel_w": 1.0,
+   "rel_top": 0.3684,
+   "rel_bottom": 0.5263,
+   "count": 2,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "9c7a8bdcb9e3",
+   "label": "_نا",
+   "rel_h": 1.3333,
+   "rel_w": 1.0,
+   "rel_top": -0.25,
+   "rel_bottom": 1.5833,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "7b5b1ca34fd3",
+   "label": "سمنهد",
+   "rel_h": 2.3333,
+   "rel_w": 1.5,
+   "rel_top": 0.7917,
+   "rel_bottom": 1.5417,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "c36f497339fc",
+   "label": "سا",
+   "rel_h": 0.7083,
+   "rel_w": 1.5,
+   "rel_top": 0.7917,
+   "rel_bottom": -0.0833,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "5639e7f749b0",
+   "label": "ا",
+   "rel_h": 0.7917,
+   "rel_w": 0.1667,
+   "rel_top": 0.9167,
+   "rel_bottom": -0.125,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "6e6e12ca2db9",
+   "label": "هد",
+   "rel_h": 2.25,
+   "rel_w": 0.4583,
+   "rel_top": 0.6667,
+   "rel_bottom": 1.5833,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "093d2eed040a",
+   "label": "71",
+   "rel_h": 2.6667,
+   "rel_w": 0.6667,
+   "rel_top": 0.9167,
+   "rel_bottom": 1.75,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "e7929c7a5130",
+   "label": "7",
+   "rel_h": 2.0417,
+   "rel_w": 0.375,
+   "rel_top": 0.9167,
+   "rel_bottom": 1.125,
+   "count": 1,
+   "source": "pdf:soorathesab:split"
+  },
+  {
+   "id": "20a02858947e",
+   "label": "1",
+   "rel_h": 2.6667,
+   "rel_w": 0.2917,
+   "rel_top": 0.9167,
+   "rel_bottom": 1.75,
+   "count": 1,
+   "source": "pdf:soorathesab:split"
+  },
+  {
+   "id": "8a25e78d77da",
+   "label": "81",
+   "rel_h": 2.6667,
+   "rel_w": 0.6667,
+   "rel_top": 0.9167,
+   "rel_bottom": 1.75,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "a3cd7eca62e5",
+   "label": "8",
+   "rel_h": 2.0417,
+   "rel_w": 0.375,
+   "rel_top": 0.9167,
+   "rel_bottom": 1.125,
+   "count": 1,
+   "source": "pdf:soorathesab:split"
+  },
+  {
+   "id": "9c596bdf0dfb",
+   "label": "1",
+   "rel_h": 2.6667,
+   "rel_w": 0.2917,
+   "rel_top": 0.9167,
+   "rel_bottom": 1.75,
+   "count": 1,
+   "source": "pdf:soorathesab:split"
+  },
+  {
+   "id": "2be83cb60a33",
+   "label": "10",
+   "rel_h": 2.7083,
+   "rel_w": 0.6667,
+   "rel_top": 0.9167,
+   "rel_bottom": 1.7917,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "8dbb5bfc1042",
+   "label": "1",
+   "rel_h": 2.625,
+   "rel_w": 0.2917,
+   "rel_top": 0.875,
+   "rel_bottom": 1.75,
+   "count": 1,
+   "source": "pdf:soorathesab:split"
+  },
+  {
+   "id": "1683095cda0b",
+   "label": "0",
+   "rel_h": 2.7083,
+   "rel_w": 0.375,
+   "rel_top": 0.9167,
+   "rel_bottom": 1.7917,
+   "count": 1,
+   "source": "pdf:soorathesab:split"
+  },
+  {
+   "id": "6f55f99df249",
+   "label": ".9",
+   "rel_h": 2.6667,
+   "rel_w": 0.6667,
+   "rel_top": 0.9167,
+   "rel_bottom": 1.75,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "f31c5915cd61",
+   "label": "9",
+   "rel_h": 2.6667,
+   "rel_w": 0.375,
+   "rel_top": 0.9167,
+   "rel_bottom": 1.75,
+   "count": 1,
+   "source": "pdf:soorathesab:split"
+  },
+  {
+   "id": "391ed50330a1",
+   "label": ".",
+   "rel_h": 1.0,
+   "rel_w": 0.2917,
+   "rel_top": 0.9167,
+   "rel_bottom": 0.0833,
+   "count": 1,
+   "source": "pdf:soorathesab:split"
+  },
+  {
+   "id": "88720bf680a0",
+   "label": "4.",
+   "rel_h": 2.6667,
+   "rel_w": 0.75,
+   "rel_top": 0.9167,
+   "rel_bottom": 1.75,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "0a0961f03dca",
+   "label": "4",
+   "rel_h": 2.6667,
+   "rel_w": 0.625,
+   "rel_top": 0.9167,
+   "rel_bottom": 1.75,
+   "count": 1,
+   "source": "pdf:soorathesab:split"
+  },
+  {
+   "id": "027c148dfde3",
+   "label": ".",
+   "rel_h": 2.0,
+   "rel_w": 0.125,
+   "rel_top": 0.25,
+   "rel_bottom": 1.75,
+   "count": 1,
+   "source": "pdf:soorathesab:split"
+  },
+  {
+   "id": "d23bcb0f4adb",
+   "label": "ا",
+   "rel_h": 0.7917,
+   "rel_w": 0.625,
+   "rel_top": -0.75,
+   "rel_bottom": 1.5417,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "83135ef85c6b",
+   "label": "7",
+   "rel_h": 1.0,
+   "rel_w": 0.6667,
+   "rel_top": -0.75,
+   "rel_bottom": 1.75,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "0455660230d6",
+   "label": "2",
+   "rel_h": 1.0,
+   "rel_w": 0.6667,
+   "rel_top": -0.75,
+   "rel_bottom": 1.75,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "1876521a7eb9",
+   "label": "O",
+   "rel_h": 1.0417,
+   "rel_w": 0.9167,
+   "rel_top": 0.9167,
+   "rel_bottom": 0.125,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "ece4470ad543",
+   "label": "78",
+   "rel_h": 2.7083,
+   "rel_w": 0.6667,
+   "rel_top": 0.9167,
+   "rel_bottom": 1.7917,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "c62247698f07",
+   "label": "7",
+   "rel_h": 2.6667,
+   "rel_w": 0.3333,
+   "rel_top": 0.9167,
+   "rel_bottom": 1.75,
+   "count": 1,
+   "source": "pdf:soorathesab:split"
+  },
+  {
+   "id": "0dd6c815d76d",
+   "label": "8",
+   "rel_h": 2.7083,
+   "rel_w": 0.3333,
+   "rel_top": 0.9167,
+   "rel_bottom": 1.7917,
+   "count": 1,
+   "source": "pdf:soorathesab:split"
+  },
+  {
+   "id": "c7bd4895bf81",
+   "label": "5:",
+   "rel_h": 1.0417,
+   "rel_w": 0.9583,
+   "rel_top": 0.0833,
+   "rel_bottom": 0.9583,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "7a88c57d7c3f",
+   "label": "6:",
+   "rel_h": 1.0417,
+   "rel_w": 1.0,
+   "rel_top": 0.0833,
+   "rel_bottom": 0.9583,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "bac24ee209ac",
+   "label": "3",
+   "rel_h": 1.0,
+   "rel_w": 0.625,
+   "rel_top": 0.0833,
+   "rel_bottom": 0.9167,
+   "count": 2,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "cd9a8667bd4a",
+   "label": "9,",
+   "rel_h": 1.1667,
+   "rel_w": 0.9583,
+   "rel_top": 0.0833,
+   "rel_bottom": 1.0833,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "76b99ac59bb1",
+   "label": "9",
+   "rel_h": 1.0,
+   "rel_w": 0.6667,
+   "rel_top": 0.0833,
+   "rel_bottom": 0.9167,
+   "count": 1,
+   "source": "pdf:soorathesab:split"
+  },
+  {
+   "id": "675e340ccda7",
+   "label": "5,",
+   "rel_h": 1.2083,
+   "rel_w": 0.9583,
+   "rel_top": 0.0833,
+   "rel_bottom": 1.125,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "4b2f21fba23f",
+   "label": "5",
+   "rel_h": 1.0,
+   "rel_w": 0.625,
+   "rel_top": 0.0833,
+   "rel_bottom": 0.9167,
+   "count": 4,
+   "source": "pdf:soorathesab:split"
+  },
+  {
+   "id": "4ae1b5fa5a68",
+   "label": "یا",
+   "rel_h": 1.5294,
+   "rel_w": 0.9412,
+   "rel_top": 0.9412,
+   "rel_bottom": 0.5882,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "c9cbcaba4b15",
+   "label": "چا",
+   "rel_h": 1.7059,
+   "rel_w": 1.4706,
+   "rel_top": 0.9412,
+   "rel_bottom": 0.7647,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "1deb90ab274c",
+   "label": "و",
+   "rel_h": 0.9412,
+   "rel_w": 0.7059,
+   "rel_top": 0.2941,
+   "rel_bottom": 0.6471,
+   "count": 2,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "0db016ce418f",
+   "label": "صد",
+   "rel_h": 0.7647,
+   "rel_w": 2.1765,
+   "rel_top": 0.5882,
+   "rel_bottom": 0.1765,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "2edf4403b445",
+   "label": "گو",
+   "rel_h": 1.5882,
+   "rel_w": 1.4706,
+   "rel_top": 0.9412,
+   "rel_bottom": 0.6471,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "842194ff803c",
+   "label": "عد",
+   "rel_h": 0.7647,
+   "rel_w": 1.4118,
+   "rel_top": 0.5882,
+   "rel_bottom": 0.1765,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "9c89bc85755d",
+   "label": "پر",
+   "rel_h": 1.2353,
+   "rel_w": 1.3529,
+   "rel_top": 0.4118,
+   "rel_bottom": 0.8235,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "90e194c9b18d",
+   "label": "ثا",
+   "rel_h": 0.8333,
+   "rel_w": 0.6667,
+   "rel_top": 0.9583,
+   "rel_bottom": -0.125,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "ab920ec90154",
+   "label": "سند",
+   "rel_h": 0.6667,
+   "rel_w": 1.4583,
+   "rel_top": 0.7917,
+   "rel_bottom": -0.125,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "c1932c9f4bf2",
+   "label": "8",
+   "rel_h": 1.0,
+   "rel_w": 0.6667,
+   "rel_top": 0.9167,
+   "rel_bottom": 0.0833,
+   "count": 5,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "a4324433be06",
+   "label": "9",
+   "rel_h": 1.75,
+   "rel_w": 0.7083,
+   "rel_top": 0.9167,
+   "rel_bottom": 0.8333,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "3f88d51054dd",
+   "label": "چا",
+   "rel_h": 1.5789,
+   "rel_w": 1.3158,
+   "rel_top": 0.8421,
+   "rel_bottom": 0.7368,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "6459bd9f91af",
+   "label": "و",
+   "rel_h": 0.8421,
+   "rel_w": 0.6842,
+   "rel_top": 0.2632,
+   "rel_bottom": 0.5789,
+   "count": 3,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "a464ba2ddd94",
+   "label": "صد",
+   "rel_h": 0.6842,
+   "rel_w": 2.0,
+   "rel_top": 0.5263,
+   "rel_bottom": 0.1579,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "3f440f184035",
+   "label": "ثا",
+   "rel_h": 0.8333,
+   "rel_w": 0.6667,
+   "rel_top": 0.7083,
+   "rel_bottom": 0.125,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "b322b12d9c97",
+   "label": "2:",
+   "rel_h": 1.0,
+   "rel_w": 0.9583,
+   "rel_top": 0.0833,
+   "rel_bottom": 0.9167,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "e4f0f4c59ca8",
+   "label": "5:",
+   "rel_h": 1.0,
+   "rel_w": 0.9583,
+   "rel_top": 0.0833,
+   "rel_bottom": 0.9167,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "4f0f17403629",
+   "label": "5",
+   "rel_h": 1.0,
+   "rel_w": 0.6667,
+   "rel_top": 0.0833,
+   "rel_bottom": 0.9167,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "9d59f24a5de7",
+   "label": "ی",
+   "rel_h": 0.6667,
+   "rel_w": 0.8333,
+   "rel_top": -0.2917,
+   "rel_bottom": 0.9583,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "23b0f19a246e",
+   "label": "8,",
+   "rel_h": 1.1667,
+   "rel_w": 0.9583,
+   "rel_top": 0.6667,
+   "rel_bottom": 0.5,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "d92c550ad9a4",
+   "label": "5,",
+   "rel_h": 1.1667,
+   "rel_w": 0.9583,
+   "rel_top": 0.6667,
+   "rel_bottom": 0.5,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "6b93564a8d86",
+   "label": "ها:",
+   "rel_h": 1.0,
+   "rel_w": 1.125,
+   "rel_top": 0.6667,
+   "rel_bottom": 0.3333,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "850684d4513f",
+   "label": "جمع",
+   "rel_h": 0.875,
+   "rel_w": 1.875,
+   "rel_top": 0.25,
+   "rel_bottom": 0.625,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "ccf33bd67ef6",
+   "label": "کل",
+   "rel_h": 1.0417,
+   "rel_w": 1.2083,
+   "rel_top": 0.7083,
+   "rel_bottom": 0.3333,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "355526680b03",
+   "label": "بر",
+   "rel_h": 0.75,
+   "rel_w": 0.9583,
+   "rel_top": 0.2917,
+   "rel_bottom": 0.4583,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "8adaf3bc6622",
+   "label": "شت",
+   "rel_h": 0.7917,
+   "rel_w": 1.6667,
+   "rel_top": 0.6667,
+   "rel_bottom": 0.125,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "566e2a61de22",
+   "label": "-3",
+   "rel_h": 1.0,
+   "rel_w": 1.5,
+   "rel_top": 0.6667,
+   "rel_bottom": 0.3333,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "103827d46a32",
+   "label": "-",
+   "rel_h": 0.125,
+   "rel_w": 0.375,
+   "rel_top": 0.0833,
+   "rel_bottom": 0.0417,
+   "count": 1,
+   "source": "pdf:soorathesab:split"
+  },
+  {
+   "id": "5a27bfa5d830",
+   "label": "ها:",
+   "rel_h": 1.0,
+   "rel_w": 1.125,
+   "rel_top": 0.6667,
+   "rel_bottom": 0.3333,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "d5c268140b14",
+   "label": "جمع",
+   "rel_h": 0.875,
+   "rel_w": 1.875,
+   "rel_top": 0.25,
+   "rel_bottom": 0.625,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "2232973953f5",
+   "label": "کل",
+   "rel_h": 1.0417,
+   "rel_w": 1.2083,
+   "rel_top": 0.7083,
+   "rel_bottom": 0.3333,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  },
+  {
+   "id": "4facd6934a22",
+   "label": "یز",
+   "rel_h": 1.0,
+   "rel_w": 0.9583,
+   "rel_top": 0.5417,
+   "rel_bottom": 0.4583,
+   "count": 1,
+   "source": "pdf:soorathesab"
+  }
+ ]
+}

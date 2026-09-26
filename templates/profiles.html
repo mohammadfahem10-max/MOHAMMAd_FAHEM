@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block title %}پروفایل‌ها — پارسی‌اسکن{% endblock %}
+{% block content %}
+<section class="card">
+  <h1>پروفایل‌ها و الگوبرداری</h1>
+  <p class="hint">
+    هر اداره / فونت یک پروفایل دارد. الگوها به سه روش جمع می‌شوند:
+    <b>۱)</b> خودکار از PDF دیجیتال همان اداره (دقیق‌ترین، بدون هیچ برچسب‌زنی)؛
+    <b>۲)</b> از فایل فونت (ttf) که اداره با آن تایپ می‌کند؛
+    <b>۳)</b> برچسب‌زنی شکل‌های ناشناخته پس از خواندن هر اسکن.
+  </p>
+  <form method="post" action="{{ url_for('profile_new') }}" class="inline-form">
+    <input type="text" name="name" placeholder="نام پروفایل جدید (مثلاً sabt_tahoma)" required pattern="[A-Za-z0-9_\-؀-ۿ]+">
+    <button type="submit" class="primary">ساخت پروفایل</button>
+  </form>
+</section>
+
+{% for p in profiles %}
+<section class="card">
+  <h2>{{ p.name }} <small class="muted">{{ p.templates }} الگو، {{ p.labels }} برچسب متمایز{% if p.meta.word_gap_ratio %}، فاصله‌ی کلمه {{ p.meta.word_gap_ratio }}{% endif %}</small></h2>
+  <div class="split">
+    <form method="post" action="{{ url_for('profile_bootstrap_pdf', name=p.name) }}" enctype="multipart/form-data" class="form">
+      <h3>الگوبرداری خودکار از PDF دیجیتال</h3>
+      <input type="file" name="pdf" accept=".pdf" required>
+      <button type="submit">الگوبرداری</button>
+    </form>
+    <form method="post" action="{{ url_for('profile_bootstrap_font', name=p.name) }}" enctype="multipart/form-data" class="form">
+      <h3>الگوبرداری از فایل فونت</h3>
+      <input type="file" name="font" accept=".ttf,.otf" required>
+      <label>اندازه‌های پیکسلی <input type="text" name="sizes" value="36,48,60"></label>
+      <label>فهرست کلمات (اختیاری، txt) <input type="file" name="words" accept=".txt"></label>
+      <button type="submit">الگوبرداری</button>
+    </form>
+  </div>
+  {% if p.top %}
+  <details>
+    <summary>پرتکرارترین برچسب‌ها</summary>
+    <div class="chips">{% for lab, n in p.top %}<span class="chip" dir="auto">{{ lab if lab else '⟨نویز⟩' }} <small>{{ n }}</small></span>{% endfor %}</div>
+  </details>
+  {% endif %}
+  <form method="post" action="{{ url_for('profile_delete', name=p.name) }}" onsubmit="return confirm('کل پروفایل و الگوهایش حذف شود؟')"><button class="link danger">حذف پروفایل</button></form>
+</section>
+{% endfor %}
+{% endblock %}
