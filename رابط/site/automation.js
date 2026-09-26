@@ -7,12 +7,14 @@
   const U = S.util;
 
   const DEFAULTS = {
-    loginUrl: '',                                   // خالی = ریشهٔ همان سایت
+    loginUrl: '',                                   // خالی = /usr/login همان سایت
     portalPath: '/portal',
-    nationalInput: ['input[name*="national" i]', 'input[id*="national" i]', 'input[name*="meli" i]', 'input[placeholder*="ملی"]', 'input[aria-label*="ملی"]', 'input[formcontrolname*="national" i]'],
+    loginPathPrefix: '/usr/',                       // صفحهٔ ورود my.ssaa.ir: /usr/login (کدملی + رمز پویا در یک صفحه)
+    loggedInTexts: ['خروج', 'املاک من', 'اسناد رسمی من', 'وضعیت مکاتبات'],
+    nationalInput: ['input[name="username"]', 'input[name*="national" i]', 'input[id*="national" i]', 'input[name*="meli" i]', 'input[placeholder*="ملی"]', 'input[aria-label*="ملی"]', 'input[formcontrolname*="national" i]'],
     sendCodeButton: ['ارسال کد', 'ارسال رمز', 'دریافت کد', 'دریافت رمز', 'ارسال'],
-    otpInput: ['input[name*="otp" i]', 'input[id*="otp" i]', 'input[name*="code" i]', 'input[formcontrolname*="code" i]', 'input[placeholder*="کد"]', 'input[placeholder*="رمز"]', 'input[autocomplete="one-time-code"]'],
-    loginButton: ['ورود', 'تایید', 'تأیید', 'ادامه'],
+    otpInput: ['input[name="password"]', 'input[name*="otp" i]', 'input[id*="otp" i]', 'input[name*="code" i]', 'input[formcontrolname*="code" i]', 'input[placeholder*="کد"]', 'input[placeholder*="رمز"]', 'input[autocomplete="one-time-code"]'],
+    loginButton: ['ورود به درگاه', 'تایید', 'تأیید'],
     captchaImage: ['img[src*="captcha" i]', 'img[alt*="امنیتی"]', 'img[alt*="captcha" i]', '.captcha img', 'img[src^="data:image"][class*="captcha" i]'],
     captchaInput: ['input[name*="captcha" i]', 'input[id*="captcha" i]', 'input[placeholder*="امنیتی"]', 'input[formcontrolname*="captcha" i]'],
     messageBox: ['.toast', '.alert', '[role="alert"]', '.swal2-html-container', '.mat-snack-bar-container', '.error', '.text-danger', '.invalid-feedback'],
@@ -104,11 +106,13 @@
     const body = norm(document.body ? document.body.innerText.slice(0, 20000) : '');
     const nat = q(c.nationalInput), otp = q(c.otpInput), cap = q(c.captchaInput);
     const closed = c.closedTexts.some((t) => body.includes(t));
+    const onLoginPath = location.pathname.startsWith(c.loginPathPrefix || '/usr/');
+    const evidence = (c.loggedInTexts || []).some((t) => body.includes(norm(t)));
     let page = 'unknown';
     if (closed && !nat && !otp) page = 'closed';
-    else if (otp && !nat) page = 'otp';
     else if (nat) page = 'login';
-    else if (location.pathname.startsWith(c.portalPath) && !nat) page = 'loggedIn';
+    else if (otp) page = 'otp';
+    else if (!onLoginPath && evidence) page = 'loggedIn';   // فقط با نشانهٔ واقعی ورود؛ صفحهٔ در حال بارگذاری «واردشده» شمرده نمی‌شود
     return { page, url: location.href, captcha: cap ? captchaDataUrl() : null, messages: messages(), title: document.title };
   }
 
@@ -122,7 +126,7 @@
   async function startLogin(nationalCode, captcha) {
     const c = cfg();
     if (!q(c.nationalInput)) {
-      const url = c.loginUrl || location.origin + '/';
+      const url = c.loginUrl || location.origin + '/usr/login';
       if (location.href !== url) { location.href = url; return { page: 'navigating', url }; }
     }
     const nat = await waitFor(() => q(c.nationalInput), 10000);
@@ -136,10 +140,13 @@
     const btn = byText(c.sendCodeButton);
     if (!btn) return Object.assign(detectState(), { error: 'دکمهٔ «ارسال کد» پیدا نشد.' });
     btn.click();
-    await waitFor(() => q(c.otpInput) || messages().length, 8000);
+    // در my.ssaa.ir پس از ارسال، دکمه غیرفعال می‌شود و «اعتبار N ثانیه» می‌نویسد؛ کادر رمز پویا در همان صفحه است
+    const sent = await waitFor(() => { const t = norm(btn.value || btn.textContent); if (btn.disabled || /disabled/.test(btn.className) || /اعتبار|ثانیه/.test(t)) return 'sent'; return messages().length ? 'msg' : null; }, 10000);
     await sleep(400);
     const st = detectState();
     st.wrongCaptcha = st.messages.some((m) => /امنیتی|کپچا|captcha/i.test(m));
+    const bad = st.messages.some((m) => /نامعتبر|نادرست|اشتباه|خطا|یافت نشد|مجاز نیست|ثبت ?‌?نام/.test(m));
+    if (!st.wrongCaptcha && !bad && q(c.otpInput) && (sent === 'sent' || st.messages.some((m) => /ارسال/.test(m)))) st.page = 'otp';
     return st;
   }
 
@@ -151,7 +158,8 @@
     setValue(otp, U.enDigits(code));
     const btn = byText(c.loginButton);
     if (btn) btn.click(); else otp.form && otp.form.requestSubmit ? otp.form.requestSubmit() : otp.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter', bubbles: true }));
-    await waitFor(() => location.pathname.startsWith(c.portalPath) || messages().length, 10000);
+    await waitFor(() => !location.pathname.startsWith(c.loginPathPrefix || '/usr/') || messages().length, 15000);
+    await waitFor(() => detectState().page === 'loggedIn' || messages().length, 8000);
     await sleep(500);
     const st = detectState();
     st.wrongCode = st.messages.some((m) => c.wrongCodeTexts.some((t) => m.includes(t)));

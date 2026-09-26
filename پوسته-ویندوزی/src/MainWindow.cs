@@ -43,6 +43,7 @@ namespace SabtMan
             Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#EEF1FB"));
             Content = BuildLayout();
             Loaded += OnLoaded;
+            Activated += delegate { if (uiReady) ui.Focus(); };
             Closing += OnClosing;
             Log.Written += OnLog;
             Backdrop.TryApply(this);
@@ -53,7 +54,9 @@ namespace SabtMan
             Grid root = new Grid();
             // WebView پنهان: زنده ولی ناپیدا (اندازهٔ ۱ پیکسل و شفاف؛ Collapsed رندر را متوقف می‌کند)
             // WebView2 (WPF) شفافیتش فقط‌خواندنی است؛ برای پنهان‌ماندنِ زنده: ۱ پیکسل، گوشهٔ بالا-چپ، پشت رابط، بی برخورد موس
-            site.Width = 1; site.Height = 1; site.IsHitTestVisible = false;
+            site.Width = 1; site.Height = 1; site.IsHitTestVisible = false; site.Focusable = false;
+            // سایت پنهان هرگز فوکوس صفحه‌کلید را نگیرد؛ اگر گرفت، به رابط برگردد
+            site.GotFocus += delegate { if (uiReady) ui.Focus(); };
             System.Windows.Controls.Panel.SetZIndex(site, 0);
             site.HorizontalAlignment = HorizontalAlignment.Left; site.VerticalAlignment = VerticalAlignment.Top;
             site.FlowDirection = FlowDirection.LeftToRight;
@@ -120,6 +123,8 @@ namespace SabtMan
                 await sc.AddScriptToExecuteOnDocumentCreatedAsync("window.__sabtmanSiteConfig = " + siteConfig + ";");
                 await sc.AddScriptToExecuteOnDocumentCreatedAsync(siteScript);
                 siteReady = true;
+                // نخستین صفحه همیشه صفحهٔ ورود خود برنامه است: نشست کهنهٔ سایت پاک می‌شود
+                await ClearSiteSession();
                 sc.Navigate(settings.siteUrl);
 
                 // ۲) رابط برنامه (دیدنی)
@@ -135,6 +140,7 @@ namespace SabtMan
                 uc.NavigationCompleted += delegate(object s, CoreWebView2NavigationCompletedEventArgs a)
                 {
                     uiReady = a.IsSuccess;
+                    if (uiReady) ui.Focus();
                     while (uiReady && uiBacklog.Count > 0) PostToUi(uiBacklog.Dequeue());
                     PushState();
                 };
@@ -239,11 +245,24 @@ namespace SabtMan
         }
 
         /// <summary>خروج از حساب: پاک‌کردن کوکی‌های سایت و بازگشت به صفحهٔ ورود سایت (پشت پرده)</summary>
-        void Logout()
+        /// <summary>نشست سایت فقط کوکی نیست (my.ssaa.ir کاربر را در localStorage نگه می‌دارد): همهٔ دادهٔ همان مبدأ پاک می‌شود؛ دادهٔ رابط برنامه (کد ملیِ به‌خاطرسپرده) دست نمی‌خورد</summary>
+        async Task ClearSiteSession()
         {
             try
             {
-                site.CoreWebView2.CookieManager.DeleteAllCookies();
+                CoreWebView2 sc = site.CoreWebView2;
+                sc.CookieManager.DeleteAllCookies();
+                string origin = new Uri(settings.siteUrl).GetLeftPart(UriPartial.Authority);
+                await sc.CallDevToolsProtocolMethodAsync("Storage.clearDataForOrigin", "{\"origin\":\"" + origin + "\",\"storageTypes\":\"all\"}");
+            }
+            catch (Exception ex) { Log.Write("warn", "پاک‌کردن نشست سایت: " + ex.Message); }
+        }
+
+        async void Logout()
+        {
+            await ClearSiteSession();
+            try
+            {
                 site.CoreWebView2.Navigate(settings.siteUrl);
                 Log.Write("ok", "خروج از حساب انجام شد.");
             }

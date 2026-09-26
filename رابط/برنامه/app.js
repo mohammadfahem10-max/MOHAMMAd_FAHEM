@@ -88,7 +88,21 @@
     app.el.status.innerHTML = `<span>${sess}</span><span>${work}</span>`;
   }
 
+  /* پیش از هر بازسازی صفحهٔ ورود، آنچه کاربر نوشته و جای مکان‌نما نگه داشته می‌شود تا رویدادهای سایت پنهان نوشته را پاک نکنند */
+  function saveLoginDraft() {
+    const L = app.login, root = app.el.page; if (!root) return;
+    const g = (f) => root.querySelector('[data-f=' + f + ']');
+    const nat = g('nat'), otp = g('otp'), cap = g('cap'), rem = g('remember');
+    if (nat && !nat.disabled) L.nationalCode = nat.value;
+    if (otp) L.otpDraft = otp.value;
+    if (cap) L.capDraft = cap.value;
+    if (rem) L.remember = rem.checked;
+    const a = document.activeElement;
+    L.focus = a && a.dataset && a.dataset.f && root.contains(a) ? { f: a.dataset.f, s: a.selectionStart, e: a.selectionEnd } : null;
+  }
+
   function go(page, arg) {
+    if (app.page === 'login') saveLoginDraft();
     app.page = page;
     renderNav();
     const el = app.el.page;
@@ -129,11 +143,11 @@
       ${!app.siteReady ? `<div class="ap-msg info">در حال اتصال به سامانه…</div>` : ''}
       <label>کد ملی</label>
       <input class="ap-input ltr" data-f="nat" autocomplete="off" name="sm-nat" inputmode="numeric" maxlength="10" value="${esc(L.nationalCode)}" ${L.otpSent ? 'disabled' : ''} autofocus>
-      ${L.needCaptcha && stt.captcha ? `<label>تصویر امنیتی سامانه (عین تصویر را بنویسید)</label><div class="ap-captcha"><img src="${esc(stt.captcha)}" alt="تصویر امنیتی"><input class="ap-input ltr" data-f="cap" style="max-width:180px"></div>` : ''}
+      ${L.needCaptcha && stt.captcha ? `<label>تصویر امنیتی سامانه (عین تصویر را بنویسید)</label><div class="ap-captcha"><img src="${esc(stt.captcha)}" alt="تصویر امنیتی"><input class="ap-input ltr" data-f="cap" autocomplete="off" value="${esc(L.capDraft || '')}" style="max-width:180px"></div>` : ''}
       ${!L.otpSent ? `<label class="ap-check"><input type="checkbox" data-f="remember" ${L.remember ? 'checked' : ''}> کد ملی مرا به خاطر بسپار</label><div class="row"><button class="ap-btn pri" data-act="send" ${!app.siteReady || closed ? 'disabled' : ''}>ارسال کد</button></div>` : `
       <div class="ap-msg ok">کد به تلفن همراه شما ارسال شد. <span data-role="cd"></span></div>
       <label>کد پیامکی</label>
-      <input class="ap-input ltr" data-f="otp" autocomplete="off" name="sm-otp" inputmode="numeric" maxlength="8" autofocus>
+      <input class="ap-input ltr" data-f="otp" autocomplete="off" name="sm-otp" inputmode="numeric" maxlength="8" value="${esc(L.otpDraft || '')}" autofocus>
       <div class="row"><button class="ap-btn pri" data-act="login">ورود</button><button class="ap-btn" data-act="resend" data-role="resend" disabled>ارسال دوباره</button><button class="ap-btn" data-act="back">تغییر کد ملی</button></div>`}
     </div>`);
     d.addEventListener('click', async (e) => {
@@ -145,8 +159,12 @@
     });
     d.addEventListener('keydown', (e) => { if (e.key === 'Enter') { const btn = d.querySelector('[data-act=login]') || d.querySelector('[data-act=send]'); if (btn && !btn.disabled) btn.click(); } });
     if (L.otpSent) startCountdown(d);
-    const first = d.querySelector('[data-f=otp]') || d.querySelector('[data-f=nat]');
-    if (first) first.focus();
+    const fx = L.focus && d.querySelector('[data-f=' + L.focus.f + ']');
+    const first = (fx && !fx.disabled ? fx : null) || d.querySelector('[data-f=otp]') || d.querySelector('[data-f=nat]');
+    if (first && !first.disabled) {
+      first.focus();
+      try { if (fx === first && L.focus.s != null) first.setSelectionRange(L.focus.s, L.focus.e); else if (first.value && first.setSelectionRange) first.setSelectionRange(first.value.length, first.value.length); } catch (e) {}
+    }
   }
 
   function setMsg(level, text) { app.msg = text ? { level, text } : null; }
@@ -181,7 +199,7 @@
       if (res.error) { setMsg('err', res.error); return go('login'); }
       if (res.needCaptcha || res.wrongCaptcha) { L.needCaptcha = true; setMsg(res.wrongCaptcha ? 'err' : 'info', res.wrongCaptcha ? 'تصویر امنیتی نادرست بود؛ دوباره بنویسید.' : 'سامانه تصویر امنیتی می‌خواهد؛ آن را بنویسید و دوباره «ارسال کد» بزنید.'); return go('login'); }
       if (res.page === 'closed') { setMsg('warn', 'سامانه در دسترس نیست (سامانه شب‌ها بسته است).'); return go('login'); }
-      if (res.page === 'otp') { L.otpSent = true; setMsg(null); return go('login'); }
+      if (res.page === 'otp') { L.otpSent = true; L.otpDraft = ''; L.focus = null; setMsg(null); return go('login'); }
       if (res.page === 'loggedIn') return afterLogin();
       setMsg('warn', 'پاسخ سامانه: ' + (res.messages && res.messages.length ? res.messages.join(' | ') : 'کادر کد پیامکی دیده نشد. پیکربندی-سایت.json را بررسی کنید.'));
       go('login');
@@ -229,7 +247,7 @@
 
   async function afterLogin() {
     stopCountdown();
-    app.login.otpSent = false; app.login.needCaptcha = false; setMsg(null);
+    app.login.otpSent = false; app.login.needCaptcha = false; app.login.otpDraft = ''; app.login.capDraft = ''; app.login.focus = null; setMsg(null);
     S.hook.sessionExpired = false;
     await collectAll();
   }
@@ -366,11 +384,12 @@
     });
     S.hook.onSite((msg) => {
       if (msg.event === 'ready') {
+        const wasReady = app.siteReady, prevPage = app.siteState && app.siteState.page;
         app.siteReady = true; app.siteState = msg.state || app.siteState;
         for (const cb of [...siteWaiters]) cb(msg);
         if (app.page === 'login' && !app.login.otpSent) {
           if (msg.state && msg.state.page === 'loggedIn' && !app.lastCollect) afterLogin();
-          else go('login');
+          else if (!wasReady || prevPage !== (app.siteState && app.siteState.page)) go('login');
         }
       } else if (msg.event === 'progress' && app.collecting) {
         const it = app.collecting.items.find((i) => i.key === msg.progress.key);

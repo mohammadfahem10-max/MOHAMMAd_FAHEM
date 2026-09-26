@@ -2,24 +2,143 @@
   "_توضیح": "انتخابگرهای فرم ورود و منوهای سایت my.ssaa.ir — بی کامپایل دوباره اصلاح می‌شود. مقدارها با پیش‌فرض‌های قلاب.js ادغام می‌شوند؛ فقط آنچه فرق دارد اینجا بنویسید. روی رایانهٔ کاربر با باز بودن سایت تنظیم شود.",
   "loginUrl": "",
   "portalPath": "/portal",
-  "nationalInput": ["input[name*=\"national\" i]", "input[id*=\"national\" i]", "input[formcontrolname*=\"national\" i]", "input[name*=\"meli\" i]", "input[placeholder*=\"ملی\"]", "input[aria-label*=\"ملی\"]"],
-  "sendCodeButton": ["ارسال کد", "ارسال رمز", "دریافت کد", "دریافت رمز", "ارسال"],
-  "otpInput": ["input[name*=\"otp\" i]", "input[id*=\"otp\" i]", "input[formcontrolname*=\"code\" i]", "input[name*=\"code\" i]", "input[placeholder*=\"کد\"]", "input[placeholder*=\"رمز\"]", "input[autocomplete=\"one-time-code\"]"],
-  "loginButton": ["ورود", "تایید", "تأیید", "ادامه"],
-  "captchaImage": ["img[src*=\"captcha\" i]", "img[alt*=\"امنیتی\"]", "img[alt*=\"captcha\" i]", ".captcha img"],
-  "captchaInput": ["input[name*=\"captcha\" i]", "input[id*=\"captcha\" i]", "input[formcontrolname*=\"captcha\" i]", "input[placeholder*=\"امنیتی\"]"],
-  "closedTexts": ["در دسترس نیست", "خارج از ساعت", "بسته است", "تعمیرات"],
-  "wrongCodeTexts": ["نادرست", "اشتباه", "نامعتبر", "منقضی"],
-  "reportButtonTexts": ["گزارشات", "گزارش"],
-  "attachButtonTexts": ["پیوست‌ها", "پیوستها", "پیوست", "ضمائم"],
+  "nationalInput": [
+    "input[name=\"username\"]",
+    "input[name*=\"national\" i]",
+    "input[id*=\"national\" i]",
+    "input[formcontrolname*=\"national\" i]",
+    "input[name*=\"meli\" i]",
+    "input[placeholder*=\"ملی\"]",
+    "input[aria-label*=\"ملی\"]"
+  ],
+  "sendCodeButton": [
+    "دریافت رمز",
+    "ارسال کد",
+    "ارسال رمز",
+    "دریافت کد"
+  ],
+  "otpInput": [
+    "input[name=\"password\"]",
+    "input[name*=\"otp\" i]",
+    "input[id*=\"otp\" i]",
+    "input[formcontrolname*=\"code\" i]",
+    "input[name*=\"code\" i]",
+    "input[placeholder*=\"کد\"]",
+    "input[placeholder*=\"رمز\"]",
+    "input[autocomplete=\"one-time-code\"]"
+  ],
+  "loginButton": [
+    "ورود به درگاه",
+    "تایید",
+    "تأیید"
+  ],
+  "captchaImage": [
+    "img[src*=\"captcha\" i]",
+    "img[alt*=\"امنیتی\"]",
+    "img[alt*=\"captcha\" i]",
+    ".captcha img"
+  ],
+  "captchaInput": [
+    "input[name*=\"captcha\" i]",
+    "input[id*=\"captcha\" i]",
+    "input[formcontrolname*=\"captcha\" i]",
+    "input[placeholder*=\"امنیتی\"]"
+  ],
+  "closedTexts": [
+    "در دسترس نیست",
+    "خارج از ساعت",
+    "بسته است",
+    "تعمیرات"
+  ],
+  "wrongCodeTexts": [
+    "نادرست",
+    "اشتباه",
+    "نامعتبر",
+    "منقضی"
+  ],
+  "reportButtonTexts": [
+    "گزارشات",
+    "گزارش"
+  ],
+  "attachButtonTexts": [
+    "پیوست‌ها",
+    "پیوستها",
+    "پیوست",
+    "ضمائم"
+  ],
   "maxPages": 30,
   "sections": [
-    { "key": "estate", "label": "املاک من", "path": "/portal/estate/list-estate", "menu": ["املاک من", "املاک"] },
-    { "key": "ssar", "label": "اسناد رسمی من", "path": "/portal/ssar/my-documents", "menu": ["اسناد رسمی من", "اسناد رسمی"] },
-    { "key": "sset", "label": "وقایع ازدواج و طلاق من", "path": "", "menu": ["وقایع ازدواج و طلاق", "ازدواج و طلاق"] },
-    { "key": "companies", "label": "شرکت‌های من", "path": "", "menu": ["شرکت‌های من", "شرکتهای من", "شرکت‌ها"] },
-    { "key": "ilenc", "label": "شناسه‌های ثبت موقت", "path": "/portal/ilenc/temp-issues", "menu": ["شناسه‌های ثبت موقت", "ثبت موقت"] },
-    { "key": "mechLetter", "label": "وضعیت مکاتبات", "path": "/portal/mechLetter/status-viwe", "menu": ["وضعیت مکاتبات", "مکاتبات"] },
-    { "key": "profile", "label": "پروفایل", "path": "", "menu": ["پروفایل", "حساب کاربری", "مشخصات"] }
+    {
+      "key": "estate",
+      "label": "املاک من",
+      "path": "/portal/estate/list-estate",
+      "menu": [
+        "املاک من",
+        "املاک"
+      ]
+    },
+    {
+      "key": "ssar",
+      "label": "اسناد رسمی من",
+      "path": "/portal/ssar/my-documents",
+      "menu": [
+        "اسناد رسمی من",
+        "اسناد رسمی"
+      ]
+    },
+    {
+      "key": "sset",
+      "label": "وقایع ازدواج و طلاق من",
+      "path": "",
+      "menu": [
+        "وقایع ازدواج و طلاق",
+        "ازدواج و طلاق"
+      ]
+    },
+    {
+      "key": "companies",
+      "label": "شرکت‌های من",
+      "path": "",
+      "menu": [
+        "شرکت‌های من",
+        "شرکتهای من",
+        "شرکت‌ها"
+      ]
+    },
+    {
+      "key": "ilenc",
+      "label": "شناسه‌های ثبت موقت",
+      "path": "/portal/ilenc/temp-issues",
+      "menu": [
+        "شناسه‌های ثبت موقت",
+        "ثبت موقت"
+      ]
+    },
+    {
+      "key": "mechLetter",
+      "label": "وضعیت مکاتبات",
+      "path": "/portal/mechLetter/status-viwe",
+      "menu": [
+        "وضعیت مکاتبات",
+        "مکاتبات"
+      ]
+    },
+    {
+      "key": "profile",
+      "label": "پروفایل",
+      "path": "",
+      "menu": [
+        "پروفایل",
+        "حساب کاربری",
+        "مشخصات"
+      ]
+    }
+  ],
+  "loginPathPrefix": "/usr/",
+  "loggedInTexts": [
+    "خروج",
+    "املاک من",
+    "اسناد رسمی من",
+    "وضعیت مکاتبات"
   ]
 }
