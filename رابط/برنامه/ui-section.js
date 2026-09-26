@@ -111,7 +111,7 @@
     for (let i = 0; i < arr.length; i++) { if (i && arr[i] - arr[i - 1] > 1) res.push('…'); res.push(arr[i]); }
     return res;
   }
-  function modeLabel(m) { return m === 'pdf' ? 'فقط PDF' : m === 'text' ? 'فقط متن' : 'PDF + متن'; }
+  function modeLabel(m) { return m === 'pdf' ? 'فقط پی‌دی‌اف' : m === 'text' ? 'فقط متن' : 'پی‌دی‌اف + متن'; }
 
   function cell(section, rec, c) {
     const k = known(section);
@@ -178,13 +178,13 @@
     const run = (mode) => downloadRecords(section, records, mode);
     UI.openMenu(anchor, [
       { header: `${n(records.length)} رکورد${isAll ? ' (با فیلتر جاری)' : ''}` },
-      { id: 'pt', label: 'PDF + متن' + (s.mode === 'pdf+text' ? ' (پیش‌فرض)' : ''), icon: 'print', onClick: () => run('pdf+text') },
-      { id: 'p', label: 'فقط PDF', icon: 'file', onClick: () => run('pdf') },
+      { id: 'pt', label: 'پی‌دی‌اف + متن' + (s.mode === 'pdf+text' ? ' (پیش‌فرض)' : ''), icon: 'print', onClick: () => run('pdf+text') },
+      { id: 'p', label: 'فقط پی‌دی‌اف', icon: 'file', onClick: () => run('pdf') },
       { id: 't', label: 'فقط متن (txt و md)', icon: 'doc', onClick: () => run('text') },
       { header: 'قالب‌های دیگر' },
-      { id: 'x', label: 'Excel (جدول رکوردها)', icon: 'excel', onClick: () => exportTable(section, records, 'xlsx') },
-      { id: 'j', label: 'JSON (دادهٔ خام)', icon: 'file', onClick: () => exportTable(section, records, 'json') },
-      { id: 'c', label: 'CSV', icon: 'list', onClick: () => exportTable(section, records, 'csv') },
+      { id: 'x', label: 'اکسل (جدول رکوردها)', icon: 'excel', onClick: () => exportTable(section, records, 'xlsx') },
+      { id: 'j', label: 'دادهٔ خام (JSON)', icon: 'file', onClick: () => exportTable(section, records, 'json') },
+      { id: 'c', label: 'جدول متنی (CSV)', icon: 'list', onClick: () => exportTable(section, records, 'csv') },
     ]);
   }
 
@@ -298,7 +298,7 @@
     const html = () => `<div class="hd"><h3>${icon(k ? k.icon : 'doc')}<span>${esc(name)}</span>${status ? UI.badge(status) : ''}<button class="btn icon ghost x" data-x>${icon('close')}</button></h3><div class="muted" style="font-size:.82em">${esc(st().labelFor(section.path))}${isDoc ? ' · پروندهٔ ' + n(rec.flat.caseNo) + ' · ' + esc(U.formatValue(rec.flat.unitName)) : ''}</div></div>
       <div class="tabs">${tabs.map(([id, t]) => `<button class="${cur === id ? 'on' : ''}" data-tab="${id}">${esc(t)}</button>`).join('')}</div>
       <div class="bd" data-role="bd">${body()}</div>
-      <div class="ft"><button class="btn pri" data-dlmode="pdf+text">${icon('print')}PDF + متن</button><button class="btn" data-dlmode="pdf">${icon('file')}فقط PDF</button><button class="btn" data-dlmode="text">${icon('doc')}فقط متن</button>${isDoc ? `<button class="btn ghost" data-act="opencase">${icon('gavel')}پروندهٔ این مدرک</button>` : ''}</div>`;
+      <div class="ft"><button class="btn pri" data-dlmode="pdf+text">${icon('print')}پی‌دی‌اف + متن</button><button class="btn" data-dlmode="pdf">${icon('file')}فقط پی‌دی‌اف</button><button class="btn" data-dlmode="text">${icon('doc')}فقط متن</button>${isDoc ? `<button class="btn ghost" data-act="opencase">${icon('gavel')}پروندهٔ این مدرک</button>` : ''}</div>`;
     UI.openDrawer(html(), (d) => {
       d.addEventListener('click', async (e) => {
         const t = e.target.closest('[data-tab]'); if (t) { cur = t.dataset.tab; d.querySelectorAll('.tabs button').forEach((b) => b.classList.toggle('on', b.dataset.tab === cur)); d.querySelector('[data-role=bd]').innerHTML = body(); return; }

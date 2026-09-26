@@ -61,7 +61,7 @@
       </div>
       <div class="rep-main">
         <div class="card" style="padding:12px 16px;margin-bottom:12px"><div class="toolbar"><b data-role="title"></b><span class="muted" data-role="meta" style="font-size:.85em"></span><div style="flex:1"></div>
-          <button class="btn" data-save="md">${icon('doc')}md</button><button class="btn" data-save="xlsx">${icon('excel')}Excel</button><button class="btn" data-save="html">${icon('file')}HTML</button><button class="btn pri" data-save="pdf">${icon('print')}ذخیرهٔ PDF</button></div></div>
+          <button class="btn" data-save="md">${icon('doc')}متن</button><button class="btn" data-save="xlsx">${icon('excel')}اکسل</button><button class="btn" data-save="html">${icon('file')}صفحهٔ وب</button><button class="btn pri" data-save="pdf">${icon('print')}ذخیرهٔ پی‌دی‌اف</button></div></div>
         <div class="paper"><iframe data-role="paper" sandbox="allow-same-origin"></iframe></div>
       </div>
     </div>`);
@@ -122,8 +122,8 @@
     const r = buildCurrent();
     if (!r) return toast('برای این گزارش دامنه‌ای انتخاب کنید.', 'warn');
     const base = U.safeFileName(r.title + ' ' + U.formatSystemDate().replace(/[:\/]/g, '-'));
-    if (fmt === 'md') { S.exporter.downloadText(base + '.md', r.md, 'text/markdown'); return toast('فایل md در «خروجی‌های دیگر» پوشهٔ مقصد ذخیره شد.'); }
-    if (fmt === 'html') { S.exporter.downloadText(base + '.html', r.html, 'text/html'); return toast('فایل HTML در «خروجی‌های دیگر» پوشهٔ مقصد ذخیره شد.'); }
+    if (fmt === 'md') { S.exporter.downloadText(base + '.md', r.md, 'text/markdown'); return toast('فایل متنی در «خروجی‌های دیگر» پوشهٔ مقصد ذخیره شد.'); }
+    if (fmt === 'html') { S.exporter.downloadText(base + '.html', r.html, 'text/html'); return toast('فایل صفحهٔ وب در «خروجی‌های دیگر» پوشهٔ مقصد ذخیره شد.'); }
     const F = S.exporter.FOLDERS;
     const files = [], entries = [];
     const push = (nm, data, kind) => { const path = `files/۱/${F.reports}/${nm}`; entries.push({ name: path, data }); files.push({ path, sub: F.reports, name: nm, kind }); };
@@ -131,7 +131,7 @@
     const manifest = { نسخه: 1, شناسه: U.uid(), ساخته‌شده: U.formatSystemDate(), بخش: 'گزارش‌ها', مسیر: '/reports', حالت: fmt === 'pdf' ? 'pdf+text' : 'text', پوشه‌ها: [{ نام: base, پایه: 'files/۱', فایل‌ها: files, فهرست: files.map((f) => ({ پوشه: f.sub, نام: f.name, نوع: f.kind, تاریخ: U.formatSystemDate() })), برگه‌ها: r.sheets || [] }], زیرپوشه‌ها: Object.values(F) };
     entries.unshift({ name: 'manifest.json', data: JSON.stringify(manifest, null, 2) });
     S.exporter.sendJob(entries, manifest);
-    toast(fmt === 'pdf' ? 'گزارش رسمی به PDF چاپ می‌شود و با Excel در پوشهٔ «گزارش‌ها» می‌نشیند.' : 'فایل Excel در پوشهٔ «گزارش‌ها» ساخته می‌شود.');
+    toast(fmt === 'pdf' ? 'گزارش رسمی به پی‌دی‌اف چاپ می‌شود و با اکسل در پوشهٔ «گزارش‌ها» می‌نشیند.' : 'فایل اکسل در پوشهٔ «گزارش‌ها» ساخته می‌شود.');
   }
 
   S.ui.pages = Object.assign(S.ui.pages || {}, { reports: render });

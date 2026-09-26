@@ -358,15 +358,18 @@
      (۴۲۹/۴۰۳/صفحهٔ محافظ/کندی) فوراً عقب می‌کشد (backoff) و دوباره آرام بالا می‌آید. هیچ محافظی دور زده نمی‌شود. */
 
   const queue = { items: [], running: false, paused: false, done: 0, failed: 0, current: null, listeners: [], workers: 0,
-    rate: { delayMs: 900, concurrency: 1, streak: 0, backoffUntil: 0, minDelay: 400, maxDelay: 30000, maxConcurrency: 2, lastSignal: '', netFails: 0 } };
+    rate: { delayMs: 1200, concurrency: 1, streak: 0, backoffUntil: 0, minDelay: 800, maxDelay: 60000, maxConcurrency: 1, heavyExtra: 900, lastSignal: '', netFails: 0 } };
 
   function qNotify() { for (const cb of queue.listeners) { try { cb(queue); } catch (e) { /* ادامه */ } } }
 
   function rateOk(elapsedMs) {
     const r = queue.rate;
     r.streak++;
-    if (elapsedMs > 6000) { r.delayMs = Math.min(r.maxDelay, Math.round(r.delayMs * 1.5)); r.streak = 0; r.lastSignal = 'کندی'; return; }
-    r.netFails = 0; if (r.streak >= 8) { r.streak = 0; r.delayMs = Math.max(r.minDelay, Math.round(r.delayMs * 0.85)); if (r.delayMs <= r.minDelay + 50 && r.concurrency < r.maxConcurrency) r.concurrency++; r.lastSignal = ''; }
+    r.netFails = 0;
+    // کندی پاسخ = سامانه زیر فشار است: فاصله را زیاد کن
+    if (elapsedMs > 5000) { r.delayMs = Math.min(r.maxDelay, Math.round(r.delayMs * 1.4)); r.streak = 0; r.lastSignal = 'کندی'; return; }
+    // فقط پس از پاسخ‌های سالمِ پیاپیِ زیاد، خیلی آرام کمی تندتر (هرگز موازی نمی‌شود)
+    if (r.streak >= 12 && r.delayMs > r.minDelay) { r.streak = 0; r.delayMs = Math.max(r.minDelay, Math.round(r.delayMs * 0.9)); r.lastSignal = ''; }
   }
   function rateBackoff(signal) {
     const r = queue.rate;
@@ -379,7 +382,7 @@
     r.lastSignal = signal;
     store().addLog('warn', `نشانهٔ فشار سامانه (${signal}) — سرعت کم شد و ${U.faDigits(Math.round((r.backoffUntil - Date.now()) / 1000))} ثانیه صبر می‌کنیم.`);
     // بلاک پیاپیِ آی‌پی: صف نگه داشته می‌شود و به رابط خبر داده می‌شود تا پیشنهاد تغییر DNS/آی‌پی بدهد
-    if (r.netFails >= 3) { queue.paused = true; store().addLog('err', 'سامانه اتصال را پیاپی می‌بندد؛ احتمالاً آی‌پی شما موقتاً بلاک شده است. از «تنظیمات ← اتصال به سامانه» DNS/آی‌پی را عوض کنید یا کمی بعد دوباره تلاش کنید.'); store().notify('blocked', { reason: 'net' }); }
+    if (r.netFails >= 2) { queue.paused = true; r.delayMs = Math.min(r.maxDelay, r.delayMs * 2); store().addLog('err', 'سامانه اتصال را پیاپی بست؛ دانلود نگه داشته شد تا آی‌پی شما بلاک نشود. کمی بعد یا با تعویض آی‌پی/DNS، دانلود از همین‌جا ادامه می‌یابد.'); store().notify('blocked', { reason: 'net' }); }
   }
   function isPressure(e) {
     if (!e) return null;
@@ -501,11 +504,11 @@
           if (sig) { rateBackoff(sig); continue; }
           item.tries++;
           if (item.tries >= 3) { queue.items.splice(queue.items.indexOf(item), 1); queue.failed++; st.addLog('err', `گرفتن ${item.kind} برای «${st.caseNameOf(item.section, item.rec)}» ناموفق: ${e.message}`); }
-          else await U.sleep(2000);
+          else await U.sleep(3000);
         }
-        await U.sleep(queue.rate.delayMs);
-        // با بالا رفتن هم‌زمانی، کارگر تازه اضافه کن
-        if (queue.workers < queue.rate.concurrency && nextItem()) worker();
+        // فایل رسمی (TIFF سنگین) فاصلهٔ بیشتری می‌خواهد تا محافظ سامانه حساس نشود (بند ۱۰)
+        const wait = queue.rate.delayMs + (item && item.kind === 'فایل' ? queue.rate.heavyExtra : 0);
+        await U.sleep(wait);
       }
     } finally {
       queue.workers--;
