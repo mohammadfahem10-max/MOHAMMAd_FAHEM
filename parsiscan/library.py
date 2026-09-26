@@ -38,6 +38,8 @@ class Template:
     rel_bottom: float     # (y1 - baseline) / x-height
     count: int = 1
     source: str = ""
+    mass_above: float = -1.0   # share of ink above the main body (dots of ن ت ش ...)
+    mass_below: float = -1.0   # share of ink below it (dots of ب پ ج ...)
     image: np.ndarray | None = None  # float32 blurred, NORM_H x w
 
 
@@ -61,6 +63,41 @@ def normalize_bitmap(img: np.ndarray, norm_h: int = NORM_H) -> np.ndarray:
     f = (resized > 100).astype(np.float32)
     f = cv2.blur(f, (3, 3))
     return f
+
+
+MARK_TOL = 0.06
+
+
+def mark_masses(img: np.ndarray) -> tuple[float, float]:
+    """Share of ink above and below the main body of a shape.
+
+    The body is the largest connected component; every other component is
+    a mark (dot, madda, hamza) and is counted as above or below the body by
+    its centre. Two shapes that differ only by dots (س/ش, ب/ت, ن/ی) differ
+    clearly here even when their outlines match.
+    """
+    binary = (img > 0).astype(np.uint8)
+    total = int(binary.sum())
+    if total == 0:
+        return 0.0, 0.0
+    n, labels, stats, cents = cv2.connectedComponentsWithStats(binary, connectivity=8)
+    if n <= 2:
+        return 0.0, 0.0
+    body = 1 + int(np.argmax(stats[1:, cv2.CC_STAT_AREA]))
+    by0 = stats[body, cv2.CC_STAT_TOP]
+    by1 = by0 + stats[body, cv2.CC_STAT_HEIGHT]
+    bmid = (by0 + by1) / 2
+    above = below = 0
+    for i in range(1, n):
+        if i == body:
+            continue
+        area = int(stats[i, cv2.CC_STAT_AREA])
+        cy = cents[i][1]
+        if cy < by0 or (by0 <= cy <= by1 and cy < bmid):
+            above += area
+        else:
+            below += area
+    return above / total, below / total
 
 
 def _soft_dice(a: np.ndarray, b: np.ndarray) -> np.ndarray:
@@ -101,7 +138,8 @@ class Library:
                 continue
             tpl = Template(id=t["id"], label=t["label"], w=int(raw.shape[1]), rel_h=t["rel_h"], rel_w=t["rel_w"],
                            rel_top=t["rel_top"], rel_bottom=t["rel_bottom"], count=t.get("count", 1),
-                           source=t.get("source", ""))
+                           source=t.get("source", ""), mass_above=t.get("mass_above", -1.0),
+                           mass_below=t.get("mass_below", -1.0))
             tpl.image = cv2.blur((raw > 100).astype(np.float32), (3, 3))
             self.templates.append(tpl)
         self._dirty_index = True
@@ -113,7 +151,8 @@ class Library:
         for t in self.templates:
             data["templates"].append({"id": t.id, "label": t.label, "rel_h": round(t.rel_h, 4), "rel_w": round(t.rel_w, 4),
                                       "rel_top": round(t.rel_top, 4), "rel_bottom": round(t.rel_bottom, 4),
-                                      "count": t.count, "source": t.source})
+                                      "count": t.count, "source": t.source,
+                                      "mass_above": round(t.mass_above, 4), "mass_below": round(t.mass_below, 4)})
         with open(self.path, "w", encoding="utf-8") as fh:
             json.dump(data, fh, ensure_ascii=False, indent=1)
 
@@ -136,7 +175,9 @@ class Library:
                     t.count += 1
             return None
         tid = uuid.uuid4().hex[:12]
-        tpl = Template(id=tid, label=label, w=norm.shape[1], count=1, source=source, image=norm, **feats)
+        ma, mb = mark_masses(img)
+        tpl = Template(id=tid, label=label, w=norm.shape[1], count=1, source=source, image=norm,
+                       mass_above=ma, mass_below=mb, **feats)
         self.templates.append(tpl)
         os.makedirs(os.path.join(self.dir, "glyphs"), exist_ok=True)
         binary = ((cv2.resize((img > 0).astype(np.uint8) * 255, (norm.shape[1], NORM_H), interpolation=cv2.INTER_AREA)) > 100).astype(np.uint8) * 255
@@ -184,6 +225,7 @@ class Library:
         norm = normalize_bitmap(img)
         cw = norm.shape[1]
         tol = max(2, int(round(0.15 * cw)))
+        ma, mb = mark_masses(img)
         cands: list[tuple[float, int]] = []
         for tw, (stack, idxs) in self._by_w.items():
             if abs(tw - cw) > tol:
@@ -198,6 +240,8 @@ class Library:
                 if abs(t.rel_w - rel_w) > 0.28 * max(t.rel_w, rel_w, 0.5):
                     continue
                 if abs(t.rel_top - rel_top) > 0.45:
+                    continue
+                if t.mass_above >= 0 and (abs(t.mass_above - ma) > MARK_TOL or abs(t.mass_below - mb) > MARK_TOL):
                     continue
                 cands.append((float(s), i))
         if not cands:

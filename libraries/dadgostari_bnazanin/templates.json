@@ -7,6544 +7,7852 @@
  },
  "templates": [
   {
-   "id": "c3f80b54658a",
+   "id": "24a567eac6e0",
    "label": "بسمه",
    "rel_h": 1.0741,
    "rel_w": 2.7037,
    "rel_top": 0.5926,
    "rel_bottom": 0.4815,
    "count": 2,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0436
   },
   {
-   "id": "548c0b3403b2",
+   "id": "be0c45ad478d",
    "label": "تعا",
    "rel_h": 1.0741,
    "rel_w": 1.2963,
    "rel_top": 0.9259,
    "rel_bottom": 0.1481,
    "count": 2,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.1206,
+   "mass_below": 0.0
   },
   {
-   "id": "8c185badd8f7",
+   "id": "b9239d775121",
    "label": "لی",
    "rel_h": 1.5556,
    "rel_w": 1.2963,
    "rel_top": 0.9259,
    "rel_bottom": 0.6296,
    "count": 2,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "0e1b2749e1c4",
+   "id": "f3a81d568299",
    "label": "د",
    "rel_h": 0.7308,
    "rel_w": 0.6154,
    "rel_top": 0.5769,
    "rel_bottom": 0.1538,
    "count": 6,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "13023d4cf015",
+   "id": "3700e0735849",
    "label": "ا",
    "rel_h": 1.1538,
    "rel_w": 0.1923,
    "rel_top": 1.0,
    "rel_bottom": 0.1538,
    "count": 14,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "24f747f12121",
+   "id": "f0b89ac8d8e6",
    "label": "گستر",
    "rel_h": 1.5769,
    "rel_w": 2.9231,
    "rel_top": 1.0,
    "rel_bottom": 0.5769,
    "count": 2,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0731,
+   "mass_below": 0.0
   },
   {
-   "id": "1185c263ba95",
+   "id": "7c2f88db154b",
    "label": "ی",
    "rel_h": 0.9615,
    "rel_w": 1.0769,
    "rel_top": 0.4615,
    "rel_bottom": 0.5,
    "count": 6,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "8c23fb1bf910",
+   "id": "17c115403ffc",
    "label": "جمهو",
    "rel_h": 1.0769,
    "rel_w": 3.0769,
    "rel_top": 0.5,
    "rel_bottom": 0.5769,
    "count": 2,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0277
   },
   {
-   "id": "8a1c357c6336",
+   "id": "be53cace73c9",
    "label": "ر",
    "rel_h": 0.7692,
    "rel_w": 0.5385,
    "rel_top": 0.1923,
    "rel_bottom": 0.5769,
    "count": 15,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "f99a4dbfb286",
+   "id": "fd779f27ce78",
    "label": "ا",
    "rel_h": 1.1538,
    "rel_w": 0.1923,
    "rel_top": 1.0,
    "rel_bottom": 0.1538,
    "count": 17,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "5185ad791939",
+   "id": "a1d7de1b66af",
    "label": "سلا",
    "rel_h": 1.1923,
    "rel_w": 1.9231,
    "rel_top": 0.9615,
    "rel_bottom": 0.2308,
    "count": 2,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "95649c1c6e85",
+   "id": "f85719955fa8",
    "label": "می",
    "rel_h": 1.0,
    "rel_w": 1.6538,
    "rel_top": 0.3462,
    "rel_bottom": 0.6538,
    "count": 2,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "0897a391b2c3",
+   "id": "b58ffde5712e",
    "label": "یر",
    "rel_h": 0.9615,
    "rel_w": 1.0385,
    "rel_top": 0.3846,
    "rel_bottom": 0.5769,
    "count": 2,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.1682
   },
   {
-   "id": "bdda6c3821e1",
+   "id": "f2b2838cc3ac",
    "label": "ن",
    "rel_h": 1.1154,
    "rel_w": 0.8846,
    "rel_top": 0.5,
    "rel_bottom": 0.6154,
    "count": 2,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.1182,
+   "mass_below": 0.0
   },
   {
-   "id": "3f4c4f337d28",
+   "id": "3bbdb0ecda74",
    "label": "با",
    "rel_h": 1.4615,
    "rel_w": 0.6538,
    "rel_top": 0.9231,
    "rel_bottom": 0.5385,
    "count": 2,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.1116
   },
   {
-   "id": "e1462d89c0c2",
+   "id": "1fe16b5442e0",
    "label": "ز",
    "rel_h": 1.1923,
    "rel_w": 0.5385,
    "rel_top": 0.5769,
    "rel_bottom": 0.6154,
    "count": 2,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.1935,
+   "mass_below": 0.0
   },
   {
-   "id": "04dbe48de80e",
+   "id": "ca584eb1560f",
    "label": "پر",
    "rel_h": 0.9615,
    "rel_w": 1.0385,
    "rel_top": 0.3077,
    "rel_bottom": 0.6538,
    "count": 2,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.2458
   },
   {
-   "id": "37a54136911f",
+   "id": "1687cd869ad7",
    "label": "سی",
    "rel_h": 1.0,
    "rel_w": 1.9615,
    "rel_top": 0.3077,
    "rel_bottom": 0.6923,
    "count": 2,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "3ba0ff907357",
+   "id": "fce02128d66f",
    "label": "د",
    "rel_h": 0.7308,
    "rel_w": 0.6154,
    "rel_top": 0.5385,
    "rel_bottom": 0.1923,
    "count": 5,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "7cb031eb202a",
+   "id": "515a7d0482e3",
    "label": "سر",
    "rel_h": 0.9231,
    "rel_w": 1.5769,
    "rel_top": 0.3077,
    "rel_bottom": 0.6154,
    "count": 2,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "9d791610af95",
+   "id": "d5313b415c95",
    "label": "عمو",
    "rel_h": 1.0769,
    "rel_w": 2.0769,
    "rel_top": 0.4615,
    "rel_bottom": 0.6154,
    "count": 2,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "7d8b7f67c966",
+   "id": "b81fb6dd3de6",
    "label": "می",
    "rel_h": 1.0,
    "rel_w": 1.6154,
    "rel_top": 0.3077,
    "rel_bottom": 0.6923,
    "count": 2,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "a2ea5ae39b41",
+   "id": "99c107822bed",
    "label": "و",
    "rel_h": 0.9231,
    "rel_w": 0.5385,
    "rel_top": 0.3077,
    "rel_bottom": 0.6154,
    "count": 6,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "839918af7c16",
+   "id": "eaf7e32abf69",
    "label": "نقلا",
    "rel_h": 1.1923,
    "rel_w": 1.9231,
    "rel_top": 0.9231,
    "rel_bottom": 0.2692,
    "count": 2,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.1142,
+   "mass_below": 0.0
   },
   {
-   "id": "c89a1556dad6",
+   "id": "b30daed376a6",
    "label": "ب",
    "rel_h": 0.8846,
    "rel_w": 1.1538,
    "rel_top": 0.3462,
    "rel_bottom": 0.5385,
    "count": 2,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.1154
   },
   {
-   "id": "e766a008f29f",
+   "id": "f6df32cf9b28",
    "label": "هو",
    "rel_h": 1.1154,
    "rel_w": 1.3846,
    "rel_top": 0.5,
    "rel_bottom": 0.6154,
    "count": 2,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "e3ed1f7ae9e0",
+   "id": "ca6a67b5e09f",
    "label": "ز",
    "rel_h": 1.1923,
    "rel_w": 0.5385,
    "rel_top": 0.5769,
    "rel_bottom": 0.6154,
    "count": 2,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.1953,
+   "mass_below": 0.0
   },
   {
-   "id": "5423bf0d2be7",
+   "id": "42c83948f2ad",
    "label": "1",
    "rel_h": 1.0769,
    "rel_w": 0.3846,
    "rel_top": 0.8846,
    "rel_bottom": 0.1923,
    "count": 6,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "1bc2af4bf76d",
+   "id": "c32773bd7489",
    "label": "شعبه",
    "rel_h": 1.3077,
    "rel_w": 2.7692,
    "rel_top": 0.7692,
    "rel_bottom": 0.5385,
    "count": 2,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0976,
+   "mass_below": 0.0384
   },
   {
-   "id": "83820ce4a6e5",
+   "id": "645335a835c9",
    "label": "بلا",
    "rel_h": 1.2188,
    "rel_w": 1.0312,
    "rel_top": 0.7812,
    "rel_bottom": 0.4375,
    "count": 2,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0625
   },
   {
-   "id": "cabcee61f4b2",
+   "id": "6ad5539d0737",
    "label": "غ",
    "rel_h": 1.3125,
    "rel_w": 0.6875,
    "rel_top": 0.75,
    "rel_bottom": 0.5625,
    "count": 2,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0828,
+   "mass_below": 0.0
   },
   {
-   "id": "7ab57d323d99",
+   "id": "fe08bcc8f0ad",
    "label": "لکتر",
    "rel_h": 1.25,
    "rel_w": 1.8438,
    "rel_top": 0.75,
    "rel_bottom": 0.5,
    "count": 2,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0754,
+   "mass_below": 0.0
   },
   {
-   "id": "455ed3088380",
+   "id": "1aadbd95eaae",
    "label": "نیکی",
    "rel_h": 1.3125,
    "rel_w": 2.1562,
    "rel_top": 0.75,
    "rel_bottom": 0.5625,
    "count": 2,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0343,
+   "mass_below": 0.0543
   },
   {
-   "id": "f1f58bd23825",
+   "id": "89830bda0d69",
    "label": "1",
    "rel_h": 1.0,
    "rel_w": 0.3333,
    "rel_top": 0.8519,
    "rel_bottom": 0.1481,
    "count": 9,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "80e8e98f6bd1",
+   "id": "38abc12f6d14",
    "label": "40",
    "rel_h": 1.0,
    "rel_w": 1.2222,
    "rel_top": 0.8889,
    "rel_bottom": 0.1111,
    "count": 4,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.1829
   },
   {
-   "id": "03055648b303",
+   "id": "1ff9e055bf9a",
    "label": "4",
    "rel_h": 1.0,
    "rel_w": 0.5926,
    "rel_top": 0.8889,
    "rel_bottom": 0.1111,
    "count": 10,
-   "source": "pdf:eblaghiye:split"
+   "source": "pdf:eblaghiye:split",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "41e39b63da97",
+   "id": "d2c343ec6c23",
    "label": "0",
    "rel_h": 0.2963,
    "rel_w": 0.2593,
    "rel_top": 0.4444,
    "rel_bottom": -0.1481,
    "count": 20,
-   "source": "pdf:eblaghiye:split"
+   "source": "pdf:eblaghiye:split",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "9ad733c2054a",
+   "id": "f1b5bb53fa0d",
    "label": "3",
    "rel_h": 1.0,
    "rel_w": 0.7037,
    "rel_top": 0.8519,
    "rel_bottom": 0.1481,
    "count": 6,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "b5ef6ed2999e",
+   "id": "0d77a5217085",
    "label": "7",
    "rel_h": 0.963,
    "rel_w": 0.6667,
    "rel_top": 0.8519,
    "rel_bottom": 0.1111,
    "count": 2,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "4536a9592df9",
+   "id": "166433c397f8",
    "label": "10",
    "rel_h": 1.0,
    "rel_w": 1.1111,
    "rel_top": 0.8519,
    "rel_bottom": 0.1481,
    "count": 2,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.2857
   },
   {
-   "id": "73062be016d5",
+   "id": "be4fa16f71f8",
    "label": "005",
    "rel_h": 1.0,
    "rel_w": 2.1111,
    "rel_top": 0.8519,
    "rel_bottom": 0.1481,
    "count": 2,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.2735
   },
   {
-   "id": "6608fb4643ea",
+   "id": "ca75189413e0",
    "label": "5",
    "rel_h": 1.0,
    "rel_w": 0.6667,
    "rel_top": 0.8519,
    "rel_bottom": 0.1481,
    "count": 2,
-   "source": "pdf:eblaghiye:split"
+   "source": "pdf:eblaghiye:split",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "92245e7563a7",
+   "id": "c63448e5d034",
    "label": "8",
    "rel_h": 0.963,
    "rel_w": 0.6667,
    "rel_top": 0.8519,
    "rel_bottom": 0.1111,
    "count": 10,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "090a4ce9387d",
+   "id": "8d27cc31f93d",
    "label": "2",
    "rel_h": 0.963,
    "rel_w": 0.5556,
    "rel_top": 0.8519,
    "rel_bottom": 0.1111,
    "count": 2,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "02b04e71a7b6",
+   "id": "8e85ca5eabfc",
    "label": "6",
    "rel_h": 1.0,
    "rel_w": 0.6296,
    "rel_top": 0.8519,
    "rel_bottom": 0.1481,
    "count": 2,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "3b296cc441d1",
+   "id": "0fd707613988",
    "label": "1",
    "rel_h": 1.0,
    "rel_w": 0.2963,
    "rel_top": 0.8519,
    "rel_bottom": 0.1481,
    "count": 13,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "4e315aa12b6e",
+   "id": "1c092960a943",
    "label": "9",
    "rel_h": 0.963,
    "rel_w": 0.5556,
    "rel_top": 0.8519,
    "rel_bottom": 0.1111,
    "count": 8,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "c61c22abe0b6",
+   "id": "9144e7ed5149",
    "label": "غیه:",
    "rel_h": 1.3333,
    "rel_w": 2.0741,
    "rel_top": 0.8519,
    "rel_bottom": 0.4815,
    "count": 2,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0925,
+   "mass_below": 0.1387
   },
   {
-   "id": "140188fcd513",
+   "id": "69d8c1bed167",
    "label": "شما",
    "rel_h": 1.1111,
    "rel_w": 2.0,
    "rel_top": 0.9259,
    "rel_bottom": 0.1852,
    "count": 6,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.1227,
+   "mass_below": 0.0
   },
   {
-   "id": "4dd6c2f76d7d",
+   "id": "9e9f6d5aba72",
    "label": "ه",
    "rel_h": 0.5556,
    "rel_w": 0.4444,
    "rel_top": 0.4074,
    "rel_bottom": 0.1481,
    "count": 7,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "1790444cfffa",
+   "id": "ec210878c8a1",
    "label": "بلا",
    "rel_h": 1.4074,
    "rel_w": 1.2593,
    "rel_top": 0.9259,
    "rel_bottom": 0.4815,
    "count": 4,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0633
   },
   {
-   "id": "ff348d1dabf2",
+   "id": "f3496af3a0b0",
    "label": "70",
    "rel_h": 1.0385,
    "rel_w": 1.3462,
    "rel_top": 0.8846,
    "rel_bottom": 0.1538,
    "count": 2,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.1916
   },
   {
-   "id": "c4f4657995fe",
+   "id": "715851fa69db",
    "label": "7",
    "rel_h": 1.0385,
    "rel_w": 0.6923,
    "rel_top": 0.8846,
    "rel_bottom": 0.1538,
    "count": 5,
-   "source": "pdf:eblaghiye:split"
+   "source": "pdf:eblaghiye:split",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "27ca8f0611ed",
+   "id": "e3159f7dadfe",
    "label": "0",
    "rel_h": 0.2692,
    "rel_w": 0.3077,
    "rel_top": 0.4615,
    "rel_bottom": -0.1923,
    "count": 4,
-   "source": "pdf:eblaghiye:split"
+   "source": "pdf:eblaghiye:split",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "ee855cbbeb5e",
+   "id": "b61c9f21ba14",
    "label": "8",
    "rel_h": 1.0,
    "rel_w": 0.6923,
    "rel_top": 0.8846,
    "rel_bottom": 0.1154,
    "count": 5,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "86418b7a9154",
+   "id": "a9f588200577",
    "label": "6",
    "rel_h": 1.0,
    "rel_w": 0.6154,
    "rel_top": 0.8846,
    "rel_bottom": 0.1154,
    "count": 4,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "83ffc8dc0591",
+   "id": "d3ccf024919d",
    "label": "600",
    "rel_h": 1.0,
    "rel_w": 2.0769,
    "rel_top": 0.8846,
    "rel_bottom": 0.1154,
    "count": 2,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.3184
   },
   {
-   "id": "a3c6083ec51d",
+   "id": "a9025f4398cc",
    "label": "008",
    "rel_h": 1.0,
    "rel_w": 2.1923,
    "rel_top": 0.8846,
    "rel_bottom": 0.1154,
    "count": 2,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.3168
   },
   {
-   "id": "0d1cf3e978b9",
+   "id": "aa138af91982",
    "label": "ه:",
    "rel_h": 0.6154,
    "rel_w": 0.7692,
    "rel_top": 0.4615,
    "rel_bottom": 0.1538,
    "count": 3,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.1503,
+   "mass_below": 0.1445
   },
   {
-   "id": "74031068bb2c",
+   "id": "0b6d89d03b2b",
    "label": "پر",
    "rel_h": 1.0,
    "rel_w": 1.0385,
    "rel_top": 0.3846,
    "rel_bottom": 0.6154,
    "count": 2,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.2552
   },
   {
-   "id": "9207f9fe9d4b",
+   "id": "2c90954d331c",
    "label": "ند",
    "rel_h": 0.8846,
    "rel_w": 1.0769,
    "rel_top": 0.7308,
    "rel_bottom": 0.1538,
    "count": 3,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.098,
+   "mass_below": 0.0
   },
   {
-   "id": "1ca9fbe4faf0",
+   "id": "ef4091e38f6a",
    "label": "9",
    "rel_h": 1.0,
    "rel_w": 0.5385,
    "rel_top": 0.8462,
    "rel_bottom": 0.1538,
    "count": 2,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "2dae4110e574",
+   "id": "85fbb577d059",
    "label": "80",
    "rel_h": 1.0,
    "rel_w": 1.3077,
    "rel_top": 0.8462,
    "rel_bottom": 0.1538,
    "count": 2,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.1882
   },
   {
-   "id": "943420c410aa",
+   "id": "9b3ff58d0cf1",
    "label": "نی:",
    "rel_h": 1.3846,
    "rel_w": 1.6154,
    "rel_top": 0.6923,
    "rel_bottom": 0.6923,
    "count": 2,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.1958,
+   "mass_below": 0.0
   },
   {
-   "id": "111902469485",
+   "id": "ac6ffa03a024",
    "label": "با",
    "rel_h": 1.4615,
    "rel_w": 0.6154,
    "rel_top": 0.9231,
    "rel_bottom": 0.5385,
    "count": 2,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.1143
   },
   {
-   "id": "3be463e973db",
+   "id": "4412b5bc49ef",
    "label": "یگا",
    "rel_h": 1.5,
    "rel_w": 1.5385,
    "rel_top": 0.9615,
    "rel_bottom": 0.5385,
    "count": 2,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0927
   },
   {
-   "id": "290b1785289d",
+   "id": "a6e2ceffab65",
    "label": "/",
    "rel_h": 0.875,
    "rel_w": 0.2188,
    "rel_top": 0.6875,
    "rel_bottom": 0.1875,
    "count": 3,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "1380e2c61d14",
+   "id": "94371b9e10e5",
    "label": "/0",
    "rel_h": 0.875,
    "rel_w": 0.7188,
    "rel_top": 0.6875,
    "rel_bottom": 0.1875,
    "count": 2,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.4156
   },
   {
-   "id": "9f10299ccf50",
+   "id": "b4d3976ce006",
    "label": "/",
    "rel_h": 0.875,
    "rel_w": 0.2188,
    "rel_top": 0.6875,
    "rel_bottom": 0.1875,
    "count": 2,
-   "source": "pdf:eblaghiye:split"
+   "source": "pdf:eblaghiye:split",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "2844b912ad08",
+   "id": "32cb13fff516",
    "label": "تنظیم:",
    "rel_h": 1.3125,
    "rel_w": 2.9062,
    "rel_top": 0.75,
    "rel_bottom": 0.5625,
    "count": 2,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.1184,
+   "mass_below": 0.068
   },
   {
-   "id": "86529b1b98d9",
+   "id": "7af2b6374c28",
    "label": "تا",
    "rel_h": 0.9062,
    "rel_w": 0.5938,
    "rel_top": 0.75,
    "rel_bottom": 0.1562,
    "count": 2,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.1767,
+   "mass_below": 0.0
   },
   {
-   "id": "65c5458a79e0",
+   "id": "01d40dce6584",
    "label": "یخ",
    "rel_h": 1.1875,
    "rel_w": 1.0625,
    "rel_top": 0.625,
    "rel_bottom": 0.5625,
    "count": 2,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0559,
+   "mass_below": 0.0805
   },
   {
-   "id": "e0cd208ff5e4",
+   "id": "f6dcd619c2d2",
    "label": "مشخصا",
    "rel_h": 1.0,
    "rel_w": 3.6207,
    "rel_top": 0.8276,
    "rel_bottom": 0.1724,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0889,
+   "mass_below": 0.0
   },
   {
-   "id": "4f7722813826",
+   "id": "96f61d6c7d5f",
    "label": "ت",
    "rel_h": 0.7241,
    "rel_w": 1.0,
    "rel_top": 0.5517,
    "rel_bottom": 0.1724,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.1991,
+   "mass_below": 0.0
   },
   {
-   "id": "27641c7ea7ba",
+   "id": "ae592eeb1fe4",
    "label": "بلا",
    "rel_h": 1.069,
    "rel_w": 1.1724,
    "rel_top": 0.8276,
    "rel_bottom": 0.2414,
    "count": 2,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "951feef5c0f2",
+   "id": "4e91373fa84a",
    "label": "غ",
    "rel_h": 1.1034,
    "rel_w": 0.7586,
    "rel_top": 0.4828,
    "rel_bottom": 0.6207,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "360f72142328",
+   "id": "0289d6751a23",
    "label": "شو",
    "rel_h": 1.2414,
    "rel_w": 1.3793,
    "rel_top": 0.6897,
    "rel_bottom": 0.5517,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.1494,
+   "mass_below": 0.0
   },
   {
-   "id": "6354b93e8a4a",
+   "id": "be1c3e49c694",
    "label": "نا",
    "rel_h": 1.0,
    "rel_w": 0.5862,
    "rel_top": 0.8276,
    "rel_bottom": 0.1724,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.1116,
+   "mass_below": 0.0
   },
   {
-   "id": "d88ee876c784",
+   "id": "5d26f5a67cbb",
    "label": "م",
    "rel_h": 0.931,
    "rel_w": 0.5517,
    "rel_top": 0.3103,
    "rel_bottom": 0.6207,
    "count": 2,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "8f3b22eff3a4",
+   "id": "df39c76c38eb",
    "label": "نا",
    "rel_h": 1.0,
    "rel_w": 0.5517,
    "rel_top": 0.8276,
    "rel_bottom": 0.1724,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.1143,
+   "mass_below": 0.0
   },
   {
-   "id": "effc8102f49b",
+   "id": "75165969f2c3",
    "label": "خا",
    "rel_h": 1.0,
    "rel_w": 1.1034,
    "rel_top": 0.8276,
    "rel_bottom": 0.1724,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.075,
+   "mass_below": 0.0
   },
   {
-   "id": "82913ee2ea95",
+   "id": "cd5eb379d734",
    "label": "نو",
    "rel_h": 1.1724,
    "rel_w": 0.8621,
    "rel_top": 0.6207,
    "rel_bottom": 0.5517,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0882,
+   "mass_below": 0.0
   },
   {
-   "id": "6c9312886204",
+   "id": "b90528c562b8",
    "label": "گی",
    "rel_h": 1.4828,
    "rel_w": 1.5517,
    "rel_top": 0.8621,
    "rel_bottom": 0.6207,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "a14a33d592de",
+   "id": "c6bcf1d02764",
    "label": "کد",
    "rel_h": 1.0,
    "rel_w": 1.3448,
    "rel_top": 0.8276,
    "rel_bottom": 0.1724,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "86efd71e3d1d",
+   "id": "8c3f34632d38",
    "label": "ملی",
    "rel_h": 1.4828,
    "rel_w": 1.8276,
    "rel_top": 0.8621,
    "rel_bottom": 0.6207,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "38c3b15f1c14",
+   "id": "a1fa622858b6",
    "label": "محمد",
    "rel_h": 0.7308,
    "rel_w": 3.1154,
    "rel_top": 0.5769,
    "rel_bottom": 0.1538,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "e685c364ad7e",
+   "id": "b4ce001adcaa",
    "label": "علی",
    "rel_h": 1.5385,
    "rel_w": 2.0,
    "rel_top": 0.9231,
    "rel_bottom": 0.6154,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "b6184164df3d",
+   "id": "4e6b7950b910",
    "label": "کر",
    "rel_h": 1.5,
    "rel_w": 1.3462,
    "rel_top": 0.9231,
    "rel_bottom": 0.5769,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "5406476f11c2",
+   "id": "bfedbd107913",
    "label": "یمی",
    "rel_h": 0.9615,
    "rel_w": 2.1923,
    "rel_top": 0.3462,
    "rel_bottom": 0.6154,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0485
   },
   {
-   "id": "34557033c2ed",
+   "id": "3b029dcb1809",
    "label": "پو",
    "rel_h": 0.9231,
    "rel_w": 0.9615,
    "rel_top": 0.3462,
    "rel_bottom": 0.5769,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.1429
   },
   {
-   "id": "6b0c4876a78d",
+   "id": "4c0ff9348074",
    "label": "ر",
    "rel_h": 0.7308,
    "rel_w": 0.5,
    "rel_top": 0.1538,
    "rel_bottom": 0.5769,
    "count": 5,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "7e4f4d012829",
+   "id": "d4405c11f80e",
    "label": "4",
    "rel_h": 1.0769,
    "rel_w": 0.6538,
    "rel_top": 0.9231,
    "rel_bottom": 0.1538,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "1d909feaaf38",
+   "id": "8211693bf302",
    "label": "2",
    "rel_h": 1.0385,
    "rel_w": 0.6154,
    "rel_top": 0.8846,
    "rel_bottom": 0.1538,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "aebeda299182",
+   "id": "499e56a9a4cd",
    "label": "5",
    "rel_h": 1.0385,
    "rel_w": 0.6538,
    "rel_top": 0.8846,
    "rel_bottom": 0.1538,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "c71bdcb819f7",
+   "id": "b8464c187b45",
    "label": "3",
    "rel_h": 1.0385,
    "rel_w": 0.7308,
    "rel_top": 0.8846,
    "rel_bottom": 0.1538,
    "count": 2,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "ae172f633611",
+   "id": "d2559f56cf82",
    "label": "ا",
    "rel_h": 1.0769,
    "rel_w": 0.1154,
    "rel_top": 0.9615,
    "rel_bottom": 0.1154,
    "count": 16,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "0761e531b78e",
+   "id": "899989bd58c2",
    "label": "بلا",
    "rel_h": 1.3846,
    "rel_w": 1.2692,
    "rel_top": 0.9231,
    "rel_bottom": 0.4615,
    "count": 4,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0488
   },
   {
-   "id": "47bc84d3db73",
+   "id": "686cb1bd86b8",
    "label": "غ",
    "rel_h": 1.5385,
    "rel_w": 0.7692,
    "rel_top": 0.9231,
    "rel_bottom": 0.6154,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0674,
+   "mass_below": 0.0
   },
   {
-   "id": "308b52b3cc6d",
+   "id": "7df355a69477",
    "label": "ا",
    "rel_h": 1.0769,
    "rel_w": 0.1154,
    "rel_top": 0.9615,
    "rel_bottom": 0.1154,
    "count": 23,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "6f56c1be6d16",
+   "id": "084f6b52c5bb",
    "label": "خطا",
    "rel_h": 1.0385,
    "rel_w": 2.1154,
    "rel_top": 0.9231,
    "rel_bottom": 0.1154,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0292,
+   "mass_below": 0.0
   },
   {
-   "id": "b66b9c7f32d9",
+   "id": "c25835e0d898",
    "label": "ر",
    "rel_h": 0.7308,
    "rel_w": 0.4615,
    "rel_top": 0.1538,
    "rel_bottom": 0.5769,
    "count": 7,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "fb5db89a8912",
+   "id": "df122489cee9",
    "label": "یه",
    "rel_h": 0.9615,
    "rel_w": 1.0,
    "rel_top": 0.5385,
    "rel_bottom": 0.4231,
    "count": 2,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.1039
   },
   {
-   "id": "1911b4bf33f9",
+   "id": "e61121b0fbe3",
    "label": "حضا",
    "rel_h": 1.0385,
    "rel_w": 2.2692,
    "rel_top": 0.9231,
    "rel_bottom": 0.1154,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0349,
+   "mass_below": 0.0
   },
   {
-   "id": "5c3218c1c355",
+   "id": "325b7594269c",
    "label": "تعیین",
    "rel_h": 1.2692,
    "rel_w": 3.0769,
    "rel_top": 0.6923,
    "rel_bottom": 0.5769,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.069,
+   "mass_below": 0.0841
   },
   {
-   "id": "5f52bd5f8999",
+   "id": "248a015d8855",
    "label": "مهلت",
    "rel_h": 1.4615,
    "rel_w": 2.8846,
    "rel_top": 0.9231,
    "rel_bottom": 0.5385,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0452,
+   "mass_below": 0.0
   },
   {
-   "id": "ea278c5b400e",
+   "id": "e9648a74e5ef",
    "label": "جهت",
    "rel_h": 1.1538,
    "rel_w": 2.7692,
    "rel_top": 0.6154,
    "rel_bottom": 0.5385,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0484,
+   "mass_below": 0.0276
   },
   {
-   "id": "5831d8e3ae65",
+   "id": "3d5e24a3c785",
    "label": "نجا",
    "rel_h": 1.3462,
    "rel_w": 1.5769,
    "rel_top": 0.9231,
    "rel_bottom": 0.4231,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0405,
+   "mass_below": 0.0405
   },
   {
-   "id": "39bfe991d971",
+   "id": "a03afdcc6359",
    "label": "م",
    "rel_h": 1.0,
    "rel_w": 0.5769,
    "rel_top": 0.3846,
    "rel_bottom": 0.6154,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "35ff83697110",
+   "id": "34ede186bc27",
    "label": "کا",
    "rel_h": 1.0385,
    "rel_w": 1.0,
    "rel_top": 0.9231,
    "rel_bottom": 0.1154,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "f9aae2455630",
+   "id": "771caf90002e",
    "label": "ی",
    "rel_h": 0.9231,
    "rel_w": 1.0385,
    "rel_top": 0.4231,
    "rel_bottom": 0.5,
    "count": 4,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "c6c8ace636da",
+   "id": "a9af9d42b260",
    "label": "بر",
    "rel_h": 0.9231,
    "rel_w": 0.8846,
    "rel_top": 0.3462,
    "rel_bottom": 0.5769,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0945
   },
   {
-   "id": "cb98de3b80a2",
+   "id": "01b22c446232",
    "label": "شخص",
    "rel_h": 1.3846,
    "rel_w": 3.4615,
    "rel_top": 0.8077,
    "rel_bottom": 0.5769,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0746,
+   "mass_below": 0.0
   },
   {
-   "id": "88ecfb1b37c0",
+   "id": "25ffec6b43d2",
    "label": "ذ",
    "rel_h": 1.0,
    "rel_w": 0.5385,
    "rel_top": 0.8846,
    "rel_bottom": 0.1154,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.102,
+   "mass_below": 0.0
   },
   {
-   "id": "e4b30376f86e",
+   "id": "96de126c381b",
    "label": "ی",
    "rel_h": 0.9231,
    "rel_w": 1.0,
    "rel_top": 0.4231,
    "rel_bottom": 0.5,
    "count": 3,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "1b7a77589067",
+   "id": "a4ecb0dda3c0",
    "label": "سمت",
    "rel_h": 0.7692,
    "rel_w": 2.9231,
    "rel_top": 0.6154,
    "rel_bottom": 0.1538,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0674,
+   "mass_below": 0.0
   },
   {
-   "id": "ca16f020dbba",
+   "id": "ab6a87e91962",
    "label": "و",
    "rel_h": 0.8462,
    "rel_w": 0.5,
    "rel_top": 0.3077,
    "rel_bottom": 0.5385,
    "count": 4,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "536f2d8d268b",
+   "id": "770d860007df",
    "label": "مر",
    "rel_h": 0.8846,
    "rel_w": 1.1538,
    "rel_top": 0.3077,
    "rel_bottom": 0.5769,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "c305b3c8c41d",
+   "id": "20e303a037bd",
    "label": "تبط",
    "rel_h": 1.3462,
    "rel_w": 2.0,
    "rel_top": 0.9231,
    "rel_bottom": 0.4231,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0592,
+   "mass_below": 0.0325
   },
   {
-   "id": "9b5e3c848670",
+   "id": "3988ced93f59",
    "label": "غیه:",
    "rel_h": 1.3846,
    "rel_w": 2.1154,
    "rel_top": 0.8846,
    "rel_bottom": 0.5,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0967,
+   "mass_below": 0.1412
   },
   {
-   "id": "a7eeb515a7b7",
+   "id": "bce763e23d50",
    "label": "نوع",
    "rel_h": 1.3846,
    "rel_w": 1.6923,
    "rel_top": 0.7308,
    "rel_bottom": 0.6538,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0449,
+   "mass_below": 0.0
   },
   {
-   "id": "002e750ca622",
+   "id": "b1331ef60d26",
    "label": "تا",
    "rel_h": 1.1154,
    "rel_w": 0.7308,
    "rel_top": 0.9231,
    "rel_bottom": 0.1923,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.1948,
+   "mass_below": 0.0
   },
   {
-   "id": "f5a95e1316c3",
+   "id": "a7deb94231de",
    "label": "ر",
    "rel_h": 0.7692,
    "rel_w": 0.5385,
    "rel_top": 0.1538,
    "rel_bottom": 0.6154,
    "count": 2,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "13adfbfad267",
+   "id": "a220468001c0",
    "label": "یخ",
    "rel_h": 1.4615,
    "rel_w": 1.3462,
    "rel_top": 0.7692,
    "rel_bottom": 0.6923,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0467,
+   "mass_below": 0.0
   },
   {
-   "id": "0dda72ecdf94",
+   "id": "473330781ed1",
    "label": "حضو",
    "rel_h": 1.3462,
    "rel_w": 2.6154,
    "rel_top": 0.7308,
    "rel_bottom": 0.6154,
    "count": 3,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.036,
+   "mass_below": 0.0
   },
   {
-   "id": "ac6fe4f25204",
+   "id": "f7107d09bf66",
    "label": "سا",
    "rel_h": 1.1154,
    "rel_w": 1.2308,
    "rel_top": 0.9231,
    "rel_bottom": 0.1923,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "fa7c5f412234",
+   "id": "84d159ff18cd",
    "label": "عت",
    "rel_h": 0.8077,
    "rel_w": 1.8462,
    "rel_top": 0.6154,
    "rel_bottom": 0.1923,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.1134,
+   "mass_below": 0.0
   },
   {
-   "id": "e4cd241d4ba9",
+   "id": "95aef1ef0a3a",
    "label": "محل",
    "rel_h": 1.5385,
    "rel_w": 2.5769,
    "rel_top": 0.9231,
    "rel_bottom": 0.6154,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "f85f4b7dc218",
+   "id": "dc94f4eb00ea",
    "label": "نوع",
    "rel_h": 1.3846,
    "rel_w": 1.6923,
    "rel_top": 0.6923,
    "rel_bottom": 0.6923,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.045,
+   "mass_below": 0.0
   },
   {
-   "id": "4436f8789738",
+   "id": "14dd75272cd5",
    "label": "علت",
    "rel_h": 1.1538,
    "rel_w": 2.2692,
    "rel_top": 0.9615,
    "rel_bottom": 0.1923,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0827,
+   "mass_below": 0.0
   },
   {
-   "id": "888fd2e3155d",
+   "id": "8fef4dfba955",
    "label": "حضو",
    "rel_h": 1.3846,
    "rel_w": 2.6538,
    "rel_top": 0.7692,
    "rel_bottom": 0.6154,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0406,
+   "mass_below": 0.0
   },
   {
-   "id": "9bfbd85923a2",
+   "id": "c28e26e13ea5",
    "label": "بلا-",
    "rel_h": 1.32,
    "rel_w": 2.32,
    "rel_top": 0.88,
    "rel_bottom": 0.44,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.1593
   },
   {
-   "id": "eacd4b7cbe9a",
+   "id": "5441944a1384",
    "label": "-ر",
    "rel_h": 0.8,
    "rel_w": 1.48,
    "rel_top": 0.24,
    "rel_bottom": 0.56,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.3457,
+   "mass_below": 0.0
   },
   {
-   "id": "221716a00110",
+   "id": "2c5c92febcf9",
    "label": "ا",
    "rel_h": 1.04,
    "rel_w": 0.12,
    "rel_top": 0.92,
    "rel_bottom": 0.12,
    "count": 3,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "96ed1cdbfa54",
+   "id": "384bea286e0f",
    "label": "ه",
    "rel_h": 0.48,
    "rel_w": 0.44,
    "rel_top": 0.36,
    "rel_bottom": 0.12,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "80cbb3d41838",
+   "id": "14434fd42a2f",
    "label": "کر",
    "rel_h": 1.44,
    "rel_w": 1.24,
    "rel_top": 0.88,
    "rel_bottom": 0.56,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "e586a0bf3ea2",
+   "id": "3c6ee1e8d707",
    "label": "-بین",
    "rel_h": 1.0,
    "rel_w": 2.8,
    "rel_top": 0.44,
    "rel_bottom": 0.56,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.1462,
+   "mass_below": 0.1231
   },
   {
-   "id": "5cb6e1ecc183",
+   "id": "cdbfa02de68d",
    "label": "تو",
    "rel_h": 1.2,
    "rel_w": 0.92,
    "rel_top": 0.64,
    "rel_bottom": 0.56,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.1133,
+   "mass_below": 0.0
   },
   {
-   "id": "9e10b1625aca",
+   "id": "09233eb9919e",
    "label": "با",
    "rel_h": 1.32,
    "rel_w": 0.6,
    "rel_top": 0.88,
    "rel_bottom": 0.44,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0748
   },
   {
-   "id": "e485c89e4505",
+   "id": "9dd98fba120a",
    "label": "ن",
    "rel_h": 1.0,
    "rel_w": 0.8,
    "rel_top": 0.44,
    "rel_bottom": 0.56,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0926,
+   "mass_below": 0.0
   },
   {
-   "id": "44f33e369e1b",
+   "id": "cfdcdce6aad5",
    "label": "د",
    "rel_h": 0.64,
    "rel_w": 0.56,
    "rel_top": 0.52,
    "rel_bottom": 0.12,
    "count": 2,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "3d9d665ce6af",
+   "id": "2c7cd6704cf7",
    "label": "عبل",
    "rel_h": 1.44,
    "rel_w": 2.08,
    "rel_top": 0.88,
    "rel_bottom": 0.56,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0273
   },
   {
-   "id": "0bde0c20f0fc",
+   "id": "c382e0e3b943",
    "label": "خز",
    "rel_h": 1.32,
    "rel_w": 1.44,
    "rel_top": 0.76,
    "rel_bottom": 0.56,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0879,
+   "mass_below": 0.0
   },
   {
-   "id": "c34ecedf76e7",
+   "id": "9234fad1920a",
    "label": "ا",
    "rel_h": 1.04,
    "rel_w": 0.12,
    "rel_top": 0.92,
    "rel_bottom": 0.12,
    "count": 4,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "04f082fad75c",
+   "id": "c3778e333a0a",
    "label": "ئی",
    "rel_h": 1.32,
    "rel_w": 1.24,
    "rel_top": 0.72,
    "rel_bottom": 0.6,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.1357,
+   "mass_below": 0.0
   },
   {
-   "id": "7d1093af4f64",
+   "id": "9d78573eea98",
    "label": "و",
    "rel_h": 0.84,
    "rel_w": 0.44,
    "rel_top": 0.28,
    "rel_bottom": 0.56,
    "count": 2,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "e331fd5ab9ed",
+   "id": "76e581a62a30",
    "label": "بلو",
    "rel_h": 1.44,
    "rel_w": 1.24,
    "rel_top": 0.88,
    "rel_bottom": 0.56,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0364
   },
   {
-   "id": "ba6dcca6daa2",
+   "id": "71d1ca61d0e9",
    "label": "ر",
    "rel_h": 0.68,
    "rel_w": 0.44,
    "rel_top": 0.12,
    "rel_bottom": 0.56,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "cf39dc64fe5a",
+   "id": "aa986f51dc81",
    "label": "ما",
    "rel_h": 1.0,
    "rel_w": 0.84,
    "rel_top": 0.88,
    "rel_bottom": 0.12,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "94346808431f",
+   "id": "9d72b09f9a8f",
    "label": "و",
    "rel_h": 0.84,
    "rel_w": 0.48,
    "rel_top": 0.28,
    "rel_bottom": 0.56,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "3cd735475f71",
+   "id": "55819abb14eb",
    "label": "ند",
    "rel_h": 0.8,
    "rel_w": 1.0,
    "rel_top": 0.68,
    "rel_bottom": 0.12,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0909,
+   "mass_below": 0.0
   },
   {
-   "id": "29d28af2add8",
+   "id": "43dfc1e15655",
    "label": "-کو",
    "rel_h": 1.44,
    "rel_w": 2.24,
    "rel_top": 0.88,
    "rel_bottom": 0.56,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.1197,
+   "mass_below": 0.0
   },
   {
-   "id": "6905e401fc53",
+   "id": "275728958358",
    "label": "ی",
    "rel_h": 0.88,
    "rel_w": 1.0,
    "rel_top": 0.4,
    "rel_bottom": 0.48,
    "count": 2,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "48d304a0d86f",
+   "id": "c2313f618eb3",
    "label": "نبو",
    "rel_h": 1.24,
    "rel_w": 1.36,
    "rel_top": 0.68,
    "rel_bottom": 0.56,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0415,
+   "mass_below": 0.0415
   },
   {
-   "id": "2c2715e3a1e5",
+   "id": "53b42799a2e9",
    "label": "ت",
    "rel_h": 0.72,
    "rel_w": 1.04,
    "rel_top": 0.6,
    "rel_bottom": 0.12,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.1638,
+   "mass_below": 0.0
   },
   {
-   "id": "d8c987e27301",
+   "id": "5be4afe4c6d2",
    "label": "-شهر",
    "rel_h": 1.32,
    "rel_w": 3.16,
    "rel_top": 0.76,
    "rel_bottom": 0.56,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.1563,
+   "mass_below": 0.0
   },
   {
-   "id": "efa31c87742c",
+   "id": "e3334e9abc6e",
    "label": "ستا",
    "rel_h": 1.0,
    "rel_w": 1.72,
    "rel_top": 0.88,
    "rel_bottom": 0.12,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0721,
+   "mass_below": 0.0
   },
   {
-   "id": "4a4dd20f3e76",
+   "id": "2f05a2e1cff8",
    "label": "ن",
    "rel_h": 1.0,
    "rel_w": 0.84,
    "rel_top": 0.44,
    "rel_bottom": 0.56,
    "count": 3,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0943,
+   "mass_below": 0.0
   },
   {
-   "id": "7d7d8e68fa20",
+   "id": "7fc26a9c3eef",
    "label": "هو",
    "rel_h": 1.04,
    "rel_w": 1.24,
    "rel_top": 0.48,
    "rel_bottom": 0.56,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "79ed423d8b1c",
+   "id": "0f04158463e5",
    "label": "ز",
    "rel_h": 1.08,
    "rel_w": 0.48,
    "rel_top": 0.52,
    "rel_bottom": 0.56,
    "count": 2,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.1618,
+   "mass_below": 0.0
   },
   {
-   "id": "b0290d860cdd",
+   "id": "f37c7ac2234b",
    "label": "ستا",
    "rel_h": 1.0,
    "rel_w": 1.72,
    "rel_top": 0.88,
    "rel_bottom": 0.12,
    "count": 2,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0762,
+   "mass_below": 0.0
   },
   {
-   "id": "5f571341f758",
+   "id": "37218a9b2540",
    "label": "خو",
    "rel_h": 1.32,
    "rel_w": 1.44,
    "rel_top": 0.76,
    "rel_bottom": 0.56,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0379,
+   "mass_below": 0.0
   },
   {
-   "id": "660a7fbedefb",
+   "id": "05e12faf376f",
    "label": "مجتمع",
    "rel_h": 1.0,
    "rel_w": 3.6,
    "rel_top": 0.4,
    "rel_bottom": 0.6,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "c9a4553b9ad1",
+   "id": "04a244ccae7e",
    "label": "قضا",
    "rel_h": 1.0,
    "rel_w": 1.8,
    "rel_top": 0.88,
    "rel_bottom": 0.12,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "d10993e5ef73",
+   "id": "301aa7bb108e",
    "label": "یی",
    "rel_h": 0.92,
    "rel_w": 1.28,
    "rel_top": 0.32,
    "rel_bottom": 0.6,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "b8068e3cd896",
+   "id": "da5a9a5ff37e",
    "label": "با",
    "rel_h": 1.0,
    "rel_w": 0.6,
    "rel_top": 0.88,
    "rel_bottom": 0.12,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "2076ef28d065",
+   "id": "af96e7067196",
    "label": "هنر",
    "rel_h": 1.08,
    "rel_w": 1.8,
    "rel_top": 0.52,
    "rel_bottom": 0.56,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0417,
+   "mass_below": 0.0
   },
   {
-   "id": "6714890ecd3d",
+   "id": "76d43af3d676",
    "label": "پیگیر",
    "rel_h": 1.48,
    "rel_w": 2.76,
    "rel_top": 0.92,
    "rel_bottom": 0.56,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0581,
+   "mass_below": 0.1566
   },
   {
-   "id": "0ef1729b697c",
+   "id": "2e64da866a2d",
    "label": "شکا",
    "rel_h": 1.0,
    "rel_w": 1.92,
    "rel_top": 0.88,
    "rel_bottom": 0.12,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0774,
+   "mass_below": 0.0
   },
   {
-   "id": "95b3ca2b9d9b",
+   "id": "927a1216a759",
    "label": "یت",
    "rel_h": 1.04,
    "rel_w": 1.52,
    "rel_top": 0.6,
    "rel_bottom": 0.44,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0958,
+   "mass_below": 0.0958
   },
   {
-   "id": "febcc6a7482d",
+   "id": "7d6408679723",
    "label": "مطر",
    "rel_h": 1.44,
    "rel_w": 2.08,
    "rel_top": 0.88,
    "rel_bottom": 0.56,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "8e7991fea77d",
+   "id": "1fccf560ad0c",
    "label": "حه",
    "rel_h": 0.64,
    "rel_w": 1.48,
    "rel_top": 0.52,
    "rel_bottom": 0.12,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "0dd37efddc14",
+   "id": "7861e5f17539",
    "label": "غیه:",
    "rel_h": 0.8,
    "rel_w": 2.2,
    "rel_top": 0.6,
    "rel_bottom": 0.2,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0586,
+   "mass_below": 0.0563
   },
   {
-   "id": "db7164559a42",
+   "id": "0ba564be48a4",
    "label": "متن",
    "rel_h": 1.32,
    "rel_w": 2.24,
    "rel_top": 0.64,
    "rel_bottom": 0.68,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.1474,
+   "mass_below": 0.0
   },
   {
-   "id": "3aeb5c3d26a2",
+   "id": "d7b60105b50a",
    "label": "بلا",
    "rel_h": 1.28,
    "rel_w": 1.36,
    "rel_top": 1.0,
    "rel_bottom": 0.28,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "d7d592193241",
+   "id": "e8dfc5632836",
    "label": ":پیگیر",
    "rel_h": 1.6667,
    "rel_w": 3.2963,
    "rel_top": 1.0,
    "rel_bottom": 0.6667,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0153,
+   "mass_below": 0.2059
   },
   {
-   "id": "275de732679f",
+   "id": "9b301e39e2d9",
    "label": "ی",
    "rel_h": 1.0,
    "rel_w": 1.1111,
    "rel_top": 0.4444,
    "rel_bottom": 0.5556,
    "count": 3,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "34777238254f",
+   "id": "0a806a284e40",
    "label": "شکا",
    "rel_h": 1.1481,
    "rel_w": 2.0741,
    "rel_top": 0.963,
    "rel_bottom": 0.1852,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.1013,
+   "mass_below": 0.0
   },
   {
-   "id": "6dc9a0b1b087",
+   "id": "666c454fa2f6",
    "label": "یت",
    "rel_h": 1.1481,
    "rel_w": 1.7037,
    "rel_top": 0.6296,
    "rel_bottom": 0.5185,
    "count": 2,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.1293,
+   "mass_below": 0.1293
   },
   {
-   "id": "0c522b42a279",
+   "id": "f9e6f0863cd3",
    "label": "مطر",
    "rel_h": 1.5926,
    "rel_w": 2.2963,
    "rel_top": 0.963,
    "rel_bottom": 0.6296,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "496fbd0faf13",
+   "id": "a2575fe0a787",
    "label": "و",
    "rel_h": 0.9259,
    "rel_w": 0.5926,
    "rel_top": 0.2963,
    "rel_bottom": 0.6296,
    "count": 6,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "396b0a2747b1",
+   "id": "bd142a9b2d30",
    "label": "حه",
    "rel_h": 0.7778,
    "rel_w": 1.6296,
    "rel_top": 0.5926,
    "rel_bottom": 0.1852,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "d9849b37ce3b",
+   "id": "0a6700f10452",
    "label": "ا",
    "rel_h": 1.1852,
    "rel_w": 0.1852,
    "rel_top": 1.0,
    "rel_bottom": 0.1852,
    "count": 9,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "e863a98ccb8b",
+   "id": "2800c135868a",
    "label": "خذ",
    "rel_h": 1.1111,
    "rel_w": 1.7407,
    "rel_top": 0.9259,
    "rel_bottom": 0.1852,
    "count": 2,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.1149,
+   "mass_below": 0.0
   },
   {
-   "id": "ed322fab63e7",
+   "id": "b0d2eb218c30",
    "label": "تو",
    "rel_h": 1.3333,
    "rel_w": 1.037,
    "rel_top": 0.7037,
    "rel_bottom": 0.6296,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.1437,
+   "mass_below": 0.0
   },
   {
-   "id": "0bf7d33133de",
+   "id": "5e1c149be9cc",
    "label": "ضیحا",
    "rel_h": 1.4815,
    "rel_w": 3.0,
    "rel_top": 0.963,
    "rel_bottom": 0.5185,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0313,
+   "mass_below": 0.0627
   },
   {
-   "id": "3bd28fc89116",
+   "id": "ce4f5be4f71a",
    "label": "ت",
    "rel_h": 0.8148,
    "rel_w": 1.1852,
    "rel_top": 0.6296,
    "rel_bottom": 0.1852,
    "count": 2,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.1937,
+   "mass_below": 0.0
   },
   {
-   "id": "5c098577dbdd",
+   "id": "b2d1b3b068ed",
    "label": "ضر",
    "rel_h": 1.4074,
    "rel_w": 1.7037,
    "rel_top": 0.7778,
    "rel_bottom": 0.6296,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0665,
+   "mass_below": 0.0
   },
   {
-   "id": "d3c58d33977b",
+   "id": "ba418ad607d2",
    "label": "ر",
    "rel_h": 0.8148,
    "rel_w": 0.5556,
    "rel_top": 0.1852,
    "rel_bottom": 0.6296,
    "count": 7,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "4fb781127f52",
+   "id": "56a03cec64a5",
    "label": "ر",
    "rel_h": 0.7037,
    "rel_w": 0.5185,
    "rel_top": 0.1111,
    "rel_bottom": 0.5926,
    "count": 74,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "1f5a91e8c082",
+   "id": "5962e0b1141c",
    "label": "و",
    "rel_h": 0.8889,
    "rel_w": 0.4815,
    "rel_top": 0.2963,
    "rel_bottom": 0.5926,
    "count": 126,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "6275a6b2f3d3",
+   "id": "c3e1628bafec",
    "label": "ز",
    "rel_h": 1.1481,
    "rel_w": 0.5185,
    "rel_top": 0.5556,
    "rel_bottom": 0.5926,
    "count": 24,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.1646,
+   "mass_below": 0.0
   },
   {
-   "id": "697bed4708ac",
+   "id": "96cc7d20c70c",
    "label": "نو",
    "rel_h": 1.2963,
    "rel_w": 0.8889,
    "rel_top": 0.7037,
    "rel_bottom": 0.5926,
    "count": 6,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0681,
+   "mass_below": 0.0
   },
   {
-   "id": "c6edb3101bb4",
+   "id": "aeb38fd70d11",
    "label": "ع",
    "rel_h": 1.1852,
    "rel_w": 0.7778,
    "rel_top": 0.5185,
    "rel_bottom": 0.6667,
    "count": 3,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "1aa6fb852f7f",
+   "id": "5eaa6874d006",
    "label": "علت",
    "rel_h": 1.1111,
    "rel_w": 2.2963,
    "rel_top": 0.9259,
    "rel_bottom": 0.1852,
    "count": 2,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.056,
+   "mass_below": 0.0
   },
   {
-   "id": "a22e81aaf7c6",
+   "id": "93cf76497c04",
    "label": "حضو",
    "rel_h": 1.3333,
    "rel_w": 2.6296,
    "rel_top": 0.7407,
    "rel_bottom": 0.5926,
    "count": 2,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.026,
+   "mass_below": 0.0
   },
   {
-   "id": "9336fda6e933",
+   "id": "56e82f1b1e36",
    "label": "5",
    "rel_h": 1.0741,
    "rel_w": 0.7037,
    "rel_top": 0.8889,
    "rel_bottom": 0.1852,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "205705daf1b7",
+   "id": "7cd65af5f62e",
    "label": "ر:",
    "rel_h": 1.0,
    "rel_w": 1.2222,
    "rel_top": 0.4074,
    "rel_bottom": 0.5926,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.2979,
+   "mass_below": 0.0
   },
   {
-   "id": "383eebfda7ce",
+   "id": "f532df8a0fb8",
    "label": "مهلت",
    "rel_h": 1.5185,
    "rel_w": 2.963,
    "rel_top": 0.9259,
    "rel_bottom": 0.5926,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0415,
+   "mass_below": 0.0
   },
   {
-   "id": "f430b0cd06f2",
+   "id": "237ff69e5e66",
    "label": "حضو",
    "rel_h": 1.3333,
    "rel_w": 2.5926,
    "rel_top": 0.7407,
    "rel_bottom": 0.5926,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0263,
+   "mass_below": 0.0
   },
   {
-   "id": "3aaa3b30fe79",
+   "id": "1167dec6923c",
    "label": "مر",
    "rel_h": 1.0,
    "rel_w": 1.3077,
    "rel_top": 0.3462,
    "rel_bottom": 0.6538,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "83151a4384e5",
+   "id": "8451398cf8f4",
    "label": "جعه",
    "rel_h": 1.1538,
    "rel_w": 2.3462,
    "rel_top": 0.6154,
    "rel_bottom": 0.5385,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0484
   },
   {
-   "id": "c94d0977c171",
+   "id": "a15123dfd2f5",
    "label": "بر",
    "rel_h": 1.0,
    "rel_w": 1.0385,
    "rel_top": 0.3462,
    "rel_bottom": 0.6538,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.1212
   },
   {
-   "id": "78756e80a938",
+   "id": "131be107bfe6",
    "label": "نو",
    "rel_h": 1.4231,
    "rel_w": 1.0385,
    "rel_top": 0.7692,
    "rel_bottom": 0.6538,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.082,
+   "mass_below": 0.0
   },
   {
-   "id": "3288b9dd0e4c",
+   "id": "1f2effdf5873",
    "label": "بت",
    "rel_h": 1.1923,
    "rel_w": 1.6538,
    "rel_top": 0.6538,
    "rel_bottom": 0.5385,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.1369,
+   "mass_below": 0.0782
   },
   {
-   "id": "28c241f1a402",
+   "id": "c310e37e8e7e",
    "label": "قد",
    "rel_h": 1.1538,
    "rel_w": 1.3077,
    "rel_top": 0.9615,
    "rel_bottom": 0.1923,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.1204,
+   "mass_below": 0.0
   },
   {
-   "id": "bbe8b6de3fce",
+   "id": "4a348ecefc60",
    "label": "م",
    "rel_h": 1.1154,
    "rel_w": 0.6923,
    "rel_top": 0.3846,
    "rel_bottom": 0.7308,
    "count": 2,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "3deab883f091",
+   "id": "8e9fe1be2db8",
    "label": "فر",
    "rel_h": 1.6154,
    "rel_w": 1.1923,
    "rel_top": 0.9615,
    "rel_bottom": 0.6538,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0882,
+   "mass_below": 0.0
   },
   {
-   "id": "3493c566bb02",
+   "id": "b6a500efaf5f",
    "label": "ما",
    "rel_h": 1.1923,
    "rel_w": 1.0,
    "rel_top": 1.0,
    "rel_bottom": 0.1923,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "bbc0b82a8e7f",
+   "id": "3d1c1797c691",
    "label": "یید",
    "rel_h": 1.1538,
    "rel_w": 1.8462,
    "rel_top": 0.6154,
    "rel_bottom": 0.5385,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.2254
   },
   {
-   "id": "7e37ab6c8c5b",
+   "id": "42a237e741ec",
    "label": ".د",
    "rel_h": 0.7692,
    "rel_w": 1.4231,
    "rel_top": 0.5769,
    "rel_bottom": 0.1923,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.1458
   },
   {
-   "id": "8d3c736757e1",
+   "id": "ae4b95c4b89d",
    "label": "غیر",
    "rel_h": 1.5769,
    "rel_w": 1.9615,
    "rel_top": 0.9231,
    "rel_bottom": 0.6538,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0579,
+   "mass_below": 0.1074
   },
   {
-   "id": "d76321ba8f42",
+   "id": "44964eeafd7b",
    "label": "ین",
    "rel_h": 1.1538,
    "rel_w": 1.5385,
    "rel_top": 0.5,
    "rel_bottom": 0.6538,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.064,
+   "mass_below": 0.1307
   },
   {
-   "id": "22f171c3d6e1",
+   "id": "102c4bdda8e6",
    "label": "صو",
    "rel_h": 1.0385,
    "rel_w": 1.8077,
    "rel_top": 0.3846,
    "rel_bottom": 0.6538,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "5644276838ee",
+   "id": "55cf11b92df7",
    "label": "د",
    "rel_h": 0.7692,
    "rel_w": 0.6538,
    "rel_top": 0.5769,
    "rel_bottom": 0.1923,
    "count": 3,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "be64c6564bf6",
+   "id": "a9d602cc7394",
    "label": "شعبه",
    "rel_h": 1.3846,
    "rel_w": 2.9615,
    "rel_top": 0.8462,
    "rel_bottom": 0.5385,
    "count": 2,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0945,
+   "mass_below": 0.0384
   },
   {
-   "id": "5eadf96284b8",
+   "id": "8a86037becb6",
    "label": "پذ",
    "rel_h": 1.6538,
    "rel_w": 1.2692,
    "rel_top": 0.9615,
    "rel_bottom": 0.6923,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0716,
+   "mass_below": 0.2034
   },
   {
-   "id": "07932ca0a1fd",
+   "id": "4e747fd6101c",
    "label": "یر",
    "rel_h": 1.0,
    "rel_w": 1.1538,
    "rel_top": 0.3462,
    "rel_bottom": 0.6538,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.1944
   },
   {
-   "id": "05fa38581cc9",
+   "id": "8667fd978b16",
    "label": "ش",
    "rel_h": 1.5,
    "rel_w": 1.5769,
    "rel_top": 0.8462,
    "rel_bottom": 0.6538,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.1684,
+   "mass_below": 0.0
   },
   {
-   "id": "cafd21cd70c6",
+   "id": "6d29cfb55b27",
    "label": "w",
    "rel_h": 1.0385,
    "rel_w": 1.3462,
    "rel_top": 0.8846,
    "rel_bottom": 0.1538,
    "count": 3,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "f4bd8d632dae",
+   "id": "c7712aefa505",
    "label": ".a",
    "rel_h": 1.0769,
    "rel_w": 1.1538,
    "rel_top": 0.8846,
    "rel_bottom": 0.1923,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0685
   },
   {
-   "id": "6917c12f45c5",
+   "id": "55398778dbc7",
    "label": ".",
    "rel_h": 0.2308,
    "rel_w": 0.1923,
    "rel_top": 0.0385,
    "rel_bottom": 0.1923,
    "count": 2,
-   "source": "pdf:eblaghiye:split"
+   "source": "pdf:eblaghiye:split",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "0b71b292266c",
+   "id": "a24b703ee021",
    "label": "a",
    "rel_h": 1.0385,
    "rel_w": 0.9615,
    "rel_top": 0.8846,
    "rel_bottom": 0.1538,
    "count": 1,
-   "source": "pdf:eblaghiye:split"
+   "source": "pdf:eblaghiye:split",
+   "mass_above": 0.0,
+   "mass_below": 0.0078
   },
   {
-   "id": "1dc3dabcb257",
+   "id": "faf7137d46e9",
    "label": "d",
    "rel_h": 1.4615,
    "rel_w": 0.8846,
    "rel_top": 1.3077,
    "rel_bottom": 0.1538,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "d7618966d3a4",
+   "id": "8205d9c07228",
    "label": "l",
    "rel_h": 1.4615,
    "rel_w": 0.2308,
    "rel_top": 1.3077,
    "rel_bottom": 0.1538,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "586de6b50d06",
+   "id": "d37e98074347",
    "label": "i",
    "rel_h": 1.3846,
    "rel_w": 0.2692,
    "rel_top": 1.2308,
    "rel_bottom": 0.1538,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.178,
+   "mass_below": 0.0
   },
   {
-   "id": "fb104e6e1d08",
+   "id": "7edde67dfad4",
    "label": "r",
    "rel_h": 1.0385,
    "rel_w": 0.5385,
    "rel_top": 0.8846,
    "rel_bottom": 0.1538,
    "count": 2,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "1f4b524757bf",
+   "id": "7ae343adabf7",
    "label": "a",
    "rel_h": 1.0385,
    "rel_w": 0.8846,
    "rel_top": 0.8846,
    "rel_bottom": 0.1538,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "daf73f85885e",
+   "id": "b49c2736d5f4",
    "label": "n",
    "rel_h": 1.0385,
    "rel_w": 0.8462,
    "rel_top": 0.8846,
    "rel_bottom": 0.1538,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "8ec40ef4a013",
+   "id": "a9b84684c873",
    "label": ".i",
    "rel_h": 1.4231,
    "rel_w": 0.5769,
    "rel_top": 1.2308,
    "rel_bottom": 0.1923,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.1553,
+   "mass_below": 0.1279
   },
   {
-   "id": "319ae399b998",
+   "id": "50d72f77368a",
    "label": "i",
    "rel_h": 1.3846,
    "rel_w": 0.3846,
    "rel_top": 1.2308,
    "rel_bottom": 0.1538,
    "count": 1,
-   "source": "pdf:eblaghiye:split"
+   "source": "pdf:eblaghiye:split",
+   "mass_above": 0.1753,
+   "mass_below": 0.0155
   },
   {
-   "id": "acf22b8e9986",
+   "id": "4f02bc63d78f",
    "label": "جهت",
    "rel_h": 1.3077,
    "rel_w": 3.0769,
    "rel_top": 0.6538,
    "rel_bottom": 0.6538,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0648,
+   "mass_below": 0.037
   },
   {
-   "id": "4c74b47614fa",
+   "id": "fc26e349c4d0",
    "label": "یا",
    "rel_h": 1.5385,
    "rel_w": 0.8077,
    "rel_top": 1.0,
    "rel_bottom": 0.5385,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.1835
   },
   {
-   "id": "7779360d62d5",
+   "id": "558967a5cbf1",
    "label": "فت",
    "rel_h": 1.1538,
    "rel_w": 1.8077,
    "rel_top": 0.9615,
    "rel_bottom": 0.1923,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.1695,
+   "mass_below": 0.0
   },
   {
-   "id": "569516629308",
+   "id": "1ac280500895",
    "label": "نو",
    "rel_h": 1.4231,
    "rel_w": 1.0,
    "rel_top": 0.7692,
    "rel_bottom": 0.6538,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0836,
+   "mass_below": 0.0
   },
   {
-   "id": "9a16b3afbad8",
+   "id": "d20f94f7fcf6",
    "label": "بت",
    "rel_h": 1.1923,
    "rel_w": 1.6154,
    "rel_top": 0.6538,
    "rel_bottom": 0.5385,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.1392,
+   "mass_below": 0.0795
   },
   {
-   "id": "d63c4655edae",
+   "id": "87151c0e5bde",
    "label": "حضو",
    "rel_h": 1.4615,
    "rel_w": 2.8462,
    "rel_top": 0.8077,
    "rel_bottom": 0.6538,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0367,
+   "mass_below": 0.0
   },
   {
-   "id": "afa777ff424b",
+   "id": "8978e556e65a",
    "label": "به",
    "rel_h": 1.1538,
    "rel_w": 1.0385,
    "rel_top": 0.6154,
    "rel_bottom": 0.5385,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.1011
   },
   {
-   "id": "4b5167f12ca7",
+   "id": "fe4e9288049e",
    "label": "سا",
    "rel_h": 1.1923,
    "rel_w": 1.3462,
    "rel_top": 1.0,
    "rel_bottom": 0.1923,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "64e54733e11a",
+   "id": "964c1c0948b9",
    "label": "شد.",
    "rel_h": 0.931,
    "rel_w": 1.8621,
    "rel_top": 0.7586,
    "rel_bottom": 0.1724,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.1507,
+   "mass_below": 0.0611
   },
   {
-   "id": "1daa8ed80585",
+   "id": "0a22664c6166",
    "label": "پا",
    "rel_h": 1.5172,
    "rel_w": 0.7241,
    "rel_top": 0.8966,
    "rel_bottom": 0.6207,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.2457
   },
   {
-   "id": "5f0e652e6e9e",
+   "id": "48561c5b1bf9",
    "label": "سخگو",
    "rel_h": 1.5172,
    "rel_w": 3.1724,
    "rel_top": 0.931,
    "rel_bottom": 0.5862,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0249,
+   "mass_below": 0.0
   },
   {
-   "id": "4d8378e413a7",
+   "id": "ea30e7fa1b92",
    "label": "یی",
    "rel_h": 0.9655,
    "rel_w": 1.3793,
    "rel_top": 0.3103,
    "rel_bottom": 0.6552,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.121
   },
   {
-   "id": "f8d545ae9f9e",
+   "id": "d2aa482e7a45",
    "label": "نجا",
    "rel_h": 1.3793,
    "rel_w": 1.5517,
    "rel_top": 0.8966,
    "rel_bottom": 0.4828,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0469,
+   "mass_below": 0.0469
   },
   {
-   "id": "9d834191931b",
+   "id": "618b05b16f81",
    "label": "نخو",
    "rel_h": 1.3793,
    "rel_w": 1.8621,
    "rel_top": 0.7931,
    "rel_bottom": 0.5862,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0839,
+   "mass_below": 0.0
   },
   {
-   "id": "db9939911907",
+   "id": "ebf104f0bd12",
    "label": "هد",
    "rel_h": 0.7241,
    "rel_w": 1.4138,
    "rel_top": 0.5517,
    "rel_bottom": 0.1724,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "6a7c19a2ea7a",
+   "id": "c1331adfe292",
    "label": "د",
    "rel_h": 0.72,
    "rel_w": 0.6,
    "rel_top": 0.56,
    "rel_bottom": 0.16,
    "count": 70,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "5579e01679bc",
+   "id": "b203ac7d2e03",
    "label": "عو",
    "rel_h": 1.12,
    "rel_w": 1.32,
    "rel_top": 0.48,
    "rel_bottom": 0.64,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "8bb73b49140e",
+   "id": "5ba3b872e995",
    "label": "ی",
    "rel_h": 1.0,
    "rel_w": 1.12,
    "rel_top": 0.44,
    "rel_bottom": 0.56,
    "count": 45,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "b464e8c960d1",
+   "id": "c75a104b6a27",
    "label": "محمو",
    "rel_h": 1.08,
    "rel_w": 3.28,
    "rel_top": 0.44,
    "rel_bottom": 0.64,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "57e324edb572",
+   "id": "8de0c09cdf57",
    "label": "جا",
    "rel_h": 1.52,
    "rel_w": 1.32,
    "rel_top": 1.0,
    "rel_bottom": 0.52,
    "count": 3,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0612
   },
   {
-   "id": "5977a8c810c5",
+   "id": "9ea8199e0182",
    "label": "سم",
    "rel_h": 1.0,
    "rel_w": 1.88,
    "rel_top": 0.32,
    "rel_bottom": 0.68,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "5fb55b050e67",
+   "id": "a3c226f5f223",
    "label": "نژ",
    "rel_h": 1.4,
    "rel_w": 1.0,
    "rel_top": 0.76,
    "rel_bottom": 0.64,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.2485,
+   "mass_below": 0.0
   },
   {
-   "id": "5cd617212d80",
+   "id": "67465a3a77dc",
    "label": "ا",
    "rel_h": 1.16,
    "rel_w": 0.12,
    "rel_top": 1.04,
    "rel_bottom": 0.12,
    "count": 101,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "069d3ce3af21",
+   "id": "b2c5e496b63b",
    "label": "علیر",
    "rel_h": 1.64,
    "rel_w": 2.44,
    "rel_top": 1.0,
    "rel_bottom": 0.64,
    "count": 3,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.053
   },
   {
-   "id": "57ec80afc9fa",
+   "id": "8cb50bb64722",
    "label": "ضا",
    "rel_h": 1.16,
    "rel_w": 1.4,
    "rel_top": 1.0,
    "rel_bottom": 0.16,
    "count": 4,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0469,
+   "mass_below": 0.0
   },
   {
-   "id": "19e11cafcb51",
+   "id": "226a66642902",
    "label": "نعیم",
    "rel_h": 1.44,
    "rel_w": 2.48,
    "rel_top": 0.76,
    "rel_bottom": 0.68,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0311,
+   "mass_below": 0.0502
   },
   {
-   "id": "dabf1e0c52fe",
+   "id": "2f25b150da6c",
    "label": "با",
    "rel_h": 1.52,
    "rel_w": 0.64,
    "rel_top": 1.0,
    "rel_bottom": 0.52,
    "count": 4,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0915
   },
   {
-   "id": "ff0a9b585340",
+   "id": "299100fa11be",
    "label": "سید",
    "rel_h": 1.12,
    "rel_w": 2.44,
    "rel_top": 0.6,
    "rel_bottom": 0.52,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.066
   },
   {
-   "id": "5c248fde3afe",
+   "id": "dad2fff423e0",
    "label": "آ",
    "rel_h": 1.16,
    "rel_w": 0.16,
    "rel_top": 1.0,
    "rel_bottom": 0.16,
    "count": 5,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "bd1e28dcc67e",
+   "id": "d569132e6a51",
    "label": "مین",
    "rel_h": 1.16,
    "rel_w": 2.32,
    "rel_top": 0.48,
    "rel_bottom": 0.68,
    "count": 2,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.036,
+   "mass_below": 0.0631
   },
   {
-   "id": "4ff818e81805",
+   "id": "4207b29925d4",
    "label": "منصو",
    "rel_h": 1.2,
    "rel_w": 3.08,
    "rel_top": 0.56,
    "rel_bottom": 0.64,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0252,
+   "mass_below": 0.0
   },
   {
-   "id": "4973004f4533",
+   "id": "7bd5ee0d5849",
    "label": "یا",
    "rel_h": 1.52,
    "rel_w": 0.76,
    "rel_top": 1.0,
    "rel_bottom": 0.52,
    "count": 7,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.142
   },
   {
-   "id": "eca62c2e60f5",
+   "id": "846df0ed8c4c",
    "label": "ن",
    "rel_h": 1.16,
    "rel_w": 0.92,
    "rel_top": 0.48,
    "rel_bottom": 0.68,
    "count": 8,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0857,
+   "mass_below": 0.0
   },
   {
-   "id": "fc004de291ac",
+   "id": "4094b0640f1d",
    "label": "محسن",
    "rel_h": 1.16,
    "rel_w": 3.96,
    "rel_top": 0.48,
    "rel_bottom": 0.68,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0217,
+   "mass_below": 0.0
   },
   {
-   "id": "fb19b02b9782",
+   "id": "b27957e6d2f4",
    "label": "پو",
    "rel_h": 1.0,
    "rel_w": 1.0,
    "rel_top": 0.32,
    "rel_bottom": 0.68,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.1553
   },
   {
-   "id": "066676d402c4",
+   "id": "506dda7b0b6d",
    "label": "قا",
    "rel_h": 1.16,
    "rel_w": 0.84,
    "rel_top": 1.0,
    "rel_bottom": 0.16,
    "count": 3,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0992,
+   "mass_below": 0.0
   },
   {
-   "id": "1bb6b65229ff",
+   "id": "e170898b05ca",
    "label": "سمی",
    "rel_h": 1.04,
    "rel_w": 2.96,
    "rel_top": 0.32,
    "rel_bottom": 0.72,
    "count": 3,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "99f6d2caca3e",
+   "id": "ea752b35b2ea",
    "label": "جما",
    "rel_h": 1.52,
    "rel_w": 2.2,
    "rel_top": 1.0,
    "rel_bottom": 0.52,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0413
   },
   {
-   "id": "55b7c2788694",
+   "id": "4b4dae1bfe60",
    "label": "ل",
    "rel_h": 1.64,
    "rel_w": 0.92,
    "rel_top": 1.0,
    "rel_bottom": 0.64,
    "count": 11,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "64e0bd0da96d",
+   "id": "6382d1736ab8",
    "label": "لد",
    "rel_h": 1.16,
    "rel_w": 1.12,
    "rel_top": 1.0,
    "rel_bottom": 0.16,
    "count": 2,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "5b52c472bb3b",
+   "id": "e416aa6245bf",
    "label": "ین",
    "rel_h": 1.16,
    "rel_w": 1.52,
    "rel_top": 0.48,
    "rel_bottom": 0.68,
    "count": 3,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0524,
+   "mass_below": 0.1004
   },
   {
-   "id": "0b70727a157f",
+   "id": "c4c795ac2229",
    "label": "سجا",
    "rel_h": 1.52,
    "rel_w": 2.4,
    "rel_top": 1.0,
    "rel_bottom": 0.52,
    "count": 3,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0327
   },
   {
-   "id": "ad31a4fa0c56",
+   "id": "7778a5c149ac",
    "label": "محمد",
    "rel_h": 0.8,
    "rel_w": 3.44,
    "rel_top": 0.6,
    "rel_bottom": 0.2,
    "count": 5,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "d27aabc6183c",
+   "id": "5f97fa690347",
    "label": "علی",
    "rel_h": 1.72,
    "rel_w": 2.24,
    "rel_top": 1.0,
    "rel_bottom": 0.72,
    "count": 2,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "bcb84464f6dc",
+   "id": "83e447498115",
    "label": "کر",
    "rel_h": 1.64,
    "rel_w": 1.48,
    "rel_top": 1.0,
    "rel_bottom": 0.64,
    "count": 4,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "3ab4f3ea326a",
+   "id": "903cec919639",
    "label": "یمی",
    "rel_h": 1.04,
    "rel_w": 2.44,
    "rel_top": 0.32,
    "rel_bottom": 0.72,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.062
   },
   {
-   "id": "6f64e73f688b",
+   "id": "0f8d8215a881",
    "label": "پو",
    "rel_h": 1.0,
    "rel_w": 1.04,
    "rel_top": 0.32,
    "rel_bottom": 0.68,
    "count": 2,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.1524
   },
   {
-   "id": "b732731b6b45",
+   "id": "a03b63a22367",
    "label": "ها",
    "rel_h": 1.16,
    "rel_w": 1.12,
    "rel_top": 1.0,
    "rel_bottom": 0.16,
    "count": 7,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "e82ac8a87b21",
+   "id": "cdaa0bc4b35f",
    "label": "ها",
    "rel_h": 1.2083,
    "rel_w": 1.125,
    "rel_top": 1.0417,
    "rel_bottom": 0.1667,
    "count": 3,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "09335d74c746",
+   "id": "ba50d9bd877a",
    "label": "شمی",
    "rel_h": 1.625,
    "rel_w": 3.0833,
    "rel_top": 0.875,
    "rel_bottom": 0.75,
    "count": 2,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0719,
+   "mass_below": 0.0
   },
   {
-   "id": "db4860376db9",
+   "id": "c1c297673da8",
    "label": "بنی",
    "rel_h": 1.3333,
    "rel_w": 2.0833,
    "rel_top": 0.5833,
    "rel_bottom": 0.75,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0383,
+   "mass_below": 0.0447
   },
   {
-   "id": "dc43f367231a",
+   "id": "f1fa27cf8fb0",
    "label": "عبد",
    "rel_h": 1.1667,
    "rel_w": 2.1667,
    "rel_top": 0.625,
    "rel_bottom": 0.5417,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0414
   },
   {
-   "id": "813f079a5b4a",
+   "id": "5538f3827547",
    "label": "لر",
    "rel_h": 1.7083,
    "rel_w": 1.0,
    "rel_top": 1.0417,
    "rel_bottom": 0.6667,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "40118e072d1e",
+   "id": "9e1831d6e60b",
    "label": "ضا",
    "rel_h": 1.2083,
    "rel_w": 1.5,
    "rel_top": 1.0417,
    "rel_bottom": 0.1667,
    "count": 3,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0462,
+   "mass_below": 0.0
   },
   {
-   "id": "1ed47a25a8c1",
+   "id": "55c4ac44e26b",
    "label": "ملا",
    "rel_h": 1.3333,
    "rel_w": 1.75,
    "rel_top": 1.0417,
    "rel_bottom": 0.2917,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "21ad5118e9d3",
+   "id": "13693492dc7e",
    "label": "ه",
    "rel_h": 0.5833,
    "rel_w": 0.5,
    "rel_top": 0.4167,
    "rel_bottom": 0.1667,
    "count": 15,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "146093931b5a",
+   "id": "2b096257ea55",
    "label": "سم",
    "rel_h": 1.0417,
    "rel_w": 1.9167,
    "rel_top": 0.3333,
    "rel_bottom": 0.7083,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "49c351cef5e1",
+   "id": "06c6f4abef46",
    "label": "فا",
    "rel_h": 1.2083,
    "rel_w": 0.875,
    "rel_top": 1.0417,
    "rel_bottom": 0.1667,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0598,
+   "mass_below": 0.0
   },
   {
-   "id": "9d7d36e335cf",
+   "id": "22399bacc91e",
    "label": "مسعو",
    "rel_h": 1.0,
    "rel_w": 3.25,
    "rel_top": 0.3333,
    "rel_bottom": 0.6667,
    "count": 2,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "9d0880c0302a",
+   "id": "abf8fe2f5a5c",
    "label": "بز",
    "rel_h": 1.2917,
    "rel_w": 1.0417,
    "rel_top": 0.625,
    "rel_bottom": 0.6667,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0861,
+   "mass_below": 0.0927
   },
   {
-   "id": "9bb8b49bc713",
+   "id": "bc4b23069d3c",
    "label": "گیا",
    "rel_h": 1.625,
    "rel_w": 1.75,
    "rel_top": 1.0833,
    "rel_bottom": 0.5417,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0976,
+   "mass_below": 0.0621
   },
   {
-   "id": "fd27dc5d6ea4",
+   "id": "c807bef48b97",
    "label": "بهر",
    "rel_h": 1.1667,
    "rel_w": 1.8333,
    "rel_top": 0.5,
    "rel_bottom": 0.6667,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0456
   },
   {
-   "id": "2a23280e5833",
+   "id": "5830f40445d2",
    "label": "می",
    "rel_h": 1.0833,
    "rel_w": 1.7917,
    "rel_top": 0.3333,
    "rel_bottom": 0.75,
    "count": 2,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "95724067b584",
+   "id": "2d4c2f84ad6d",
    "label": "بر",
    "rel_h": 1.0,
    "rel_w": 1.0417,
    "rel_top": 0.3333,
    "rel_bottom": 0.6667,
    "count": 5,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.1014
   },
   {
-   "id": "6f64d60a6f91",
+   "id": "861538d54492",
    "label": "قو",
    "rel_h": 1.6667,
    "rel_w": 1.2083,
    "rel_top": 1.0,
    "rel_bottom": 0.6667,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0854,
+   "mass_below": 0.0
   },
   {
-   "id": "0876083df267",
+   "id": "1f36e1c5539c",
    "label": "ئی",
    "rel_h": 1.5833,
    "rel_w": 1.5,
    "rel_top": 0.8333,
    "rel_bottom": 0.75,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.112,
+   "mass_below": 0.0
   },
   {
-   "id": "85dab116a53c",
+   "id": "63aaeb782de4",
    "label": "طا",
    "rel_h": 1.2083,
    "rel_w": 1.3333,
    "rel_top": 1.0417,
    "rel_bottom": 0.1667,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "e4157819eacf",
+   "id": "d28f9c97730f",
    "label": "هر",
    "rel_h": 1.2083,
    "rel_w": 1.5417,
    "rel_top": 0.5417,
    "rel_bottom": 0.6667,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "791c5b151120",
+   "id": "4f746878a7c3",
    "label": "گا",
    "rel_h": 1.25,
    "rel_w": 1.125,
    "rel_top": 1.0833,
    "rel_bottom": 0.1667,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.1289,
+   "mass_below": 0.0
   },
   {
-   "id": "f39739017f85",
+   "id": "6d3e0d8492f6",
    "label": "نی",
    "rel_h": 1.5417,
    "rel_w": 1.4583,
    "rel_top": 0.7917,
    "rel_bottom": 0.75,
    "count": 4,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0544,
+   "mass_below": 0.0
   },
   {
-   "id": "8a437040135c",
+   "id": "8c8d48f73ed8",
    "label": "شر",
    "rel_h": 1.5417,
    "rel_w": 1.75,
    "rel_top": 0.875,
    "rel_bottom": 0.6667,
    "count": 2,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.1422,
+   "mass_below": 0.0
   },
   {
-   "id": "34647a301b75",
+   "id": "eb6e456b9891",
    "label": "حا",
    "rel_h": 1.2083,
    "rel_w": 1.375,
    "rel_top": 1.0417,
    "rel_bottom": 0.1667,
    "count": 2,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "c75d3c10700d",
+   "id": "370b018b9336",
    "label": "ستیه",
    "rel_h": 1.2083,
    "rel_w": 3.0,
    "rel_top": 0.6667,
    "rel_bottom": 0.5417,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0561,
+   "mass_below": 0.0536
   },
   {
-   "id": "6c5e5026e1e2",
+   "id": "1c8bf9b2623d",
    "label": "حمید",
    "rel_h": 1.1667,
    "rel_w": 3.4583,
    "rel_top": 0.625,
    "rel_bottom": 0.5417,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0459
   },
   {
-   "id": "b6ef3c2c6fc5",
+   "id": "004bbea3d531",
    "label": "علی",
    "rel_h": 1.7917,
    "rel_w": 2.3333,
    "rel_top": 1.0417,
    "rel_bottom": 0.75,
    "count": 3,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "91ad3d587c61",
+   "id": "29a669b184e8",
    "label": "سید",
    "rel_h": 1.1667,
    "rel_w": 2.5,
    "rel_top": 0.625,
    "rel_bottom": 0.5417,
    "count": 2,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0669
   },
   {
-   "id": "8c9c4469b855",
+   "id": "8fb83f6b3318",
    "label": "سعید",
    "rel_h": 1.1667,
    "rel_w": 3.25,
    "rel_top": 0.625,
    "rel_bottom": 0.5417,
    "count": 2,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0482
   },
   {
-   "id": "01388eefc89e",
+   "id": "5a3ed6fcb97a",
    "label": "خد",
    "rel_h": 1.0,
    "rel_w": 1.7308,
    "rel_top": 0.8462,
    "rel_bottom": 0.1538,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0487,
+   "mass_below": 0.0
   },
   {
-   "id": "88a650919f41",
+   "id": "d1d691057904",
    "label": "یجه",
    "rel_h": 1.0769,
    "rel_w": 2.1154,
    "rel_top": 0.5769,
    "rel_bottom": 0.5,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.097
   },
   {
-   "id": "15078ea6ec42",
+   "id": "3ae2b340e002",
    "label": "بستا",
    "rel_h": 1.4615,
    "rel_w": 2.3077,
    "rel_top": 0.9615,
    "rel_bottom": 0.5,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0609,
+   "mass_below": 0.0388
   },
   {
-   "id": "bb2b970a1223",
+   "id": "401ad1203655",
    "label": "حو",
    "rel_h": 1.0385,
    "rel_w": 1.5769,
    "rel_top": 0.4231,
    "rel_bottom": 0.6154,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "23f3ff285016",
+   "id": "e55ba3e710e1",
    "label": "یز",
    "rel_h": 1.1923,
    "rel_w": 1.0769,
    "rel_top": 0.5769,
    "rel_bottom": 0.6154,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0813,
+   "mass_below": 0.1437
   },
   {
-   "id": "587ff6e81d81",
+   "id": "2b5fcf78cea8",
    "label": "عما",
    "rel_h": 1.1538,
    "rel_w": 1.8077,
    "rel_top": 0.9615,
    "rel_bottom": 0.1923,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "d188a9c74164",
+   "id": "a84700604271",
    "label": "عبا",
    "rel_h": 1.4615,
    "rel_w": 1.5385,
    "rel_top": 0.9615,
    "rel_bottom": 0.5,
    "count": 2,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0448
   },
   {
-   "id": "063da3e85fc8",
+   "id": "f2ee5acff8bf",
    "label": "سیا",
    "rel_h": 1.4615,
    "rel_w": 1.8462,
    "rel_top": 0.9615,
    "rel_bottom": 0.5,
    "count": 2,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0724
   },
   {
-   "id": "39e5d5bd97d8",
+   "id": "4cf2a2c10c2c",
    "label": "یحیی",
    "rel_h": 1.1154,
    "rel_w": 3.1154,
    "rel_top": 0.4231,
    "rel_bottom": 0.6923,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0859
   },
   {
-   "id": "fd2dcd082fee",
+   "id": "6c83a259b1c6",
    "label": "حا",
    "rel_h": 1.1154,
    "rel_w": 1.2308,
    "rel_top": 0.9615,
    "rel_bottom": 0.1538,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "3b8c1bd5209a",
+   "id": "be612258fe8a",
    "label": "جی",
    "rel_h": 1.1154,
    "rel_w": 2.0,
    "rel_top": 0.4231,
    "rel_bottom": 0.6923,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0452
   },
   {
-   "id": "59c2dc259f97",
+   "id": "b9bad09dbeb6",
    "label": "مد",
    "rel_h": 0.7308,
    "rel_w": 1.3462,
    "rel_top": 0.5769,
    "rel_bottom": 0.1538,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "8212cfed6b09",
+   "id": "4e17cf78edc2",
    "label": "کبر",
    "rel_h": 1.5769,
    "rel_w": 2.0,
    "rel_top": 0.9615,
    "rel_bottom": 0.6154,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0436
   },
   {
-   "id": "981a3f291cf8",
+   "id": "398a6fc07c15",
    "label": "حمد",
    "rel_h": 0.7692,
    "rel_w": 2.6154,
    "rel_top": 0.5769,
    "rel_bottom": 0.1923,
    "count": 2,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "8761ae075d54",
+   "id": "4d5f84d33a5d",
    "label": "شا",
    "rel_h": 1.1154,
    "rel_w": 1.2692,
    "rel_top": 0.9615,
    "rel_bottom": 0.1538,
    "count": 2,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.1333,
+   "mass_below": 0.0
   },
   {
-   "id": "5eee1548ead9",
+   "id": "5c28fb9e0472",
    "label": "نظر",
    "rel_h": 1.5769,
    "rel_w": 1.9615,
    "rel_top": 0.9615,
    "rel_bottom": 0.6154,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0724,
+   "mass_below": 0.0
   },
   {
-   "id": "709c0383ab62",
+   "id": "df7236b44fcb",
    "label": "حید",
    "rel_h": 1.0769,
    "rel_w": 2.3077,
    "rel_top": 0.5769,
    "rel_bottom": 0.5,
    "count": 2,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0625
   },
   {
-   "id": "90d68da9038c",
+   "id": "5970139abad2",
    "label": "نیا",
    "rel_h": 1.4615,
    "rel_w": 1.2308,
    "rel_top": 0.9615,
    "rel_bottom": 0.5,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0546,
+   "mass_below": 0.0882
   },
   {
-   "id": "f7b7274084bc",
+   "id": "b84c97f929bf",
    "label": "ئی",
    "rel_h": 1.4615,
    "rel_w": 1.3462,
    "rel_top": 0.7692,
    "rel_bottom": 0.6923,
    "count": 2,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.1137,
+   "mass_below": 0.0
   },
   {
-   "id": "161acf6bf4cf",
+   "id": "e59de12f51a6",
    "label": "مهر",
    "rel_h": 1.0769,
    "rel_w": 2.0,
    "rel_top": 0.4615,
    "rel_bottom": 0.6154,
    "count": 2,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "8c9fdd7b91d1",
+   "id": "6173fcf2d10f",
    "label": "ب",
    "rel_h": 0.8462,
    "rel_w": 1.1538,
    "rel_top": 0.3462,
    "rel_bottom": 0.5,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.087
   },
   {
-   "id": "e0a5e75f24cf",
+   "id": "3ff27a98b5b2",
    "label": "ما",
    "rel_h": 1.1154,
    "rel_w": 0.9231,
    "rel_top": 0.9615,
    "rel_bottom": 0.1538,
    "count": 9,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "ac7d4a33ee8d",
+   "id": "ef2d93f478e7",
    "label": "گلبها",
    "rel_h": 1.4483,
    "rel_w": 2.5172,
    "rel_top": 0.8966,
    "rel_bottom": 0.5517,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0539,
+   "mass_below": 0.0212
   },
   {
-   "id": "75084f218665",
+   "id": "fac4a641304b",
    "label": "حقیقی",
    "rel_h": 1.3448,
    "rel_w": 3.4828,
    "rel_top": 0.7241,
    "rel_bottom": 0.6207,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.064,
+   "mass_below": 0.0306
   },
   {
-   "id": "d1585708f747",
+   "id": "0919276b61ba",
    "label": "کا",
    "rel_h": 1.0,
    "rel_w": 0.931,
    "rel_top": 0.8621,
    "rel_bottom": 0.1379,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "3cd5835ee4b7",
+   "id": "b98b1afab403",
    "label": "نی",
    "rel_h": 1.2759,
    "rel_w": 1.2414,
    "rel_top": 0.6552,
    "rel_bottom": 0.6207,
    "count": 3,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0535,
+   "mass_below": 0.0
   },
   {
-   "id": "2f54ad29068d",
+   "id": "dc374b9c1e41",
    "label": "حسین",
    "rel_h": 1.0,
    "rel_w": 3.3448,
    "rel_top": 0.4138,
    "rel_bottom": 0.5862,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0236,
+   "mass_below": 0.0413
   },
   {
-   "id": "4f84b77bd5d5",
+   "id": "eaf56654750a",
    "label": "هقا",
    "rel_h": 1.0,
    "rel_w": 1.5172,
    "rel_top": 0.8621,
    "rel_bottom": 0.1379,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0558,
+   "mass_below": 0.0
   },
   {
-   "id": "88010bf7b7df",
+   "id": "d31c13d85448",
    "label": "بها",
    "rel_h": 1.4138,
    "rel_w": 1.2069,
    "rel_top": 0.8621,
    "rel_bottom": 0.5517,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0435
   },
   {
-   "id": "d68ee5ed62c1",
+   "id": "d94f920e487e",
    "label": "مهنا",
    "rel_h": 1.4138,
    "rel_w": 2.0345,
    "rel_top": 0.8621,
    "rel_bottom": 0.5517,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0279,
+   "mass_below": 0.0
   },
   {
-   "id": "a9bad2cc73f1",
+   "id": "6f7f9d722879",
    "label": "هیمی",
    "rel_h": 1.069,
    "rel_w": 2.931,
    "rel_top": 0.4483,
    "rel_bottom": 0.6207,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0385
   },
   {
-   "id": "d608a9d302c8",
+   "id": "b8f5b5c1710c",
    "label": "صا",
    "rel_h": 1.0,
    "rel_w": 1.2414,
    "rel_top": 0.8621,
    "rel_bottom": 0.1379,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "137df1ce594e",
+   "id": "b82bc9544f87",
    "label": "قی",
    "rel_h": 1.4483,
    "rel_w": 1.3793,
    "rel_top": 0.8276,
    "rel_bottom": 0.6207,
    "count": 2,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0729,
+   "mass_below": 0.0
   },
   {
-   "id": "c5fee17a46c8",
+   "id": "5add23ecb212",
    "label": "فر",
    "rel_h": 1.3793,
    "rel_w": 1.0345,
    "rel_top": 0.8276,
    "rel_bottom": 0.5517,
    "count": 3,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0639,
+   "mass_below": 0.0
   },
   {
-   "id": "e36fa2e60ab6",
+   "id": "b34d4fc5f2d5",
    "label": "وغ",
    "rel_h": 1.4828,
    "rel_w": 1.1724,
    "rel_top": 0.8621,
    "rel_bottom": 0.6207,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0456,
+   "mass_below": 0.0
   },
   {
-   "id": "d2beb584025e",
+   "id": "091f74fa8e8b",
    "label": "بخش",
    "rel_h": 1.3448,
    "rel_w": 2.6897,
    "rel_top": 0.7586,
    "rel_bottom": 0.5862,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0915,
+   "mass_below": 0.0278
   },
   {
-   "id": "13b4ea57ef86",
+   "id": "918ca46c8440",
    "label": "سید",
    "rel_h": 0.9655,
    "rel_w": 2.069,
    "rel_top": 0.5172,
    "rel_bottom": 0.4483,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0669
   },
   {
-   "id": "37d5e1f769c9",
+   "id": "8c33f7cccc5f",
    "label": "مو",
    "rel_h": 0.8276,
    "rel_w": 1.1034,
    "rel_top": 0.2759,
    "rel_bottom": 0.5517,
    "count": 3,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "d8bb5b78459c",
+   "id": "d37e84ef665d",
    "label": "سو",
    "rel_h": 0.8276,
    "rel_w": 1.4138,
    "rel_top": 0.2759,
    "rel_bottom": 0.5517,
    "count": 2,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "c3b982e8e5c0",
+   "id": "d073736bddb4",
    "label": "خا",
    "rel_h": 1.0,
    "rel_w": 1.1379,
    "rel_top": 0.8621,
    "rel_bottom": 0.1379,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0535,
+   "mass_below": 0.0
   },
   {
-   "id": "b850d62e0fad",
+   "id": "b40c661e1b51",
    "label": "م",
    "rel_h": 0.931,
    "rel_w": 0.5517,
    "rel_top": 0.3103,
    "rel_bottom": 0.6207,
    "count": 3,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "9f1b67f73e0b",
+   "id": "e5fcf1aa02c7",
    "label": "حیمی",
    "rel_h": 1.0,
    "rel_w": 3.1034,
    "rel_top": 0.3793,
    "rel_bottom": 0.6207,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0403
   },
   {
-   "id": "5f65e079dc6a",
+   "id": "efe0b118d1e2",
    "label": "مهیا",
    "rel_h": 1.4138,
    "rel_w": 2.0345,
    "rel_top": 0.8621,
    "rel_bottom": 0.5517,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0478
   },
   {
-   "id": "cddbf09e3901",
+   "id": "eefd4aff74e0",
    "label": "نجفی",
    "rel_h": 1.5385,
    "rel_w": 3.0769,
    "rel_top": 0.8462,
    "rel_bottom": 0.6923,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0459,
+   "mass_below": 0.0229
   },
   {
-   "id": "2ee864e4888f",
+   "id": "4fdc3564be77",
    "label": "گنجگا",
    "rel_h": 1.5,
    "rel_w": 3.4615,
    "rel_top": 1.0,
    "rel_bottom": 0.5,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.1103,
+   "mass_below": 0.0182
   },
   {
-   "id": "10b1c8e87334",
+   "id": "1de1171764e1",
    "label": "مکو",
    "rel_h": 1.5769,
    "rel_w": 2.0385,
    "rel_top": 0.9615,
    "rel_bottom": 0.6154,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "d92e8c815229",
+   "id": "12a8d9807958",
    "label": "ند",
    "rel_h": 0.8846,
    "rel_w": 1.0769,
    "rel_top": 0.7308,
    "rel_bottom": 0.1538,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0739,
+   "mass_below": 0.0
   },
   {
-   "id": "7d4dcb5545f4",
+   "id": "5248e4bdcefb",
    "label": "بهز",
    "rel_h": 1.1923,
    "rel_w": 1.7308,
    "rel_top": 0.5769,
    "rel_bottom": 0.6154,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0401,
+   "mass_below": 0.0432
   },
   {
-   "id": "c16a788b2ec5",
+   "id": "e86a3ef02e19",
    "label": "نا",
    "rel_h": 1.1154,
    "rel_w": 0.6154,
    "rel_top": 0.9615,
    "rel_bottom": 0.1538,
    "count": 5,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0855,
+   "mass_below": 0.0
   },
   {
-   "id": "6e817f6cfc6e",
+   "id": "e4d969eeea61",
    "label": "صر",
    "rel_h": 0.9615,
    "rel_w": 1.7308,
    "rel_top": 0.3462,
    "rel_bottom": 0.6154,
    "count": 2,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "371e011dac77",
+   "id": "6f54281c243c",
    "label": "لبو",
    "rel_h": 1.5769,
    "rel_w": 1.5,
    "rel_top": 0.9615,
    "rel_bottom": 0.6154,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0429
   },
   {
-   "id": "abd399ada4ce",
+   "id": "951d96ea54e5",
    "label": "غبیش",
    "rel_h": 1.5385,
    "rel_w": 3.5,
    "rel_top": 0.8846,
    "rel_bottom": 0.6538,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0858,
+   "mass_below": 0.062
   },
   {
-   "id": "7d157589bae0",
+   "id": "9244230568e4",
    "label": "نعمت",
    "rel_h": 0.9231,
    "rel_w": 3.1154,
    "rel_top": 0.7308,
    "rel_bottom": 0.1923,
    "count": 2,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0768,
+   "mass_below": 0.0
   },
   {
-   "id": "417bcabab4ad",
+   "id": "16492865519f",
    "label": "له",
    "rel_h": 1.1154,
    "rel_w": 0.9615,
    "rel_top": 0.9615,
    "rel_bottom": 0.1538,
    "count": 2,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "e6c72c74e3f9",
+   "id": "3ba2188b31a2",
    "label": "بیشه",
    "rel_h": 1.2308,
    "rel_w": 2.6538,
    "rel_top": 0.7308,
    "rel_bottom": 0.5,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0756,
+   "mass_below": 0.0854
   },
   {
-   "id": "bb82326e53ae",
+   "id": "672da057056c",
    "label": "بد",
    "rel_h": 1.0769,
    "rel_w": 1.0769,
    "rel_top": 0.5769,
    "rel_bottom": 0.5,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0791
   },
   {
-   "id": "5ae526727df3",
+   "id": "784c6452b21e",
    "label": "جبا",
    "rel_h": 1.4615,
    "rel_w": 1.8462,
    "rel_top": 0.9615,
    "rel_bottom": 0.5,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0878
   },
   {
-   "id": "052fa2bfdc05",
+   "id": "9a90809e899f",
    "label": "سمی",
    "rel_h": 1.0,
    "rel_w": 2.8846,
    "rel_top": 0.3077,
    "rel_bottom": 0.6923,
    "count": 2,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "7e9b38d58323",
+   "id": "a39e5cf64cdb",
    "label": "گا",
    "rel_h": 1.1538,
    "rel_w": 1.0,
    "rel_top": 1.0,
    "rel_bottom": 0.1538,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.131,
+   "mass_below": 0.0
   },
   {
-   "id": "ba69b1a6ae08",
+   "id": "757d8b4bcb68",
    "label": "غلا",
    "rel_h": 1.2308,
    "rel_w": 1.6923,
    "rel_top": 0.9615,
    "rel_bottom": 0.2692,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0399,
+   "mass_below": 0.0
   },
   {
-   "id": "362afa61b934",
+   "id": "a5bf7fe150e8",
    "label": "محسین",
    "rel_h": 1.1154,
    "rel_w": 4.3846,
    "rel_top": 0.4615,
    "rel_bottom": 0.6538,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0189,
+   "mass_below": 0.0331
   },
   {
-   "id": "8d76b11cb5c9",
+   "id": "b36cf322fac3",
    "label": "محمد",
    "rel_h": 0.7692,
    "rel_w": 3.2692,
    "rel_top": 0.5769,
    "rel_bottom": 0.1923,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "3bfa5a14eec8",
+   "id": "a3eb4e977bec",
    "label": "ضی",
    "rel_h": 1.4615,
    "rel_w": 2.1154,
    "rel_top": 0.7692,
    "rel_bottom": 0.6923,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0346,
+   "mass_below": 0.0
   },
   {
-   "id": "746fd154799b",
+   "id": "51c6a6b0bcf4",
    "label": "یمی",
    "rel_h": 1.0,
    "rel_w": 2.3462,
    "rel_top": 0.3077,
    "rel_bottom": 0.6923,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.062
   },
   {
-   "id": "e4229f665ec3",
+   "id": "18815764d2ac",
    "label": "شو",
    "rel_h": 1.4231,
    "rel_w": 1.5769,
    "rel_top": 0.8077,
    "rel_bottom": 0.6154,
    "count": 2,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.1147,
+   "mass_below": 0.0
   },
   {
-   "id": "4ccd4622d6ae",
+   "id": "26aa3190a029",
    "label": "مهد",
    "rel_h": 1.1923,
    "rel_w": 2.1154,
    "rel_top": 0.5769,
    "rel_bottom": 0.6154,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "25f5ef54b000",
+   "id": "ccaea2b3f957",
    "label": "بنی",
    "rel_h": 1.2308,
    "rel_w": 1.9615,
    "rel_top": 0.5385,
    "rel_bottom": 0.6923,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0379,
+   "mass_below": 0.0442
   },
   {
-   "id": "40855874d1fc",
+   "id": "abb973cbd8a6",
    "label": "غلا",
    "rel_h": 1.2308,
    "rel_w": 1.6538,
    "rel_top": 0.9615,
    "rel_bottom": 0.2692,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0403,
+   "mass_below": 0.0
   },
   {
-   "id": "dfae450375f7",
+   "id": "46e61b9bee04",
    "label": "مر",
    "rel_h": 0.9231,
    "rel_w": 1.2692,
    "rel_top": 0.3077,
    "rel_bottom": 0.6154,
    "count": 3,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "eb994746e955",
+   "id": "67334f053a4b",
    "label": "سا",
    "rel_h": 1.1154,
    "rel_w": 1.2692,
    "rel_top": 0.9615,
    "rel_bottom": 0.1538,
    "count": 3,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "a60c225bcf4e",
+   "id": "1433bffd5180",
    "label": "لبو",
    "rel_h": 1.5769,
    "rel_w": 1.5385,
    "rel_top": 0.9615,
    "rel_bottom": 0.6154,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0423
   },
   {
-   "id": "0ebfa9c64f25",
+   "id": "6570726bff43",
    "label": "که",
    "rel_h": 1.1154,
    "rel_w": 1.4231,
    "rel_top": 0.9615,
    "rel_bottom": 0.1538,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "b56797bd79d2",
+   "id": "d1bfcb181ef3",
    "label": "حسا",
    "rel_h": 1.1154,
    "rel_w": 2.3846,
    "rel_top": 0.9615,
    "rel_bottom": 0.1538,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "09c8553647ee",
+   "id": "4b11a0257152",
    "label": "ستا",
    "rel_h": 1.1154,
    "rel_w": 1.8462,
    "rel_top": 0.9615,
    "rel_bottom": 0.1538,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0756,
+   "mass_below": 0.0
   },
   {
-   "id": "d3f173723815",
+   "id": "620372d3cd5e",
    "label": "یم",
    "rel_h": 0.9615,
    "rel_w": 1.2308,
    "rel_top": 0.3077,
    "rel_bottom": 0.6538,
    "count": 2,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.1027
   },
   {
-   "id": "d08b04072a06",
+   "id": "5a3e3e769f67",
    "label": "نژ",
    "rel_h": 1.2963,
    "rel_w": 0.8889,
    "rel_top": 0.7037,
    "rel_bottom": 0.5926,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.2547,
+   "mass_below": 0.0
   },
   {
-   "id": "5101a2608ae1",
+   "id": "eaf4eb8c192b",
    "label": "لا",
    "rel_h": 1.1111,
    "rel_w": 0.8148,
    "rel_top": 0.9259,
    "rel_bottom": 0.1852,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "8850881e4d72",
+   "id": "f20569b3b381",
    "label": "کمه",
    "rel_h": 1.1111,
    "rel_w": 2.1852,
    "rel_top": 0.9259,
    "rel_bottom": 0.1852,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "d717e410bceb",
+   "id": "ff6474c2a928",
    "label": "سر",
    "rel_h": 0.8889,
    "rel_w": 1.5556,
    "rel_top": 0.2963,
    "rel_bottom": 0.5926,
    "count": 2,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "1ecd23ceae8e",
+   "id": "5c6123fde317",
    "label": "بهمن",
    "rel_h": 1.0741,
    "rel_w": 2.8519,
    "rel_top": 0.4444,
    "rel_bottom": 0.6296,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0235,
+   "mass_below": 0.0274
   },
   {
-   "id": "069c00910336",
+   "id": "80c25b2c3693",
    "label": "محمد",
    "rel_h": 0.7407,
    "rel_w": 3.1852,
    "rel_top": 0.5556,
    "rel_bottom": 0.1852,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "d415b327eb16",
+   "id": "815c5de10594",
    "label": "میر",
    "rel_h": 0.8889,
    "rel_w": 1.7778,
    "rel_top": 0.2963,
    "rel_bottom": 0.5926,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0837
   },
   {
-   "id": "e66becdfa4ee",
+   "id": "faf8c9c14437",
    "label": "لو",
    "rel_h": 1.5185,
    "rel_w": 0.8889,
    "rel_top": 0.9259,
    "rel_bottom": 0.5926,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "f17459d65159",
+   "id": "fb1b2a6d4f87",
    "label": "به",
    "rel_h": 1.037,
    "rel_w": 0.9259,
    "rel_top": 0.5556,
    "rel_bottom": 0.4815,
    "count": 10,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0814
   },
   {
-   "id": "753bae693ee4",
+   "id": "f30757242688",
    "label": "طر",
    "rel_h": 1.5185,
    "rel_w": 1.4815,
    "rel_top": 0.9259,
    "rel_bottom": 0.5926,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "229dbfd23883",
+   "id": "878c6f04331c",
    "label": "فیت",
    "rel_h": 1.3704,
    "rel_w": 2.2593,
    "rel_top": 0.8889,
    "rel_bottom": 0.4815,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0947,
+   "mass_below": 0.0553
   },
   {
-   "id": "1fe6cc1004aa",
+   "id": "dac6c0060683",
    "label": "کا",
    "rel_h": 1.0741,
    "rel_w": 1.037,
    "rel_top": 0.9259,
    "rel_bottom": 0.1481,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "4eed8a40462e",
+   "id": "f8b4710272ab",
    "label": "ظم",
    "rel_h": 1.5556,
    "rel_w": 1.6667,
    "rel_top": 0.9259,
    "rel_bottom": 0.6296,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0379,
+   "mass_below": 0.0
   },
   {
-   "id": "9694b1bda031",
+   "id": "977c98abf450",
    "label": "مهنه",
    "rel_h": 1.1481,
    "rel_w": 2.5185,
    "rel_top": 0.5556,
    "rel_bottom": 0.5926,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0267,
+   "mass_below": 0.0
   },
   {
-   "id": "d7f8f77d774b",
+   "id": "6f0b7fbe43e5",
    "label": "فشا",
    "rel_h": 1.0741,
    "rel_w": 1.8148,
    "rel_top": 0.9259,
    "rel_bottom": 0.1481,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.1166,
+   "mass_below": 0.0
   },
   {
-   "id": "ad954ee14f6d",
+   "id": "c2c74db7635b",
    "label": "لکی",
    "rel_h": 1.5926,
    "rel_w": 2.0741,
    "rel_top": 0.9259,
    "rel_bottom": 0.6667,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "ce67dcd04c40",
+   "id": "0c9c03106d82",
    "label": "ستیه",
    "rel_h": 1.0741,
    "rel_w": 2.7037,
    "rel_top": 0.5926,
    "rel_bottom": 0.4815,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0556,
+   "mass_below": 0.053
   },
   {
-   "id": "5163b3df7c08",
+   "id": "f29dfd724cab",
    "label": "جعفر",
    "rel_h": 1.4074,
    "rel_w": 2.8148,
    "rel_top": 0.8148,
    "rel_bottom": 0.5926,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.027,
+   "mass_below": 0.0311
   },
   {
-   "id": "999d8dcda3e2",
+   "id": "aaafb75eed43",
    "label": "مینا",
    "rel_h": 1.4074,
    "rel_w": 2.037,
    "rel_top": 0.9259,
    "rel_bottom": 0.4815,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.035,
+   "mass_below": 0.0612
   },
   {
-   "id": "893ba7a3b88c",
+   "id": "f1c9fdd498d2",
    "label": "بیا",
    "rel_h": 1.4074,
    "rel_w": 1.1481,
    "rel_top": 0.9259,
    "rel_bottom": 0.4815,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.1489
   },
   {
-   "id": "05fe201c0ea3",
+   "id": "1c2c854c2533",
    "label": "بید",
    "rel_h": 1.037,
    "rel_w": 1.6296,
    "rel_top": 0.5556,
    "rel_bottom": 0.4815,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.1331
   },
   {
-   "id": "f3d716017557",
+   "id": "c91dcee43f6b",
    "label": "جما",
    "rel_h": 1.4074,
    "rel_w": 2.037,
    "rel_top": 0.9259,
    "rel_bottom": 0.4815,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0413
   },
   {
-   "id": "9395e413d2b6",
+   "id": "4d7f07381440",
    "label": "عبو",
    "rel_h": 1.0769,
    "rel_w": 1.8462,
    "rel_top": 0.4615,
    "rel_bottom": 0.6154,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0395
   },
   {
-   "id": "5032a59e5a9b",
+   "id": "b78dc44a2b6a",
    "label": "یس",
    "rel_h": 0.9615,
    "rel_w": 2.1154,
    "rel_top": 0.3077,
    "rel_bottom": 0.6538,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0785
   },
   {
-   "id": "7e91e16b0c5d",
+   "id": "73f1eed670db",
    "label": "تشر",
    "rel_h": 1.3462,
    "rel_w": 2.1154,
    "rel_top": 0.7308,
    "rel_bottom": 0.6154,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.1833,
+   "mass_below": 0.0
   },
   {
-   "id": "7228956a28e8",
+   "id": "30ef0520267a",
    "label": "یفا",
    "rel_h": 1.4615,
    "rel_w": 1.3846,
    "rel_top": 0.9615,
    "rel_bottom": 0.5,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0439,
+   "mass_below": 0.0777
   },
   {
-   "id": "b5df085314e7",
+   "id": "c254c8c7535b",
    "label": "ت",
    "rel_h": 0.7692,
    "rel_w": 1.1538,
    "rel_top": 0.6154,
    "rel_bottom": 0.1538,
    "count": 11,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.1486,
+   "mass_below": 0.0
   },
   {
-   "id": "070baaf71159",
+   "id": "e8a5f7cebbae",
    "label": "خو",
    "rel_h": 1.4615,
    "rel_w": 1.5769,
    "rel_top": 0.8462,
    "rel_bottom": 0.6154,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0461,
+   "mass_below": 0.0
   },
   {
-   "id": "d0b545b3f8e5",
+   "id": "dc46cabd03aa",
    "label": "سا",
    "rel_h": 1.1154,
    "rel_w": 1.2308,
    "rel_top": 0.9615,
    "rel_bottom": 0.1538,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "76bf8d02e98f",
+   "id": "17d2505d4631",
    "label": "تیا",
    "rel_h": 1.4615,
    "rel_w": 1.2692,
    "rel_top": 0.9615,
    "rel_bottom": 0.5,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.098,
+   "mass_below": 0.0857
   },
   {
-   "id": "5d6749d49c52",
+   "id": "c02aace0cded",
    "label": "حسین",
    "rel_h": 1.1154,
    "rel_w": 3.6923,
    "rel_top": 0.4615,
    "rel_bottom": 0.6538,
    "count": 2,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0238,
+   "mass_below": 0.0417
   },
   {
-   "id": "0bf8214df3d2",
+   "id": "c52735fa0ecc",
    "label": "حی",
    "rel_h": 1.1154,
    "rel_w": 2.0,
    "rel_top": 0.4231,
    "rel_bottom": 0.6923,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "768634afa3c1",
+   "id": "fc0521f4fb7c",
    "label": "عقیل",
    "rel_h": 1.5769,
    "rel_w": 2.8846,
    "rel_top": 0.9615,
    "rel_bottom": 0.6154,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.041,
+   "mass_below": 0.0391
   },
   {
-   "id": "2b0aed6c6d3a",
+   "id": "d35db4c35046",
    "label": "نو",
    "rel_h": 1.3462,
    "rel_w": 0.8846,
    "rel_top": 0.7308,
    "rel_bottom": 0.6154,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0695,
+   "mass_below": 0.0
   },
   {
-   "id": "92901cb54b06",
+   "id": "e7f966930acd",
    "label": "صر",
    "rel_h": 0.9615,
    "rel_w": 1.6923,
    "rel_top": 0.3462,
    "rel_bottom": 0.6154,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "811dde2bcb11",
+   "id": "820963c0ac61",
    "label": "حمید",
    "rel_h": 1.0769,
    "rel_w": 3.1538,
    "rel_top": 0.5769,
    "rel_bottom": 0.5,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0463
   },
   {
-   "id": "4e3441af6696",
+   "id": "5bda6d063e7e",
    "label": "کلا",
    "rel_h": 1.2308,
    "rel_w": 1.8077,
    "rel_top": 0.9615,
    "rel_bottom": 0.2692,
    "count": 5,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "c71dc9b03f1e",
+   "id": "e7facdbecd37",
    "label": "تی",
    "rel_h": 1.3846,
    "rel_w": 1.4231,
    "rel_top": 0.6923,
    "rel_bottom": 0.6923,
    "count": 4,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.096,
+   "mass_below": 0.0
   },
   {
-   "id": "58321ac9885f",
+   "id": "83feeb0d62ca",
    "label": "ش",
    "rel_h": 1.4615,
    "rel_w": 1.5,
    "rel_top": 0.8077,
    "rel_bottom": 0.6538,
    "count": 2,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.1157,
+   "mass_below": 0.0
   },
   {
-   "id": "a96e3b26398f",
+   "id": "2af30fd67d48",
    "label": "یب",
    "rel_h": 0.8077,
    "rel_w": 1.6923,
    "rel_top": 0.3077,
    "rel_bottom": 0.5,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.162
   },
   {
-   "id": "e63f13be02a6",
+   "id": "2292928155e7",
    "label": "مهد",
    "rel_h": 1.1923,
    "rel_w": 2.1154,
    "rel_top": 0.5769,
    "rel_bottom": 0.6154,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "c1d07aa1bdd4",
+   "id": "36bb456a0f09",
    "label": "کلا",
    "rel_h": 1.28,
    "rel_w": 1.84,
    "rel_top": 1.0,
    "rel_bottom": 0.28,
    "count": 5,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "ac35009b33ad",
+   "id": "e1269b4d0e81",
    "label": "حسینی",
    "rel_h": 1.28,
    "rel_w": 4.44,
    "rel_top": 0.56,
    "rel_bottom": 0.72,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0201,
+   "mass_below": 0.0352
   },
   {
-   "id": "437e447ef291",
+   "id": "5cbcf342a3ae",
    "label": "بید",
    "rel_h": 1.12,
    "rel_w": 1.72,
    "rel_top": 0.6,
    "rel_bottom": 0.52,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.1351
   },
   {
-   "id": "da68b1b4c791",
+   "id": "04d08c65ecb2",
    "label": "منش",
    "rel_h": 1.44,
    "rel_w": 3.0,
    "rel_top": 0.76,
    "rel_bottom": 0.68,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.1069,
+   "mass_below": 0.0
   },
   {
-   "id": "10fae3eb05a5",
+   "id": "31d9d4e2a175",
    "label": "ید",
    "rel_h": 1.12,
    "rel_w": 1.24,
    "rel_top": 0.6,
    "rel_bottom": 0.52,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.1237
   },
   {
-   "id": "664e79847144",
+   "id": "eba19ae863b7",
    "label": "نسب",
    "rel_h": 1.28,
    "rel_w": 2.76,
    "rel_top": 0.76,
    "rel_bottom": 0.52,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0398,
+   "mass_below": 0.0367
   },
   {
-   "id": "14e94dceb8e2",
+   "id": "392642782d8a",
    "label": "علیر",
    "rel_h": 1.64,
    "rel_w": 2.44,
    "rel_top": 1.0,
    "rel_bottom": 0.64,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.053
   },
   {
-   "id": "8ee99f15fd30",
+   "id": "aaa8466fa3ea",
    "label": "هد",
    "rel_h": 0.76,
    "rel_w": 1.6,
    "rel_top": 0.6,
    "rel_bottom": 0.16,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "9c8573ab6de6",
+   "id": "abc1da514f20",
    "label": "س",
    "rel_h": 1.0,
    "rel_w": 1.56,
    "rel_top": 0.32,
    "rel_bottom": 0.68,
    "count": 2,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "c92c80dbbda1",
+   "id": "e47e199701b6",
    "label": "مبنی",
    "rel_h": 1.28,
    "rel_w": 2.96,
    "rel_top": 0.56,
    "rel_bottom": 0.72,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0284,
+   "mass_below": 0.0308
   },
   {
-   "id": "cad675965dc8",
+   "id": "2ec2e9d25fce",
    "label": "مشا",
    "rel_h": 1.16,
    "rel_w": 2.12,
    "rel_top": 1.0,
    "rel_bottom": 0.16,
    "count": 4,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0912,
+   "mass_below": 0.0
   },
   {
-   "id": "499d9288bb0b",
+   "id": "9e2e80af599d",
    "label": "کت",
    "rel_h": 1.2,
    "rel_w": 2.12,
    "rel_top": 1.0,
    "rel_bottom": 0.2,
    "count": 4,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0726,
+   "mass_below": 0.0
   },
   {
-   "id": "98ce63249ce3",
+   "id": "d1a69f1bc018",
    "label": "هبر",
    "rel_h": 1.16,
    "rel_w": 2.08,
    "rel_top": 0.52,
    "rel_bottom": 0.64,
    "count": 7,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0415
   },
   {
-   "id": "03c92519ca87",
+   "id": "f43f32c8668b",
    "label": "شبکه",
    "rel_h": 1.52,
    "rel_w": 3.12,
    "rel_top": 1.0,
    "rel_bottom": 0.52,
    "count": 4,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0619,
+   "mass_below": 0.0251
   },
   {
-   "id": "64527a989d42",
+   "id": "852e5ebd7ec9",
    "label": "ستفا",
    "rel_h": 1.0741,
    "rel_w": 2.4074,
    "rel_top": 0.9259,
    "rel_bottom": 0.1481,
    "count": 4,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0824,
+   "mass_below": 0.0
   },
   {
-   "id": "16231d9392d2",
+   "id": "48a17bc60dfe",
    "label": "سند",
    "rel_h": 0.7037,
    "rel_w": 2.2222,
    "rel_top": 0.5556,
    "rel_bottom": 0.1481,
    "count": 5,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0393,
+   "mass_below": 0.0
   },
   {
-   "id": "796290dd1c06",
+   "id": "b337ca27a82f",
    "label": "مجعو",
    "rel_h": 1.0,
    "rel_w": 2.8519,
    "rel_top": 0.4074,
    "rel_bottom": 0.5926,
    "count": 2,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0243
   },
   {
-   "id": "fe79138e9edb",
+   "id": "3f01013bb883",
    "label": "جعل",
    "rel_h": 1.5185,
    "rel_w": 2.5185,
    "rel_top": 0.9259,
    "rel_bottom": 0.5926,
    "count": 7,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0328
   },
   {
-   "id": "1f14e68b837f",
+   "id": "575cd3da4177",
    "label": "(",
    "rel_h": 1.1852,
    "rel_w": 0.3704,
    "rel_top": 0.8148,
    "rel_bottom": 0.3704,
    "count": 9,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "1903a5c6dbec",
+   "id": "268236535a04",
    "label": "سنا",
    "rel_h": 1.0741,
    "rel_w": 1.8148,
    "rel_top": 0.9259,
    "rel_bottom": 0.1481,
    "count": 3,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0421,
+   "mass_below": 0.0
   },
   {
-   "id": "ccdd0cf6443c",
+   "id": "b7b9e7cb2ad2",
    "label": "سمی،",
    "rel_h": 0.963,
    "rel_w": 3.5926,
    "rel_top": 0.2963,
    "rel_bottom": 0.6667,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0835,
+   "mass_below": 0.0
   },
   {
-   "id": "cd839705c36e",
+   "id": "dc4c62bd79ad",
    "label": "مجعو",
    "rel_h": 1.0,
    "rel_w": 2.8519,
    "rel_top": 0.4074,
    "rel_bottom": 0.5926,
    "count": 3,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0243
   },
   {
-   "id": "176f6bba3879",
+   "id": "150e52170426",
    "label": "ل،",
    "rel_h": 1.5185,
    "rel_w": 1.2222,
    "rel_top": 0.9259,
    "rel_bottom": 0.5926,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.1743
   },
   {
-   "id": "272ea1d3426b",
+   "id": "52bf676dd5eb",
    "label": "هبر",
    "rel_h": 1.0741,
    "rel_w": 1.963,
    "rel_top": 0.4815,
    "rel_bottom": 0.5926,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.041
   },
   {
-   "id": "0bd4925555e8",
+   "id": "1485677589a2",
    "label": ")",
    "rel_h": 1.1852,
    "rel_w": 0.3704,
    "rel_top": 0.8148,
    "rel_bottom": 0.3704,
    "count": 9,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "ebafd9b4c74e",
+   "id": "80f68b3e0a56",
    "label": "جعل",
    "rel_h": 1.5185,
    "rel_w": 2.5556,
    "rel_top": 0.9259,
    "rel_bottom": 0.5926,
    "count": 7,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0325
   },
   {
-   "id": "d52b156a73e9",
+   "id": "33136c9ee45a",
    "label": "سمی",
    "rel_h": 0.963,
    "rel_w": 2.7778,
    "rel_top": 0.2963,
    "rel_bottom": 0.6667,
    "count": 3,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "b1049d1df3d7",
+   "id": "eaf8f5e7594f",
    "label": "صو",
    "rel_h": 0.9259,
    "rel_w": 1.6296,
    "rel_top": 0.3333,
    "rel_bottom": 0.5926,
    "count": 5,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "dceb0155dcb3",
+   "id": "68fd705855d7",
    "label": "معا",
    "rel_h": 1.0357,
    "rel_w": 1.5,
    "rel_top": 0.9286,
    "rel_bottom": 0.1071,
    "count": 8,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "b665f144e3b5",
+   "id": "72759331b408",
    "label": "نت",
    "rel_h": 0.8571,
    "rel_w": 1.4643,
    "rel_top": 0.7143,
    "rel_bottom": 0.1429,
    "count": 10,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.162,
+   "mass_below": 0.0
   },
   {
-   "id": "76c40b3bd7da",
+   "id": "e3a6891a6fde",
    "label": "تحصیل",
    "rel_h": 1.4643,
    "rel_w": 3.8571,
    "rel_top": 0.9286,
    "rel_bottom": 0.5357,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0344,
+   "mass_below": 0.0301
   },
   {
-   "id": "9e94629ff191",
+   "id": "22d2488b91be",
    "label": "طر",
    "rel_h": 1.4643,
    "rel_w": 1.4643,
    "rel_top": 0.9286,
    "rel_bottom": 0.5357,
    "count": 4,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "27512f91cace",
+   "id": "716c449ba6b4",
    "label": "یق",
    "rel_h": 1.2143,
    "rel_w": 1.3571,
    "rel_top": 0.6429,
    "rel_bottom": 0.5714,
    "count": 2,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0805,
+   "mass_below": 0.0772
   },
   {
-   "id": "efc453284045",
+   "id": "adc171206cfd",
    "label": "مشر",
    "rel_h": 1.25,
    "rel_w": 2.2143,
    "rel_top": 0.7143,
    "rel_bottom": 0.5357,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0954,
+   "mass_below": 0.0
   },
   {
-   "id": "80818afab2c8",
+   "id": "66fe38aaaa82",
    "label": "سوء",
    "rel_h": 0.8571,
    "rel_w": 1.9643,
    "rel_top": 0.3214,
    "rel_bottom": 0.5357,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.1902,
+   "mass_below": 0.0
   },
   {
-   "id": "cac5142ee014",
+   "id": "44cd9a35290e",
    "label": "ستفا",
    "rel_h": 1.0357,
    "rel_w": 2.3214,
    "rel_top": 0.9286,
    "rel_bottom": 0.1071,
    "count": 2,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0824,
+   "mass_below": 0.0
   },
   {
-   "id": "28733e8f37bb",
+   "id": "28e40e737138",
    "label": "تقلب",
    "rel_h": 1.3571,
    "rel_w": 2.5357,
    "rel_top": 0.9286,
    "rel_bottom": 0.4286,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0979,
+   "mass_below": 0.0255
   },
   {
-   "id": "5db4e824691a",
+   "id": "3db56976bf39",
    "label": "متیا",
    "rel_h": 1.3571,
    "rel_w": 1.9286,
    "rel_top": 0.9286,
    "rel_bottom": 0.4286,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.063,
+   "mass_below": 0.0602
   },
   {
-   "id": "0afab95fde0a",
+   "id": "25feda340c99",
    "label": "خیا",
    "rel_h": 1.3571,
    "rel_w": 1.7143,
    "rel_top": 0.9286,
    "rel_bottom": 0.4286,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.04,
+   "mass_below": 0.0646
   },
   {
-   "id": "544711ea81b4",
+   "id": "deb77c844144",
    "label": "قت",
    "rel_h": 1.0357,
    "rel_w": 1.6429,
    "rel_top": 0.8929,
    "rel_bottom": 0.1429,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.1503,
+   "mass_below": 0.0
   },
   {
-   "id": "ffa9a533dee9",
+   "id": "6eab243e30d6",
    "label": "مستو",
    "rel_h": 1.1429,
    "rel_w": 2.7143,
    "rel_top": 0.6071,
    "rel_bottom": 0.5357,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.051,
+   "mass_below": 0.0
   },
   {
-   "id": "2a085173979a",
+   "id": "8f3646c60e52",
    "label": "جب",
    "rel_h": 0.8571,
    "rel_w": 2.0357,
    "rel_top": 0.4286,
    "rel_bottom": 0.4286,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0915
   },
   {
-   "id": "20cde175ab2e",
+   "id": "216e116cb225",
    "label": "حد",
    "rel_h": 0.6786,
    "rel_w": 1.6071,
    "rel_top": 0.5714,
    "rel_bottom": 0.1071,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "8f27ff4a6668",
+   "id": "93d9e24125b0",
    "label": "نتقا",
    "rel_h": 1.0357,
    "rel_w": 1.7143,
    "rel_top": 0.9286,
    "rel_bottom": 0.1071,
    "count": 2,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.1504,
+   "mass_below": 0.0
   },
   {
-   "id": "3cc75dd57d58",
+   "id": "0e24bea338ad",
    "label": "غیر",
    "rel_h": 1.3929,
    "rel_w": 1.75,
    "rel_top": 0.8571,
    "rel_bottom": 0.5357,
    "count": 4,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0475,
+   "mass_below": 0.0712
   },
   {
-   "id": "c6592e6e6141",
+   "id": "f0fd3a920a7a",
    "label": "غیر",
    "rel_h": 1.3448,
    "rel_w": 1.6897,
    "rel_top": 0.7931,
    "rel_bottom": 0.5517,
    "count": 2,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0475,
+   "mass_below": 0.0712
   },
   {
-   "id": "391e8870317c",
+   "id": "0e828f7cc86f",
    "label": "بنحو",
    "rel_h": 1.0345,
    "rel_w": 2.3103,
    "rel_top": 0.4828,
    "rel_bottom": 0.5517,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0269,
+   "mass_below": 0.0314
   },
   {
-   "id": "7c7f7fb0f48e",
+   "id": "26ca811c0e33",
    "label": "لتی",
    "rel_h": 1.4828,
    "rel_w": 1.7586,
    "rel_top": 0.8621,
    "rel_bottom": 0.6207,
    "count": 2,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0604,
+   "mass_below": 0.0
   },
   {
-   "id": "1879da711424",
+   "id": "4080ee945909",
    "label": "ف",
    "rel_h": 0.9655,
    "rel_w": 1.0345,
    "rel_top": 0.8276,
    "rel_bottom": 0.1379,
    "count": 3,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0609,
+   "mass_below": 0.0
   },
   {
-   "id": "99c5116e216c",
+   "id": "4fd49db473eb",
    "label": "فر",
    "rel_h": 1.3793,
    "rel_w": 1.0,
    "rel_top": 0.8276,
    "rel_bottom": 0.5517,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0651,
+   "mass_below": 0.0
   },
   {
-   "id": "91085a44aef9",
+   "id": "501030daed6f",
    "label": "عا",
    "rel_h": 1.0,
    "rel_w": 0.8621,
    "rel_top": 0.8621,
    "rel_bottom": 0.1379,
    "count": 4,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "f227bbbd32c9",
+   "id": "b1553fa699f8",
    "label": "تبط",
    "rel_h": 1.3103,
    "rel_w": 1.931,
    "rel_top": 0.8621,
    "rel_bottom": 0.4483,
    "count": 2,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0632,
+   "mass_below": 0.0342
   },
   {
-   "id": "52497e5eab7a",
+   "id": "2b55203076f0",
    "label": "نه",
    "rel_h": 0.92,
    "rel_w": 0.96,
    "rel_top": 0.76,
    "rel_bottom": 0.16,
    "count": 2,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0778,
+   "mass_below": 0.0
   },
   {
-   "id": "6d6d7ace0117",
+   "id": "972695d0f633",
    "label": "یا",
    "rel_h": 1.52,
    "rel_w": 0.72,
    "rel_top": 1.0,
    "rel_bottom": 0.52,
    "count": 3,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.1456
   },
   {
-   "id": "f389a432ae82",
+   "id": "744a0e92fe41",
    "label": "مخا",
    "rel_h": 1.16,
    "rel_w": 2.04,
    "rel_top": 1.0,
    "rel_bottom": 0.16,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0348,
+   "mass_below": 0.0
   },
   {
-   "id": "20574b25f54e",
+   "id": "7a9fabf66a06",
    "label": "ق",
    "rel_h": 1.36,
    "rel_w": 0.96,
    "rel_top": 0.68,
    "rel_bottom": 0.68,
    "count": 2,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.1116,
+   "mass_below": 0.0
   },
   {
-   "id": "8e6cd97c6143",
+   "id": "b0c9f73b93a8",
    "label": "تز",
    "rel_h": 1.36,
    "rel_w": 1.04,
    "rel_top": 0.72,
    "rel_bottom": 0.64,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.2357,
+   "mass_below": 0.0
   },
   {
-   "id": "df8b9a3fe7f4",
+   "id": "c86f3002db7c",
    "label": "یر",
    "rel_h": 0.96,
    "rel_w": 1.08,
    "rel_top": 0.32,
    "rel_bottom": 0.64,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.1608
   },
   {
-   "id": "cece62c64a49",
+   "id": "590e3a94594d",
    "label": "سنا",
    "rel_h": 1.16,
    "rel_w": 1.92,
    "rel_top": 1.0,
    "rel_bottom": 0.16,
    "count": 3,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0427,
+   "mass_below": 0.0
   },
   {
-   "id": "8f62623af15e",
+   "id": "a71698326ff8",
    "label": "شته",
    "rel_h": 1.0,
    "rel_w": 2.28,
    "rel_top": 0.84,
    "rel_bottom": 0.16,
    "count": 2,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.1579,
+   "mass_below": 0.0
   },
   {
-   "id": "df422d6989ad",
+   "id": "f0f3474d57dd",
    "label": "صو",
    "rel_h": 1.0,
    "rel_w": 1.72,
    "rel_top": 0.36,
    "rel_bottom": 0.64,
    "count": 2,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "f5eeb3d6df7f",
+   "id": "acc69f72e093",
    "label": "تز",
    "rel_h": 1.2593,
    "rel_w": 1.0,
    "rel_top": 0.6667,
    "rel_bottom": 0.5926,
    "count": 2,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.2298,
+   "mass_below": 0.0
   },
   {
-   "id": "7efd4b0f16a4",
+   "id": "9e24876d3004",
    "label": "یر",
    "rel_h": 0.8889,
    "rel_w": 1.037,
    "rel_top": 0.2963,
    "rel_bottom": 0.5926,
    "count": 3,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.1565
   },
   {
-   "id": "71d2f16b6fee",
+   "id": "5e098a43f652",
    "label": "ختلا",
    "rel_h": 1.1852,
    "rel_w": 2.4815,
    "rel_top": 0.9259,
    "rel_bottom": 0.2593,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.078,
+   "mass_below": 0.0
   },
   {
-   "id": "9035813fd1c3",
+   "id": "74996c6ef4f3",
    "label": "تو",
    "rel_h": 1.2593,
    "rel_w": 0.963,
    "rel_top": 0.6667,
    "rel_bottom": 0.5926,
    "count": 2,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.1188,
+   "mass_below": 0.0
   },
   {
-   "id": "b28ba07a249f",
+   "id": "b570d198d7f7",
    "label": "أ",
    "rel_h": 1.0741,
    "rel_w": 0.1481,
    "rel_top": 0.9259,
    "rel_bottom": 0.1481,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "8d6eddc3e648",
+   "id": "2bbc6a52e0ff",
    "label": "با",
    "rel_h": 1.4074,
    "rel_w": 0.5556,
    "rel_top": 0.9259,
    "rel_bottom": 0.4815,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.094
   },
   {
-   "id": "680d745dc133",
+   "id": "9735d02d0455",
    "label": "جر",
    "rel_h": 1.0,
    "rel_w": 1.5185,
    "rel_top": 0.4074,
    "rel_bottom": 0.5926,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0664
   },
   {
-   "id": "e89c351a803c",
+   "id": "6f46b8262433",
    "label": "نند",
    "rel_h": 0.8519,
    "rel_w": 1.5926,
    "rel_top": 0.7037,
    "rel_bottom": 0.1481,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.1004,
+   "mass_below": 0.0
   },
   {
-   "id": "091559d444fd",
+   "id": "12543fc6c8d3",
    "label": "مضاء",
    "rel_h": 1.0741,
    "rel_w": 2.5556,
    "rel_top": 0.9259,
    "rel_bottom": 0.1481,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0276,
+   "mass_below": 0.1336
   },
   {
-   "id": "03a393c5f1f1",
+   "id": "5ea7819c22db",
    "label": "سند",
    "rel_h": 0.76,
    "rel_w": 2.4,
    "rel_top": 0.64,
    "rel_bottom": 0.12,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0393,
+   "mass_below": 0.0
   },
   {
-   "id": "8c21117c95ea",
+   "id": "d7baee3ec07c",
    "label": "نه",
    "rel_h": 0.7931,
    "rel_w": 0.8621,
    "rel_top": 0.6552,
    "rel_bottom": 0.1379,
    "count": 2,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.076,
+   "mass_below": 0.0
   },
   {
-   "id": "af48390a5222",
+   "id": "eafbbb34493c",
    "label": "مخا",
    "rel_h": 1.0,
    "rel_w": 1.7586,
    "rel_top": 0.8621,
    "rel_bottom": 0.1379,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0348,
+   "mass_below": 0.0
   },
   {
-   "id": "8842457dba0a",
+   "id": "1079b1b10fbc",
    "label": "مضاء",
    "rel_h": 1.0,
    "rel_w": 2.3793,
    "rel_top": 0.8621,
    "rel_bottom": 0.1379,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0279,
+   "mass_below": 0.1349
   },
   {
-   "id": "3ffe183e0fc2",
+   "id": "cd8607005898",
    "label": "مهر",
    "rel_h": 0.9655,
    "rel_w": 1.7931,
    "rel_top": 0.4138,
    "rel_bottom": 0.5517,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "c7dc1cfe71e1",
+   "id": "6d58a18dc18a",
    "label": "تشکیل",
    "rel_h": 1.4138,
    "rel_w": 3.5172,
    "rel_top": 0.8621,
    "rel_bottom": 0.5517,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0804,
+   "mass_below": 0.0307
   },
   {
-   "id": "7349d4d6fa9f",
+   "id": "56e69c384192",
    "label": "تحر",
    "rel_h": 1.2593,
    "rel_w": 2.0,
    "rel_top": 0.6667,
    "rel_bottom": 0.5926,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0738,
+   "mass_below": 0.0
   },
   {
-   "id": "0305056c6fe7",
+   "id": "abbcfa869296",
    "label": "شته",
    "rel_h": 0.9259,
    "rel_w": 2.1111,
    "rel_top": 0.7778,
    "rel_bottom": 0.1481,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.1579,
+   "mass_below": 0.0
   },
   {
-   "id": "4ef6828855d6",
+   "id": "1e24f6ff7a7f",
    "label": "قر",
    "rel_h": 1.4815,
    "rel_w": 1.1111,
    "rel_top": 0.8889,
    "rel_bottom": 0.5926,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.1057,
+   "mass_below": 0.0
   },
   {
-   "id": "b8883f6a9a92",
+   "id": "0d9540d263a6",
    "label": "مقا",
    "rel_h": 1.0741,
    "rel_w": 1.5185,
    "rel_top": 0.9259,
    "rel_bottom": 0.1481,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0671,
+   "mass_below": 0.0
   },
   {
-   "id": "f76b71d6b06a",
+   "id": "563a9141a733",
    "label": "له",
    "rel_h": 1.0741,
    "rel_w": 0.8889,
    "rel_top": 0.9259,
    "rel_bottom": 0.1481,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "cf72d537eb4d",
+   "id": "be9ad913f358",
    "label": "مه",
    "rel_h": 0.7037,
    "rel_w": 1.1852,
    "rel_top": 0.5556,
    "rel_bottom": 0.1481,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "1d859fc619ab",
+   "id": "454200311477",
    "label": "،ا",
    "rel_h": 1.1111,
    "rel_w": 0.9259,
    "rel_top": 0.963,
    "rel_bottom": 0.1481,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.3762
   },
   {
-   "id": "ada8dd8123f4",
+   "id": "c2363d2be68b",
    "label": "ل،",
    "rel_h": 1.5185,
    "rel_w": 1.2593,
    "rel_top": 0.9259,
    "rel_bottom": 0.5926,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.1743
   },
   {
-   "id": "d0fbfa96943e",
+   "id": "23a68f276e14",
    "label": "شد.",
    "rel_h": 0.9615,
    "rel_w": 2.0385,
    "rel_top": 0.8077,
    "rel_bottom": 0.1538,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.1151,
+   "mass_below": 0.0504
   },
   {
-   "id": "acb454f44221",
+   "id": "c1d5a281004c",
    "label": "جه",
    "rel_h": 1.0769,
    "rel_w": 1.6154,
    "rel_top": 0.5769,
    "rel_bottom": 0.5,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0568
   },
   {
-   "id": "0ac530b3f604",
+   "id": "a386031c79ce",
    "label": "مند",
    "rel_h": 0.7308,
    "rel_w": 1.9615,
    "rel_top": 0.5769,
    "rel_bottom": 0.1538,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0427,
+   "mass_below": 0.0
   },
   {
-   "id": "23955692d44b",
+   "id": "516499bd46ad",
    "label": "ج",
    "rel_h": 1.0769,
    "rel_w": 0.8846,
    "rel_top": 0.3846,
    "rel_bottom": 0.6923,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.058
   },
   {
-   "id": "d2b18dfc43bc",
+   "id": "58965e8abdf9",
    "label": "بلا",
    "rel_h": 1.4615,
    "rel_w": 1.3462,
    "rel_top": 0.9615,
    "rel_bottom": 0.5,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0507
   },
   {
-   "id": "90369da5dca5",
+   "id": "5b2986c31783",
    "label": "غیه",
    "rel_h": 1.3846,
    "rel_w": 1.8846,
    "rel_top": 0.8846,
    "rel_bottom": 0.5,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0426,
+   "mass_below": 0.0638
   },
   {
-   "id": "6eaf114e8187",
+   "id": "5c2f9ca10587",
    "label": "به",
    "rel_h": 1.0769,
    "rel_w": 0.9231,
    "rel_top": 0.5769,
    "rel_bottom": 0.5,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0833
   },
   {
-   "id": "75fc12680936",
+   "id": "36b3ab1a72ff",
    "label": "شما",
    "rel_h": 1.1538,
    "rel_w": 2.1154,
    "rel_top": 0.9615,
    "rel_bottom": 0.1923,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0894,
+   "mass_below": 0.0
   },
   {
-   "id": "4232a278a8a9",
+   "id": "5544f6900fd3",
    "label": "بلا",
    "rel_h": 1.4615,
    "rel_w": 1.3077,
    "rel_top": 0.9615,
    "rel_bottom": 0.5,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0515
   },
   {
-   "id": "2507b3497011",
+   "id": "0031d39633cf",
    "label": "غ",
    "rel_h": 1.6538,
    "rel_w": 0.8077,
    "rel_top": 0.9615,
    "rel_bottom": 0.6923,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0725,
+   "mass_below": 0.0
   },
   {
-   "id": "9ba7600c9665",
+   "id": "ef077491b4c4",
    "label": "گر",
    "rel_h": 1.6154,
    "rel_w": 1.3846,
    "rel_top": 1.0,
    "rel_bottom": 0.6154,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.1369,
+   "mass_below": 0.0
   },
   {
-   "id": "75684634408b",
+   "id": "6468f9efe76e",
    "label": "ظر",
    "rel_h": 1.5769,
    "rel_w": 1.5769,
    "rel_top": 0.9615,
    "rel_bottom": 0.6154,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0479,
+   "mass_below": 0.0
   },
   {
-   "id": "4879717cf3d7",
+   "id": "8dd383a9a8af",
    "label": "مهلت",
    "rel_h": 1.5769,
    "rel_w": 3.0385,
    "rel_top": 0.9615,
    "rel_bottom": 0.6154,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0418,
+   "mass_below": 0.0
   },
   {
-   "id": "8330cd18c19f",
+   "id": "4c32fddcd461",
    "label": "مقر",
    "rel_h": 1.4231,
    "rel_w": 1.8846,
    "rel_top": 0.8077,
    "rel_bottom": 0.6154,
    "count": 2,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0712,
+   "mass_below": 0.0
   },
   {
-   "id": "e2a37e2152c2",
+   "id": "074b04adc380",
    "label": "قد",
    "rel_h": 1.0769,
    "rel_w": 1.2692,
    "rel_top": 0.9231,
    "rel_bottom": 0.1538,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0902,
+   "mass_below": 0.0
   },
   {
-   "id": "6e31d91be36c",
+   "id": "ffbdc1222ba3",
    "label": "،د",
    "rel_h": 0.6923,
    "rel_w": 0.9615,
    "rel_top": 0.5385,
    "rel_bottom": 0.1538,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.2794
   },
   {
-   "id": "e3f71b3523ca",
+   "id": "b7d6923d684e",
    "label": "ینصو",
    "rel_h": 1.1538,
    "rel_w": 2.7692,
    "rel_top": 0.5385,
    "rel_bottom": 0.6154,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0264,
+   "mass_below": 0.0507
   },
   {
-   "id": "3922228e722b",
+   "id": "f8242f796f88",
    "label": "مطا",
    "rel_h": 1.1154,
    "rel_w": 1.9231,
    "rel_top": 0.9615,
    "rel_bottom": 0.1538,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "77ffce1f87d7",
+   "id": "768ef5290c59",
    "label": "بق",
    "rel_h": 1.3077,
    "rel_w": 1.3462,
    "rel_top": 0.6538,
    "rel_bottom": 0.6538,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.083,
+   "mass_below": 0.0484
   },
   {
-   "id": "2ff664acef77",
+   "id": "8d2c8b362c0b",
    "label": "تخا",
    "rel_h": 1.1154,
    "rel_w": 1.7308,
    "rel_top": 0.9615,
    "rel_bottom": 0.1538,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.1048,
+   "mass_below": 0.0
   },
   {
-   "id": "39cbb5f194f5",
+   "id": "0057e6e8bab5",
    "label": "ذ",
    "rel_h": 1.0769,
    "rel_w": 0.5769,
    "rel_top": 0.9231,
    "rel_bottom": 0.1538,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.1171,
+   "mass_below": 0.0
   },
   {
-   "id": "45a92d96c755",
+   "id": "93b964b6b796",
    "label": "تصمیم",
    "rel_h": 1.3462,
    "rel_w": 3.8077,
    "rel_top": 0.6923,
    "rel_bottom": 0.6538,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0394,
+   "mass_below": 0.0345
   },
   {
-   "id": "51a19a936f78",
+   "id": "4fcb635b6168",
    "label": "خو",
    "rel_h": 1.4615,
    "rel_w": 1.5385,
    "rel_top": 0.8462,
    "rel_bottom": 0.6154,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0468,
+   "mass_below": 0.0
   },
   {
-   "id": "1f345ac9e086",
+   "id": "835f53cfe263",
    "label": "هد",
    "rel_h": 0.7308,
    "rel_w": 1.5,
    "rel_top": 0.5769,
    "rel_bottom": 0.1538,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "52e5e884d843",
+   "id": "f7d027cfde47",
    "label": "صا",
    "rel_h": 1.0,
    "rel_w": 1.2069,
    "rel_top": 0.8276,
    "rel_bottom": 0.1724,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "597146ea6ded",
+   "id": "6759d307cf51",
    "label": "کنند",
    "rel_h": 1.0,
    "rel_w": 2.3448,
    "rel_top": 0.8276,
    "rel_bottom": 0.1724,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0859,
+   "mass_below": 0.0
   },
   {
-   "id": "3b37a7c8e088",
+   "id": "430f513d3f44",
    "label": "غیه",
    "rel_h": 0.931,
    "rel_w": 1.6552,
    "rel_top": 0.7586,
    "rel_bottom": 0.1724,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0567,
+   "mass_below": 0.0
   },
   {
-   "id": "827de306a20e",
+   "id": "0ea46f5b511c",
    "label": "سمت",
    "rel_h": 0.7586,
    "rel_w": 2.6552,
    "rel_top": 0.5517,
    "rel_bottom": 0.2069,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0858,
+   "mass_below": 0.0
   },
   {
-   "id": "38ef11884748",
+   "id": "ec50b1623aa9",
    "label": "صا",
    "rel_h": 1.0,
    "rel_w": 1.2069,
    "rel_top": 0.8276,
    "rel_bottom": 0.1724,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "4407c09f67cc",
+   "id": "d6d18d7aa78c",
    "label": "کنند",
    "rel_h": 1.0,
    "rel_w": 2.3448,
    "rel_top": 0.8276,
    "rel_bottom": 0.1724,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0833,
+   "mass_below": 0.0
   },
   {
-   "id": "32bf2be1ed34",
+   "id": "53fc4e2e42e3",
    "label": "ه",
    "rel_h": 0.5172,
    "rel_w": 0.4483,
    "rel_top": 0.3448,
    "rel_bottom": 0.1724,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "15f094e03cdc",
+   "id": "f75c74eeb2af",
    "label": "عبا",
    "rel_h": 1.5,
    "rel_w": 1.5417,
    "rel_top": 1.0,
    "rel_bottom": 0.5,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0465
   },
   {
-   "id": "349583d149aa",
+   "id": "6c6ec31e12ba",
    "label": "س",
    "rel_h": 0.9583,
    "rel_w": 1.5417,
    "rel_top": 0.3333,
    "rel_bottom": 0.625,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "f7c4be52f942",
+   "id": "0f72fbb2e7a8",
    "label": "تر",
    "rel_h": 1.375,
    "rel_w": 1.0833,
    "rel_top": 0.75,
    "rel_bottom": 0.625,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.1533,
+   "mass_below": 0.0
   },
   {
-   "id": "dcaa41a7bd65",
+   "id": "6f975a055268",
    "label": "ز",
    "rel_h": 1.25,
    "rel_w": 0.5,
    "rel_top": 0.625,
    "rel_bottom": 0.625,
    "count": 3,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.1644,
+   "mass_below": 0.0
   },
   {
-   "id": "7e5af5bfdf0e",
+   "id": "99c4e8a04804",
    "label": "نگنه",
    "rel_h": 1.1667,
    "rel_w": 2.4167,
    "rel_top": 1.0417,
    "rel_bottom": 0.125,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.1279,
+   "mass_below": 0.0
   },
   {
-   "id": "ca1ef9ad53dd",
+   "id": "d810786d49bf",
    "label": "-عبا",
    "rel_h": 1.5,
    "rel_w": 2.7083,
    "rel_top": 1.0,
    "rel_bottom": 0.5,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.1429
   },
   {
-   "id": "f2f55d854211",
+   "id": "e91ebd02f411",
    "label": "س",
    "rel_h": 0.9583,
    "rel_w": 1.5417,
    "rel_top": 0.3333,
    "rel_bottom": 0.625,
    "count": 2,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "2c6f8f2dcb38",
+   "id": "68e5000c8df8",
    "label": "تر",
    "rel_h": 1.375,
    "rel_w": 1.0417,
    "rel_top": 0.75,
    "rel_bottom": 0.625,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.1522,
+   "mass_below": 0.0
   },
   {
-   "id": "3447cc44d22a",
+   "id": "ddfb4a7ec410",
    "label": "ز",
    "rel_h": 1.25,
    "rel_w": 0.5417,
    "rel_top": 0.625,
    "rel_bottom": 0.625,
    "count": 6,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.1622,
+   "mass_below": 0.0
   },
   {
-   "id": "b5de979305a7",
+   "id": "881d947b4add",
    "label": "نگنه",
    "rel_h": 1.1667,
    "rel_w": 2.4167,
    "rel_top": 1.0417,
    "rel_bottom": 0.125,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.1378,
+   "mass_below": 0.0
   },
   {
-   "id": "6fcf278c1c87",
+   "id": "432fce07dc54",
    "label": "با",
    "rel_h": 1.5,
    "rel_w": 0.625,
    "rel_top": 1.0,
    "rel_bottom": 0.5,
    "count": 3,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0923
   },
   {
-   "id": "ddf387b8fe87",
+   "id": "ac63b487eec0",
    "label": "پر",
    "rel_h": 1.0,
    "rel_w": 1.0417,
    "rel_top": 0.375,
    "rel_bottom": 0.625,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.1931
   },
   {
-   "id": "534675b59816",
+   "id": "b03a1ef6f0dc",
    "label": "سی",
    "rel_h": 1.0,
    "rel_w": 2.0417,
    "rel_top": 0.3333,
    "rel_bottom": 0.6667,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "031c969aabb6",
+   "id": "e535eb3f4964",
    "label": "د",
    "rel_h": 0.7083,
    "rel_w": 0.5833,
    "rel_top": 0.5833,
    "rel_bottom": 0.125,
    "count": 7,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "bf40796bc2e2",
+   "id": "34eee3a11bcf",
    "label": "سر",
    "rel_h": 0.9583,
    "rel_w": 1.625,
    "rel_top": 0.3333,
    "rel_bottom": 0.625,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "f028e68ea444",
+   "id": "edb97a508652",
    "label": "عمو",
    "rel_h": 1.0833,
    "rel_w": 2.1667,
    "rel_top": 0.5,
    "rel_bottom": 0.5833,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "3a850b6407ec",
+   "id": "b23dd3388d1f",
    "label": "می",
    "rel_h": 1.0,
    "rel_w": 1.7083,
    "rel_top": 0.3333,
    "rel_bottom": 0.6667,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "cf3503db99f1",
+   "id": "631e7144953d",
    "label": "و",
    "rel_h": 0.9167,
    "rel_w": 0.5417,
    "rel_top": 0.3333,
    "rel_bottom": 0.5833,
    "count": 3,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "9d13793d1232",
+   "id": "f6b8c09e3c7b",
    "label": "نقلا",
    "rel_h": 1.2083,
    "rel_w": 2.0,
    "rel_top": 1.0,
    "rel_bottom": 0.2083,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0914,
+   "mass_below": 0.0
   },
   {
-   "id": "92219e2f52fe",
+   "id": "3aafeb74ddd7",
    "label": "ب",
    "rel_h": 0.875,
    "rel_w": 1.1667,
    "rel_top": 0.375,
    "rel_bottom": 0.5,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0917
   },
   {
-   "id": "daa34de911e8",
+   "id": "aba11cfc1a5c",
    "label": "هو",
    "rel_h": 1.125,
    "rel_w": 1.4167,
    "rel_top": 0.5417,
    "rel_bottom": 0.5833,
    "count": 2,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "ced1291ede7d",
+   "id": "3fdfbee8e083",
    "label": "با",
    "rel_h": 1.5,
    "rel_w": 0.625,
    "rel_top": 1.0,
    "rel_bottom": 0.5,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0876
   },
   {
-   "id": "89a3f54d830d",
+   "id": "74b3e848d36b",
    "label": "پر",
    "rel_h": 1.0,
    "rel_w": 1.0417,
    "rel_top": 0.375,
    "rel_bottom": 0.625,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.1844
   },
   {
-   "id": "25b6b6ed0e53",
+   "id": "b8242168180f",
    "label": "شعبه",
    "rel_h": 1.2917,
    "rel_w": 2.9167,
    "rel_top": 0.8333,
    "rel_bottom": 0.4583,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0675,
+   "mass_below": 0.0265
   },
   {
-   "id": "9dfdc164437d",
+   "id": "26fcebd4f511",
    "label": "ست.",
    "rel_h": 0.7692,
    "rel_w": 2.4231,
    "rel_top": 0.6154,
    "rel_bottom": 0.1538,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0795,
+   "mass_below": 0.0455
   },
   {
-   "id": "907c1f4ffbc8",
+   "id": "b2aa57645ce2",
    "label": "همر",
    "rel_h": 1.0769,
    "rel_w": 4.8846,
    "rel_top": 0.5,
    "rel_bottom": 0.5769,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.1729,
+   "mass_below": 0.0
   },
   {
-   "id": "7f989ee993b4",
+   "id": "46f36aa10c5e",
    "label": "ه",
    "rel_h": 0.5,
    "rel_w": 0.4231,
    "rel_top": 0.3846,
    "rel_bottom": 0.1154,
    "count": 2,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "a5bb681787cb",
+   "id": "8a6ad28c1f5d",
    "label": "شتن",
    "rel_h": 1.3462,
    "rel_w": 2.4615,
    "rel_top": 0.7692,
    "rel_bottom": 0.5769,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.1616,
+   "mass_below": 0.0
   },
   {
-   "id": "71a7fd6ac9fe",
+   "id": "901b192fe9ba",
    "label": "کا",
    "rel_h": 1.0385,
    "rel_w": 0.9615,
    "rel_top": 0.9231,
    "rel_bottom": 0.1154,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "9ed60357bc11",
+   "id": "b4fb172c50f4",
    "label": "ت",
    "rel_h": 0.7308,
    "rel_w": 1.0769,
    "rel_top": 0.6154,
    "rel_bottom": 0.1154,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.1615,
+   "mass_below": 0.0
   },
   {
-   "id": "e40956cc6bd6",
+   "id": "8db2d51f36db",
    "label": "ملی",
    "rel_h": 1.5385,
    "rel_w": 2.0,
    "rel_top": 0.9231,
    "rel_bottom": 0.6154,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "12ce1bc744e7",
+   "id": "88d91326d40a",
    "label": "جهت",
    "rel_h": 1.1538,
    "rel_w": 2.8077,
    "rel_top": 0.6154,
    "rel_bottom": 0.5385,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0561,
+   "mass_below": 0.028
   },
   {
-   "id": "d9d172e4d8f1",
+   "id": "7ac41bd0f7d6",
    "label": "حر",
    "rel_h": 1.0,
    "rel_w": 1.5,
    "rel_top": 0.4231,
    "rel_bottom": 0.5769,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "c65c64e41255",
+   "id": "c2d723df10d6",
    "label": "هو",
    "rel_h": 1.0385,
    "rel_w": 1.2692,
    "rel_top": 0.5,
    "rel_bottom": 0.5385,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "d9300a7ea395",
+   "id": "11db575aa47e",
    "label": "یت",
    "rel_h": 1.0385,
    "rel_w": 1.5769,
    "rel_top": 0.6154,
    "rel_bottom": 0.4231,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.1218,
+   "mass_below": 0.0812
   },
   {
-   "id": "bbd6c10a6147",
+   "id": "fc5fac7e8d24",
    "label": "لز",
    "rel_h": 1.5,
    "rel_w": 0.8846,
    "rel_top": 0.9231,
    "rel_bottom": 0.5769,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0755,
+   "mass_below": 0.0
   },
   {
-   "id": "a168f5cb79e6",
+   "id": "621bf7409022",
    "label": "می",
    "rel_h": 0.9231,
    "rel_w": 1.5385,
    "rel_top": 0.3077,
    "rel_bottom": 0.6154,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "e4a6c81d487c",
+   "id": "0c5595ebc2d9",
    "label": "هید.",
    "rel_h": 1.0,
    "rel_w": 2.36,
    "rel_top": 0.56,
    "rel_bottom": 0.44,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0904
   },
   {
-   "id": "03982f1cdd8d",
+   "id": "c2e7982d4281",
    "label": "د",
    "rel_h": 0.68,
    "rel_w": 0.56,
    "rel_top": 0.56,
    "rel_bottom": 0.12,
    "count": 9,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "737dbbabe595",
+   "id": "7e97471b9829",
    "label": "قیقه",
    "rel_h": 1.36,
    "rel_w": 2.28,
    "rel_top": 0.92,
    "rel_bottom": 0.44,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0911,
+   "mass_below": 0.0374
   },
   {
-   "id": "9a317f742a8c",
+   "id": "54ea9a656af1",
    "label": "قبل",
    "rel_h": 1.52,
    "rel_w": 2.0,
    "rel_top": 0.96,
    "rel_bottom": 0.56,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.05,
+   "mass_below": 0.0333
   },
   {
-   "id": "0e8dc096cbb5",
+   "id": "ab92be8fb0a1",
    "label": "شر",
    "rel_h": 1.4,
    "rel_w": 1.56,
    "rel_top": 0.8,
    "rel_bottom": 0.6,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.1373,
+   "mass_below": 0.0
   },
   {
-   "id": "acd00808260a",
+   "id": "90a2aff202aa",
    "label": "وع",
    "rel_h": 1.2,
    "rel_w": 1.28,
    "rel_top": 0.56,
    "rel_bottom": 0.64,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "5849529ae458",
+   "id": "2381edb6c1da",
    "label": "جلسه",
    "rel_h": 1.4,
    "rel_w": 3.08,
    "rel_top": 0.96,
    "rel_bottom": 0.44,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0276
   },
   {
-   "id": "a2701e5be1a8",
+   "id": "c885db340bf2",
    "label": "حد",
    "rel_h": 0.68,
    "rel_w": 1.64,
    "rel_top": 0.56,
    "rel_bottom": 0.12,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "bc17b1493ea9",
+   "id": "c97eca291a3d",
    "label": "قضا",
    "rel_h": 1.08,
    "rel_w": 1.88,
    "rel_top": 0.96,
    "rel_bottom": 0.12,
    "count": 2,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0827,
+   "mass_below": 0.0
   },
   {
-   "id": "b962f0da6610",
+   "id": "d616e5b512a3",
    "label": "ئی",
    "rel_h": 1.44,
    "rel_w": 1.36,
    "rel_top": 0.8,
    "rel_bottom": 0.64,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.1078,
+   "mass_below": 0.0
   },
   {
-   "id": "ade9ea1e5d96",
+   "id": "f816cb2f5a95",
    "label": "حا",
    "rel_h": 1.08,
    "rel_w": 1.24,
    "rel_top": 0.96,
    "rel_bottom": 0.12,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "9b1eefc99da7",
+   "id": "35dd0cb6b04a",
    "label": "ضر",
    "rel_h": 1.36,
    "rel_w": 1.64,
    "rel_top": 0.76,
    "rel_bottom": 0.6,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0395,
+   "mass_below": 0.0
   },
   {
-   "id": "313143c8dc1c",
+   "id": "7dbda70c9a0b",
    "label": "شو",
    "rel_h": 1.36,
    "rel_w": 1.56,
    "rel_top": 0.8,
    "rel_bottom": 0.56,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.1143,
+   "mass_below": 0.0
   },
   {
-   "id": "5f4a0567bd43",
+   "id": "d938dab4cd25",
    "label": "ید",
    "rel_h": 1.04,
    "rel_w": 1.16,
    "rel_top": 0.56,
    "rel_bottom": 0.48,
    "count": 2,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.1566
   },
   {
-   "id": "4b7dbd059dc9",
+   "id": "4467eef864f9",
    "label": "حضو",
    "rel_h": 1.32,
    "rel_w": 2.64,
    "rel_top": 0.76,
    "rel_bottom": 0.56,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0218,
+   "mass_below": 0.0
   },
   {
-   "id": "75833d6ee314",
+   "id": "4d886a149765",
    "label": "خو",
    "rel_h": 1.4,
    "rel_w": 1.52,
    "rel_top": 0.84,
    "rel_bottom": 0.56,
    "count": 2,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0478,
+   "mass_below": 0.0
   },
   {
-   "id": "57a1a1258b34",
+   "id": "73589dcd4dde",
    "label": "به",
    "rel_h": 1.08,
    "rel_w": 0.92,
    "rel_top": 0.6,
    "rel_bottom": 0.48,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0789
   },
   {
-   "id": "f03ebd801d47",
+   "id": "eb61b82d3ce3",
    "label": "فتر",
    "rel_h": 1.52,
    "rel_w": 1.68,
    "rel_top": 0.92,
    "rel_bottom": 0.6,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.1011,
+   "mass_below": 0.0
   },
   {
-   "id": "fdf775763460",
+   "id": "2183ee5f84b1",
    "label": "گا",
    "rel_h": 1.12,
    "rel_w": 1.0,
    "rel_top": 1.0,
    "rel_bottom": 0.12,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.125,
+   "mass_below": 0.0
   },
   {
-   "id": "2ff86c918052",
+   "id": "f8d7b2ddc139",
    "label": "ه",
    "rel_h": 0.52,
    "rel_w": 0.44,
    "rel_top": 0.4,
    "rel_bottom": 0.12,
    "count": 3,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "da3ed9b5a04e",
+   "id": "b52d181f372d",
    "label": "طلا",
    "rel_h": 1.16,
    "rel_w": 1.92,
    "rel_top": 0.96,
    "rel_bottom": 0.2,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "c01bd2e776b8",
+   "id": "3a5b820ac931",
    "label": "ع",
    "rel_h": 1.2,
    "rel_w": 0.8,
    "rel_top": 0.56,
    "rel_bottom": 0.64,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "6469feab7c34",
+   "id": "959655b91d3c",
    "label": "5",
    "rel_h": 1.08,
    "rel_w": 3.68,
    "rel_top": 0.92,
    "rel_bottom": 0.16,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.2917
   },
   {
-   "id": "1cc7f9e4f0ed",
+   "id": "c411026adecb",
    "label": "شید.",
    "rel_h": 1.0455,
    "rel_w": 2.9545,
    "rel_top": 0.9091,
    "rel_bottom": 0.1364,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0897,
+   "mass_below": 0.0385
   },
   {
-   "id": "c4ef6b947332",
+   "id": "de1ba0a6ef2e",
    "label": "صل",
    "rel_h": 1.7273,
    "rel_w": 2.3182,
    "rel_top": 1.0909,
    "rel_bottom": 0.6364,
    "count": 2,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "e4dc981e9ff5",
+   "id": "ae1db2f26fad",
    "label": "تصو",
    "rel_h": 1.4545,
    "rel_w": 2.4545,
    "rel_top": 0.8182,
    "rel_bottom": 0.6364,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0614,
+   "mass_below": 0.0
   },
   {
-   "id": "92e2394b6fe2",
+   "id": "554ed7ab776f",
    "label": "یر",
    "rel_h": 1.0909,
    "rel_w": 1.0909,
    "rel_top": 0.4091,
    "rel_bottom": 0.6818,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "71f1da873dd8",
+   "id": "82b5a528e460",
    "label": "بر",
    "rel_h": 1.0909,
    "rel_w": 1.0455,
    "rel_top": 0.4091,
    "rel_bottom": 0.6818,
    "count": 2,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "dead54823f85",
+   "id": "31578a59595c",
    "label": "شد",
    "rel_h": 1.0455,
    "rel_w": 1.9091,
    "rel_top": 0.9091,
    "rel_bottom": 0.1364,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.1197,
+   "mass_below": 0.0
   },
   {
-   "id": "e6676bf12c2f",
+   "id": "cfbd565e1152",
    "label": "مستند",
    "rel_h": 0.8636,
    "rel_w": 4.0455,
    "rel_top": 0.7273,
    "rel_bottom": 0.1364,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0686,
+   "mass_below": 0.0
   },
   {
-   "id": "a2e15151fcca",
+   "id": "28b64a39783f",
    "label": "ت",
    "rel_h": 0.8636,
    "rel_w": 1.2727,
    "rel_top": 0.7273,
    "rel_bottom": 0.1364,
    "count": 2,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.1778,
+   "mass_below": 0.0
   },
   {
-   "id": "20180ec119ba",
+   "id": "bb3eac7b42a0",
    "label": "به",
    "rel_h": 0.8182,
    "rel_w": 1.0455,
    "rel_top": 0.6818,
    "rel_bottom": 0.1364,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "47f92f229560",
+   "id": "a5c4e0433ea9",
    "label": "همر",
    "rel_h": 1.2727,
    "rel_w": 2.4545,
    "rel_top": 0.5909,
    "rel_bottom": 0.6818,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "2bd147bce0b4",
+   "id": "00b0cb8ad609",
    "label": "شته",
    "rel_h": 1.0455,
    "rel_w": 2.4545,
    "rel_top": 0.9091,
    "rel_bottom": 0.1364,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.147,
+   "mass_below": 0.0
   },
   {
-   "id": "fd2305792e1f",
+   "id": "c7345ab6e9cd",
    "label": "با",
    "rel_h": 1.2273,
    "rel_w": 0.6818,
    "rel_top": 1.0909,
    "rel_bottom": 0.1364,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "c9986ab54dd5",
+   "id": "578f0cc91098",
    "label": "به",
    "rel_h": 0.9286,
    "rel_w": 0.8571,
    "rel_top": 0.4643,
    "rel_bottom": 0.4643,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.08
   },
   {
-   "id": "1edab0b45c99",
+   "id": "343d2b08eab0",
    "label": "سا",
    "rel_h": 0.9643,
    "rel_w": 1.1071,
    "rel_top": 0.8214,
    "rel_bottom": 0.1429,
    "count": 2,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "60a29c7df1d3",
+   "id": "85669cf5347e",
    "label": "ما",
    "rel_h": 0.9643,
    "rel_w": 0.7857,
    "rel_top": 0.8214,
    "rel_bottom": 0.1429,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "75af4b22136c",
+   "id": "ae18727277f4",
    "label": "نه",
    "rel_h": 0.75,
    "rel_w": 0.8214,
    "rel_top": 0.6071,
    "rel_bottom": 0.1429,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0784,
+   "mass_below": 0.0
   },
   {
-   "id": "326b9c0752b3",
+   "id": "cb30ce3bbb25",
    "label": "غ",
    "rel_h": 1.4286,
    "rel_w": 0.7143,
    "rel_top": 0.8214,
    "rel_bottom": 0.6071,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0559,
+   "mass_below": 0.0
   },
   {
-   "id": "7568aecc64e6",
+   "id": "ceaac3d0c289",
    "label": "ل",
    "rel_h": 1.3571,
    "rel_w": 0.75,
    "rel_top": 0.8214,
    "rel_bottom": 0.5357,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "de20d4c72370",
+   "id": "7672f6fe9ef6",
    "label": "گر",
    "rel_h": 1.4286,
    "rel_w": 1.1786,
    "rel_top": 0.8571,
    "rel_bottom": 0.5714,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.1284,
+   "mass_below": 0.0
   },
   {
-   "id": "2455754ea3f9",
+   "id": "eb02266006dc",
    "label": "1",
    "rel_h": 1.0,
    "rel_w": 0.3214,
    "rel_top": 0.8214,
    "rel_bottom": 0.1786,
    "count": 2,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "1a0f1e6299cd",
+   "id": "9ffcbb7255fc",
    "label": "40",
    "rel_h": 1.0357,
    "rel_w": 1.25,
    "rel_top": 0.8571,
    "rel_bottom": 0.1786,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.1838
   },
   {
-   "id": "51c0274e2ad9",
+   "id": "7d82a3b74e5f",
    "label": "4",
    "rel_h": 1.0357,
    "rel_w": 0.6429,
    "rel_top": 0.8571,
    "rel_bottom": 0.1786,
    "count": 2,
-   "source": "pdf:eblaghiye:split"
+   "source": "pdf:eblaghiye:split",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "5aaf977ec66a",
+   "id": "8af4b519847c",
    "label": "0",
    "rel_h": 0.3571,
    "rel_w": 0.3214,
    "rel_top": 0.4286,
    "rel_bottom": -0.0714,
    "count": 1,
-   "source": "pdf:eblaghiye:split"
+   "source": "pdf:eblaghiye:split",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "62cf6980b95e",
+   "id": "016cd1fdcb5b",
    "label": "/",
    "rel_h": 1.0357,
    "rel_w": 0.3214,
    "rel_top": 0.7857,
    "rel_bottom": 0.25,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "bd014b7f5f39",
+   "id": "d11116f79c52",
    "label": "/0",
    "rel_h": 1.0357,
    "rel_w": 0.8929,
    "rel_top": 0.7857,
    "rel_bottom": 0.25,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.3546,
+   "mass_below": 0.0
   },
   {
-   "id": "34166ddfbeb1",
+   "id": "3479605f9b2f",
    "label": "/",
    "rel_h": 1.0357,
    "rel_w": 0.3214,
    "rel_top": 0.7857,
    "rel_bottom": 0.25,
    "count": 1,
-   "source": "pdf:eblaghiye:split"
+   "source": "pdf:eblaghiye:split",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "585ab7b5c30d",
+   "id": "5e51b5f997d8",
    "label": "0",
    "rel_h": 0.3214,
    "rel_w": 0.3571,
    "rel_top": 0.4286,
    "rel_bottom": -0.1071,
    "count": 1,
-   "source": "pdf:eblaghiye:split"
+   "source": "pdf:eblaghiye:split",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "9ca7b903e86d",
+   "id": "be377ea3621f",
    "label": "غیه",
    "rel_h": 1.1786,
    "rel_w": 1.6429,
    "rel_top": 0.75,
    "rel_bottom": 0.4286,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0418,
+   "mass_below": 0.0557
   },
   {
-   "id": "f1d701294df4",
+   "id": "87ff86ae269d",
    "label": "تا",
    "rel_h": 0.9643,
    "rel_w": 0.6071,
    "rel_top": 0.8214,
    "rel_bottom": 0.1429,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.1438,
+   "mass_below": 0.0
   },
   {
-   "id": "cb0d98c199ee",
+   "id": "9656a8662629",
    "label": "یخ",
    "rel_h": 1.2857,
    "rel_w": 1.1429,
    "rel_top": 0.6786,
    "rel_bottom": 0.6071,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0468,
+   "mass_below": 0.0576
   },
   {
-   "id": "f7ced964d159",
+   "id": "b2c475335817",
    "label": "غ:",
    "rel_h": 1.5,
    "rel_w": 1.0714,
    "rel_top": 0.8571,
    "rel_bottom": 0.6429,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.2111,
+   "mass_below": 0.0
   },
   {
-   "id": "aec70471ab33",
+   "id": "eb9cb8827ebc",
    "label": "کیفیت",
    "rel_h": 1.3571,
    "rel_w": 3.4286,
    "rel_top": 0.8571,
    "rel_bottom": 0.5,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0824,
+   "mass_below": 0.1035
   },
   {
-   "id": "919c344d5df2",
+   "id": "c4a1b6c2ccd5",
    "label": "مر",
    "rel_h": 0.8571,
    "rel_w": 1.1429,
    "rel_top": 0.2857,
    "rel_bottom": 0.5714,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "5f0d9d0512b2",
+   "id": "535c2f03a345",
    "label": "-مجتمع",
    "rel_h": 1.1852,
    "rel_w": 4.6296,
    "rel_top": 0.5926,
    "rel_bottom": 0.5926,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0813,
+   "mass_below": 0.0184
   },
   {
-   "id": "469614e79733",
+   "id": "8b4b51cb3184",
    "label": "یی",
    "rel_h": 0.9259,
    "rel_w": 1.3333,
    "rel_top": 0.3333,
    "rel_bottom": 0.5926,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0717
   },
   {
-   "id": "294d09d5b447",
+   "id": "c98587f7c756",
    "label": "هنر",
    "rel_h": 1.0741,
    "rel_w": 1.7778,
    "rel_top": 0.5185,
    "rel_bottom": 0.5556,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0356,
+   "mass_below": 0.0
   },
   {
-   "id": "ad8a6c9b3409",
+   "id": "89c135b03e21",
    "label": "-ر",
    "rel_h": 0.8148,
    "rel_w": 1.5185,
    "rel_top": 0.2593,
    "rel_bottom": 0.5556,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.3187,
+   "mass_below": 0.0
   },
   {
-   "id": "2e1262b44a35",
+   "id": "b97ba56ee17b",
    "label": "کر",
    "rel_h": 1.4444,
    "rel_w": 1.2593,
    "rel_top": 0.8889,
    "rel_bottom": 0.5556,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "4464afdf01bc",
+   "id": "231075984188",
    "label": "-بین",
    "rel_h": 1.0,
    "rel_w": 2.7778,
    "rel_top": 0.4444,
    "rel_bottom": 0.5556,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.138,
+   "mass_below": 0.0943
   },
   {
-   "id": "a2c901903233",
+   "id": "9e1db9232d79",
    "label": "تو",
    "rel_h": 1.1852,
    "rel_w": 0.9259,
    "rel_top": 0.6667,
    "rel_bottom": 0.5185,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.1193,
+   "mass_below": 0.0
   },
   {
-   "id": "05aa5f231507",
+   "id": "0c2b081ee363",
    "label": "ن",
    "rel_h": 1.0,
    "rel_w": 0.8148,
    "rel_top": 0.4444,
    "rel_bottom": 0.5556,
    "count": 2,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.096,
+   "mass_below": 0.0
   },
   {
-   "id": "4b28dc096612",
+   "id": "11a71e6489e1",
    "label": "عبل",
    "rel_h": 1.4074,
    "rel_w": 2.0,
    "rel_top": 0.8889,
    "rel_bottom": 0.5185,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0354
   },
   {
-   "id": "0b2815e05223",
+   "id": "d8331d0b7c1d",
    "label": "خز",
    "rel_h": 1.3333,
    "rel_w": 1.4444,
    "rel_top": 0.7778,
    "rel_bottom": 0.5556,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.1067,
+   "mass_below": 0.0
   },
   {
-   "id": "fe5fd8cf257d",
+   "id": "3bb176d7250c",
    "label": "ئی",
    "rel_h": 1.3333,
    "rel_w": 1.2222,
    "rel_top": 0.7407,
    "rel_bottom": 0.5926,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.1121,
+   "mass_below": 0.0
   },
   {
-   "id": "5738651669b1",
+   "id": "990814b3935f",
    "label": "بلو",
    "rel_h": 1.4074,
    "rel_w": 1.2593,
    "rel_top": 0.8889,
    "rel_bottom": 0.5185,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0448
   },
   {
-   "id": "402482d3a036",
+   "id": "fe0545446bff",
    "label": "ما",
    "rel_h": 1.0,
    "rel_w": 0.8148,
    "rel_top": 0.8889,
    "rel_bottom": 0.1111,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0,
+   "mass_below": 0.0
   },
   {
-   "id": "55c01ab49df9",
+   "id": "4c0b46d4c486",
    "label": "ند",
    "rel_h": 0.7778,
    "rel_w": 0.963,
    "rel_top": 0.6667,
    "rel_bottom": 0.1111,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0764,
+   "mass_below": 0.0
   },
   {
-   "id": "dbf8fa048d48",
+   "id": "ff412052e212",
    "label": "-کو",
    "rel_h": 1.4074,
    "rel_w": 2.2593,
    "rel_top": 0.8889,
    "rel_bottom": 0.5185,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.1074,
+   "mass_below": 0.0
   },
   {
-   "id": "54c1aeea931d",
+   "id": "57cc1d9bab5c",
    "label": "نبو",
    "rel_h": 1.1852,
    "rel_w": 1.3704,
    "rel_top": 0.6667,
    "rel_bottom": 0.5185,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0506,
+   "mass_below": 0.0506
   },
   {
-   "id": "76ec14f6f91c",
+   "id": "38ef5c134242",
    "label": "-شهر",
    "rel_h": 1.2963,
    "rel_w": 3.1481,
    "rel_top": 0.7407,
    "rel_bottom": 0.5556,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.1447,
+   "mass_below": 0.0
   },
   {
-   "id": "85dd087e8369",
+   "id": "a648d63642c1",
    "label": "ستا",
    "rel_h": 1.0,
    "rel_w": 1.6667,
    "rel_top": 0.8889,
    "rel_bottom": 0.1111,
    "count": 2,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0892,
+   "mass_below": 0.0
   },
   {
-   "id": "5318b37f4ab5",
+   "id": "aa2c05968ca7",
    "label": "ن",
    "rel_h": 1.0,
    "rel_w": 0.8148,
    "rel_top": 0.4444,
    "rel_bottom": 0.5556,
    "count": 2,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0938,
+   "mass_below": 0.0
   },
   {
-   "id": "efe4580b5bc9",
+   "id": "90a93123344b",
    "label": "ستا",
    "rel_h": 1.0,
    "rel_w": 1.7037,
    "rel_top": 0.8889,
    "rel_bottom": 0.1111,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.072,
+   "mass_below": 0.0
   },
   {
-   "id": "0b759a9d94b6",
+   "id": "3e3259e890f7",
    "label": "خو",
    "rel_h": 1.2963,
    "rel_w": 1.4444,
    "rel_top": 0.7778,
    "rel_bottom": 0.5185,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.0478,
+   "mass_below": 0.0
   },
   {
-   "id": "663e4534123c",
+   "id": "668451fca01b",
    "label": "نی:",
    "rel_h": 1.3333,
    "rel_w": 1.5926,
    "rel_top": 0.7037,
    "rel_bottom": 0.6296,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.1856,
+   "mass_below": 0.0
   },
   {
-   "id": "ce88d47c5fda",
+   "id": "f8c8c553ae5d",
    "label": "نشا",
    "rel_h": 1.0741,
    "rel_w": 1.5926,
    "rel_top": 0.9259,
    "rel_bottom": 0.1481,
    "count": 1,
-   "source": "pdf:eblaghiye"
+   "source": "pdf:eblaghiye",
+   "mass_above": 0.1981,
+   "mass_below": 0.0
   }
  ]
 }

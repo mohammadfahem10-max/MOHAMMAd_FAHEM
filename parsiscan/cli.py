@@ -42,6 +42,13 @@ def main(argv: list[str] | None = None) -> int:
     f.add_argument("--profile", required=True)
     f.add_argument("--sizes", default="36,48,60", help="اندازه‌های پیکسلی فونت")
     f.add_argument("--words", default=None, help="فایل متنی فهرست کلمات (اختیاری)")
+    f.add_argument("--upscale", type=int, default=1, help="رندر کوچک و بزرگ‌نمایی (مثلاً 4) برای شبیه‌سازی اسکن کم‌کیفیت")
+
+    t = sub.add_parser("bootstrap-transcript", help="الگوبرداری از یک صفحه‌ی اسکن به همراه متن تایپ‌شده‌ی همان صفحه")
+    t.add_argument("file", help="PDF یا تصویر")
+    t.add_argument("--page", type=int, default=1, help="شماره‌ی صفحه (از 1)")
+    t.add_argument("--text", required=True, help="فایل متنی: هر خط چاپی یک خط")
+    t.add_argument("--profile", required=True)
 
     c = sub.add_parser("calibrate", help="کالیبره کردن فاصله‌ی کلمات از PDF دیجیتال")
     c.add_argument("pdf")
@@ -74,7 +81,22 @@ def main(argv: list[str] | None = None) -> int:
             with open(args.words, encoding="utf-8") as fh:
                 words = fh.read().split()
         sizes = [int(x) for x in args.sizes.split(",")]
-        print(json.dumps(bootstrap_from_font(args.font, lib, sizes, words), ensure_ascii=False))
+        print(json.dumps(bootstrap_from_font(args.font, lib, sizes, words, upscale=args.upscale), ensure_ascii=False))
+        return 0
+
+    if args.cmd == "bootstrap-transcript":
+        from .preprocess import load_page_images
+        from .transcript import best_word_gap, bootstrap_from_transcript_iterative
+        lib = Library(args.profile, args.libraries).load()
+        bgr = load_page_images(args.file)[args.page - 1]
+        with open(args.text, encoding="utf-8") as fh:
+            lines = fh.read().split("\n")
+        if not lib.meta.get("word_gap_ratio"):
+            lib.meta["word_gap_ratio"] = best_word_gap(bgr, lines)
+            lib.save()
+        r = bootstrap_from_transcript_iterative(bgr, lines, lib, word_gap_ratio=lib.meta["word_gap_ratio"],
+                                                source=f"transcript:{os.path.basename(args.file)}#{args.page}")
+        print(json.dumps(r, ensure_ascii=False))
         return 0
 
     if args.cmd == "calibrate":

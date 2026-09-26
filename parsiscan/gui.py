@@ -134,7 +134,7 @@ class LabelDialog(QDialog):
                 lab = QLabel()
                 pm = QPixmap(m.crop)
                 if not pm.isNull():
-                    lab.setPixmap(pm.scaledToHeight(min(64, max(24, pm.height() * 2)), Qt.FastTransformation))
+                    lab.setPixmap(pm.scaledToHeight(min(110, max(40, pm.height() * 3)), Qt.FastTransformation))
                 lab.setFrameShape(QFrame.Box)
                 hb.addWidget(lab)
             hb.addStretch(1)
@@ -274,6 +274,39 @@ class ProfilesDialog(QDialog):
             self.refresh()
 
 
+# ------------------------------------------------------- transcript dialog
+class TranscriptDialog(QDialog):
+    """Type (or paste) the text of the page shown, one printed line per line."""
+
+    def __init__(self, parent, page_label: str):
+        super().__init__(parent)
+        self.setWindowTitle("الگوبرداری با متن تایپ‌شده")
+        self.setLayoutDirection(Qt.RightToLeft)
+        self.resize(820, 640)
+        lay = QVBoxLayout(self)
+        hint = QLabel(f"متن «{page_label}» را دقیقاً همان‌طور که چاپ شده تایپ یا جای‌گذاری کنید: هر خط چاپی یک خط. "
+                      "برای خط‌هایی که فقط آرم یا مهر دارند یک خط خالی بگذارید. اعداد را انگلیسی یا فارسی، همان‌طور که چاپ شده بنویسید. "
+                      "فقط شکل‌هایی ذخیره می‌شوند که در دو خط مختلف با یک برچسب تأیید شوند؛ بنابراین یک غلط تایپی الگوی غلط نمی‌سازد.")
+        hint.setWordWrap(True)
+        lay.addWidget(hint)
+        self.edit = QTextEdit()
+        f = QFont()
+        f.setPointSize(12)
+        self.edit.setFont(f)
+        self.edit.setAcceptRichText(False)
+        lay.addWidget(self.edit, 1)
+        btns = QDialogButtonBox()
+        ok = btns.addButton("الگوبرداری و خواندن دوباره", QDialogButtonBox.AcceptRole)
+        btns.addButton("انصراف", QDialogButtonBox.RejectRole)
+        ok.setDefault(True)
+        btns.accepted.connect(self.accept)
+        btns.rejected.connect(self.reject)
+        lay.addWidget(btns)
+
+    def lines(self) -> list[str]:
+        return self.edit.toPlainText().split("\n")
+
+
 # ------------------------------------------------------------ main window
 class MainWindow(QMainWindow):
     def __init__(self):
@@ -310,6 +343,9 @@ class MainWindow(QMainWindow):
         act_label = QAction("برچسب‌زنی ناشناخته‌ها", self)
         act_label.triggered.connect(self.open_labels)
         tb.addAction(act_label)
+        act_tr = QAction("الگوبرداری با متن این صفحه", self)
+        act_tr.triggered.connect(self.open_transcript)
+        tb.addAction(act_tr)
         tb.addSeparator()
         act_txt = QAction("ذخیره TXT", self)
         act_txt.triggered.connect(lambda: self.save("txt"))
@@ -518,6 +554,43 @@ class MainWindow(QMainWindow):
             self.refresh_profiles()
             idx = self.docs.index(d)
             self.start_worker([d["path"]], replace_index=idx)
+
+    def open_transcript(self):
+        d, p = self.current_page()
+        if d is None:
+            QMessageBox.information(self, APP_TITLE, "اول یک سند را باز کنید.")
+            return
+        profile = self.profile_box.currentData()
+        if not profile:
+            QMessageBox.information(self, APP_TITLE, "برای الگوبرداری باید یک پروفایل انتخاب شده باشد.")
+            return
+        if p["source"] != "template":
+            QMessageBox.information(self, APP_TITLE, "این کار فقط برای صفحه‌هایی است که به‌صورت تصویر خوانده شده‌اند.")
+            return
+        dlg = TranscriptDialog(self, f"{os.path.basename(d['path'])} — صفحه {p['index'] + 1}")
+        if dlg.exec() != QDialog.Accepted:
+            return
+        lines = dlg.lines()
+        if sum(1 for l in lines if l.strip()) < 2:
+            QMessageBox.information(self, APP_TITLE, "دست‌کم دو خط متن لازم است.")
+            return
+        from .preprocess import load_page_images
+        from .transcript import best_word_gap, bootstrap_from_transcript_iterative
+        try:
+            bgr = load_page_images(d["path"], self.dpi.value())[p["index"]]
+            lib = Library(profile, LIBS).load()
+            if not lib.meta.get("word_gap_ratio"):
+                lib.meta["word_gap_ratio"] = best_word_gap(bgr, lines, self.dpi.value())
+                lib.save()
+            r = bootstrap_from_transcript_iterative(bgr, lines, lib, self.dpi.value(), lib.meta["word_gap_ratio"],
+                                                    source=f"transcript:{os.path.basename(d['path'])}#{p['index'] + 1}")
+        except Exception as exc:  # noqa: BLE001
+            QMessageBox.warning(self, APP_TITLE, f"خطا در الگوبرداری:\n{exc}")
+            return
+        self.status.showMessage(f"الگوبرداری با متن: {r['exact']} شکل از خط‌های کاملاً منطبق، "
+                                f"{sum(r['anchored_passes'])} شکل تأییدشده؛ مجموع {r['total']}. سند دوباره خوانده می‌شود…")
+        self.refresh_profiles()
+        self.start_worker([d["path"]], replace_index=self.docs.index(d))
 
     # -- export
     def save(self, kind: str):

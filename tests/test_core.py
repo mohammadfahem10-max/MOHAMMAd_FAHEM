@@ -62,3 +62,18 @@ def test_split_paws():
     assert split_paws("بازگشت") == ["با", "ز", "گشت"]
     assert split_paws("دادگستری") == ["د", "ا", "د", "گستر", "ی"]
     assert split_paws("نام‌خانوادگی") == ["نا", "م", "خا", "نو", "ا", "د", "گی"]
+
+
+def test_expected_paws_visual_and_marks():
+    from parsiscan.transcript import expected_paws, expected_paws_visual
+    from parsiscan.library import mark_masses
+    assert expected_paws("شماره") == ["شما", "ر", "ه"]
+    assert expected_paws("1403/11/28") == list("1403/11/28")
+    # on paper the number reads left-to-right, so right-to-left it is reversed
+    assert expected_paws_visual("مورخ1403") == ["مو", "ر", "خ", "3", "0", "4", "1"]
+    assert expected_paws("ضمناً")[-1].endswith("ً")
+    img = np.zeros((40, 20), np.uint8)
+    img[15:35, 5:15] = 255          # body
+    img[3:7, 8:12] = 255            # dot above
+    above, below = mark_masses(img)
+    assert above > 0.05 and below == 0

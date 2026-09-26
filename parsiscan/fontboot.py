@@ -72,11 +72,14 @@ def render_word(font: ImageFont.FreeTypeFont, word: str, pad: int = 20) -> np.nd
 
 
 def bootstrap_from_font(font_path: str, library: Library, sizes_px: list[int], words: list[str] | None = None,
-                        digits: bool = True) -> dict:
+                        digits: bool = True, upscale: int = 1) -> dict:
     """Render ``words`` at each pixel size and add their PAWs to the library.
 
     ``sizes_px``: font pixel sizes. Templates are stored relative to the line
     x-height, so two or three sizes are enough for one document family.
+    ``upscale``: render small and enlarge (e.g. size 12, upscale 4) to mimic
+    documents that were produced at low resolution and then scanned or
+    enlarged; the blobby pixel look of such scans is reproduced that way.
     """
     words = list(words or DEFAULT_WORDS)
     if digits:
@@ -87,6 +90,8 @@ def bootstrap_from_font(font_path: str, library: Library, sizes_px: list[int], w
         for word in words:
             word = normalize(word)
             gray = render_word(font, word)
+            if upscale > 1:
+                gray = cv2.resize(gray, None, fx=upscale, fy=upscale, interpolation=cv2.INTER_LINEAR)
             binary = binarize(gray, 300)
             lines = segment_page(binary, 300, word_gap_ratio=100.0)
             if len(lines) != 1:

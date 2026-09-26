@@ -162,22 +162,32 @@ def segment_line(binary: np.ndarray, y0: int, y1: int, dpi: int = 300, word_gap_
     if not bodies:
         bodies, marks = comps, []
 
-    # attach every mark to the body with the largest horizontal overlap;
-    # fall back to nearest body in x
+    # attach every mark (dot, madda, hamza) to a body it overlaps
+    # horizontally; among those, the body vertically nearest to the mark
+    # wins (the madda of آ sits right on the alef's top, far above the
+    # x-height of the wide neighbour it also overlaps). Ties -> larger
+    # overlap. Marks overlapping nothing go to the nearest body in x.
     groups = {b[5]: [b] for b in bodies}
     for m in marks:
-        mx0, _, mx1, _, _, _ = m
-        best, best_ov, best_dist = None, 0, 1e9
+        mx0, my0, mx1, my1, _, _ = m
+        mc = (mx0 + mx1) / 2
+        best, best_key = None, None
         for b in bodies:
             ov = min(mx1, b[2]) - max(mx0, b[0])
-            if ov > best_ov:
-                best, best_ov = b, ov
-            elif best_ov <= 0:
-                d = min(abs(mx0 - b[2]), abs(b[0] - mx1))
-                if d < best_dist:
-                    best, best_dist = b, d
-        if best is not None:
-            groups[best[5]].append(m)
+            if ov <= 0:
+                continue
+            if my1 <= b[1]:
+                vgap = b[1] - my1            # mark above the body
+            elif my0 >= b[3]:
+                vgap = my0 - b[3]            # mark below the body
+            else:
+                vgap = 0                     # inside the body's vertical range
+            key = (vgap, -ov)
+            if best_key is None or key < best_key:
+                best, best_key = b, key
+        if best is None:
+            best = min(bodies, key=lambda b: min(abs(mc - b[0]), abs(mc - b[2])))
+        groups[best[5]].append(m)
 
     paws: list[Paw] = []
     for b in bodies:
