@@ -42,6 +42,11 @@
     doC_STATE: 'وضعیت سند', doC_STATE_CODE: 'کد وضعیت', sardaftarconfirmdate: 'تاریخ تأیید سردفتر', isoriginal: 'ثبت نهایی', singulartitle: 'عنوان',
     aganttypetitle: 'سمت در سند', legaltext: 'متن حقوقی', docImage: 'تصویر سند', vehiclE_TYPE: 'نوع خودرو', name: 'نام', family: 'نام خانوادگی',
   };
+  const PROFILE = {
+    fistName: 'نام', firstName: 'نام', name: 'نام', lastName: 'نام خانوادگی', family: 'نام خانوادگی', fatherName: 'نام پدر', birthDate: 'تاریخ تولد',
+    nationalCode: 'کد ملی', userName: 'کد ملی', mobileNo: 'تلفن همراه', address: 'نشانی', postCode: 'کد پستی', sexType: 'جنسیت', personType: 'نوع شخص',
+    identityNo: 'شمارهٔ شناسنامه', identitySerial: 'سریال شناسنامه', identitySerie: 'سری شناسنامه', isStaff: 'کارمند', sanaValidation: 'اعتبارسنجی ثنا', validationDateTime: 'زمان اعتبارسنجی',
+  };
   const COMPANY = {
     name: 'نام شرکت', nationalCode: 'شناسهٔ ملی', postCode: 'کد پستی', registerDate: 'تاریخ ثبت', registerNumber: 'شمارهٔ ثبت',
     'theCICompanyType.title': 'نوع شرکت', 'theCICompanyType.code': 'کد نوع شرکت', 'theCICompanyType.state': 'وضعیت نوع', 'theCICompanyType.id': 'شناسهٔ نوع', 'theCICompanyType.allowedForcompany': 'مجاز برای شرکت', theObjectState: 'وضعیت',
@@ -84,7 +89,9 @@
     { id: 'appointments', path: '/appointment/ceo/getRequestList', module: 'appointment', label: 'نوبت‌های من', short: 'نوبت‌ها', icon: 'calendar', group: 'نوبت‌دهی',
       page: '/portal/appointment/ceo-appointment', keyFields: ['id', 'requestId'], nameOf: (f) => `نوبت ${f.requestId || f.id || ''}`.trim(), order: 9, labels: {} },
     { id: 'profile', path: '/user/GetUserProfile', module: 'user', label: 'پروفایل', short: 'پروفایل', icon: 'user', group: 'حساب کاربری',
-      page: '/portal/usr/profile', keyFields: [], single: true, nameOf: () => 'پروفایل', order: 10, labels: COMMON },
+      page: '/portal/usr/profile', keyFields: [], single: true, nameOf: () => 'پروفایل', order: 10, labels: PROFILE,
+      hideFields: ['password', 'id', 'identitySerial', 'identityNo', 'identitySerie', 'personType', 'sexType', 'isStaff', 'sanaValidation', 'validationDateTime', 'userName'],
+      primary: ['fistName', 'lastName', 'fatherName', 'birthDate', 'mobileNo'] },
   ];
   const SECTIONS_BY_PATH = new Map(SECTIONS.map((s) => [s.path, s]));
   const SECTIONS_BY_ID = new Map(SECTIONS.map((s) => [s.id, s]));
@@ -104,6 +111,17 @@
     const s = String(status || '');
     for (const [re, t] of STATUS_TONE) if (re.test(s)) return t;
     return 'muted';
+  }
+
+  /** نام کامل شخص از پروفایل: «حمیدرضا صادقی» و «فرزند غلامعباس» */
+  function personName(profileFlat) {
+    if (!profileFlat) return null;
+    const f = profileFlat;
+    const first = f.fistName || f.firstName || f.name || '';
+    const last = f.lastName || f.family || f.familyName || '';
+    const full = (String(first).trim() + ' ' + String(last).trim()).trim();
+    if (!full) return null;
+    return { first: String(first).trim(), last: String(last).trim(), full, father: f.fatherName ? String(f.fatherName).trim() : '', nationalCode: f.userName || f.nationalCode || f.nationalno || '' };
   }
 
   function sectionFor(path) { return SECTIONS_BY_PATH.get(path) || null; }
@@ -169,7 +187,15 @@
       return { key: recordKey(sec, flat, i), raw, flat };
     });
     const meta = U.isPlainObject(data) && sec.list ? Object.fromEntries(Object.entries(data).filter(([k]) => k !== sec.list)) : null;
-    return { section: sec, records, meta, replace: !sec.paged || (meta && Number(meta.pageIndex || 1) <= 1) };
+    // جایگزینی فقط برای صفحهٔ نخست: از پارامتر صفحه در بدنهٔ درخواست تشخیص داده می‌شود (نه فیلد پاسخ)
+    let firstPage = true;
+    if (sec.paged) {
+      const b = parseBody(cap.requestBody);
+      const pageIdx = Number(b.pageIndex != null ? b.pageIndex : b.page != null ? b.page : 1);
+      const skip = Number(b.skip != null ? b.skip : b.offset != null ? b.offset : 0);
+      firstPage = (Number.isFinite(pageIdx) ? pageIdx <= 1 : true) && (Number.isFinite(skip) ? skip <= 0 : true);
+    }
+    return { section: sec, records, meta, replace: !sec.paged || firstPage };
   }
 
   function transformCaseDocuments(cap, data, ctx) {
@@ -228,5 +254,5 @@
     return SECTIONS.filter((s) => !s.virtual).sort((a, b) => a.order - b.order).map((s) => ({ key: s.id, label: s.label, page: s.page, api: s.path, list: s.list || null, paged: s.paged || null, rowActions: s.rowActions || [], deep: s.id === 'executive-cases' ? 'executive' : null, single: !!s.single }));
   }
 
-  S.siteMap = { SECTIONS, sectionFor, byId, fieldLabel, humanize, transform, parseBody, fill, recordKey, tone, collectPlan, IGNORE, CHILD_PATHS, COMMON };
+  S.siteMap = { SECTIONS, sectionFor, byId, fieldLabel, humanize, transform, parseBody, fill, recordKey, tone, collectPlan, personName, IGNORE, CHILD_PATHS, COMMON };
 })(typeof window !== 'undefined' ? (window.SabtMan = window.SabtMan || {}) : (module.exports = {}));

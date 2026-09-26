@@ -21,8 +21,8 @@ const CORE_ORDER = [
   path.join(UI, 'core', 'bridge.js'),
   path.join(REPORTS, 'official.js'),
   path.join(REPORTS, 'reports.js'),
+  path.join(REPORTS, 'catalog.js'),
   path.join(UI, 'core', 'export.js'),
-  path.join(UI, 'core', 'panel.js'),
 ];
 
 function read(p) { return fs.readFileSync(p, 'utf8'); }
@@ -70,7 +70,7 @@ function siteBundle() {
 /** بستهٔ رابط برنامه (برنامه/app.js): S.hook = remote-hook؛ پنل جاسازی‌شده؛ صفحه‌های ورود/گردآوری/پیشخوان/تنظیمات */
 function appBundle() {
   const files = [path.join(UI, 'core', 'util.js'), path.join(UI, 'core', 'site-map.js'), path.join(UI, 'core', 'bridge.js'), path.join(UI, 'core', 'remote-hook.js'), path.join(UI, 'core', 'store.js'),
-    path.join(REPORTS, 'official.js'), path.join(REPORTS, 'reports.js'), path.join(UI, 'core', 'export.js'),
+    path.join(REPORTS, 'official.js'), path.join(REPORTS, 'reports.js'), path.join(UI, 'core', 'export.js'), path.join(REPORTS, 'catalog.js'),
     ...['ui-core.js', 'ui-charts.js', 'ui-dashboard.js', 'ui-section.js', 'ui-reports.js', 'ui-settings.js'].map((f) => path.join(UI, 'برنامه', f))];
   const parts = ['/* ثبت من — رابط برنامه (ساخته‌شده با ابزار/build.js) */', '"use strict";', '(function(){', 'window.SabtMan = window.SabtMan || {};'];
   for (const f of files) parts.push(`/* ---- ${path.relative(ROOT, f)} ---- */`, read(f));

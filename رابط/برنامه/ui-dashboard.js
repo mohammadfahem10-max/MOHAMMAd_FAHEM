@@ -10,16 +10,12 @@
   function sections() { return st().sectionList(); }
   function secByPath(p) { return st().state.sections.get(p); }
 
-  function guessName() {
-    const p = secByPath('/user/GetUserProfile');
+  function person() {
+    const p = secByPath('/user/GetUserProfile') || secByPath('/user/getuserinfo');
     const rec = p && p.records[0];
-    if (!rec) return '';
-    const f = rec.flat;
-    const cand = ['fullName', 'fullname', 'name', 'title', 'firstName', 'نام'].map((k) => f[k]).find((v) => typeof v === 'string' && /[آ-ی]/.test(v));
-    if (cand) { const fam = f.family || f.lastName || f.familyName; return fam && typeof fam === 'string' ? cand + ' ' + fam : cand; }
-    for (const [k, v] of Object.entries(f)) if (typeof v === 'string' && /[آ-ی]{2,}/.test(v) && v.length < 40 && !/تاریخ|\d/.test(v) && /name|title|نام/i.test(k)) return v;
-    return '';
+    return rec ? S.siteMap.personName(rec.flat) : null;
   }
+  function guessName() { const n = person(); return n ? n.full : ''; }
 
   /** همهٔ رخدادهای مدارک اجرایی (برای نمودارها و فهرست‌ها) */
   function allEvents() {
@@ -63,14 +59,15 @@
     const s = st().state.settings;
     const cases = secByPath('/executive/getallcases'), docs = secByPath('/executive/documents'), ssar = secByPath('/ssar/getalldocuments'), estate = secByPath('/estate/GetEstatePersonList'), companies = secByPath('/company/getsinglefootprint');
     const events = allEvents();
-    const name = guessName();
-    const nat = (S.app.state.login.nationalCode || '').replace(/^(\d{3})\d{4}(\d{3})$/, '$1••••$2');
+    const who = person();
+    const name = who ? who.full : '';
+    const nat = ((who && who.nationalCode) || S.app.state.login.nationalCode || '').replace(/^(\d{3})\d{4}(\d{3})$/, '$1••••$2');
     const pending = docs ? pendingDocs(docs, Number(s.pendingDays) || 7) : [];
     const unseen = docs ? unseenDocs(docs) : [];
     const recent = events.slice(0, 10);
     const q = S.exporter.queue;
     const page = el(`<div class="page">
-      <div class="card hero"><div class="av">${esc((name || 'ث').trim().slice(0, 1))}</div><div class="t"><b>${esc(name ? 'خوش آمدید، ' + name : 'خوش آمدید')}</b><small>${nat ? 'کد ملی ' + n(nat) + ' · ' : ''}${S.app.state.lastCollect ? 'آخرین گردآوری ' + U.formatSystemDate(S.app.state.lastCollect) : 'هنوز گردآوری نشده'}${q.items.length ? ' · در حال گرفتن جزئیات ' + n(q.done + q.failed) + ' از ' + n(q.done + q.failed + q.items.length) : ''}</small></div>
+      <div class="card hero"><div class="av">${esc((name || 'ث').trim().slice(0, 1))}</div><div class="t"><b>${esc(name ? 'خوش آمدید، ' + name : 'خوش آمدید')}</b><small>${who && who.father ? 'فرزند ' + esc(who.father) + ' · ' : ''}${nat ? 'کد ملی ' + n(nat) + ' · ' : ''}${S.app.state.lastCollect ? 'آخرین گردآوری ' + U.formatSystemDate(S.app.state.lastCollect) : 'هنوز گردآوری نشده'}${q.items.length ? ' · در حال گرفتن جزئیات ' + n(q.done + q.failed) + ' از ' + n(q.done + q.failed + q.items.length) : ''}</small></div>
         <div class="acts"><button class="btn" data-act="refresh">${icon('refresh')}به‌روزرسانی داده‌ها</button><button class="btn" data-act="reports">${icon('report')}گزارش جامع</button><button class="btn pri" data-act="dlall">${icon('download')}دانلود همهٔ داده‌ها</button></div></div>
       <div class="grid c4">
         ${statCard('پرونده‌های اجرایی', cases ? cases.records.length : 0, cases ? 'با ' + n(docs ? docs.records.length : 0) + ' مدرک و ' + n(events.length) + ' رخداد' : 'گرفته نشده', 'gavel', counterChips(cases, 'caseState', 3))}

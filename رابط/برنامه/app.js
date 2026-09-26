@@ -11,10 +11,22 @@
     page: 'login', arg: null, siteState: null, siteReady: false, collecting: null, lastCollect: null, countdown: null, msg: null, timer: null,
     login: (function () { let nn = '', rr = false; try { rr = localStorage.getItem('sm_remember') === '1'; if (rr) nn = localStorage.getItem('sm_nat') || ''; } catch (e) { /* ادامه */ } return { nationalCode: nn, captcha: null, needCaptcha: false, otpSent: false, remember: rr }; })(),
     el: {}, search: '',
+    session: { start: 0, last: 0, ttlMs: 600000, expired: false }, resume: null,
   };
   const siteWaiters = [];
 
   /* ---------- ظاهر ---------- */
+  /** بارگذاری نشان برای سربرگ PDF (data URL) */
+  function loadLogo() {
+    try { fetch('نشان.png').then((r) => r.blob()).then((b) => { const fr = new FileReader(); fr.onload = () => { S.logoData = fr.result; }; fr.readAsDataURL(b); }).catch(() => {}); } catch (e) { /* ادامه */ }
+  }
+
+  /* ---------- شمارش معکوس نشست ۱۰ دقیقه‌ای ---------- */
+  function noteActivity() { app.session.last = Date.now(); if (!app.session.start) app.session.start = Date.now(); app.session.expired = false; }
+  function sessionRemainingMs() { if (!app.session.last) return null; return Math.max(0, app.session.ttlMs - (Date.now() - app.session.last)); }
+  let sessTimer = null;
+  function startSessionTimer() { if (sessTimer) clearInterval(sessTimer); sessTimer = setInterval(() => { if (app.page !== 'login' && app.page !== 'collecting') renderStatus(); }, 1000); }
+
   function applyAppearance() {
     const s = st().state.settings;
     UI.applyTheme(s.theme || 'fluent', Number(s.fontSize) || 17);
@@ -86,7 +98,15 @@
     const total = q.done + q.failed + q.items.length;
     const work = q.items.length || q.running ? `<div class="row"><span class="spin"></span><span>در حال گرفتن ${n(q.done + q.failed)} از ${n(total)}${q.paused ? ' (منتظر ورود)' : ''}</span></div><div class="qbar"><i style="width:${total ? Math.round(((q.done + q.failed) / total) * 100) : 0}%"></i></div>` : '';
     const svc = (S.bridge.last || {}).service || {};
-    f.innerHTML = `<div class="row"><span>${sess}</span></div>${work}${svc.busy ? '<div class="row"><span class="spin"></span><span>در حال مرتب‌سازی فایل‌ها</span></div>' : ''}${app.lastCollect ? `<div class="row muted">آخرین گردآوری: <span class="num">${U.formatSystemDate(app.lastCollect)}</span></div>` : ''}`;
+    const remMs = sessionRemainingMs();
+    let timer = '';
+    if (remMs !== null && app.siteState && app.siteState.page === 'loggedIn') {
+      const sec = Math.round(remMs / 1000), mm = Math.floor(sec / 60), ss = sec % 60;
+      const cls = remMs < 60000 ? 'err' : remMs < 150000 ? 'warn' : '';
+      timer = `<div class="row sess-timer ${cls}">${icon('clock')}<span>زمان باقی‌مانده از نشست: <b class="num">${n(mm)}:${n(String(ss).padStart(2, '0'))}</b></span></div>`;
+    }
+    const res = app.resume ? `<div class="row muted">دانلودِ ${n(app.resume.total)} پروندهٔ نیمه‌کاره — با ورود دوباره ادامه می‌یابد</div>` : '';
+    f.innerHTML = `<div class="row"><span>${sess}</span></div>${timer}${work}${res}${svc.busy ? '<div class="row"><span class="spin"></span><span>در حال مرتب‌سازی فایل‌ها</span></div>' : ''}${app.lastCollect ? `<div class="row muted">آخرین گردآوری: <span class="num">${U.formatSystemDate(app.lastCollect)}</span></div>` : ''}`;
   }
 
   /* ---------- ورود ---------- */
@@ -224,8 +244,11 @@
     stopCountdown();
     app.login.otpSent = false; app.login.needCaptcha = false; app.login.otpDraft = ''; app.login.capDraft = ''; app.login.focus = null; setMsg(null);
     S.hook.sessionExpired = false;
+    noteActivity();
     S.exporter.resumeQueue();
     await collectAll();
+    // ادامهٔ دانلودِ نیمه‌کاره پس از ورود دوباره (بند «ادامهٔ دانلود در صورت اتمام وقت»)
+    if (app.resume && !app.session.expired) { const r = app.resume; app.resume = null; try { if (S.ui.resumeDownload) await S.ui.resumeDownload(r); } catch (e) { /* ادامه */ } }
   }
 
   function executiveHave() {
@@ -309,11 +332,11 @@
     app.el.railfoot = $('[data-role=railfoot]');
     S.bridge.install();
     S.hook.install();
-    S.hook.on('capture', (cap) => { try { st().ingest(cap); } catch (e) { console.error('[ثبت من] ingest', e); } });
+    S.hook.on('capture', (cap) => { try { noteActivity(); st().ingest(cap); } catch (e) { console.error('[ثبت من] ingest', e); } });
     S.hook.on('file', (f) => { try { st().ingestFile(f); } catch (e) { console.error('[ثبت من] file', e); } });
     S.hook.on('session', (ev) => {
-      if (ev.expired) { setMsg('warn', 'نشست تمام شد؛ دوباره وارد شوید. کارهای در صف پس از ورود ادامه می‌یابد.'); app.login.otpSent = false; app.siteState = null; if (app.page !== 'login') go('login'); }
-      else { S.exporter.resumeQueue(); }
+      if (ev.expired) { app.session.expired = true; setMsg('warn', 'زمان نشست (۱۰ دقیقه) تمام شد؛ دوباره وارد شوید. گردآوری و دانلود از همان‌جا که مانده ادامه می‌یابد.'); app.login.otpSent = false; app.siteState = null; if (app.page !== 'login') go('login'); }
+      else { noteActivity(); S.exporter.resumeQueue(); }
       renderStatus();
     });
     S.hook.onSite((msg) => {
@@ -347,6 +370,8 @@
     });
     applyAppearance();
     setupScheduler();
+    loadLogo();
+    startSessionTimer();
     go('login');
     S.bridge.requestState();
     S.hook.cmd('state', {}, 8000).then((stt) => { if (!app.siteReady) { app.siteReady = true; app.siteState = stt; if (app.page === 'login') { if (stt && stt.page === 'loggedIn' && !app.lastCollect) afterLogin(); else go('login'); } } }).catch(() => {});

@@ -101,7 +101,7 @@
     const keepScroll = box.scrollTop;
     box.innerHTML = html;
     box.scrollTop = keepScroll;
-    bind(box, section, v, recs, pageRecs, cols);
+    bind(box.firstElementChild || box, section, v, recs, pageRecs, cols);
   }
 
   function pagerNums(p, total) {
@@ -202,10 +202,20 @@
     while (Date.now() - start < 3600000) {
       const q = S.exporter.queue;
       const pendingMine = q.items.some((it) => docs.includes(it.rec));
-      if (!pendingMine && !q.running) break;
-      if (q.paused && S.hook.sessionExpired) { toast('نشست تمام شد؛ پس از ورود دوباره، گرفتن فایل‌ها ادامه می‌یابد.', 'warn'); }
+      if (!pendingMine && !q.running) return true;
+      if ((q.paused && S.hook.sessionExpired) || S.app.state.session.expired) return false;   // وقت نشست تمام شد؛ ادامه پس از ورود
       await U.sleep(800);
     }
+    return true;
+  }
+
+  /** ادامهٔ دانلودِ نیمه‌کارهٔ پرونده‌های اجرایی پس از ورود دوباره */
+  async function resumeDownload(r) {
+    const cs = st().state.sections.get('/executive/getallcases');
+    if (!cs) return;
+    const cases = cs.records.filter((c) => r.keys.includes(c.flat.no + '|' + c.flat.subNo));
+    toast(`ادامهٔ دانلود ${n(cases.length)} پرونده از جایی که مانده بود…`);
+    await downloadRecords(cs, cases, r.mode);
   }
 
   async function downloadRecords(section, records, mode) {
@@ -219,7 +229,13 @@
         if (section.path === '/executive/documents') { const keys = new Set(records.map((r) => r.flat.caseNo + '|' + r.flat.caseSubNo)); cases = casesSec.records.filter((c) => keys.has(c.flat.no + '|' + c.flat.subNo)); }
         const caseKeys = new Set(cases.map((c) => c.flat.no + '|' + c.flat.subNo));
         const docs = docsSec ? docsSec.records.filter((d) => caseKeys.has(d.flat.caseNo + '|' + d.flat.caseSubNo)) : [];
-        if (mode !== 'text' && docsSec) await ensureExecutiveFiles(docsSec, docs);
+        if (mode !== 'text' && docsSec) {
+          const keys = cases.map((c) => c.flat.no + '|' + c.flat.subNo);
+          S.app.state.resume = { keys, mode, total: cases.length };
+          const done = await ensureExecutiveFiles(docsSec, docs);
+          if (!done) { toast('زمان نشست تمام شد؛ فایل‌ها تا اینجا گرفته شد. با ورود دوباره، دانلود همین پرونده‌ها ادامه می‌یابد.', 'warn'); return; }
+          S.app.state.resume = null;
+        }
         toast(`در حال ساخت بستهٔ ${n(cases.length)} پرونده…`);
         job = await S.exporter.buildExecutiveJob(cases, mode);
       } else {
@@ -272,7 +288,7 @@
       if (cur === 'files') {
         let h = '';
         if (files.length) h += `<h4>فایل‌های رسمی (عین اصل)</h4><div class="list-rows">${files.map((x) => `<div class="r" data-file="${esc(x.key)}"><span>${icon('image')}</span><span class="w">${esc(x.f.fileName)}</span><span class="m">${n(Math.round(x.f.bytes.length / 1024))} کیلوبایت</span></div>`).join('')}</div>`;
-        if (det && det.rows.length) h += `<h4 style="margin-top:14px">${esc(det.kind || 'جزئیات')} (${n(det.rows.length)})</h4><div class="tbl-wrap"><table class="tbl"><thead><tr>${Object.keys(U.flatten(det.rows[0])).map((c) => `<th>${esc(lbl(c))}</th>`).join('')}${isDoc ? '<th></th>' : ''}</tr></thead><tbody>${det.rows.map((r, i) => { const f = U.flatten(r); return `<tr>${Object.keys(f).map((c) => `<td>${esc(U.formatValue(f[c]))}</td>`).join('')}${isDoc ? `<td><button class="btn xs" data-getfile="${i}">${icon('download')}گرفتن فایل</button></td>` : ''}</tr>`; }).join('')}</tbody></table></div>`;
+        if (det && det.rows.length) h += `<h4 style="margin-top:14px">${esc(det.kind || 'جزئیات')} (${n(det.rows.length)})</h4><div class="tbl-wrap"><table class="tbl"><thead><tr>${Object.keys(U.flatten(det.rows[0])).map((c) => `<th>${esc(lbl(c))}</th>`).join('')}${isDoc ? '<th></th>' : ''}</tr></thead><tbody>${det.rows.map((r, i) => { const f = U.flatten(r); return `<tr>${Object.keys(f).map((c) => `<td>${esc(U.formatValue(f[c]))}</td>`).join('')}${isDoc ? `<td><button class="btn xs" data-getfile="${esc(String(U.flatten(r).reportTypeCode != null ? U.flatten(r).reportTypeCode : (i + 1)))}">${icon('download')}گرفتن فایل</button></td>` : ''}</tr>`; }).join('')}</tbody></table></div>`;
         if (att && att.rows.length) h += `<h4 style="margin-top:14px">پیوست‌ها (${n(att.rows.length)})</h4><div class="tbl-wrap"><table class="tbl"><thead><tr>${Object.keys(U.flatten(att.rows[0])).map((c) => `<th>${esc(lbl(c))}</th>`).join('')}</tr></thead><tbody>${att.rows.map((r) => { const f = U.flatten(r); return `<tr>${Object.keys(f).map((c) => `<td>${esc(U.formatValue(f[c]))}</td>`).join('')}</tr>`; }).join('')}</tbody></table></div>`;
         if (!h) h = `<div class="empty">${isDoc ? 'فهرست گزارش‌های رسمی و پیوست‌های این مدرک هنوز از سامانه گرفته نشده است.' : 'پیوست یا گزارشی برای این رکورد گرفته نشده است.'}${isDoc ? '<div style="margin-top:10px"><button class="btn pri" data-act="fetchdet">' + icon('refresh') + 'گرفتن از سامانه</button></div>' : ''}</div>`;
         return h;
@@ -287,7 +303,7 @@
       d.addEventListener('click', async (e) => {
         const t = e.target.closest('[data-tab]'); if (t) { cur = t.dataset.tab; d.querySelectorAll('.tabs button').forEach((b) => b.classList.toggle('on', b.dataset.tab === cur)); d.querySelector('[data-role=bd]').innerHTML = body(); return; }
         const m = e.target.closest('[data-dlmode]'); if (m) return downloadRecords(section, [rec], m.dataset.dlmode);
-        const gf = e.target.closest('[data-getfile]'); if (gf) { S.exporter.enqueueTyped(section, [rec], 'فایل', { force: true }); toast('فایل در صف گرفتن قرار گرفت؛ پس از رسیدن، در همین کشو دیده می‌شود.'); return; }
+        const gf = e.target.closest('[data-getfile]'); if (gf) { S.exporter.enqueueTyped(section, [rec], 'فایل', { force: true, only: gf.dataset.getfile }); toast('فایل در صف گرفتن قرار گرفت؛ پس از رسیدن، در همین کشو دیده می‌شود.'); return; }
         const fl = e.target.closest('[data-file]'); if (fl) { const f = st().state.files.get(fl.dataset.file); if (f) { S.exporter.downloadBytes(f.fileName, f.bytes, f.contentType); toast('فایل در «خروجی‌های دیگر» پوشهٔ مقصد ذخیره شد.'); } return; }
         const a = e.target.closest('[data-act]'); if (!a) return;
         if (a.dataset.act === 'fetchdet') { S.exporter.enqueueTyped(section, [rec], null, { force: true }); toast('در صف گرفتن قرار گرفت.'); }
@@ -299,5 +315,5 @@
   }
 
   S.ui.pages = Object.assign(S.ui.pages || {}, { section: render });
-  Object.assign(S.ui, { openRecord, downloadSection, downloadAll, downloadRecords, refreshSection: refresh, columnsOf, viewState });
+  Object.assign(S.ui, { openRecord, downloadSection, downloadAll, downloadRecords, resumeDownload, refreshSection: refresh, columnsOf, viewState });
 })(window.SabtMan = window.SabtMan || {});

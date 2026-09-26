@@ -9,6 +9,7 @@ function load() {
   for (const f of CORE_ORDER) { delete require.cache[require.resolve(f)]; require(f); }
   const S = global.window.SabtMan;
   S.official = S.official || require(path.join(__dirname, '..', 'گزارش‌ها', 'official.js'));
+  require(path.join(__dirname, '..', 'گزارش‌ها', 'catalog.js'));
   return S;
 }
 

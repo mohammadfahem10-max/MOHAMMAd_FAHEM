@@ -287,3 +287,21 @@ html.dark .list-rows .r{background:rgba(0,0,0,.15)}
 .tile .acts{display:flex;gap:6px;flex-wrap:wrap;margin-top:auto}
 .tile.empty{opacity:.75}
 kbd{font:inherit;font-size:.8em;padding:1px 6px;border-radius:5px;border:1px solid var(--line-2);background:var(--glass-2)}
+
+/* ---------- فهرست گزارش‌ها ---------- */
+.rep-cats{display:flex;flex-direction:column;gap:4px;max-height:none}
+.rep-cat{display:flex;gap:9px;align-items:flex-start;padding:8px 10px;border-radius:var(--r2);border:1px solid transparent;background:transparent;cursor:pointer;text-align:right;width:100%;color:var(--tx2)}
+.rep-cat:hover{background:var(--hover)}
+.rep-cat.on{background:rgba(var(--ac-rgb),.1);border-color:rgba(var(--ac-rgb),.3);color:var(--tx)}
+.rep-cat .svg{width:1.25em;height:1.25em;flex:none;color:var(--ac);margin-top:2px}
+.rep-cat span{display:flex;flex-direction:column;min-width:0}
+.rep-cat b{font-size:.9em;font-weight:700}
+.rep-cat small{font-size:.75em;color:var(--tx3);line-height:1.4;white-space:normal}
+.rep-cat.on small{color:var(--tx2)}
+
+/* ---------- شمارش معکوس نشست ---------- */
+.sess-timer{display:flex;align-items:center;gap:6px;font-size:.82em}
+.sess-timer .ring{width:16px;height:16px;flex:none}
+.sess-timer.warn{color:var(--warn)}.sess-timer.err{color:var(--err)}
+.resume-banner{display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:var(--r2);background:rgba(183,121,31,.12);border:1px solid rgba(183,121,31,.3);color:var(--warn);font-size:.9em;margin-bottom:12px}
+.resume-banner .btn{margin-inline-start:auto}

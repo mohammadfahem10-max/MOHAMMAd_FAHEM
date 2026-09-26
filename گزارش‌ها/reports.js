@@ -46,15 +46,17 @@
         user: f.user ? U.formatValue(flat[f.user]) : '', note: f.note ? U.formatValue(flat[f.note]) : '',
       };
     });
-    const dated = steps.filter((s) => s.ts !== null);
-    if (dated.length === steps.length) steps.sort((a, b) => a.ts - b.ts);
-    for (let i = 0; i < steps.length; i++) {
-      const cur = steps[i], next = steps[i + 1];
-      cur.durationMs = cur.ts !== null && next && next.ts !== null ? next.ts - cur.ts : (cur.ts !== null && !next ? (nowMs || Date.now()) - cur.ts : null);
+    // مرتب‌سازی زمانی: سطرهای تاریخ‌دار همیشه بر حسب زمان؛ ماندگاری بین دو سطرِ تاریخ‌دارِ پیاپی
+    steps.sort((a, b) => { if (a.ts === null && b.ts === null) return a.i - b.i; if (a.ts === null) return 1; if (b.ts === null) return -1; return a.ts - b.ts; });
+    const datedSteps = steps.filter((s) => s.ts !== null);
+    for (let i = 0; i < datedSteps.length; i++) {
+      const cur = datedSteps[i], next = datedSteps[i + 1];
+      cur.durationMs = next ? next.ts - cur.ts : (nowMs || Date.now()) - cur.ts;
       cur.open = !next;
     }
-    const first = steps.find((s) => s.ts !== null);
-    const last = [...steps].reverse().find((s) => s.ts !== null);
+    for (const s of steps) if (s.ts === null) { s.durationMs = null; s.open = false; }
+    const first = datedSteps[0] || null;
+    const last = datedSteps[datedSteps.length - 1] || null;
     return {
       fields: f, steps, first, last,
       totalMs: first && last ? last.ts - first.ts : null,
@@ -204,7 +206,7 @@
       if (it.reports.length) body += '<h3>گزارش‌های رسمی این مدرک</h3>' + O().rowsTable(it.reports.map((r) => U.flatten(r)), null, { label: LD });
       if (it.attachments.length) body += '<h3>پیوست‌ها</h3>' + O().rowsTable(it.attachments.map((r) => U.flatten(r)), null, { label: LD });
     }
-    return O().render({ title: `کارنامهٔ روند — ${name}`, subtitle: 'اجرای اسناد رسمی — ' + (caseRec.flat.unitName || ''), bodyHtml: body, footer: name, fontCss: opts.fontCss });
+    return O().render({ title: `کارنامهٔ روند — ${name}`, subtitle: 'اجرای اسناد رسمی — ' + (caseRec.flat.unitName || ''), bodyHtml: body, footer: name, fontCss: opts.fontCss, logo: opts.logo, person: opts.person });
   }
 
   function isFinal(status) { return /(پایان|پايان|خاتمه|بایگانی|بايگاني|مختومه|تایید نهایی|تأیید نهایی|تاييد نهايي|ابطال|لغو|انجام شده)/.test(String(status || '')); }
@@ -281,7 +283,7 @@
     if (want('unseen')) body += '<h2>رویت‌نشده‌ها</h2>' + listRecords(report.unseen);
     if (want('recent')) body += '<h2>تازه‌ها</h2>' + listRecords(report.recent);
     if (want('timelines')) body += '<h2>خط زمانی هر رکورد</h2>' + (report.perRecord.filter((p) => p.analysis).map((p) => `<div class="avoid"><h2>${esc(p.caseName)} <span class="badge">${esc(p.type)}</span></h2>${timelineHtml(p.analysis)}</div>`).join('') || '<p class="muted">روندی ثبت نشده است.</p>');
-    return O().render({ title: opts.title || `گزارش رخداد و روند — ${label}`, subtitle: label, bodyHtml: body, footer: label, fontCss: opts.fontCss });
+    return O().render({ title: opts.title || `گزارش رخداد و روند — ${label}`, subtitle: label, bodyHtml: body, footer: label, fontCss: opts.fontCss, logo: opts.logo, person: opts.person });
   }
 
   function listRecords(items) {

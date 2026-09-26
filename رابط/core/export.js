@@ -428,6 +428,7 @@
         const rows = det && det.kind === 'گزارش‌ها' ? det.rows : [];
         rows.forEach((row, i) => {
           const code = row.reportTypeCode || String(i + 1);
+          if (opts.only != null && String(opts.only) !== String(code)) return;
           if (!opts.force && rec.files && rec.files.includes(`file:${rec.key}:${code}`)) return;
           const body = S.siteMap.fill(fo.body, rec.flat, { reportTypeCode: code, reportCommand: row.reportCommand === null || row.reportCommand === undefined ? 'null' : row.reportCommand });
           push(rec, { method: fo.method, url: new URL(fo.path, siteOrigin()).href, headers: {}, body }, 'فایل', 'file:' + code);
