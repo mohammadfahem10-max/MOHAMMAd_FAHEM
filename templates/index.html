@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="card">
+  <h1>استخراج متن از مدارک</h1>
+  <form method="post" action="{{ url_for('extract') }}" enctype="multipart/form-data" class="form">
+    <label>فایل‌ها (PDF یا تصویر، چندتایی)
+      <input type="file" name="files" multiple required accept=".pdf,.png,.jpg,.jpeg,.tif,.tiff,.bmp">
+    </label>
+    <label>پروفایل فونت / اداره
+      <select name="profile">
+        <option value="">— بدون پروفایل (فقط متن دیجیتال PDF) —</option>
+        {% for p in profiles %}
+          <option value="{{ p.name }}">{{ p.name }} ({{ p.templates }} الگو)</option>
+        {% endfor %}
+      </select>
+    </label>
+    <label class="inline"><input type="checkbox" name="no_text_layer"> متن دیجیتال PDF را نادیده بگیر (تصویر را بخوان)</label>
+    <label>وضوح پردازش (DPI) <input type="number" name="dpi" value="300" min="150" max="600"></label>
+    <button type="submit" class="primary">استخراج</button>
+  </form>
+  <p class="hint">
+    اگر PDF متن دیجیتال داشته باشد، همان متن با دقت کامل برداشته می‌شود و اصلاً تصویر خوانده نمی‌شود.
+    برای اسکن‌ها باید پروفایل همان اداره را انتخاب کنید. اگر پروفایل ندارید از
+    <a href="{{ url_for('profiles') }}">صفحه‌ی پروفایل‌ها</a> بسازید.
+  </p>
+</section>
+
+{% if jobs %}
+<section class="card">
+  <h2>کارهای اخیر</h2>
+  <table class="table">
+    <thead><tr><th>فایل</th><th>پروفایل</th><th>صفحات</th><th>نرخ تطبیق</th><th>ناشناخته</th><th>اعداد مشکوک</th><th></th></tr></thead>
+    <tbody>
+    {% for j in jobs %}
+      <tr>
+        <td><a href="{{ url_for('job', job_id=j.id) }}">{{ j.original_name }}</a></td>
+        <td>{{ j.profile or '—' }}</td>
+        <td>{{ j.summary.pages if j.summary else '' }}
+            {% if j.summary and j.summary.text_layer %}<span class="tag ok">{{ j.summary.text_layer }} دیجیتال</span>{% endif %}
+            {% if j.summary and j.summary.handwritten %}<span class="tag warn">{{ j.summary.handwritten }} دست‌نویس</span>{% endif %}</td>
+        <td>{{ j.summary.match_rate ~ '٪' if j.summary and j.summary.match_rate is not none else '—' }}</td>
+        <td>{{ j.summary.unknown + j.summary.ambiguous if j.summary else '' }}</td>
+        <td>{{ j.summary.bad_numbers if j.summary else '' }}</td>
+        <td><form method="post" action="{{ url_for('delete_job', job_id=j.id) }}" onsubmit="return confirm('حذف شود؟')"><button class="link">حذف</button></form></td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</section>
+{% endif %}
+{% endblock %}

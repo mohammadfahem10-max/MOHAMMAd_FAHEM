@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{% block title %}پارسی‌اسکن{% endblock %}</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="{{ url_for('index') }}">پارسی‌اسکن</a>
+  <nav>
+    <a href="{{ url_for('index') }}">استخراج</a>
+    <a href="{{ url_for('profiles') }}">پروفایل‌ها و الگوبرداری</a>
+  </nav>
+</header>
+<main>
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <div class="flash">{% for m in messages %}<div>{{ m }}</div>{% endfor %}</div>
+  {% endif %}
+{% endwith %}
+{% block content %}{% endblock %}
+</main>
+<footer class="foot">تطبیق الگوی قطعی، بدون هوش مصنوعی. هر شکلی که مطمئن نباشد با علامت ▯ مشخص می‌شود؛ خطای پنهان ندارد.</footer>
+</body>
+</html>

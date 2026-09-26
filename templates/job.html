@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+{% block title %}{{ job.original_name }} — پارسی‌اسکن{% endblock %}
+{% block content %}
+<section class="card">
+  <h1>{{ job.original_name }}</h1>
+  {% set s = job.summary %}
+  <div class="stats">
+    <div><b>{{ s.pages }}</b> صفحه</div>
+    <div><b>{{ s.text_layer }}</b> متن دیجیتال</div>
+    <div><b>{{ s.template }}</b> تطبیق الگو</div>
+    <div><b>{{ s.handwritten }}</b> دست‌نویس</div>
+    <div><b>{{ s.match_rate ~ '٪' if s.match_rate is not none else '—' }}</b> نرخ تطبیق</div>
+    <div class="{{ 'bad' if s.unknown + s.ambiguous else '' }}"><b>{{ s.unknown + s.ambiguous }}</b> شکل نیازمند بازبینی</div>
+    <div class="{{ 'bad' if s.bad_numbers else '' }}"><b>{{ s.bad_numbers }}</b> عدد مشکوک</div>
+  </div>
+  <div class="actions">
+    <a class="btn" href="{{ url_for('download', job_id=job_id, kind='txt') }}">دانلود TXT</a>
+    {% if job.outputs.docx %}<a class="btn" href="{{ url_for('download', job_id=job_id, kind='docx') }}">دانلود Word</a>{% endif %}
+    <a class="btn" href="{{ url_for('download', job_id=job_id, kind='json') }}">دانلود JSON</a>
+    {% if job.profile and (s.unknown or s.ambiguous or s.low) %}
+      <a class="btn primary" href="{{ url_for('label', job_id=job_id) }}">برچسب‌زنی شکل‌های ناشناخته ({{ s.unknown + s.ambiguous + s.low }})</a>
+    {% endif %}
+    <form method="post" action="{{ url_for('rerun', job_id=job_id) }}" class="inline-form">
+      <select name="profile">
+        <option value="">— بدون پروفایل —</option>
+        {% for p in profiles %}<option value="{{ p }}" {{ 'selected' if p == job.profile }}>{{ p }}</option>{% endfor %}
+      </select>
+      <label class="inline"><input type="checkbox" name="no_text_layer" {{ 'checked' if job.no_text_layer }}> تصویر را بخوان</label>
+      <button type="submit">دوباره بخوان</button>
+    </form>
+  </div>
+</section>
+
+{% for p in pages %}
+<section class="card page">
+  <h2>صفحه {{ p.index + 1 }}
+    {% if p.source == 'text_layer' %}<span class="tag ok">متن دیجیتال، دقت کامل</span>
+    {% elif p.source == 'template' %}<span class="tag">تطبیق الگو</span>
+    {% elif p.source == 'handwritten' %}<span class="tag warn">دست‌نویس</span>
+    {% else %}<span class="tag">خالی</span>{% endif %}
+    <small class="muted">{{ p.stats }}</small>
+  </h2>
+  {% if p.source == 'handwritten' %}
+    <p class="warnbox">این صفحه دست‌نویس تشخیص داده شد. تطبیق الگو برای دست‌خط کار نمی‌کند و به جای حدس زدن، صفحه برای بازبینی انسانی علامت خورد.</p>
+  {% endif %}
+  <div class="split">
+    <div class="imgwrap">
+      {% if p.image_rel %}
+      <svg viewBox="0 0 {{ p.width }} {{ p.height }}" class="overlay">
+        <image href="{{ url_for('job_file', job_id=job_id, rel=p.image_rel) }}" width="{{ p.width }}" height="{{ p.height }}"/>
+        {% for l in p.lines %}{% for q in l.paws %}
+          {% if q.status in ('unknown','ambiguous','low') %}
+          <rect x="{{ q.box[0] }}" y="{{ q.box[1] }}" width="{{ q.box[2]-q.box[0] }}" height="{{ q.box[3]-q.box[1] }}" class="box {{ q.status }}"><title>{{ q.status }} {{ q.score }} {{ q.alt or '' }}</title></rect>
+          {% endif %}
+        {% endfor %}{% endfor %}
+      </svg>
+      {% endif %}
+    </div>
+    <div class="textwrap">
+      <pre class="text" dir="rtl">{{ p.html_text|safe }}</pre>
+      {% if p.numbers %}
+      <h3>اعداد، تاریخ‌ها و مبلغ‌ها</h3>
+      <table class="table small">
+        <thead><tr><th>مقدار</th><th>نوع</th><th>وضعیت</th></tr></thead>
+        <tbody>
+        {% for n in p.numbers %}
+          {% if n.kind != 'number' or not n.valid %}
+          <tr class="{{ '' if n.valid else 'badrow' }}">
+            <td dir="ltr">{{ n.text }}</td>
+            <td>{{ {'date':'تاریخ','amount':'مبلغ','national_id':'کد ملی','phone':'تلفن','time':'ساعت','number':'عدد'}[n.kind] }}</td>
+            <td>{{ 'معتبر' if n.valid else 'مشکوک: ' ~ n.note }}</td>
+          </tr>
+          {% endif %}
+        {% endfor %}
+        </tbody>
+      </table>
+      {% endif %}
+    </div>
+  </div>
+</section>
+{% endfor %}
+{% endblock %}

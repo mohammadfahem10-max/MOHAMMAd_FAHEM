@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block title %}برچسب‌زنی — {{ job.original_name }}{% endblock %}
+{% block content %}
+<section class="card">
+  <h1>برچسب‌زنی شکل‌های ناشناخته</h1>
+  <p class="hint">
+    شکل‌های مشابه در یک گروه آمده‌اند؛ هر گروه را فقط یک بار برچسب بزنید. متن دقیق همان تکه را (بدون فاصله) بنویسید.
+    اگر شکل جزئی از متن نیست (آرم، مهر، لکه) گزینه‌ی «نویز» را بزنید. گروه‌های پرتکرار اول آمده‌اند.
+    فایل «{{ job.original_name }}» — پروفایل «{{ job.profile }}» — {{ total }} گروه.
+  </p>
+  <form method="post" class="clusters">
+    {% for c in clusters %}
+    <div class="cluster">
+      <div class="crops">
+        {% for cr in c.crops %}<img src="{{ url_for('job_file', job_id=job_id, rel=cr) }}" alt="">{% endfor %}
+      </div>
+      <div class="meta">
+        <span class="tag">{{ c.size }} بار</span>
+        <span class="tag {{ c.status }}">{{ {'unknown':'ناشناخته','ambiguous':'دوپهلو','low':'اطمینان کم'}[c.status] }}</span>
+        {% if c.guess %}<span class="muted">حدس نزدیک: <b dir="auto">{{ c.guess }}</b></span>{% endif %}
+        <span class="muted">صفحه {{ c.page }}</span>
+      </div>
+      <div class="inputs">
+        <input type="text" name="label_{{ c.index }}" dir="auto" placeholder="متن این شکل" value="{{ c.guess or '' }}" autocomplete="off">
+        <label class="inline"><input type="checkbox" name="noise_{{ c.index }}"> نویز</label>
+      </div>
+    </div>
+    {% endfor %}
+    <div class="actions sticky">
+      <button type="submit" class="primary">ذخیره و خواندن دوباره</button>
+      <button type="submit" name="continue" value="1">ذخیره و ادامه‌ی برچسب‌زنی</button>
+      <a class="btn" href="{{ url_for('job', job_id=job_id) }}">بازگشت</a>
+    </div>
+  </form>
+</section>
+{% endblock %}
